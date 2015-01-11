@@ -2,7 +2,7 @@ define([
 		'jquery',
 		'underscore',
 		'backbone',
-		'url',
+		'modules/utils/url',
 		'modules/user/collections/favorites'
 	],
 	function($, _, Backbone, Url, FavoritesCollection) {

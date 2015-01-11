@@ -34,15 +34,15 @@ define([
 
 	        initialize: function(options) {
 	        	var that = this
-	        	this.model.set('favorite', function() {
-	        		return options.isFavorite(that.model.id)
-	        	})
+	        	// this.model.set('favorite', function() {
+	        	// 	return options.isFavorite(that.model.id)
+	        	// })
 	        	
 	            this.listenTo(this.model, 'change', this.render)
 
 	            this.listenTo(Backbone, 'book:favorite:changed', function(id) {
 	            	if (id === that.model.id) {
-		            	console.log('redraw!')
+		            	// console.log('redraw!')
 		            	this.render()
 		            }
 	            })

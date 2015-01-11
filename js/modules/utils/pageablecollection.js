@@ -15,7 +15,7 @@ define([
 			},
 
 			lastPage: function() {
-				return this.pages.length - 1
+				return Object.keys(this.pages).length - 1
 			},
 			firstPage: function() {
 				return 0
@@ -23,17 +23,21 @@ define([
 			thereIsMore: function() {
 				return this.currentPage < this.lastPage()
 			},
-			isLast: function() {
+			isOnLastPage: function() {
 				return this.currentPage == this.lastPage()
 			},
-			isFirst: function() {
+			isOnFirstPage: function() {
 				return this.currentPage == 0
 			},
-			next: function() {
+			nextPage: function() {
 				++currentPage
 			},
 			previous: function() {
 				--currentPage
+			},
+			loadMore: function() {
+				--this.currentPage
+				// this.fetch()
 			},
 
 			parse: function(response) {

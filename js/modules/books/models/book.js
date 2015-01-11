@@ -2,7 +2,7 @@ define([
 		'jquery',
 		'underscore',
 		'backbone',
-		'url'
+		'modules/utils/url'
 	],
 	function($, _, Backbone, Url) {
 	    var BookModel = Backbone.Model.extend({

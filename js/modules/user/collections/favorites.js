@@ -4,7 +4,7 @@ define([
 		'backbone',
 		'modules/user/models/user',
 		'modules/user/models/favorite',
-		'url'
+		'modules/utils/url'
 	],
 	function($, _, Backbone, UserModel, FavoriteModel, Url) {
 	    var FavoritesCollection = Backbone.Collection.extend({

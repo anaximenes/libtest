@@ -2,13 +2,13 @@ define([
 		'jquery',
 		'underscore',
 		'backbone',
-		'modules/books/models/book',
-		'modules/books/collections/collection-paginated',
-		'modules/books/views/listitem'
+		'modules/questions/models/question',
+		'modules/questions/collections/collection-paginated',
+		'modules/questions/views/listitem'
 	],
-	function($, _, Backbone, BookModel, BooksCollection, ListItemView) {
+	function($, _, Backbone, QuestionModel, QuestionsCollection, ListItemView) {
 	    var CollectionView = Backbone.View.extend({
-	        model: BookModel,
+	        model: QuestionModel,
 	        isFavorite: undefined,
 	        views: [],
 
@@ -39,7 +39,7 @@ define([
 	        initialize: function(options) {
 	        	options = options ? options : {}
 	        	// this.isFavorite = options.isFavorite ? options.isFavorite : function() {return false}
-	            this.collection = options.collection ? options.collection : new BooksCollection()
+	            this.collection = options.collection ? options.collection : new QuestionsCollection()
 	            var that = this
 
 	            this.collection.fetch({

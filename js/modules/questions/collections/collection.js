@@ -3,7 +3,7 @@ define([
 		'underscore',
 		'backbone',
 		'modules/questions/models/question',
-		'url'
+		'modules/utils/url'
 	],
 	function($, _, Backbone, QuestionModel, Url) {
 	    var QuestionsCollection = Backbone.Collection.extend({
@@ -11,10 +11,9 @@ define([
 	        url: function() {
 	        	return Url('questions')
 	        },
-	        // url: '../../api/books.json',
 
-	        parse: function(what) {
-	            return what
+	        parse: function(response) {
+	            return response.results
 	        }
 	    })
 

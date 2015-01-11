@@ -2,7 +2,7 @@ define([
 		'jquery',
 		'underscore',
 		'backbone',
-		'url'
+		'modules/utils/url'
 	],
 	function($, _, Backbone, Url) {
 	    var QuestionModel = Backbone.Model.extend({
@@ -12,9 +12,7 @@ define([
 
 	    	properties: [
 	    		'id',
-	    		'author',
-	    		'title',
-	    		'content'
+	    		'user'
 	    	],
 
 	    	complete: function() {

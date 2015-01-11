@@ -16,7 +16,7 @@ define([
 			},
 
 			questions: function() {
-				return root + "questions";
+				return root + "questions/";
 				// return "/api/questions" + '.json'
 			},
 

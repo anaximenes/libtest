@@ -3,7 +3,7 @@ define([
 		'underscore',
 		'backbone',
 		'modules/books/models/book',
-		'url'
+		'modules/utils/url'
 	],
 	function($, _, Backbone, BookModel, Url) {
 	    var BooksCollection = Backbone.Collection.extend({

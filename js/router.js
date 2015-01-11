@@ -24,9 +24,9 @@ define([
 			},
 
 			routes: {
-				'!/books(/)': 'books',
+				'!/books(/p:page)(/)': 'books',
 				'!/books/:id(/)': 'book',
-				'!/questions(/)': 'questions',
+				'!/questions(p:page)(/)': 'questions',
 				'!/questions/:id(/)': 'question',
 				'!/signin(/)': 'signin',
 				'!/user/:id(/)': 'user',
@@ -38,19 +38,16 @@ define([
 				this.navigate('!/books', true)
 			},
 
-			books: function() {
-				var that = this
-				Controller.view('books', {isFavorite: function(id) {
-					return that.user.isFavorite(id)
-				}})
+			books: function(page) {
+				Controller.view('books', page)
 			},
 
 			book: function(id) {
 				Controller.view('book', {'id': id})
 			},
 
-			questions: function() {
-				Controller.view('questions')
+			questions: function(page) {
+				Controller.view('questions', page)
 			},
 
 			question: function(id) {

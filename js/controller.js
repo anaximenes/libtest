@@ -4,11 +4,9 @@ define([
 		'backbone',
 		'modules/books/main',
 		'modules/questions/main',
-		'modules/user/main',
-		'modules/utils/url',
-		'modules/utils/pageablecollection'
+		'modules/user/main'
 	],
-	function($, _, Backbone, BookModule, QuestionModule, User, Url, PageableCollection) {
+	function($, _, Backbone, BookModule, QuestionModule, User) {
 		var currentState = {}
 
 		var Controller = {
@@ -16,20 +14,22 @@ define([
 
 			view: function(page, params) {
 				console.log('Controller: ' + page)
+				$('.active').removeClass('active')
 				if (this.currentView) this.currentView.remove();
 				this.currentView = this[page](params)
 				$('#page').html(this.currentView.render().el)
 			},
 
-			books: function(params) {
-				$('.active').removeClass('active')
+			books: function(page) {
 				$('#page-books').addClass('active')
 				currentState.books = currentState.books ? currentState.books : new BookModule.PaginatedCollection()
-				return new BookModule.ListViewPaginated({collection: currentState.books, isFavorite: params.isFavorite})
+				currentState.books.currentPage = page
+				return new BookModule.ListViewPaginated({
+								collection: currentState.books
+							})
 			},
 
 			book: function(book) {
-				$('.active').removeClass('active')
 				$('#page-books').addClass('active')
 				var model = new BookModule.Model({'id': book.id})
 				var view = new BookModule.CardView({'model': model})
@@ -37,14 +37,17 @@ define([
 				return view
 			},
 
-			questions: function() {
-				$('.active').removeClass('active')
+			questions: function(page) {
 				$('#page-questions').addClass('active')
-				return new QuestionModule.ListView()
+				currentState.questions = currentState.questions ? currentState.questions : new QuestionModule.PaginatedCollection()
+				currentState.questions.currentPage = page
+				return new QuestionModule.ListViewPaginated({
+								collection: currentState.questions
+							})
+				// return new QuestionModule.ListView()
 			},
 
 			question: function(question) {
-				$('.active').removeClass('active')
 				$('#page-questions').addClass('active')
 				var model = new QuestionModule.Model({'id': question.id})
 				var view = new QuestionModule.CardView({'model': model})
@@ -53,7 +56,6 @@ define([
 			},
 
 			signin: function() {
-				$('.active').removeClass('active')
 				$('#page-signin').addClass('active')
 				var view = new User.signinView()
 				return view

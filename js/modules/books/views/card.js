@@ -9,11 +9,6 @@ define([
 	        templateLoading: $('#template-book-entry-loading').html(),
 
 	        events: {
-	            'click': 'click'
-	        },
-
-	        click: function() {
-				Backbone.trigger('book:open', this)
 	        },
 
 	        render: function() {
