@@ -66,11 +66,12 @@ define([
 			},
 
 			test: function() {
-				this.requireLogin({
-					success: function() {
-						Controller.view('test', 'loggedIn')
-					}
-				})
+				Controller.view('test')
+				// this.requireLogin({
+				// 	success: function() {
+				// 		Controller.view('test', 'loggedIn')
+				// 	}
+				// })
 			},
 
 			initialize: function() {

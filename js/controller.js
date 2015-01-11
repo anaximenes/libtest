@@ -4,9 +4,13 @@ define([
 		'backbone',
 		'modules/books/main',
 		'modules/questions/main',
-		'modules/user/main'
+		'modules/user/main',
+		'modules/utils/url',
+		'modules/utils/pageablecollection'
 	],
-	function($, _, Backbone, BookModule, QuestionModule, User) {
+	function($, _, Backbone, BookModule, QuestionModule, User, Url, PageableCollection) {
+		var currentState = {}
+
 		var Controller = {
 			currentView: undefined,
 
@@ -20,7 +24,8 @@ define([
 			books: function(params) {
 				$('.active').removeClass('active')
 				$('#page-books').addClass('active')
-				return new BookModule.ListView({isFavorite: params.isFavorite})
+				currentState.books = currentState.books ? currentState.books : new BookModule.PaginatedCollection()
+				return new BookModule.ListViewPaginated({collection: currentState.books, isFavorite: params.isFavorite})
 			},
 
 			book: function(book) {
@@ -59,14 +64,14 @@ define([
 			},
 
 			test: function(status) {
-				var template = _.template('<h3> <%=status%> </h3>')
-				var View = Backbone.View.extend({
-					el: template({status: status}),
-					render: function() {
-						return this
-					}
-				})
-				return new View
+				// var template = _.template('<h3> <%=status%> </h3>')
+				// var View = Backbone.View.extend({
+				// 	el: template({status: status}),
+				// 	render: function() {
+				// 		return this
+				// 	}
+				// })
+				// return new View
 			}
 		}
 

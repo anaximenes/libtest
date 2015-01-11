@@ -7,7 +7,7 @@ define([
 		var root = "http://beta.reslib.org/api/"
 		var URLs = {
 			books: function() {
-				return root + "books";
+				return root + "books/";
 			},
 
 			book: function(id) {

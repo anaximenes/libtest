@@ -13,8 +13,8 @@ define([
 	        },
 	        // url: '../../api/books.json',
 
-	        parse: function(what) {
-	            return what
+	        parse: function(response, options) {
+	            return response.results
 	        }
 	    })
 

@@ -41,7 +41,7 @@ define([
 	        },
 
 	        remove: function() {
-	        	for (var i = this.views.length - 1; i>= 0; --i) {
+	        	for (var i = this.views.length - 1; i >= 0; --i) {
 	        		this.views[i].remove()
 	        		this.views.pop()
 	        	}

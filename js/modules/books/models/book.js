@@ -14,9 +14,9 @@ define([
 
 	    	properties: [
 	    		'id',
-	    		'author',
-	    		'title',
-	    		'description'
+	    		'authors',
+	    		'title'
+	    		// 'description'
 	    	],
 
 	    	complete: function() {

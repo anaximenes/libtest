@@ -19,14 +19,14 @@ define([
 	        },
 
 	        toggleFavorite: function(id) {
-	        	console.log('FavoritesCollection: toggle')
+	        	// console.log('FavoritesCollection: toggle')
 	        	var model = this.get(id)
-	        	console.log(this.models)
+	        	// console.log(this.models)
 	        	if (model) {
-	        		console.log('existed')
+	        		// console.log('existed')
 	        		this.remove(model)
 	        	} else {
-	        		console.log("didn't exist")
+	        		// console.log("didn't exist")
 	        		model = new FavoriteModel({id: id})
 	        		this.add(model)
 	        	}
