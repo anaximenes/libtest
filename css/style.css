@@ -1,3 +1,28 @@
+#footerleft {
+    float: left;
+    width:33.333%;
+    text-align:left;
+}
+
+#footercenter {
+    float: left;
+    width: 33.333%;
+    text-align: center;
+}
+
+#footerright {
+    float: left;
+    width:33.333%;
+    text-align:right;
+}
+
+
+a.menu-signin-item {
+  font-size: 18px; 
+  margin-right: 10px;
+}
+
+
 /*
  * Globals
  */
@@ -17,7 +42,7 @@ h5, .h5,
 h6, .h6 {
   margin-top: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
+  /*font-weight: normal;*/
   color: #333;
 }
 
@@ -32,10 +57,41 @@ h6, .h6 {
   }
 }
 */
+
+.centeredImage {
+    text-align:center;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding:0px;
+}
+
+.menu-item {
+  font-size: 19px;
+  font-weight: 100;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.menu-item.active {
+  font-size: 30px;
+  font-weight: 580;
+}
+
+a.menu-item {
+  color: #333333;
+  text-decoration: none;
+}
+
+a.book-entry {
+  /*color: #333333;*/
+  text-decoration: none;
+  /*font-weight: 880;*/
+}
+
 .reslib {
   font-size: 21px;
-  margin-left: 20px;
-  margin-right: 400px;
+  /*margin-left: 20px;*/
+  /*margin-right: 400px;*/
   margin-bottom: -5px
 }
 
@@ -58,8 +114,8 @@ h6, .h6 {
 }
 
 .book-image {
-  float: left; 
-  width: 110px; 
+  float: left;
+  width: 110px;
   margin-right: 40px;
 }
 
@@ -77,6 +133,7 @@ h6, .h6 {
 
 .title {
   margin-top: 10px;
+  font-weight: 600;
 }
 
 

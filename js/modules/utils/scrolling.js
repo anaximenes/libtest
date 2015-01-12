@@ -7,7 +7,7 @@ define([
 
 		var $el = $(window)
 
-		var tolerance = 40
+		var tolerance = 150
 
 		_.extend(Scrolling, Backbone.Events)
 
