@@ -29,7 +29,9 @@ define([
 				'!/questions(p:page)(/)': 'questions',
 				'!/questions/:id(/)': 'question',
 				'!/signin(/)': 'signin',
-				'!/user/:id(/)': 'user',
+				'!/signout(/)': 'signout',
+				'!/users/:id(/)': 'user',
+				'!/users/:id/favorites(/)': 'favorites',
 				'!/test(/)': 'test',
 				'*path': 'root'
 			},
@@ -58,8 +60,18 @@ define([
 				Controller.view('signin')
 			},
 
+			signout: function() {
+				this.user.logOut()
+				Backbone.trigger('signout')
+				this.navigate('!/books/', true)
+			},
+
 			user: function() {
 				Controller.view('user', this.user.id)
+			},
+
+			favorites: function() {
+				Controller.view('favorites', this.user.id)
 			},
 
 			test: function() {
@@ -73,6 +85,7 @@ define([
 
 			initialize: function() {
 				var that = this
+				Controller.signed = this.user.loggedIn()
 
 				var openBook = function(obj) {
 					that.navigate('!/books/' + obj.model.get('id') + '/', true)
@@ -80,7 +93,8 @@ define([
 				var openQuestion = function(obj) {
 					that.navigate('!/questions/' + obj.model.get('id') + '/', true)
 				}
-				var signIn = function() {
+				var signIn = function(id) {
+					Controller.userId = id
 					Backbone.history.history.back()
 				}
 				var toggleFavorite = function(obj) {

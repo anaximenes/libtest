@@ -110,6 +110,13 @@ h6, .h6 {
   color: #cdddeb;
 }
 
+#page-favorites {
+  display: none;
+}
+#page-signout {
+  display: none;
+}
+
 .header-nav-item.pull-right {
   margin-top: 5px;
 }

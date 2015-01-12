@@ -12,7 +12,7 @@ define([
 	        },
 
 	        signin: function() {
-	        	Backbone.trigger('signin:success')
+	        	Backbone.trigger('signin:success', 30479)
 	        },
 
 	        render: function() {

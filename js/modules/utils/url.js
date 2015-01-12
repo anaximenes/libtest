@@ -26,7 +26,7 @@ define([
 			},
 
 			favorites: function(id) {
-				return root + "users/" + id + "/bookmarks";
+				return root + "users/" + id + "/favorites";
 				// return "api/users/" + id + "/bookmarks" + '.json';
 			}
 		}

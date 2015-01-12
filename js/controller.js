@@ -4,9 +4,11 @@ define([
 		'backbone',
 		'modules/books/main',
 		'modules/questions/main',
-		'modules/user/main'
+		'headerview',
+		'modules/user/main',
+		'modules/utils/url'
 	],
-	function($, _, Backbone, BookModule, QuestionModule, User) {
+	function($, _, Backbone, BookModule, QuestionModule, HeaderView, User, Url) {
 		var currentState = {}
 
 		var Controller = {
@@ -14,7 +16,13 @@ define([
 
 			view: function(page, params) {
 				console.log('Controller: ' + page)
+				if (currentState.header === undefined) {
+					console.log('oops')
+					currentState.header = new HeaderView({signed: this.signed})
+					console.log(currentState.header)
+				}
 				$('.active').removeClass('active')
+
 				if (this.currentView) this.currentView.remove();
 				this.currentView = this[page](params)
 				$('#page').html(this.currentView.render().el)
@@ -22,7 +30,12 @@ define([
 
 			books: function(page) {
 				$('#page-books').addClass('active')
-				currentState.books = currentState.books ? currentState.books : new BookModule.PaginatedCollection()
+				currentState.books = currentState.books ? currentState.books : 
+															new BookModule.PaginatedCollection([], {
+																url: function() {
+																	return Url('books')
+																}
+															})
 				currentState.books.currentPage = page
 				return new BookModule.ListViewPaginated({
 								collection: currentState.books
@@ -63,6 +76,18 @@ define([
 
 			user: function() {
 
+			},
+
+			favorites: function(userId) {
+				$('#page-favorites').addClass('active')
+				var view = new BookModule.ListViewPaginated({
+					collection: new BookModule.PaginatedCollection([], {
+						url: function() {
+							return Url('favorites', userId)
+						}
+					})
+				})
+				return view
 			},
 
 			test: function(status) {

@@ -7,11 +7,21 @@ define([
 	],
 	function($, _, Backbone, Url, FavoritesCollection) {
 		var UserModel = Backbone.Model.extend({
-			id: 1,
+			id: 30479,
 			favorites: [],
 
+			//...
+			status: false,
+
 			loggedIn: function() {
-				return false
+				return status
+			},
+
+			logOut: function() {
+				this.status = false
+			},
+			logIn: function() {
+				this.status = true
 			},
 
 			isFavorite: function(id) {

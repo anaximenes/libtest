@@ -18,8 +18,10 @@
 	          <div class='header-nav-item reslib'>ResLib</div></a>
 	          <a class="header-nav-item" id='page-books' href="#!/books/">Books</a>
 	          <a class="header-nav-item" id='page-questions' href="#!/questions/">Questions</a>
-	          <a class="header-nav-item pull-right" id='page-signin' href="#!/signin/">Sign in</a>
-	          <a class="header-nav-item pull-right" href="#">Sign up</a>
+              <a class="header-nav-item pull-right" id='page-signout' href="#!/signout/">Sign out</a>
+              <a class="header-nav-item pull-right" id='page-signin' href="#!/signin/">Sign in</a>
+              <a class="header-nav-item pull-right" id='page-signup' href="#">Sign up</a>
+              <a class="header-nav-item pull-right" id='page-favorites'>Favorites</a>
 	        </nav>
 	    </div>
     </div>
@@ -89,7 +91,7 @@
     </script>
 
     <script type='text/template' id = 'template-book-entry-loading'> 
-        <div class='container book-entry' id='<%=id%>'>
+        <div class='container book-entry' id='<%= id %>'>
         <div class='row'>
             <h3> Loading... </h3>
             <div class='authors'> <h4> please wait</h4> </div>
