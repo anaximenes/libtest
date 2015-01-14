@@ -101,12 +101,17 @@ define([
 					console.log('toggleFavorite')
 					that.user.toggleFavorite(obj.model.get('id'))
 				}
+				var back = function() {
+					console.log('BACK')
+					Backbone.history.back()
+				}
 
 				var eventHandler = {
 					'book:open':					openBook,
 					'book:toggleFavorite': 			toggleFavorite,
 					'question:open': 				openQuestion,
-					'signin:success': 				signIn
+					'signin:success': 				signIn,
+					'backstrip':                    back
 				}
 
 				for (var event in eventHandler) {

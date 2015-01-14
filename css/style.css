@@ -1,3 +1,38 @@
+#button-back {
+  position: absolute; 
+  top:0px; 
+  left:0px; 
+  height:100vh; 
+  z-index: 1;
+  display: none;
+}
+
+div#button-back:hover {
+  background-color: lightblue;
+}
+
+
+#top-link{
+  cursor:pointer; /* изменяем указатель мыши при наведении на блок */
+  /*display:none; */
+  /* скрываем блок с кнопкой, т.к. отображать надо только при прокрутке */
+  position:fixed; /* фиксируем расположение */
+  left:0px;
+  top:0px;
+  height: 100vh;
+  width: auto;
+}
+#top-link a{
+  display:block; 
+}
+
+
+
+
+
+
+
+
 #footerleft {
     float: left;
     width:33.333%;
@@ -31,7 +66,7 @@ a.menu-signin-item {
 
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
-  color: #555;
+  /*color: #555;*/
 }
 
 h1, .h1,
