@@ -17,9 +17,7 @@ define([
 			view: function(page, params) {
 				console.log('Controller: ' + page)
 				if (currentState.header === undefined) {
-					console.log('oops')
 					currentState.header = new HeaderView({signed: this.signed})
-					console.log(currentState.header)
 				}
 				$('.active').removeClass('active')
 
@@ -30,14 +28,9 @@ define([
 
 			books: function(page) {
 				$('#page-books').addClass('active')
-				currentState.books = currentState.books ? currentState.books : 
-															new BookModule.PaginatedCollection([], {
-																url: function() {
-																	return Url('books')
-																}
-															})
+				currentState.books = currentState.books ? currentState.books : new BookModule.PagedCollection()
 				currentState.books.currentPage = page
-				return new BookModule.ListViewPaginated({
+				return new BookModule.PagedListView({
 								collection: currentState.books
 							})
 			},
@@ -52,12 +45,11 @@ define([
 
 			questions: function(page) {
 				$('#page-questions').addClass('active')
-				currentState.questions = currentState.questions ? currentState.questions : new QuestionModule.PaginatedCollection()
+				currentState.questions = currentState.questions ? currentState.questions : new QuestionModule.PagedCollection()
 				currentState.questions.currentPage = page
-				return new QuestionModule.ListViewPaginated({
+				return new QuestionModule.PagedListView({
 								collection: currentState.questions
 							})
-				// return new QuestionModule.ListView()
 			},
 
 			question: function(question) {
@@ -80,8 +72,8 @@ define([
 
 			favorites: function(userId) {
 				$('#page-favorites').addClass('active')
-				var view = new BookModule.ListViewPaginated({
-					collection: new BookModule.PaginatedCollection([], {
+				var view = new BookModule.PagedListView({
+					collection: new BookModule.PagedCollection([], {
 						url: function() {
 							return Url('favorites', userId)
 						}

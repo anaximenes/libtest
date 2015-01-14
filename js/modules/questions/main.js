@@ -2,20 +2,19 @@ define([
 		'jquery',
 		'underscore',
 		'backbone',
-		'modules/questions/views/list',
-		'modules/questions/views/list-pageable',
+		// 'modules/questions/views/list',
+		'modules/questions/views/pagedlist',
 		'modules/questions/views/card',
-		'modules/questions/collections/collection-paginated',
+		'modules/questions/collections/pagedcollection',
 		'modules/questions/models/question'
 	],
-	function($, _, Backbone, ListView, ListViewPaginated, CardView, PaginatedCollection, QuestionModel) {
-	// function($, _, Backbone, ListView, QuestionModel) {
+	function($, _, Backbone, PagedListView, CardView, PagedCollection, QuestionModel) {
 		return {
-			'ListView': ListView, 
-			'ListViewPaginated': ListViewPaginated, 
-			'CardView': CardView,
-			'PaginatedCollection': PaginatedCollection,
-			'Model': QuestionModel
+			// 'ListView': ListView,
+			'PagedListView':     PagedListView,
+			'CardView':          CardView,
+			'PagedCollection':   PagedCollection,
+			'Model':             QuestionModel
 		}
 	}
 )

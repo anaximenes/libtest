@@ -11,7 +11,6 @@ define([
 	        url: function() {
 	        	return Url('books')
 	        },
-	        // url: '../../api/books.json',
 
 	        parse: function(response, options) {
 	            return response.results

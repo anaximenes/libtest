@@ -2,33 +2,35 @@ define([
 		'jquery',
 		'underscore',
 		'backbone',
-		'modules/books/models/book',
-		'modules/books/collections/collection-paginated',
-		'modules/books/views/listitem'
 	],
-	function($, _, Backbone, BookModel, BooksCollection, ListItemView) {
+	function($, _, Backbone) {
 	    var CollectionView = Backbone.View.extend({
-	        model: BookModel,
-	        isFavorite: undefined,
 	        views: [],
+	        moel: Backbone.Model,
+	        ItemView: Backbone.View,
 
 	        loadUp: function() {
-	        	var that = this
 	        	if (this.collection.thereIsMore()) {
-	        		this.collection.loadMore()
-	            	this.collection.fetch({
-	            		success: function(response) {
-	            			that.render()
+	        		this.collection.loadMore({
+	            		success: function(collection, response) {
+	            			// console.log(collection)
 	            		}
 	            	})
 				}
+	        },
+
+	        addView: function(model) {
+            	this.views.push(new this.ItemView({
+					model: model
+				}))
+	            this.$el.append(this.views[this.views.length - 1].render().el)
 	        },
 
 	        render: function() {
 	        	this.$el.empty()
 	        	this.removeChildViews()
 	            for (var i = 0; i < this.collection.length; i++) {
-	            	this.views.push(new ListItemView({
+	            	this.views.push(new this.ItemView({
 						model: this.collection.at(i)
 					}))
 	                this.$el.append(this.views[i].render().el)
@@ -38,19 +40,19 @@ define([
 
 	        initialize: function(options) {
 	        	options = options ? options : {}
-	        	// this.isFavorite = options.isFavorite ? options.isFavorite : function() {return false}
-	            this.collection = options.collection ? options.collection : new BooksCollection()
+ 	            this.collection = options.collection
 	            var that = this
 
 	            this.collection.fetch({
 	                success: function(response) {
-	                    that.render()
+	                    // that.render()
 	                },
 	                error: function(e) {
 	                	console.log('error ' + e)
 	                }
 	            })
 
+	            this.listenTo(this.collection, 'add', this.addView)
 	            this.listenTo(Backbone, 'page:scrollbottom', this.loadUp)
 	        },
 

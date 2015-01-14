@@ -2,26 +2,40 @@ define([
 		'jquery',
 		'underscore',
 		'backbone',
-		'modules/questions/models/question',
-		'modules/questions/collections/collection-paginated',
-		'modules/questions/views/listitem'
+		'modules/books/models/book',
+		'modules/books/collections/collection-paginated',
+		'modules/books/views/listitem'
 	],
-	function($, _, Backbone, QuestionModel, QuestionsCollection, ListItemView) {
+	function($, _, Backbone, BookModel, BooksCollection, ListItemView) {
 	    var CollectionView = Backbone.View.extend({
-	        model: QuestionModel,
+	        model: BookModel,
 	        isFavorite: undefined,
 	        views: [],
+
+	        addModel: function(model, collection, options) {
+	        },
 
 	        loadUp: function() {
 	        	var that = this
 	        	if (this.collection.thereIsMore()) {
 	        		this.collection.loadMore()
 	            	this.collection.fetch({
-	            		success: function(response) {
+	            		success: function(collection, response) {
+	            			// console.log(collection)
+	            			// console.log(response)
 	            			that.render()
+	            			// that.addViews(response.results)
 	            		}
 	            	})
 				}
+	        },
+
+	        addView: function(model) {
+	        	console.log('addView')
+            	this.views.push(new ListItemView({
+					model: model
+				}))
+	            this.$el.append(this.views[this.views.length - 1].render().el)
 	        },
 
 	        render: function() {
@@ -39,7 +53,7 @@ define([
 	        initialize: function(options) {
 	        	options = options ? options : {}
 	        	// this.isFavorite = options.isFavorite ? options.isFavorite : function() {return false}
-	            this.collection = options.collection ? options.collection : new QuestionsCollection()
+	            this.collection = options.collection ? options.collection : new BooksCollection()
 	            var that = this
 
 	            this.collection.fetch({
@@ -51,6 +65,7 @@ define([
 	                }
 	            })
 
+	            // this.listenTo(this.collection, 'add', this.addView)
 	            this.listenTo(Backbone, 'page:scrollbottom', this.loadUp)
 	        },
 
