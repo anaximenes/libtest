@@ -10,7 +10,6 @@ define([
 			},
 
 			render: function() {
-				console.log('render header')
 				if (this.userId) {
 					$('#page-favorites').attr('href', '#!/users/' + this.userId + '/favorites/')
 					$('#page-favorites').show()
@@ -32,7 +31,6 @@ define([
 			},
 
 			initialize: function (options) {
-				console.log('init header')
 				this.userId = options.userId
 				this.render()
 

@@ -24,16 +24,16 @@ define([
 			},
 
 			routes: {
-				'!/books(/p:page)(/)': 'books',
-				'!/books/:id(/)': 'book',
-				'!/questions(p:page)(/)': 'questions',
-				'!/questions/:id(/)': 'question',
-				'!/signin(/)': 'signin',
-				'!/signout(/)': 'signout',
-				'!/users/:id(/)': 'user',
-				'!/users/:id/favorites(/)': 'favorites',
-				'!/test(/)': 'test',
-				'*path': 'root'
+				'!/books(/p:page)(/)':       'books',
+				'!/books/:id(/)':            'book',
+				'!/questions(p:page)(/)':    'questions',
+				'!/questions/:id(/)':        'question',
+				'!/signin(/)':               'signin',
+				'!/signout(/)':              'signout',
+				'!/users/:id(/)':            'user',
+				'!/users/:id/favorites(/)':  'favorites',
+				'!/test(/)':                 'test',
+				'*path':                     'root'
 			},
 
 			root: function() {

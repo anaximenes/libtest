@@ -73,7 +73,7 @@
             <button id='signin-button' class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
           </form>
 
-        </div> <!-- /container -->
+        </div>
     </script>
 
 
@@ -99,7 +99,7 @@
             </div>
             <hr>
         </div>
-    </script>
+    </script>    
 
 <!--     <script type='text/template' id = 'template-books-list-entry'> 
         <div class='container book-entry' id='<%=id%>'>
@@ -183,6 +183,30 @@
         <hr>
         </div>
     </script>
+
+    <script type='text/template' id='template-comments-list-entry'>
+        <div class='container comments-entry' id='<%= id %>'>
+            <div class='row'>
+                <div> <h3> <%= title %> </h3> </div>
+                <div> <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= date %> </h5> </div>
+                <p> <h4> <%= body %> </h4> </p>
+            </div>
+            <hr>
+        </div>
+    </script>
+
+    <script type='text/template' id='template-list-loading'>
+        <div class='container'>
+            <div class='row text-center'>
+                <i class="fa fa-2x fa-spin fa-spinner"></i>
+                <h4 style='margin-top:15px;'>
+                    <i> loading, please wait... </i> 
+                </h4>
+            </div>
+        </div>
+    </script>
+
+
 
     <hr>
     

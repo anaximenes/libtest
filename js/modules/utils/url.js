@@ -28,7 +28,16 @@ define([
 			favorites: function(id) {
 				return root + "users/" + id + "/favorites";
 				// return "api/users/" + id + "/bookmarks" + '.json';
+			},
+
+			bookComments: function(book) {
+				return root + "books/" + book + "/questions";
+			},
+
+			bookComment: function(book, comment) {
+				return root + "books/" + book + "/questions/" + comment;
 			}
+
 		}
 
 		var Url = function(type) {

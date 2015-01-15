@@ -5,6 +5,7 @@ define([
 	], function ($, _, Backbone) {
 		var PageableCollection = Backbone.Collection.extend({
 			currentPage: 0,
+			parsed: false,
 
 			fetch: function(options) {
 				var url = this.url
@@ -14,26 +15,25 @@ define([
 				this.url = url
 			},
 
-			lastPage: function() {
-				return Object.keys(this.pages || {}).length - 1
-			},
-			firstPage: function() {
-				return 0
-			},
 			thereIsMore: function() {
-				return this.currentPage < this.lastPage()
+				console.log(this.pages)
+				return (this.currentPage + 2) in this.pages
 			},
 			isOnLastPage: function() {
-				return this.currentPage == this.lastPage()
+				// console.log('isonlast')
+				// console.log(this.currentPage)
+				// console.log(this.pages)
+				// if (this.pages === undefined) return false
+				return this.pages[this.currentPage + 2] === undefined
 			},
 			isOnFirstPage: function() {
-				return this.currentPage == 0
+				return this.currentPage === 0
 			},
 			nextPage: function() {
-				++currentPage
+				++this.currentPage
 			},
 			previous: function() {
-				--currentPage
+				--this.currentPage
 			},
 			loadMore: function(options) {
 				++this.currentPage
@@ -41,14 +41,20 @@ define([
 			},
 
 			parse: function(response) {
+				this.parsed = true
 				this.totalEntries = response.total
 				this.currentPage = response.current
-				this.pages = response.pages
+				this.pages = _.extend(this.pages, response.pages)
 				return response.results
 			},
 
 			initialize: function (models, options) {
+				this.pages = {}
 				this.models = models || []
+				options = options || {}
+				if (options.currentPage) this.currentPage = options.currentPage
+				console.log('on page: ' + this.currentPage)
+				// 
 				// this.url = params.url
 			}
 		})

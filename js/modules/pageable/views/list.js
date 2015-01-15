@@ -6,16 +6,26 @@ define([
 	function($, _, Backbone) {
 	    var CollectionView = Backbone.View.extend({
 	        views: [],
-	        moel: Backbone.Model,
+	        model: Backbone.Model,
 	        ItemView: Backbone.View,
+	        processing: false,
 
 	        loadUp: function() {
+	        	if (this.processing) {
+	        		return
+	        	}
+	        	var that = this
 	        	if (this.collection.thereIsMore()) {
+	        		this.processing = true
 	        		this.collection.loadMore({
 	            		success: function(collection, response) {
-	            			// console.log(collection)
+	            			that.processing = false
 	            		}
 	            	})
+				}
+	        	if (this.collection.isOnLastPage()) {
+	        		console.log('list loaded load')
+					Backbone.trigger('list:loaded', this.listType)
 				}
 	        },
 
@@ -41,10 +51,20 @@ define([
 	        initialize: function(options) {
 	        	options = options ? options : {}
  	            this.collection = options.collection
+ 	            this.listType = options.listType
 	            var that = this
+
+	            if (this.collection.parsed && this.collection.isOnLastPage()) {
+	        		console.log('list loaded check')
+					Backbone.trigger('list:loaded', this.listType)
+	            }
 
 	            this.collection.fetch({
 	                success: function(response) {
+			        	if (that.collection.isOnLastPage()) {
+			        		console.log('list loaded (init)')
+							Backbone.trigger('list:loaded', this.listType)
+						}
 	                    // that.render()
 	                },
 	                error: function(e) {

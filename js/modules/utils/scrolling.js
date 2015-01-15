@@ -19,7 +19,7 @@ define([
 					if (body.scrollTop > threshold) {
 						Backbone.trigger('page:scrollbottom');
 					}
-				}, 1000)
+				}, 500)
 			);
 		}
 

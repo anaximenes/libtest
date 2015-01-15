@@ -4,11 +4,13 @@ define([
 		'backbone',
 		'modules/books/main',
 		'modules/questions/main',
+		'modules/comments/main',
 		'headerview',
 		'modules/user/main',
-		'modules/utils/url'
+		'modules/utils/url',
+		'modules/bookpage'
 	],
-	function($, _, Backbone, BookModule, QuestionModule, HeaderView, User, Url) {
+	function($, _, Backbone, BookModule, QuestionModule, CommentModule, HeaderView, User, Url, BookPage) {
 		var currentState = {}
 
 		var Controller = {
@@ -29,17 +31,14 @@ define([
 			books: function(page) {
 				$('#page-books').addClass('active')
 				currentState.books = currentState.books ? currentState.books : new BookModule.PagedCollection()
-				currentState.books.currentPage = page
-				return new BookModule.PagedListView({
-								collection: currentState.books
-							})
+				currentState.books.currentPage = page || currentState.books.currentPage || 0
+
+				return new BookModule.FramedListView({collection: currentState.books})
 			},
 
 			book: function(book) {
 				$('#page-books').addClass('active')
-				var model = new BookModule.Model({'id': book.id})
-				var view = new BookModule.CardView({'model': model})
-				model.fetch() // ({'success': function(a) {console.log('model fetched')}})
+				var view = new BookPage(book.id)
 				return view
 			},
 
@@ -47,9 +46,8 @@ define([
 				$('#page-questions').addClass('active')
 				currentState.questions = currentState.questions ? currentState.questions : new QuestionModule.PagedCollection()
 				currentState.questions.currentPage = page
-				return new QuestionModule.PagedListView({
-								collection: currentState.questions
-							})
+
+				return new QuestionModule.FramedListView({collection: currentState.questions})
 			},
 
 			question: function(question) {
