@@ -52,6 +52,7 @@ define([
 	        	options = options ? options : {}
  	            this.collection = options.collection
  	            this.listType = options.listType
+	        	console.log(this.listType)
 	            var that = this
 
 	            if (this.collection.parsed && this.collection.isOnLastPage()) {
@@ -63,7 +64,7 @@ define([
 	                success: function(response) {
 			        	if (that.collection.isOnLastPage()) {
 			        		console.log('list loaded (init)')
-							Backbone.trigger('list:loaded', this.listType)
+							Backbone.trigger('list:loaded', that.listType)
 						}
 	                    // that.render()
 	                },

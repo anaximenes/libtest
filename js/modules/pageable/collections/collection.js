@@ -16,7 +16,6 @@ define([
 			},
 
 			thereIsMore: function() {
-				console.log(this.pages)
 				return (this.currentPage + 2) in this.pages
 			},
 			isOnLastPage: function() {

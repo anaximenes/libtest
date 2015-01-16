@@ -4,24 +4,32 @@ define([
 		'backbone',
 		'modules/books/main',
 		'modules/questions/main',
-		'modules/comments/main',
 		'headerview',
+		'modules/menu/main',
 		'modules/user/main',
 		'modules/utils/url',
 		'modules/bookpage'
 	],
-	function($, _, Backbone, BookModule, QuestionModule, CommentModule, HeaderView, User, Url, BookPage) {
+	function($, _, Backbone, BookModule, QuestionModule, HeaderView, Menu, User, Url, BookPage) {
 		var currentState = {}
 
 		var Controller = {
 			currentView: undefined,
 
 			view: function(page, params) {
-				console.log('Controller: ' + page)
-				if (currentState.header === undefined) {
-					currentState.header = new HeaderView({signed: this.signed})
+				if (currentState.menu === undefined) {
+					var models = [new Menu.Item({name: 'books'}), new Menu.Item({name:'questions'})]
+					currentState.menu = new Menu.View({
+							collection: new Menu.Items(models, {
+								menu: 'header'
+							}),
+							childClassName: 'header-menu-item'
+						})
+					$('#header').html(currentState.menu.render().el)
 				}
-				$('.active').removeClass('active')
+
+				console.log('Controller: ' + page)
+				Backbone.trigger('controller:transition', {menu: 'header', page: page})
 
 				if (this.currentView) this.currentView.remove();
 				this.currentView = this[page](params)
@@ -29,7 +37,6 @@ define([
 			},
 
 			books: function(page) {
-				$('#page-books').addClass('active')
 				currentState.books = currentState.books ? currentState.books : new BookModule.PagedCollection()
 				currentState.books.currentPage = page || currentState.books.currentPage || 0
 
@@ -37,8 +44,8 @@ define([
 			},
 
 			book: function(book) {
-				$('#page-books').addClass('active')
 				var view = new BookPage(book.id)
+				// Backbone.trigger('menu:additional', {page: 'book', model: book})
 				return view
 			},
 
@@ -59,7 +66,6 @@ define([
 			},
 
 			signin: function() {
-				$('#page-signin').addClass('active')
 				var view = new User.signinView()
 				return view
 			},
@@ -69,7 +75,6 @@ define([
 			},
 
 			favorites: function(userId) {
-				$('#page-favorites').addClass('active')
 				var view = new BookModule.PagedListView({
 					collection: new BookModule.PagedCollection([], {
 						url: function() {

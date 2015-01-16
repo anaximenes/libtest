@@ -31,6 +31,7 @@ define([
 				'!/signin(/)':               'signin',
 				'!/signout(/)':              'signout',
 				'!/users/:id(/)':            'user',
+				'!/favorites(/)':  	         'favorites',
 				'!/users/:id/favorites(/)':  'favorites',
 				'!/test(/)':                 'test',
 				'*path':                     'root'

@@ -37,7 +37,7 @@
     </div>
 
 
-    <div class="container" style='margin-top: 10px'>
+    <div class="container" style='margin-top: 10px; margin-bottom: 15px'>
     <div style='text-align: center;'>
         <div style='display: inline-block; vertical-align: top;'>
               <form>
@@ -50,12 +50,17 @@
     </div>
     </div>
 
-    <div class="container menu">
+<!--     <div class="container menu">
           <a class="menu-item" id='page-books' href="#!/books/">Books</a>
           <a class="menu-item" id='page-questions' href="#!/questions/">Questions</a>
           <a class="menu-item" id='page-favorites' href="#">Favorites</a>
     </div>
+ -->
 
+    <div id='header'>
+    </div>
+
+ 
     <script type='text/template' id = 'template-signin'> 
        <div class="container">
 
@@ -133,8 +138,6 @@
                 </div>
         </div>
         <hr>
-        <h4>Comments:</h4>
-        <hr>
         </div>
     </script>
 
@@ -152,7 +155,9 @@
         <div class='container question-entry'>
         <div class='row'>
             <div class='title'> <h4> <a> <%= title %> </a> </h4> 
-            <div class='authors'> <h5>  <%= user.nickname %> </h5> </div>
+            <div class='authors'> 
+                <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= date %> </h5> 
+            </div>
             <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
         </div>
         <hr>
@@ -208,7 +213,7 @@
 
 
 
-    <hr>
+    <!-- <hr> -->
     
     <div id='button-back' class='container-fluid col-xs-1'></div>
 
