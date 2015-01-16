@@ -34,6 +34,9 @@ define([
 				if (this.currentView) this.currentView.remove();
 				this.currentView = this[page](params)
 				$('#page').html(this.currentView.render().el)
+
+				Backbone.trigger('menu:activate', {menu: 'sub', page: 'comments'})
+
 			},
 
 			books: function(page) {

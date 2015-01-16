@@ -51,8 +51,17 @@ define([
 				var comments = new Questions.FramedListView({collection: collection, listType: 'bookComments'})
 
 				//------------------------------------------------------------------------------
+
+				var Caller = Backbone.View.extend({
+					initialize: function() {
+						Backbone.trigger('menu:activate', {menu: 'sub', page: 'comments'})
+					}
+				})
+				var caller = new Caller()
+
+				//------------------------------------------------------------------------------
 				
-				ContainerView.prototype.initialize.call(this, [card, menu, comments])
+				ContainerView.prototype.initialize.call(this, [card, menu, comments, caller])
 				
 			}
 		})
