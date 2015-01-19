@@ -34,7 +34,7 @@ define([
 				this.currentView = this[page](params)
 				$('#page').html(this.currentView.render().el)
 
-				Backbone.trigger('menu:activate', {menu: 'sub', page: 'comments'})
+				Backbone.trigger('menu:activate', {menu: 'sub', page: 'questions'})
 				// Backbone.trigger('controller:rendered', {page: page, options: params})
 			},
 

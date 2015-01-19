@@ -30,7 +30,8 @@ define([
 
 				var menu = new Menu.View({
 					collection: new Menu.Items([
-							new Menu.Item({name: 'comments', path: '#!/books/' + bookId + '/'}),
+							new Menu.Item({name: 'questions', path: '#!/books/' + bookId + '/'}),
+							new Menu.Item({name: 'reviews'}),
 							new Menu.Item({name: 'postComment'})
 							// new Menu.Item({name: 'postComment'})
 						], {
@@ -39,7 +40,7 @@ define([
 					),
 					childClassName: 'menu-item'
 				})
-				Backbone.trigger('menu:activate', {menu: 'sub', page: 'comments'})
+				Backbone.trigger('menu:activate', {menu: 'sub', page: 'questions'})
 
 				//------------------------------------------------------------------------------
 
@@ -54,7 +55,7 @@ define([
 
 				var Caller = Backbone.View.extend({
 					initialize: function() {
-						Backbone.trigger('menu:activate', {menu: 'sub', page: 'comments'})
+						Backbone.trigger('menu:activate', {menu: 'sub', page: 'questions'})
 					}
 				})
 				var caller = new Caller()

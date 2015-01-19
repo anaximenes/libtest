@@ -25,18 +25,23 @@ define([
 				name: 'Comments',
 				path: '#'
 			},
+			'reviews': {
+				id: 6,
+				name: 'Reviews',
+				path: '#'
+			},
 			'postComment': {
-				id: 5,
+				id: 7,
 				name: 'Post',
 				path: '#'
 			},
 			'answers': {
-				id: 6,
+				id: 8,
 				name: 'Answers',
 				path: '#'
 			},
 			'postAnswer': {
-				id: 7,
+				id: 9,
 				name: 'Post',
 				path: '#'
 			},

@@ -14,7 +14,7 @@ define([
 				for (var i = 0; i < this.collection.length; ++i) {
 					var view = new ItemView({
 						'model': this.collection.at(i),
-						className: this.collection.menu + '-menu-item'
+						className: this.collection.menu + '-menu-item menu-item'
 					})
 					this.$el.append(view.render().el)
 				}
@@ -28,7 +28,7 @@ define([
 
 				this.listenTo(this.collection, 'add remove reset', this.render)
 				this.listenTo(Backbone, 'page:rendered', function() {
-					Backbone.trigger()
+					// Backbone.trigger()
 				})
 			}
 		})
