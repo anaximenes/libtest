@@ -9,12 +9,12 @@ define([
 			className: 'container menu',
 
 			render: function() {
-				console.log('... ' + this.className)
+				//console.log('... ' + this.className)
 				this.$el.empty()
 				for (var i = 0; i < this.collection.length; ++i) {
 					var view = new ItemView({
 						'model': this.collection.at(i),
-						className: this.childClassName
+						className: this.collection.menu + '-menu-item'
 					})
 					this.$el.append(view.render().el)
 				}
@@ -25,9 +25,11 @@ define([
 			initialize: function(options) {
 				options = options || {}
 				this.collection = options.collection
-				if (options.childClassName) this.childClassName = options.childClassName
 
 				this.listenTo(this.collection, 'add remove reset', this.render)
+				this.listenTo(Backbone, 'page:rendered', function() {
+					Backbone.trigger()
+				})
 			}
 		})
 

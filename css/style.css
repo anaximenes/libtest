@@ -132,9 +132,14 @@ a.header-menu-item.active {
   text-decoration: none;
 }
 
+.title a{
+  color: black;
+}
+
 a.book-entry {
+  /*color: black;*/
   /*color: #333333;*/
-  text-decoration: none;
+  /*text-decoration: none;*/
   /*font-weight: 880;*/
 }
 

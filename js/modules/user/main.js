@@ -2,13 +2,13 @@ define([
 		'jquery',
 		'underscore',
 		'backbone',
-		'modules/user/models/user',
+		'modules/user/models/auth',
 		'modules/user/views/signin'
 		// 'modules/user/views/',
 	],
 	function($, _, Backbone, UserModel, SignInView) {
 		return {
-			model: UserModel,
+			AuthModel: UserModel,
 			signinView: SignInView
 		}
 	}

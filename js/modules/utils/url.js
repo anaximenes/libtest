@@ -36,6 +36,10 @@ define([
 
 			bookComment: function(book, comment) {
 				return root + "books/" + book + "/questions/" + comment;
+			},
+
+			signin: function() {
+				return root + 'session'
 			}
 
 		}

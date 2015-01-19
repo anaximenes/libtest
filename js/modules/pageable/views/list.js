@@ -5,7 +5,7 @@ define([
 	],
 	function($, _, Backbone) {
 	    var CollectionView = Backbone.View.extend({
-	        views: [],
+	        // views: [],
 	        model: Backbone.Model,
 	        ItemView: Backbone.View,
 	        processing: false,
@@ -49,6 +49,7 @@ define([
 	        },
 
 	        initialize: function(options) {
+	        	this.views = []
 	        	options = options ? options : {}
  	            this.collection = options.collection
  	            this.listType = options.listType
@@ -74,6 +75,7 @@ define([
 	            })
 
 	            this.listenTo(this.collection, 'add', this.addView)
+	            this.listenTo(this.collection, 'reset remove', this.render)
 	            this.listenTo(Backbone, 'page:scrollbottom', this.loadUp)
 	        },
 

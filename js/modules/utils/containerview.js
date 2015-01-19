@@ -5,7 +5,6 @@ define([
 	], 
 	function($, _, Backbone) {
 		var Container = Backbone.View.extend({
-			views: [],
 
 			render: function() {
 				for (var i = 0; i < this.views.length; ++i) {

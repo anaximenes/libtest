@@ -6,7 +6,7 @@ define([
 	],
 	function($, _, Backbone, MenuItem) {
 		var MenuItemView = Backbone.View.extend({
-			model: MenuItem,
+			// model: MenuItem,
 			className: 'menu-item',
 			tagName: 'a',
 			menu: '',
@@ -31,7 +31,8 @@ define([
 			},
 
 			activateMenu: function(options) {
-				console.log('activate menu', options, this.model)
+				var that = this
+				// console.log('activate menu', options, this.model)
 				if (options.menu != this.model.collection.menu) return
 
 				if (this.model.get('page') === options.page) {
@@ -39,7 +40,10 @@ define([
 				        $('#menu-' + options.page).addClass('active')
 				    }, 10);
 				} else {
-					$('.' + this.className + '.active').removeClass('active')
+					setTimeout(function(){
+						$('#menu-' + that.model.get('page')).removeClass('active')
+						// $('.' + this.className + '.active').removeClass('active')
+				    }, 10);
 				}
 			},
 

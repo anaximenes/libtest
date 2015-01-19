@@ -2,26 +2,27 @@ define([
 		'jquery',
 		'underscore',
 		'backbone',
-		'controller'
+		'controller',
+		'modules/user/main'
 	],
-	function($, _, Backbone, Controller) {
+	function($, _, Backbone, Controller, User) {
 		var Router = Backbone.Router.extend({
 			listener: new Backbone.View(),
 
-			requireLogin: function(action) {
-				if (this.user.loggedIn()) {
-					action.success()
-				} else {
-					action.error === undefined ?
-						this.navigate('!/signin/', {trigger: true, replace: true})
-						:
-						action.error()
-				}
-			},
+			// requireLogin: function(action) {
+			// 	if (this.user.loggedIn()) {
+			// 		action.success()
+			// 	} else {
+			// 		action.error === undefined ?
+			// 			this.navigate('!/signin/', {trigger: true, replace: true})
+			// 			:
+			// 			action.error()
+			// 	}
+			// },
 
-			ifLogged: function (callback) {
-				this.requireLogin({success: callback, error: function() {}})
-			},
+			// ifLogged: function (callback) {
+			// 	this.requireLogin({success: callback, error: function() {}})
+			// },
 
 			routes: {
 				'!/books(/p:page)(/)':       'books',
@@ -68,11 +69,11 @@ define([
 			},
 
 			user: function() {
-				Controller.view('user', this.user.id)
+				Controller.view('user', this.userId)
 			},
 
 			favorites: function() {
-				Controller.view('favorites', this.user.id)
+				Controller.view('favorites', this.userId)
 			},
 
 			test: function() {
@@ -86,7 +87,19 @@ define([
 
 			initialize: function() {
 				var that = this
-				Controller.signed = this.user.loggedIn()
+
+				// var user = new User.AuthModel()
+				// user.fetch({
+				// 	success: function(model, response) {
+				// 		console.log('SUCCESS')
+				// 		that.userId = model.id
+				// 		console.log(that.userId)
+				// 	}, error: function(e) {
+				// 		console.log('error')
+				// 	}
+				// })
+
+				// Controller.signed = this.user.loggedIn()
 
 				var openBook = function(obj) {
 					that.navigate('!/books/' + obj.model.get('id') + '/', true)
@@ -95,6 +108,7 @@ define([
 					that.navigate('!/questions/' + obj.model.get('id') + '/', true)
 				}
 				var signIn = function(id) {
+					console.log('sign in ', id)
 					Controller.userId = id
 					Backbone.history.history.back()
 				}
@@ -108,11 +122,11 @@ define([
 				}
 
 				var eventHandler = {
-					'book:open':					openBook,
-					'book:toggleFavorite': 			toggleFavorite,
-					'question:open': 				openQuestion,
-					'signin:success': 				signIn,
-					'backstrip':                    back
+					'book:open':             openBook,
+					'book:toggleFavorite':   toggleFavorite,
+					'question:open':         openQuestion,
+					'signin:success':        signIn,
+					'backstrip':             back
 				}
 
 				for (var event in eventHandler) {

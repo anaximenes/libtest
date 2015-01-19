@@ -24,10 +24,10 @@ define([
 
 	        		var page = options.page
 	        		if (allowed.has(page)) {
-	        			console.log('transition: ' + page)
+	        			// console.log('transition: ' + page)
 		        		that.add(new MenuItem({name: page}), {merge: true})
 		        		Backbone.trigger('menu:activate', {menu: this.menu, page: page})
-		        		console.log('menu:activate ', {menu: this.menu, page: page})
+		        		// console.log('menu:activate ', {menu: this.menu, page: page})
 		        	}
 	        	})
 

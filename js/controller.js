@@ -22,8 +22,7 @@ define([
 					currentState.menu = new Menu.View({
 							collection: new Menu.Items(models, {
 								menu: 'header'
-							}),
-							childClassName: 'header-menu-item'
+							})
 						})
 					$('#header').html(currentState.menu.render().el)
 				}
@@ -36,7 +35,7 @@ define([
 				$('#page').html(this.currentView.render().el)
 
 				Backbone.trigger('menu:activate', {menu: 'sub', page: 'comments'})
-
+				// Backbone.trigger('controller:rendered', {page: page, options: params})
 			},
 
 			books: function(page) {
@@ -48,12 +47,10 @@ define([
 
 			book: function(book) {
 				var view = new BookPage(book.id)
-				// Backbone.trigger('menu:additional', {page: 'book', model: book})
 				return view
 			},
 
 			questions: function(page) {
-				$('#page-questions').addClass('active')
 				currentState.questions = currentState.questions ? currentState.questions : new QuestionModule.PagedCollection()
 				currentState.questions.currentPage = page
 
@@ -61,7 +58,6 @@ define([
 			},
 
 			question: function(question) {
-				$('#page-questions').addClass('active')
 				var model = new QuestionModule.Model({'id': question.id})
 				var view = new QuestionModule.CardView({'model': model})
 				model.fetch() //{'success': function(a) {console.log('model fetched')}})
@@ -89,6 +85,7 @@ define([
 			},
 
 			test: function(status) {
+
 				// var template = _.template('<h3> <%=status%> </h3>')
 				// var View = Backbone.View.extend({
 				// 	el: template({status: status}),

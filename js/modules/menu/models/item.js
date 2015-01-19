@@ -30,6 +30,16 @@ define([
 				name: 'Post',
 				path: '#'
 			},
+			'answers': {
+				id: 6,
+				name: 'Answers',
+				path: '#'
+			},
+			'postAnswer': {
+				id: 7,
+				name: 'Post',
+				path: '#'
+			},
 			'add': {
 				id: 101,
 				path: '#'
@@ -38,7 +48,6 @@ define([
 
 	    var Model = Backbone.Model.extend({
 	    	initialize: function(options) {
-	    		console.log(options)
 	    		var name = options.name
 	    		this.set('page', name)
 	    		this.set('id', Map[name].id)

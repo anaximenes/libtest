@@ -7,16 +7,13 @@ define([
 	function($, _, Backbone, Url) {
 	    var BookModel = Backbone.Model.extend({
 	    	url: function() {
-	    		return Url('book', this.id)
+	    		return Url('answer', this.id)
 	    	},
 
 	    	favorite: undefined,
 
 	    	properties: [
 	    		'id',
-	    		'authors',
-	    		'title',
-	    		'isFavorite'
 	    		// 'description'
 	    	],
 

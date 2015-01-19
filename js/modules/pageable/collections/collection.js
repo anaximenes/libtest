@@ -42,7 +42,7 @@ define([
 			parse: function(response) {
 				this.parsed = true
 				this.totalEntries = response.total
-				this.currentPage = response.current
+				// this.currentPage = response.current
 				this.pages = _.extend(this.pages, response.pages)
 				return response.results
 			},

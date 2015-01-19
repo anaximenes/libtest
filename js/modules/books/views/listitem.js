@@ -9,7 +9,7 @@ define([
 	        templateLoading: $('#template-book-entry-loading').html(),
 
 	        events: {
-	            'click .title, .book-image': 'openBook',
+	            // 'click .title, .book-image': 'openBook',
 	            'click #favorite-button': 'toggleFavorite'
 	        },
 
@@ -18,7 +18,13 @@ define([
 	        },
 
 	        toggleFavorite: function() {
-				Backbone.trigger('book:toggleFavorite', this)
+	        	var that = this
+	        	this.model.set('isFavorite', !this.model.get('isFavorite'))
+	        	this.model.save([], {error: function() {
+	        		console.error('add to favorites: unathorized!')
+	        		that.model.set('isFavorite', !that.model.get('isFavorite'))
+	        	}})
+				// Backbone.trigger('book:toggleFavorite', this)
 	        },
 
 	        render: function() {
