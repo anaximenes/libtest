@@ -7,10 +7,6 @@ require([
 		// var user = new App.User.model();
 		// var Router = App.Router.extend({ user: user });
 		// var router = new Router();
-		var router = new App.Router();
-		Backbone.history.start({ pushState: false });
-		Scrolling.initialize();
-
 		(function() {
 
 			var proxiedSync = Backbone.sync;
@@ -29,6 +25,11 @@ require([
 			    return proxiedSync(method, model, options);
 			};
 		})();
+		var router = new App.Router();
+		Backbone.history.start({ pushState: false });
+		Scrolling.initialize();
+
+		
 
 		// BackStrip.initialize()
 	}
