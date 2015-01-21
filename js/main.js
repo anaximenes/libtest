@@ -4,9 +4,6 @@ require([
 		'modules/utils/scrolling',
 		'modules/utils/backstrip'
 	], function(Backbone, App, Scrolling, BackStrip) {
-		// var user = new App.User.model();
-		// var Router = App.Router.extend({ user: user });
-		// var router = new Router();
 		(function() {
 
 			var proxiedSync = Backbone.sync;
@@ -25,7 +22,11 @@ require([
 			    return proxiedSync(method, model, options);
 			};
 		})();
-		var router = new App.Router();
+
+		var user = new App.User.model();
+		var Router = App.Router.extend({ user: user });
+		var router = new Router();
+		
 		Backbone.history.start({ pushState: false });
 		Scrolling.initialize();
 

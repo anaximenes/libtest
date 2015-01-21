@@ -5,7 +5,7 @@ define([
 	],
 	function($, _, Backbone) {
 	    var CardItemView = Backbone.View.extend({
-	        template: $('#template-book-card').html(),
+	        template: $('#template-book-card-edit').html(),
 	        templateLoading: $('#template-book-entry-loading').html(),
 
 	        render: function() {

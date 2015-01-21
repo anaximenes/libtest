@@ -5,8 +5,8 @@ define([
 	],
 	function($, _, Backbone) {
 	    ListItemView = Backbone.View.extend({
-	        // template: $('#template-books-list-entry').html(),
-	        template: $('#template-books-list-entry-no-image').html(),
+	        template: $('#template-books-list-entry').html(),
+	        // template: $('#template-books-list-entry-no-image').html(),
 	        templateLoading: $('#template-book-entry-loading').html(),
 
 	        events: {
@@ -14,18 +14,11 @@ define([
 	            'click #favorite-button': 'toggleFavorite'
 	        },
 
-	        openBook: function() {
-				Backbone.trigger('book:open', this)
-	        },
-
 	        toggleFavorite: function() {
-	        	var that = this
-	        	// this.model.set('isFavorite', !this.model.get('isFavorite'))
-	        	// this.model.save([], {error: function() {
-	        	// 	console.error('add to favorites: unathorized!')
-	        	// 	that.model.set('isFavorite', !that.model.get('isFavorite'))
-	        	// }})
-				// Backbone.trigger('book:toggleFavorite', this)
+				Backbone.trigger('book:toggleFavorite', this.model)
+	        	
+	        	this.model.set('isFavorite', !this.model.get('isFavorite'))
+	        	this.render()
 	        },
 
 	        render: function() {

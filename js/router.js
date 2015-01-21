@@ -81,8 +81,6 @@ define([
 
 			signout: function() {
 				this.user.logOut()
-				Backbone.trigger('signout')
-				this.navigate('!/books/', true)
 			},
 
 			user: function() {
@@ -117,16 +115,9 @@ define([
 				var that = this
 				this.userId = undefined
 
-				var user = new User.AuthModel()
-				user.fetch({
-					success: function(model, response) {
-						that.userId = model.id
-						if (model.id) Backbone.trigger('user:signed', model.id)
-					}, error: function(e) {
-						console.log(e)
-					}
-				})
-
+				var signed = function(id) {
+					that.userId = id
+				}
 				var openBook = function(obj) {
 					that.navigate('!/books/' + obj.model.get('id') + '/', true)
 				}
@@ -139,9 +130,10 @@ define([
 					Controller.userId = id
 					Backbone.history.history.back()
 				}
-				var toggleFavorite = function(obj) {
-					console.log('toggleFavorite')
-					that.user.toggleFavorite(obj.model.get('id'))
+				var signOut = function() {
+					that.userId = undefined
+					Controller.userId = undefined
+					Backbone.history.history.back()
 				}
 				var back = function() {
 					console.log('BACK')
@@ -149,11 +141,12 @@ define([
 				}
 
 				var eventHandler = {
-					'book:open':             openBook,
-					'book:toggleFavorite':   toggleFavorite,
-					'question:open':         openQuestion,
-					'signin:success':        signIn,
-					'backstrip':             back
+					'book:open':          openBook,
+					'question:open':      openQuestion,
+					'user:signin':        signIn,
+					'user:signout':       signOut,
+					'user:signed':        signed,
+					'backstrip':          back
 				}
 
 				for (var event in eventHandler) {

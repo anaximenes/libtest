@@ -9,6 +9,14 @@ define([
 	        templateLoading: $('#template-book-entry-loading').html(),
 
 	        events: {
+	        	'click #favorite-button': 'toggleFavorite'
+	        },
+
+	        toggleFavorite: function() {
+	        	Backbone.trigger('book:toggleFavorite', this.model)
+
+	        	this.model.set('isFavorite', !this.model.get('isFavorite'))
+	        	this.render()
 	        },
 
 	        render: function() {

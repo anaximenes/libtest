@@ -19,11 +19,8 @@ define([
 			for (var i = 0; i < pages.length; ++i) {
 				models.push(new Menu.Item({page: pages[i].page, path: pages[i].path}))
 			}
-
 			return new Menu.View({
-				collection: new Menu.Items(models, {
-					menu: menu
-				})
+				collection: new Menu.Items(models, {menu: menu})
 			})
 		}
 
@@ -69,7 +66,6 @@ define([
 					{page: 'recent', path: '#!/books/recent'} 
 				])
 				$('#sub-header').html(currentState.subMenu.render().el)
-
 				Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'all'})
 
 				currentState.books = currentState.books ? currentState.books : new BookModule.PagedCollection()

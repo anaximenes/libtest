@@ -43,13 +43,13 @@ define([
 	        		Backbone.trigger('menu:activate', {menu: this.menu, page: 'add'})
 	        	})
 
-	        	this.listenTo(Backbone, 'signin:success', function(options) {
+	        	this.listenTo(Backbone, 'user:signin', function(options) {
 	        		if (this.menu != 'sub-header') return
 	        			
 	        		that.add(new MenuItem({page: 'favorites'}), {merge: true})
 	        	})
 
-	        	this.listenTo(Backbone, 'signout', function(options) {
+	        	this.listenTo(Backbone, 'user:signout', function(options) {
 	        		if (this.menu != 'header') return
 
 	        		that.remove(new MenuItem({page: 'favorites'}), {merge: true})

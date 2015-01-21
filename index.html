@@ -113,7 +113,7 @@
                     <div style='display: inline;'>
                         <div class='title'><h4> <a href='#!/books/<%= id %>'><%= title %></a> </h4></div>
                         <div class='authors'> <h5>  <%= authors %> </h5> </div>
-                        <div class='description'> <h4> <p> <%= description %> </p> </h4> </div>
+                        <div class='description'> <h4> <p> <%- description %> </p> </h4> </div>
                     </div>
                 </div>
                 <div class='col-xs-1 text-center'>
@@ -140,6 +140,21 @@
                         <i id='favorite-button' class="fa fa-star<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
                     </div>
 
+                    <div class='authors'> <h5>  <%= authors %> </h5> </div>
+                    <div> <h4> <p> <%= description %> </p> </h4> </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </script>
+
+    <!-- Book card for editing template -->
+    <script type='text/template' id = 'template-book-card-edit'> 
+        <div class='container book-entry' id='<%=id%>'>
+            <div class='row'>
+                <a><img class='book-image' src="http://reslib.org/pict/<%= picture %>" alt=""></a>
+                <div style='display: inline;'>
+                    <div class='title'><h4> <a><%= title %></a> </h4></div>
                     <div class='authors'> <h5>  <%= authors %> </h5> </div>
                     <div> <h4> <p> <%= description %> </p> </h4> </div>
                 </div>

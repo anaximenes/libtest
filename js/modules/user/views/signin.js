@@ -22,7 +22,7 @@ define([
 				model.save([], {
 					success: function(model, response) {
 						console.log('signed ', model.id)
-	        			Backbone.trigger('signin:success', model.id)
+	        			Backbone.trigger('user:signin', model.id)
 					},
 					error: function(e) {
 						console.log(e)

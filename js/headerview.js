@@ -28,8 +28,8 @@ define([
 				this.render()
 
 				this.listenTo(Backbone, 'user:signed', this.signIn)
-				this.listenTo(Backbone, 'signin:success', this.signIn)
-				this.listenTo(Backbone, 'signout', this.signIn)
+				this.listenTo(Backbone, 'user:signin', this.signIn)
+				this.listenTo(Backbone, 'user:signout', this.signIn)
 			}
 		})
 
