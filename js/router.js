@@ -26,13 +26,18 @@ define([
 
 			routes: {
 				'!/books(/p:page)(/)':       'books',
+				'!/books/favorites(/)':  	 'booksFavorites',
+				'!/books/recent(/)':  	     'booksRecent',
 				'!/books/:id(/)':            'book',
+				'!/books/:id/questions':     'bookQuestions',
+				'!/books/:id/reviews':       'bookReviews',
+				'!/books/:id/edit':          'bookEdit',
 				'!/questions(p:page)(/)':    'questions',
+				'!/questions/favorites(/)':  'questionsFavorites',
 				'!/questions/:id(/)':        'question',
 				'!/signin(/)':               'signin',
 				'!/signout(/)':              'signout',
 				'!/users/:id(/)':            'user',
-				'!/favorites(/)':  	         'favorites',
 				'!/users/:id/favorites(/)':  'favorites',
 				'!/test(/)':                 'test',
 				'*path':                     'root'
@@ -47,7 +52,19 @@ define([
 			},
 
 			book: function(id) {
-				Controller.view('book', {'id': id})
+				Controller.view('bookReviews', {'id': id})
+			},
+
+			bookQuestions: function(id) {
+				Controller.view('bookQuestions', {'id': id})
+			},
+
+			bookReviews: function(id) {
+				Controller.view('bookReviews', {'id': id})
+			},
+
+			bookEdit: function(id) {
+				Controller.view('bookEdit', {'id': id})
 			},
 
 			questions: function(page) {
@@ -72,8 +89,19 @@ define([
 				Controller.view('user', this.userId)
 			},
 
-			favorites: function() {
-				Controller.view('favorites', this.userId)
+			booksFavorites: function() {
+				console.log('### ', this.userId)
+				Controller.view('booksFavorites', this.userId)
+			},
+
+			booksRecent: function() {
+				console.log('### ', this.userId)
+				Controller.view('booksRecent', this.userId)
+			},
+
+			questionsFavorites: function() {
+				console.log('### ', this.userId)
+				Controller.view('questionsFavorites', this.userId)
 			},
 
 			test: function() {
@@ -87,19 +115,17 @@ define([
 
 			initialize: function() {
 				var that = this
+				this.userId = undefined
 
-				// var user = new User.AuthModel()
-				// user.fetch({
-				// 	success: function(model, response) {
-				// 		console.log('SUCCESS')
-				// 		that.userId = model.id
-				// 		console.log(that.userId)
-				// 	}, error: function(e) {
-				// 		console.log('error')
-				// 	}
-				// })
-
-				// Controller.signed = this.user.loggedIn()
+				var user = new User.AuthModel()
+				user.fetch({
+					success: function(model, response) {
+						that.userId = model.id
+						if (model.id) Backbone.trigger('user:signed', model.id)
+					}, error: function(e) {
+						console.log(e)
+					}
+				})
 
 				var openBook = function(obj) {
 					that.navigate('!/books/' + obj.model.get('id') + '/', true)
@@ -109,6 +135,7 @@ define([
 				}
 				var signIn = function(id) {
 					console.log('sign in ', id)
+					that.userId = id
 					Controller.userId = id
 					Backbone.history.history.back()
 				}

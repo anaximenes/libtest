@@ -3,23 +3,18 @@ define([
 		'underscore',
 		'backbone',
 		'modules/utils/url',
-		'modules/questions/collections/pagedcollection',
-		'modules/questions/views/pagedlist',
+		'modules/reviews/collections/pagedcollection',
+		'modules/reviews/views/pagedlist',
 		'modules/utils/containerview'
 	],
 	function($, _, Backbone, Url, Collection, ListView, ContainerView) {
 	    var FramedView = ContainerView.extend({
 	        initialize: function(options) {
+	        	// console.log('init frame')
 	        	options = options || {}
-
-				var listType = options.listType ? options.listType : 'books'
-
-	        	var collection = options.collection ||
-					        	new Collection([], {
-					        		url: function() {
-					        			return Url('questions')
-					        		}
-					        	})
+				var listType = options.listType ? options.listType : 'reviews'
+	        	
+	        	var collection = options.collection || new Collection()
 	        	var list = new ListView({collection: collection, listType: listType})
 
 	        	var endView = Backbone.View.extend({
@@ -38,6 +33,7 @@ define([
 	        		initialize: function() {
 	        			var that = this
 						this.listenTo(Backbone, 'list:loaded', function(which) {
+							console.log('list:loaded ' + which)
 							if (which === listType) {
 								that.show = false
 								that.render()

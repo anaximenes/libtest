@@ -15,6 +15,22 @@ define([
 				// return "/api/books/"+ id + '.json';
 			},
 
+			bookReviews: function(id) {
+				console.log(id)
+				return root + "books/" + id + "/reviews";
+				// return "/api/books/"+ id + '.json';
+			},
+
+			bookQuestions: function(id) {
+				return root + "books/" + id + "/questions";
+				// return "/api/books/"+ id + '.json';
+			},
+
+			bookQuestion: function(id, question) {
+				return root + "books/" + id + "/questions" + question;
+				// return "/api/books/"+ id + '.json';
+			},
+
 			questions: function() {
 				return root + "questions/";
 				// return "/api/questions" + '.json'
@@ -30,13 +46,28 @@ define([
 				// return "api/users/" + id + "/bookmarks" + '.json';
 			},
 
-			bookComments: function(book) {
-				return root + "books/" + book + "/questions";
+			booksFavorites: function(id) {
+				return root + "users/" + id + "/favorites";
+				// return "api/users/" + id + "/bookmarks" + '.json';
 			},
 
-			bookComment: function(book, comment) {
-				return root + "books/" + book + "/questions/" + comment;
+			booksRecent: function(id) {
+				return root + "users/" + id + "/recent";
+				// return "api/users/" + id + "/bookmarks" + '.json';
 			},
+
+			questionsFavorites: function(id) {
+				// return root + "users/" + id + "/questions";
+				// return "api/users/" + id + "/bookmarks" + '.json';
+			},
+
+			// bookComments: function(book) {
+			// 	return root + "books/" + book + "/questions";
+			// },
+
+			// bookComment: function(book, comment) {
+			// 	return root + "books/" + book + "/questions/" + comment;
+			// },
 
 			signin: function() {
 				return root + 'session'

@@ -26,7 +26,7 @@
     </div>
  -->
 
-    <div class='container' style='margin-top: 15px'>
+    <div id='signInHeader' class='container' style='margin-top: 15px'>
         <div id="footerleft"><p></p></div>
         <div id="footercenter"><img src='img/logo.png' alt="Logo"></div> 
         <div id="footerright"><p>
@@ -57,9 +57,35 @@
     </div>
  -->
 
-    <div id='header'>
-    </div>
 
+    <div id='header'></div>
+    <!-- <hr style='margin-top: -15px'> -->
+
+    <div id='sub-header' style='margin-top:-10px'></div>
+
+<!--     <div class='container' style='margin-top: -15x;'>
+        <div class='row' style='height:10px'>
+            <hr style='margin: 5px'>
+        </div>
+    </div>
+ -->
+
+<!--     <div class="container menu" style='margin-top: -10px;'>
+        <div class="menu-left">
+            <div style="display: inline-block">
+                <a id="header-menu-books" class="sub-menu-item active" href="#!/books/"> all </a>
+            </div>
+            <div style="display: inline-block">
+                <a id="header-menu-questions" class="sub-menu-item" href="#!/questions/"> recents </a>
+            </div>
+            <div style="display: inline-block">
+                <a id="header-menu-sort" class="sub-menu-item" href="#"> favorites </a>
+            </div>
+        </div>
+         <div class="menu-right">
+        </div>
+    </div>
+ -->
  
     <script type='text/template' id = 'template-signin'> 
        <div class="container">
@@ -207,6 +233,20 @@
         <hr>
         <h4>Comments:</h4>
         <hr>
+        </div>
+    </script>
+
+    <script type='text/template' id='template-reviews-list-entry'>
+        <div class='container review-entry'>
+            <div class='row review-container'>
+                <div style='display: block; float: left'>
+                    <div class='title'> <h4> <%= title %> </h4> 
+                    <div class='authors'> 
+                        <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= date %> </h5> 
+                        <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </script>
 

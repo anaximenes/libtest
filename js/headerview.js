@@ -4,21 +4,14 @@ define([
 	'backbone'
 	], function($, _, Backbone) {
 		var HeaderView = Backbone.View.extend({
-			el: $('.header'),
-
-			events: {
-			},
+			el: $('#signInHeader'),
 
 			render: function() {
 				if (this.userId) {
-					$('#page-favorites').attr('href', '#!/users/' + this.userId + '/favorites/')
-					$('#page-favorites').show()
 					$('#page-signup').hide()
 					$('#page-signin').hide()
 					$('#page-signout').show()
 				} else {
-					$('#page-favorites').attr('href', '#!/books/')
-					$('#page-favorites').hide()
 					$('#page-signup').show()
 					$('#page-signin').show()
 					$('#page-signout').hide()
@@ -34,6 +27,7 @@ define([
 				this.userId = options.userId
 				this.render()
 
+				this.listenTo(Backbone, 'user:signed', this.signIn)
 				this.listenTo(Backbone, 'signin:success', this.signIn)
 				this.listenTo(Backbone, 'signout', this.signIn)
 			}

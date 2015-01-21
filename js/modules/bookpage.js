@@ -10,7 +10,7 @@ define([
 	],
 	function($, _, Backbone, Url, Books, Questions, Menu, ContainerView) {
 		var BookPage = ContainerView.extend({
-			initialize: function(bookId) {
+			initialize: function(bookId, bottom) {
 				var model = new Books.Model({'id': bookId})
 				var card = new Books.CardView({'model': model})
 				
@@ -30,39 +30,27 @@ define([
 
 				var menu = new Menu.View({
 					collection: new Menu.Items([
-							new Menu.Item({name: 'questions', path: '#!/books/' + bookId + '/'}),
-							new Menu.Item({name: 'reviews'}),
-							new Menu.Item({name: 'postComment'})
+							new Menu.Item({page: 'bookReviews', path: '#!/books/' + bookId + '/reviews'}),
+							new Menu.Item({page: 'bookQuestions', path: '#!/books/' + bookId + '/questions'}),
+							new Menu.Item({page: 'postComment'})
 							// new Menu.Item({name: 'postComment'})
 						], {
 							menu: 'sub'
 						}
-					),
-					childClassName: 'menu-item'
+					)
 				})
-				Backbone.trigger('menu:activate', {menu: 'sub', page: 'questions'})
 
 				//------------------------------------------------------------------------------
 
-				var collection = new Questions.PagedCollection([], {
-					url: function() {
-						return Url('bookComments', bookId)
-					}
-				})
-				var comments = new Questions.FramedListView({collection: collection, listType: 'bookComments'})
+				// var collection = new Questions.PagedCollection([], {
+				// 	url: function() {
+				// 		return Url('bookComments', bookId)
+				// 	}
+				// })
+				// var comments = new Questions.FramedListView({collection: collection, listType: 'bookComments'})
 
 				//------------------------------------------------------------------------------
-
-				var Caller = Backbone.View.extend({
-					initialize: function() {
-						Backbone.trigger('menu:activate', {menu: 'sub', page: 'questions'})
-					}
-				})
-				var caller = new Caller()
-
-				//------------------------------------------------------------------------------
-				
-				ContainerView.prototype.initialize.call(this, [card, menu, comments, caller])
+				ContainerView.prototype.initialize.call(this, [card, menu, bottom])
 				
 			}
 		})

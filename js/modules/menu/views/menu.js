@@ -10,15 +10,21 @@ define([
 
 			render: function() {
 				//console.log('... ' + this.className)
-				this.$el.empty()
+				this.$el.empty().html('<div class="menu-left"></div> <div class="menu-right"></div>')
 				for (var i = 0; i < this.collection.length; ++i) {
+					var model = this.collection.at(i)
 					var view = new ItemView({
-						'model': this.collection.at(i),
-						className: this.collection.menu + '-menu-item menu-item'
+						model: model,
+						classes: this.collection.menu + '-menu-item'
 					})
-					this.$el.append(view.render().el)
+					if (model.get('toRight')) {
+						this.$el.find('.menu-right').append(view.render().el)
+					} else {
+						this.$el.find('.menu-left').append(view.render().el)
+					}
+					// this.$el.append(view.render().el)
 				}
-				this.$el.append('<hr>')
+				this.$el.append('<hr style="margin: 5px">')
 				return this
 			},
 

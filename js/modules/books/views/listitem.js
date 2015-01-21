@@ -19,11 +19,11 @@ define([
 
 	        toggleFavorite: function() {
 	        	var that = this
-	        	this.model.set('isFavorite', !this.model.get('isFavorite'))
-	        	this.model.save([], {error: function() {
-	        		console.error('add to favorites: unathorized!')
-	        		that.model.set('isFavorite', !that.model.get('isFavorite'))
-	        	}})
+	        	// this.model.set('isFavorite', !this.model.get('isFavorite'))
+	        	// this.model.save([], {error: function() {
+	        	// 	console.error('add to favorites: unathorized!')
+	        	// 	that.model.set('isFavorite', !that.model.get('isFavorite'))
+	        	// }})
 				// Backbone.trigger('book:toggleFavorite', this)
 	        },
 

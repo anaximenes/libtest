@@ -6,35 +6,36 @@ define([
 	],
 	function($, _, Backbone, MenuItem) {
 		var MenuItemView = Backbone.View.extend({
-			// model: MenuItem,
-			className: 'menu-item',
-			tagName: 'a',
+			tagName: 'div',
 			menu: '',
 
 			attributes: function() {
 				return {
-					'href': this.model.get('href'),
+					style: 'display: inline-block',
 				}
-			},
-			id: function() {
-				return this.model.collection.menu + '-menu-' + this.model.get('page')
 			},
 
 			render: function() {
-				var text = this.model.get('name')
+				var html = '<a id="<%=id%>" class="<%= classes %>" href="<%= href %>" > <%= title %> </a>'
+				var text = this.model.get('title')
 
 				//to be FIXED !!!!
 				text = text.slice(0, 40) + (text.length > 40 ? '..."' : '')
 				
-				this.$el.html(text)
+				this.$el.html(_.template(html)({
+					'title': text, 
+					'href': this.model.get('path'), 
+					'id': this.model.collection.menu + '-menu-' + this.model.get('page'),
+					'classes': 'menu-item' + (this.classes ? ' ' + this.classes : '')
+				}))
 				return this
 			},
 
 			activateMenu: function(options) {
 				var that = this
-				console.log('activate menu', options, this.model)
+				// console.log('activate menu', options, this.model)
 				if (options.menu != this.model.collection.menu) return
-				console.log('activate menu', options.menu, this.model.collection.menu)
+				// console.log('activate menu PASS ', options.menu)
 
 				if (this.model.get('page') === options.page) {
 					setTimeout(function(){
@@ -51,10 +52,11 @@ define([
 			initialize: function(options) {
 				var that = this
 				options = options || {}
-				if (options.className) this.className = options.className
+				if (options.classes) this.classes = options.classes
 				if (options.menu) this.menu = options.menu
 
 				this.listenTo(Backbone, 'menu:activate', this.activateMenu)
+				// this.listenTo(this.model, 'change', this.render)
 			}
 		})
 
