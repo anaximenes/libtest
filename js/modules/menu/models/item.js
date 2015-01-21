@@ -86,6 +86,10 @@ define([
 			'add': {
 				id: 101,
 				path: '#'
+			},
+			'images-toggler': {
+				id: 102,
+				title: "<i class='fa fa-image fa'>"
 			}
 		}
 

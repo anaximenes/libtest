@@ -5,7 +5,8 @@ define([
 	],
 	function($, _, Backbone) {
 	    ListItemView = Backbone.View.extend({
-	        template: $('#template-books-list-entry').html(),
+	        // template: $('#template-books-list-entry').html(),
+	        template: $('#template-books-list-entry-no-image').html(),
 	        templateLoading: $('#template-book-entry-loading').html(),
 
 	        events: {
