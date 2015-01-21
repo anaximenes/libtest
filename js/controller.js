@@ -63,6 +63,7 @@ define([
 
 			books: function(page) {
 				currentState.subMenu = addMenu('sub-header', [
+					// {page: 'images-toggler'}, 
 					{page: 'all', path: '#!/books/'}, 
 					{page: 'favorites', path: '#!/books/favorites/'}, 
 					{page: 'recent', path: '#!/books/recent'} 
@@ -78,6 +79,13 @@ define([
 			},
 
 			bookQuestions: function(book) {
+				currentState.subMenu = addMenu('sub-header', [
+					{page: 'description', path: '#!/books/' + book.id + '/'}, 
+					{page: 'edit', path: '#!/books/' + book.id + '/edit'}
+				])
+				$('#sub-header').html(currentState.subMenu.render().el)
+				Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'description'})
+
 				var collection = new QuestionModule.PagedCollection([], {
 					url: function() {
 						return Url('bookQuestions', book.id)

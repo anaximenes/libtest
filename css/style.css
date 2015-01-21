@@ -60,6 +60,12 @@ div#button-back:hover {
   /*font-size: 20px*/
 }
 
+.book-container {
+  padding: 12px 0 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  /*font-size: 20px*/
+}
+
 
 #footerleft {
     float: left;
@@ -173,6 +179,7 @@ a.header-menu-item.active {
 .title a{
   /*color: black;*/
 }
+
 
 a.book-entry {
   /*color: black;*/
