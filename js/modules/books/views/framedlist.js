@@ -5,50 +5,18 @@ define([
 		'modules/utils/url',
 		'modules/books/collections/pagedcollection',
 		'modules/books/views/pagedlist',
-		'modules/utils/containerview'
+		'modules/utils/framedlistview'
 	],
-	function($, _, Backbone, Url, Collection, ListView, ContainerView) {
-	    var FramedView = ContainerView.extend({
+	function($, _, Backbone, Url, Collection, ListView, BaseFramedView) {
+	    var FramedView = BaseFramedView.extend({
 	        initialize: function(options) {
-	        	// console.log('init frame')
-	        	options = options || {}
-				var listType = options.listType ? options.listType : 'books'
-	        	
-	        	var collection = options.collection ||
-					        	new Collection([], {
-					        		url: function() {
-					        			return Url('books')
-					        		}
-					        	})
-	        	var list = new ListView({collection: collection, listType: listType})
+	        	this.Collection = Collection
+	        	this.ListView = ListView
+	        	this.url = function() {
+	        		return Url('books')
+	        	}
 
-	        	var endView = Backbone.View.extend({
-	        		template: $('#template-list-loading').html(),
-	        		show: true,
-
-	        		render: function() {
-	        			if (this.show) {
-	        				this.$el.html(_.template(this.template)())
-	        			} else {
-	        				this.$el.empty()
-	        			}
-	        			return this
-	        		},
-
-	        		initialize: function() {
-	        			var that = this
-						this.listenTo(Backbone, 'list:loaded', function(which) {
-							console.log('list:loaded ' + which)
-							if (which === listType) {
-								that.show = false
-								that.render()
-							}
-						})
-	        		}
-	        	})
-	        	var end = new endView()
-
-				ContainerView.prototype.initialize.call(this, [list, end])
+	        	BaseFramedView.prototype.initialize.call(this, options)
 	        }
 	    })
 	
