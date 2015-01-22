@@ -6,13 +6,14 @@ define([
 		'modules/questions/main',
 		'modules/reviews/main',
 		'headerview',
+		'searchboxview',
 		'modules/menu/main',
 		'modules/user/main',
 		'modules/utils/url',
 		'modules/bookpage',
 		'modules/questionpage'
 	],
-	function($, _, Backbone, BookModule, QuestionModule, ReviewModule, HeaderView, Menu, User, Url, BookPage, QuestionPage) {
+	function($, _, Backbone, BookModule, QuestionModule, ReviewModule, HeaderView, SearchView, Menu, User, Url, BookPage, QuestionPage) {
 		var currentState = {}
 
 		var addMenu = function(menu, pages) {
@@ -33,6 +34,9 @@ define([
 
 				if (currentState.header === undefined) {
 					currentState.header = new HeaderView({userId: this.userId})
+				}
+				if (currentState.search === undefined) {
+					currentState.search = new SearchView()
 				}
 
 				if (currentState.menu === undefined) {
@@ -78,6 +82,14 @@ define([
 			},
 
 			booksSearch: function(query) {
+				currentState.subMenu = addMenu('sub-header', [
+					{page: 'all', path: '#!/books/'}, 
+					{page: 'favorites', path: '#!/books/favorites/'}, 
+					{page: 'recent', path: '#!/books/recent'},
+					{page: 'add', path: '#!/books/search/' + query, title: 'search: ' + query}
+				])
+				$('#sub-header').html(currentState.subMenu.render().el)
+				Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'add'})
 				Backbone.trigger('controller:transition', {menu: 'header', page: 'books'})
 				
 				var collection = new BookModule.PagedCollection([], {url: 'http://beta.reslib.org/api/books/?query=' + query})
@@ -187,6 +199,12 @@ define([
 			},
 
 			questionsSearch: function(query) {
+				currentState.subMenu = addMenu('sub-header', [
+					{page: 'all', path: '#!/questions/'}, 
+					{page: 'add', path: '#!/books/search/' + query, title: 'search: ' + query}
+				])
+				$('#sub-header').html(currentState.subMenu.render().el)
+				Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'add'})
 				Backbone.trigger('controller:transition', {menu: 'header', page: 'questions'})
 
 				var collection = new QuestionModule.PagedCollection([], {url: 'http://beta.reslib.org/api/questions/?query=' + query})

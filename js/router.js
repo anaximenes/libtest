@@ -140,6 +140,14 @@ define([
 					Controller.userId = undefined
 					Backbone.history.history.back()
 				}
+				var search = function(query) {
+					var url = Backbone.history.fragment.slice(2)
+					if (url.indexOf('books') === 0) {
+						that.navigate('#!/books/search/' + query, true)
+					} else if (url.indexOf('questions') === 0) {
+						that.navigate('#!/questions/search/' + query, true)
+					}
+				}
 				var back = function() {
 					console.log('BACK')
 					Backbone.history.back()
@@ -151,6 +159,7 @@ define([
 					'user:signin':        signIn,
 					'user:signout':       signOut,
 					'user:signed':        signed,
+					'search':             search,
 					'backstrip':          back
 				}
 

@@ -34,10 +34,6 @@ define([
 				return (this.currentPage + 2) in this.pages
 			},
 			isOnLastPage: function() {
-				// console.log('isonlast')
-				// console.log(this.currentPage)
-				// console.log(this.pages)
-				// if (this.pages === undefined) return false
 				return this.pages[this.currentPage + 2] === undefined
 			},
 			isOnFirstPage: function() {
@@ -68,8 +64,6 @@ define([
 				options = options || {}
 				if (options.currentPage) this.currentPage = options.currentPage
 				console.log('on page: ' + this.currentPage)
-				// 
-				// this.url = params.url
 			}
 		})
 
