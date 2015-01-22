@@ -19,8 +19,11 @@ define([
 				var html = '<a id="<%=id%>" class="<%= classes %>" href="<%= href %>" > <%= title %> </a>'
 				var text = this.model.get('title')
 
+				
 				//to be FIXED !!!!
-				text = text.slice(0, 40) + (text.length > 40 ? '..."' : '')
+				if (!this.model.get('full')) {
+					text = text.slice(0, 40) + (text.length > 40 ? '..."' : '')
+				}
 				
 				this.$el.html(_.template(html)({
 					'title': text, 

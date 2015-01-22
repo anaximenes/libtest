@@ -13,12 +13,6 @@ define([
 	        	return Url('answers', this.questionId)
 	        },
 
-	        parse: function(response, options) {
-	        	console.log('parse')
-	        	console.log(response)
-	        	return BasePagedCollection.prototype.parse.apply(this, [response, options])
-	        },
-
 	        initialize: function(models, options) {
 	        	BasePagedCollection.prototype.initialize.apply(this, [models, options])
 	        	options = options || {}

@@ -18,7 +18,7 @@ define([
 		var addMenu = function(menu, pages) {
 			var models = []
 			for (var i = 0; i < pages.length; ++i) {
-				models.push(new Menu.Item({page: pages[i].page, path: pages[i].path}))
+				models.push(new Menu.Item(pages[i]))
 			}
 			return new Menu.View({
 				collection: new Menu.Items(models, {menu: menu})
@@ -58,7 +58,9 @@ define([
 				Backbone.trigger('menu:activate', {menu: 'sub', page: page})
 				// Backbone.trigger('controller:rendered', {page: page, options: params})
 			},
+			
 
+			//*******************************************************************************************
 			books: function(page) {
 				currentState.subMenu = addMenu('sub-header', [
 					// {page: 'images-toggler'}, 
@@ -81,100 +83,6 @@ define([
 				var collection = new BookModule.PagedCollection([], {url: 'http://beta.reslib.org/api/books/?query=' + query})
 				var view = new BookModule.FramedListView({collection: collection})
 				return view
-			},
-
-			booksSearch: function(query) {
-				Backbone.trigger('controller:transition', {menu: 'header', page: 'books'})
-
-				var collection = new BookModule.PagedCollection([], {url: 'http://beta.reslib.org/api/books/?query=' + query})
-				var view = new BookModule.FramedListView({collection: collection})
-				return view
-			},
-
-			bookQuestions: function(book) {
-				currentState.subMenu = addMenu('sub-header', [
-					{page: 'description', path: '#!/books/' + book.id + '/'}, 
-					{page: 'edit', path: '#!/books/' + book.id + '/edit'}
-				])
-				$('#sub-header').html(currentState.subMenu.render().el)
-				Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'description'})
-
-				var collection = new QuestionModule.PagedCollection([], {
-					url: function() {
-						return Url('bookQuestions', book.id)
-					}
-				})
-				var questions = new QuestionModule.FramedListView({collection: collection, listType: 'bookQuestions'})
-
-				var view = new BookPage(book.id, questions)
-				return view
-			},
-
-			bookReviews: function(book) {
-				currentState.subMenu = addMenu('sub-header', [
-					{page: 'description', path: '#!/books/' + book.id + '/'}, 
-					{page: 'edit', path: '#!/books/' + book.id + '/edit'}
-				])
-				$('#sub-header').html(currentState.subMenu.render().el)
-				Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'description'})
-
-				var collection = new ReviewModule.PagedCollection([], {
-					url: function() {
-						return Url('bookReviews', book.id)
-					}
-				})
-				var reviews = new ReviewModule.FramedListView({collection: collection, listType: 'bookReviews'})
-
-				var view = new BookPage(book.id, reviews)
-				return view
-			},
-
-			bookEdit: function(book) {
-				currentState.subMenu = addMenu('sub-header', [
-					{page: 'description', path: '#!/books/' + book.id + '/'}, 
-					{page: 'edit', path: '#!/books/' + book.id + '/edit'}
-				])
-				$('#sub-header').html(currentState.subMenu.render().el)
-				Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'edit'})
-
-				var model = new BookModule.Model({'id': book.id})
-				var view = new BookModule.EditView({'model': model})
-				model.fetch()
-				return view
-			},
-
-			questions: function(page) {
-				currentState.questions = currentState.questions ? currentState.questions : new QuestionModule.PagedCollection()
-				currentState.questions.currentPage = page
-
-				return new QuestionModule.FramedListView({collection: currentState.questions})
-			},
-
-			questionsSearch: function(query) {
-				Backbone.trigger('controller:transition', {menu: 'header', page: 'questions'})
-
-				var collection = new QuestionModule.PagedCollection([], {url: 'http://beta.reslib.org/api/questions/?query=' + query})
-				var view = new QuestionModule.FramedListView({collection: collection})
-				return view
-			},
-
-			questionAnswers: function(question) {
-				var view = new QuestionPage(question.id)
-				return view
-
-				var model = new QuestionModule.Model({'id': question.id})
-				var view = new QuestionModule.CardView({'model': model})
-				model.fetch() //{'success': function(a) {console.log('model fetched')}})
-				return view
-			},
-
-			signin: function() {
-				var view = new User.signinView()
-				return view
-			},
-
-			user: function() {
-
 			},
 
 			booksFavorites: function(userId) {
@@ -213,6 +121,77 @@ define([
 					})
 				})
 				return view
+			},			
+
+			bookQuestions: function(book) {
+				currentState.subMenu = addMenu('sub-header', [
+					{page: 'description', path: '#!/books/' + book.id + '/'}, 
+					{page: 'edit', path: '#!/books/' + book.id + '/edit'}
+				])
+				$('#sub-header').html(currentState.subMenu.render().el)
+				Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'description'})
+
+				var collection = new QuestionModule.PagedCollection([], {
+					url: function() {
+						return Url('bookQuestions', book.id)
+					}
+				})
+				var questions = new QuestionModule.FramedListView({collection: collection, listType: 'bookQuestions'})
+
+				var view = new BookPage(book.id, questions)
+				return view
+			},
+
+			bookReviews: function(book) {
+				var readButton = '<button type="button" class="btn btn-default btn-lg" style="padding-top: 4px; padding-bottom: 4px"> Read </button>'
+
+				currentState.subMenu = addMenu('sub-header', [
+					{page: 'description', path: '#!/books/' + book.id + '/'}, 
+					{page: 'edit', path: '#!/books/' + book.id + '/edit'},
+					{page: 'read', path: '#', title: readButton, full: true}
+				])
+				$('#sub-header').html(currentState.subMenu.render().el)
+				Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'description'})
+
+				var collection = new ReviewModule.PagedCollection([], {
+					url: function() {
+						return Url('bookReviews', book.id)
+					}
+				})
+				var reviews = new ReviewModule.FramedListView({collection: collection, listType: 'bookReviews'})
+
+				var view = new BookPage(book.id, reviews)
+				return view
+			},
+
+			bookEdit: function(book) {
+				currentState.subMenu = addMenu('sub-header', [
+					{page: 'description', path: '#!/books/' + book.id + '/'}, 
+					{page: 'edit', path: '#!/books/' + book.id + '/edit'}
+				])
+				$('#sub-header').html(currentState.subMenu.render().el)
+				Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'edit'})
+
+				var model = new BookModule.Model({'id': book.id})
+				var view = new BookModule.EditView({'model': model})
+				model.fetch()
+				return view
+			},
+
+			//*******************************************************************************************
+			questions: function(page) {
+				currentState.questions = currentState.questions ? currentState.questions : new QuestionModule.PagedCollection()
+				currentState.questions.currentPage = page
+
+				return new QuestionModule.FramedListView({collection: currentState.questions})
+			},
+
+			questionsSearch: function(query) {
+				Backbone.trigger('controller:transition', {menu: 'header', page: 'questions'})
+
+				var collection = new QuestionModule.PagedCollection([], {url: 'http://beta.reslib.org/api/questions/?query=' + query})
+				var view = new QuestionModule.FramedListView({collection: collection})
+				return view
 			},
 
 			questionsFavorites: function(userId) {
@@ -226,6 +205,28 @@ define([
 				})
 				return view
 			},
+
+			questionAnswers: function(question) {
+				var view = new QuestionPage(question.id)
+				return view
+
+				var model = new QuestionModule.Model({'id': question.id})
+				var view = new QuestionModule.CardView({'model': model})
+				model.fetch() //{'success': function(a) {console.log('model fetched')}})
+				return view
+			},
+
+			//*******************************************************************************************
+			signin: function() {
+				var view = new User.signinView()
+				return view
+			},
+
+			user: function() {
+
+			},
+
+
 
 			test: function(status) {
 

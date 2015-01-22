@@ -23,9 +23,9 @@ define([
 					console.log('hi!')
 					var model = new AuthModel({'id': this.id});
 					console.log(model)
-					model.destroy({url: 'http://beta.reslib.org/api/session',
+					model.destroy({url: Url('session'),
 						success: function() {
-							console.log('success!')
+							console.log('signed out!')
 							Backbone.trigger('user:signout')
 						}
 					})
@@ -33,7 +33,8 @@ define([
 			},
 
 			toggleFavorite: function(book) {
-				var url = 'http://beta.reslib.org/api/users/' + this.id + '/favorites/'
+				var url = Url('favorites', this.id)
+				console.log(url)
 
 				var Collection = Backbone.Collection.extend({
 					url: url
@@ -45,17 +46,20 @@ define([
 					urlRoot: url
 				})
 
+				var fetch = function() {
+					book.fetch()
+				}
+
 				if (book.get('isFavorite')) {
 					model.destroy({
 						url: url + book.id, 
-						success: function() {
-							book.fetch()
-						}
+						success: fetch,
+						error: fetch
 					})
 				} else {
 					collection.create({id: book.id}, {
-						success: function() {
-						}
+						success: fetch,
+						error: fetch
 					})
 				}
 			},

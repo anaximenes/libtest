@@ -42,7 +42,7 @@
         <!-- <hr style='margin-top: -15px'> -->
 
     <!-- Sub menu here: -->
-    <div id='sub-header' style='margin-top:-10px margin-bottom: -10px'></div>
+    <div id='sub-header' style='margin-top: -15px; margin-bottom: -10px'></div>
 
 
     <!-- Menu template -->
@@ -127,8 +127,7 @@
             <!-- <hr> -->
 
     <!-- Book card template -->
-    <script type='text/template' id = 'template-book-card'> 
-        <div class='container book-entry' id='<%=id%>'>
+<!--         <div class='container book-entry' id='<%=id%>'>
             <div class='row'>
                 <div style='float: right'>
                     <a style='font-size: 20px' href='http://reslib.org/#!/book/<%-url%>/<%-id%>/read/1'> Read! </a>
@@ -147,6 +146,36 @@
             </div>
             <hr>
         </div>
+ -->
+
+    <script type='text/template' id = 'template-book-card'> 
+        <div class='container book-entry' id='<%=id%>'>
+            <div class='row book-container'>
+                <div class='col-xs-11'>
+                    <img class='book-image' src="http://reslib.org/pict/<%= picture %>" alt="">
+                    <div style='display: inline;'>
+                        <div class='title'>
+                            <h4> <%= title %> </h4>
+                        </div>
+                        <div class='authors'> 
+                            <div class='authors-label'> Authors: </div>
+                            <%= authors %>
+                        </div>
+                        <div> <h4> <p> Year: <%= year %> </p> </h4> </div>
+                        <div> <h4> <p> Publisher: <%= publisher %> </p> </h4> </div>
+                    </div>
+                </div>
+                <div class='col-xs-1 text-center'>
+                    <p> <a style='font-size: 22px'> Read </a> </p>
+                    <i id='favorite-button' class="fa fa-star<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
+                    <p style='display:none'>add to Favorites</p>
+                </div>
+            </div>
+            <div class='row'>
+                <div> <h4> <p> <%= description %> </p> </h4> </div>
+            </div>
+        </div>
+
     </script>
 
     <!-- Book card for editing template -->
@@ -165,7 +194,7 @@
     </script>
 
     <!-- Book list entry not loaded completely template -->
-    <script type='text/template' id = 'template-book-entry-loading'> 
+    <script type='text/template' id = 'template-book-entry-loading'>
         <div class='container book-entry' id='<%= id %>'>
         <div class='row'>
             <h3> Loading... </h3>
@@ -285,7 +314,7 @@
 
     <script type='text/template' id='template-list-loading'>
         <div class='container'>
-            <div class='row text-center'>
+            <div class='row text-center' style='margin-top: 10px;'>
                 <i class="fa fa-2x fa-spin fa-spinner"></i>
                 <h4 style='margin-top:15px;'>
                     <i> loading, please wait... </i> 
@@ -303,7 +332,7 @@
 
 
     <!-- Page is rendered inside this div -->
-    <div id='page'>
+    <div id='page' style='padding-bottom: 200px'>
 	</div>
 
 

@@ -28,9 +28,3 @@ define([
 	    return BookModel
 	}
 )
-
-	   //  	toggleFavorite: function() {
-	   //  		this.set('favorite', !this.get('favorite'))
-				// this.save(this.attrs, {patch: true})
-				// // this.save()
-	   //  	},

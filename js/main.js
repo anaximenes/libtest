@@ -30,8 +30,6 @@ require([
 		Backbone.history.start({ pushState: false });
 		Scrolling.initialize();
 
-		
-
 		// BackStrip.initialize()
 	}
 )

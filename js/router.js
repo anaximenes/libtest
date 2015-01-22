@@ -114,11 +114,6 @@ define([
 
 			test: function() {
 				Controller.view('test')
-				// this.requireLogin({
-				// 	success: function() {
-				// 		Controller.view('test', 'loggedIn')
-				// 	}
-				// })
 			},
 
 			initialize: function() {

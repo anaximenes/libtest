@@ -67,11 +67,14 @@ define([
 			},
 			'edit': {
 				id: 23,
-				title: 'edit',
-				path: '#'
+				title: 'edit'
+			},
+			'read': {
+				id: 24,
+				title: 's',
 			},
 			'recent': {
-				id: 22,
+				id: 25,
 				title: 'recent',
 				path: '#'
 			},
@@ -110,6 +113,7 @@ define([
 	    		options.title ? this.set('title', options.title) : this.set('title', Map[page].title)
 	    		options.path ? this.set('path', options.path) : this.set('path', Map[page].path)
 	    		this.set('toRight', options.toRight ? true : false)
+	    		this.set('full', options.full ? true : false)
 	    	}
 	    })
 

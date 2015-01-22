@@ -5,7 +5,6 @@ define([
 	],
 	function($, _, Backbone) {
 	    var CollectionView = Backbone.View.extend({
-	        // views: [],
 	        model: Backbone.Model,
 	        ItemView: Backbone.View,
 	        processing: false,
@@ -56,17 +55,22 @@ define([
 	            var that = this
 
 	            if (this.collection.parsed && this.collection.isOnLastPage()) {
-	        		console.log('list loaded check')
 					Backbone.trigger('list:loaded', this.listType)
 	            }
+
+	            // for (var i = 0; i < this.collection.length; ++i) {
+	            // 	this.collection.at(i).fetch({
+	            // 		success: function(model, response) {
+	            // 			console.log(model.id, ' checked')
+	            // 		}
+	            // 	})
+	            // } 
 
 	            this.collection.fetch({
 	                success: function(response) {
 			        	if (that.collection.isOnLastPage()) {
-			        		console.log('list loaded (init)')
 							Backbone.trigger('list:loaded', that.listType)
 						}
-	                    // that.render()
 	                },
 	                error: function(e) {
 	                	console.log('error ' + e)
