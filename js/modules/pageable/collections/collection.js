@@ -7,16 +7,27 @@ define([
 			currentPage: 0,
 			parsed: false,
 
-			fetch: function(options) {
+			fetchPage: function(page, options) {
 				var url = this.url
+				options = options || {}
 
 				stringUrl = (typeof(this.url) === 'function' ? this.url() : this.url)
 				var prefix = (stringUrl.indexOf('?') > -1 ? '&' : '?')
-				this.url = this.currentPage ? stringUrl + prefix + 'start=' + this.currentPage : stringUrl
+				this.url = page ? stringUrl + prefix + 'start=' + page : stringUrl
 				options.remove = false
 				Backbone.Collection.prototype.fetch.call(this, options)
 
 				this.url = url
+			},
+
+			fetch: function(options) {
+				this.fetchPage(this.currentPage, options)
+			},
+
+			updateAll: function() {
+				for (var i = 0; i <= this.currentPage; ++i) {
+					this.fetchPage(i)
+				}
 			},
 
 			thereIsMore: function() {

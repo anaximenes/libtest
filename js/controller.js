@@ -212,7 +212,7 @@ define([
 
 				var model = new QuestionModule.Model({'id': question.id})
 				var view = new QuestionModule.CardView({'model': model})
-				model.fetch() //{'success': function(a) {console.log('model fetched')}})
+				model.fetch()
 				return view
 			},
 

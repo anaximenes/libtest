@@ -58,6 +58,7 @@ define([
 					Backbone.trigger('list:loaded', this.listType)
 	            }
 
+	            this.collection.updateAll()
 	            // for (var i = 0; i < this.collection.length; ++i) {
 	            // 	this.collection.at(i).fetch({
 	            // 		success: function(model, response) {
