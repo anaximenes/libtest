@@ -14,6 +14,7 @@ define([
 				var model = new Questions.Model({'id': questionId})
 				var card = new Questions.CardView({'model': model})
 				
+				var that = this
 				model.fetch({
 					success: function() {
 						Backbone.trigger('menu:additional', {
@@ -22,6 +23,7 @@ define([
 													path: '#!/questions/' + questionId + '/',
 													menu: 'header'
 												})
+
 					}
 				})
 
@@ -29,37 +31,33 @@ define([
 
 				var menu = new Menu.View({
 					collection: new Menu.Items([
-							new Menu.Item({name: 'answers', path: '#!/questions/' + questionId + '/'}),
-							new Menu.Item({name: 'postAnswer'})
+							new Menu.Item({page: 'questionAnswers', path: '#!/questions/' + questionId + '/'}),
+							// new Menu.Item({name: 'postAnswer'})
 						], {
 							menu: 'sub'
 						}
 					),
 				})
-				Backbone.trigger('menu:activate', {menu: 'sub', page: 'answers'})
 
 				//------------------------------------------------------------------------------
 
+				console.log(model.answers)
 				var collection = new Answers.PagedCollection([], {
-					questionId: questionId
+					questionId: questionId,
+					url: function() {
+						return 'http://beta.reslib.org/api/questions/' + this.questionId + '/answers/'
+					}
 				})
+				// console.log(collection)
+
 				var answers = new Answers.FramedListView({
 									collection: collection,
 									listType: 'questionAnswers'
 								})
 
 				//------------------------------------------------------------------------------
-
-				var Caller = Backbone.View.extend({
-					initialize: function() {
-						Backbone.trigger('menu:activate', {menu: 'sub', page: 'answers'})
-					}
-				})
-				var caller = new Caller()
-
-				//------------------------------------------------------------------------------
 				
-				ContainerView.prototype.initialize.call(this, [card, menu, answers, caller])
+				ContainerView.prototype.initialize.call(this, [card, menu, answers])
 				
 			}
 		})

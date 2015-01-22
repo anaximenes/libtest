@@ -9,9 +9,13 @@ define([
 
 			fetch: function(options) {
 				var url = this.url
-				this.url = this.currentPage ? this.url() + '?start=' + this.currentPage : this.url
+
+				stringUrl = (typeof(this.url) === 'function' ? this.url() : this.url)
+				var prefix = (stringUrl.indexOf('?') > -1 ? '&' : '?')
+				this.url = this.currentPage ? stringUrl + prefix + 'start=' + this.currentPage : stringUrl
 				options.remove = false
 				Backbone.Collection.prototype.fetch.call(this, options)
+
 				this.url = url
 			},
 

@@ -2,17 +2,17 @@ define([
 		'jquery',
 		'underscore',
 		'backbone',
-		'modules/books/views/pagedlist',
-		'modules/books/views/card',
-		'modules/books/views/framedlist',
+		// 'modules/answers/views/pagedlist',
+		// 'modules/answers/views/card',
+		'modules/answers/views/framedlist',
 		// 'modules/books/views/bookpage',
-		'modules/books/collections/pagedcollection',
-		'modules/books/models/book'
+		'modules/answers/collections/answers',
+		'modules/answers/models/answer'
 	],
 	// function($, _, Backbone, ListView, CardView, BookPageView, PagedCollection, BookModel) {
-	function($, _, Backbone, ListView, FramedListView, PagedCollection, Model) {
+	function($, _, Backbone, FramedListView, PagedCollection, Model) {
 		return {
-			'PagedListView':     ListView,
+			// 'PagedListView':     ListView,
 			// 'CardView':          CardView,
 			'FramedListView':    FramedListView,
 			// 'BookPageView':      BookPageView,

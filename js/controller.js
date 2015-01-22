@@ -9,9 +9,10 @@ define([
 		'modules/menu/main',
 		'modules/user/main',
 		'modules/utils/url',
-		'modules/bookpage'
+		'modules/bookpage',
+		'modules/questionpage'
 	],
-	function($, _, Backbone, BookModule, QuestionModule, ReviewModule, HeaderView, Menu, User, Url, BookPage) {
+	function($, _, Backbone, BookModule, QuestionModule, ReviewModule, HeaderView, Menu, User, Url, BookPage, QuestionPage) {
 		var currentState = {}
 
 		var addMenu = function(menu, pages) {
@@ -74,6 +75,22 @@ define([
 				return new BookModule.FramedListView({collection: currentState.books})
 			},
 
+			booksSearch: function(query) {
+				Backbone.trigger('controller:transition', {menu: 'header', page: 'books'})
+				
+				var collection = new BookModule.PagedCollection([], {url: 'http://beta.reslib.org/api/books/?query=' + query})
+				var view = new BookModule.FramedListView({collection: collection})
+				return view
+			},
+
+			booksSearch: function(query) {
+				Backbone.trigger('controller:transition', {menu: 'header', page: 'books'})
+
+				var collection = new BookModule.PagedCollection([], {url: 'http://beta.reslib.org/api/books/?query=' + query})
+				var view = new BookModule.FramedListView({collection: collection})
+				return view
+			},
+
 			bookQuestions: function(book) {
 				currentState.subMenu = addMenu('sub-header', [
 					{page: 'description', path: '#!/books/' + book.id + '/'}, 
@@ -133,7 +150,18 @@ define([
 				return new QuestionModule.FramedListView({collection: currentState.questions})
 			},
 
-			question: function(question) {
+			questionsSearch: function(query) {
+				Backbone.trigger('controller:transition', {menu: 'header', page: 'questions'})
+
+				var collection = new QuestionModule.PagedCollection([], {url: 'http://beta.reslib.org/api/questions/?query=' + query})
+				var view = new QuestionModule.FramedListView({collection: collection})
+				return view
+			},
+
+			questionAnswers: function(question) {
+				var view = new QuestionPage(question.id)
+				return view
+
 				var model = new QuestionModule.Model({'id': question.id})
 				var view = new QuestionModule.CardView({'model': model})
 				model.fetch() //{'success': function(a) {console.log('model fetched')}})

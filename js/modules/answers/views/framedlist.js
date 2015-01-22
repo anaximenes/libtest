@@ -3,8 +3,8 @@ define([
 		'underscore',
 		'backbone',
 		'modules/utils/url',
-		'modules/books/collections/pagedcollection',
-		'modules/books/views/pagedlist',
+		'modules/answers/collections/answers',
+		'modules/answers/views/pagedlist',
 		'modules/utils/containerview'
 	],
 	function($, _, Backbone, Url, Collection, ListView, ContainerView) {

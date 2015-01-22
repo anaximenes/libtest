@@ -35,7 +35,7 @@ define([
 				title: 'Post',
 				path: '#'
 			},
-			'answers': {
+			'questionAnswers': {
 				id: 8,
 				title: 'Answers',
 				path: '#'

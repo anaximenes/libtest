@@ -4,13 +4,19 @@ define([
 		'backbone',
 		'modules/utils/url',
 		'modules/pageable/collections/collection',
-		'modules/books/models/book'
+		'modules/answers/models/answer'
 	],
-	function($, _, Backbone, Url, BasePagedCollection, BookModel) {
+	function($, _, Backbone, Url, BasePagedCollection, Model) {
 	    var PagedCollection = BasePagedCollection.extend({
-	        model: AnswerModel,
+	        model: Model,
 	        url: function() {
 	        	return Url('answers', this.questionId)
+	        },
+
+	        parse: function(response, options) {
+	        	console.log('parse')
+	        	console.log(response)
+	        	return BasePagedCollection.prototype.parse.apply(this, [response, options])
 	        },
 
 	        initialize: function(models, options) {

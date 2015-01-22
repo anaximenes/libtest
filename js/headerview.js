@@ -11,10 +11,12 @@ define([
 					$('#page-signup').hide()
 					$('#page-signin').hide()
 					$('#page-signout').show()
+					$('#page-nickname').show()
 				} else {
 					$('#page-signup').show()
 					$('#page-signin').show()
 					$('#page-signout').hide()
+					$('#page-nickname').hide()
 				}
 			},
 

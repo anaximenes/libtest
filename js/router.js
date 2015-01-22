@@ -26,6 +26,7 @@ define([
 
 			routes: {
 				'!/books(/p:page)(/)':       'books',
+				'!/books/search/:query':     'booksSearch',
 				'!/books/favorites(/)':  	 'booksFavorites',
 				'!/books/recent(/)':  	     'booksRecent',
 				'!/books/:id(/)':            'book',
@@ -33,6 +34,7 @@ define([
 				'!/books/:id/reviews':       'bookReviews',
 				'!/books/:id/edit':          'bookEdit',
 				'!/questions(p:page)(/)':    'questions',
+				'!/questions/search/:query': 'questionsSearch',
 				'!/questions/favorites(/)':  'questionsFavorites',
 				'!/questions/:id(/)':        'question',
 				'!/signin(/)':               'signin',
@@ -49,6 +51,10 @@ define([
 
 			books: function(page) {
 				Controller.view('books', page)
+			},
+
+			booksSearch: function(page) {
+				Controller.view('booksSearch', page)
 			},
 
 			book: function(id) {
@@ -70,9 +76,13 @@ define([
 			questions: function(page) {
 				Controller.view('questions', page)
 			},
+			
+			questionsSearch: function(query) {
+				Controller.view('questionsSearch', query)
+			},
 
 			question: function(id) {
-				Controller.view('question', {'id': id})
+				Controller.view('questionAnswers', {'id': id})
 			},
 
 			signin: function() {
