@@ -41,7 +41,7 @@ define([
 				}
 
 				if (currentState.menu === undefined) {
-					currentState.menu = adMenu('header', [{page: 'books'}, {page: 'questions'}])
+					currentState.menu = addMenu('header', [{page: 'books'}, {page: 'questions'}])
 					$('#header').html(currentState.menu.render().el)
 				}
 
