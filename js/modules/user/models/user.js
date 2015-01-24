@@ -64,6 +64,31 @@ define([
 				}
 			},
 
+			post: function(where, options) {
+				var model = new Backbone.Model({
+					usersId: this.id,
+					booksId: (options.id ? options.id : null),
+					title: options.title,
+					body: options.body
+				})
+				model.url = Url(where, this.id)
+				console.log(model)
+
+				model.save({
+					success: function(response) {
+						console.log(response)
+					}
+				})
+			},
+
+			postQuestion: function(options) {
+				this.post('userQuestions', options)
+			},
+
+			postReview: function(options) {
+				this.post('userReviews', options)
+			},
+
 			initialize: function() {
 				var that = this
 				var user = new AuthModel()
@@ -78,6 +103,8 @@ define([
 				})
 
 				this.listenTo(Backbone, 'book:toggleFavorite', this.toggleFavorite)
+				this.listenTo(Backbone, 'post:question', this.postQuestion)
+				this.listenTo(Backbone, 'post:review', this.postReview)
 				this.listenTo(Backbone, 'user:signin', function(id) {
 					that.id = id
 				})

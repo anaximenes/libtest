@@ -30,6 +30,14 @@ define([
 				return root + "questions/";
 			},
 
+			userQuestions: function(id) {
+				return root + "users/" + id + "/questions/"
+			},
+
+			userReviews: function(id) {
+				return root + "users/" + id + "/reviews/"
+			},
+
 			question: function(id) {
 				return root + "questions/" + id;
 			},

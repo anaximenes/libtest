@@ -13,7 +13,10 @@ define([
 
 			search: function() {
 				event.preventDefault()
-				Backbone.trigger('search', this.$el.find('#search-query').val())
+				var query = this.$el.find('#search-query').val()
+				if (query) {
+					Backbone.trigger('search', query)
+				}
 			},
 
 			render: function() {

@@ -161,8 +161,8 @@
                             <div class='authors-label'> Authors: </div>
                             <%= authors %>
                         </div>
-                        <div> <h4> <p> Year: <%= year %> </p> </h4> </div>
-                        <div> <h4> <p> Publisher: <%= publisher %> </p> </h4> </div>
+                        <div> <p> Year: <%= year %> </p> </div>
+                        <div> <p> Publisher: <%= publisher %> </p> </div>
                     </div>
                 </div>
                 <div class='col-xs-1 text-center'>
@@ -291,7 +291,7 @@
         <div class='container review-entry'>
             <div class='row review-container'>
                 <div style='display: block; float: left'>
-                    <div class='title'> <h4> <%= title %> </h4> 
+                    <div class='title'> <h4> <%= title %> </h4> </div>
                     <div class='authors'> 
                         <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= date %> </h5> 
                         <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
@@ -323,6 +323,28 @@
         </div>
     </script>
 
+    <script type='text/template' id='template-post'>
+        <div class='container'>
+            <div class='row'>
+                <div style='display: inline-block; margin-right: 1em'> <em> Title: </em> </div> 
+                <textarea id='post-title' class='post-title' style="vertical-align: bottom"> </textarea>
+            </div>
+            <div class='row'>
+                <div class='wmd-panel'>
+                    <div id='wmd-button-bar'></div>
+                    <textarea class='wmd-input' id='wmd-input'></textarea>
+                </div>
+                
+                <div class='wmd-panel wmd-preview' id='wmd-preview'></div>
+                    <button type="button" id='post-button' class="btn btn-default btn-lg">
+                        Post
+                    </button>
+                <div style='margin-left: 20%'>
+                </div>
+            </div>
+        </div>
+    </script>
+                        <!-- <span class="glyphicon" aria-hidden="true"> <i class='fa fa-send'></i> </span>  -->
 
 
     <!-- <hr> -->
@@ -334,7 +356,6 @@
     <!-- Page is rendered inside this div -->
     <div id='page' style='padding-bottom: 200px'>
 	</div>
-
 
 
 <!--     <div id="top-link">

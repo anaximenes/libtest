@@ -15,6 +15,14 @@ define([
 				}
 			},
 
+			events: {
+				'click': 'click'
+			},
+
+			click: function() {
+				Backbone.trigger('menu:click', {page: this.model.get('page'), menu: this.model.collection.menu})
+			},
+
 			render: function() {
 				var html = '<a id="<%=id%>" class="<%= classes %>" href="<%= href %>" > <%= title %> </a>'
 				var text = this.model.get('title')

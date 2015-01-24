@@ -11,9 +11,10 @@ define([
 		'modules/user/main',
 		'modules/utils/url',
 		'modules/bookpage',
-		'modules/questionpage'
+		'modules/questionpage',
+		'modules/post/main'
 	],
-	function($, _, Backbone, BookModule, QuestionModule, ReviewModule, HeaderView, SearchView, Menu, User, Url, BookPage, QuestionPage) {
+	function($, _, Backbone, BookModule, QuestionModule, ReviewModule, HeaderView, SearchView, Menu, User, Url, BookPage, QuestionPage, Post) {
 		var currentState = {}
 
 		var addMenu = function(menu, pages) {
@@ -60,7 +61,7 @@ define([
 				$('#page').html(this.currentView.render().el)
 
 				Backbone.trigger('menu:activate', {menu: 'sub', page: page})
-				// Backbone.trigger('controller:rendered', {page: page, options: params})
+				Backbone.trigger('page:rendered', {page: page, options: params})
 			},
 			
 
@@ -247,6 +248,7 @@ define([
 
 
 			test: function(status) {
+				return view = new Post.view()
 
 				// var template = _.template('<h3> <%=status%> </h3>')
 				// var View = Backbone.View.extend({
