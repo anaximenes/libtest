@@ -19,16 +19,14 @@ define([
 			},
 
 			post: function() {
-				var title = this.$el.find('.post-title').val()
-				var body = this.$el.find('#wmd-input').val()
+				var title = this.$el.find('.post-title').val().trim()
+				if (title === '') return
+				var body = this.$el.find('#wmd-input').val().trim()
+				if (body === '') return
 				body = this.converter.makeHtml(body)
 
 				console.log('catched ', 'post:' + this.where)
 				Backbone.trigger('post:' + this.where, {title: title, body: body, id: this.id})
-
-				// var model = new Backbone.Model({
-				// 	url: Url('userQuestions', userId)
-				// })
 			},
 
 			render: function() {
