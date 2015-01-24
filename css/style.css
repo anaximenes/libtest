@@ -247,6 +247,7 @@ a.book-entry {
 }
 
 
+
 /*SIGN IN*/
 .form-signin {
   max-width: 330px;
@@ -285,12 +286,13 @@ a.book-entry {
 
 
 
+/***************************************************/
+
 .post-title {
   font-size: larger;
   height: 2em;
   width: 40%;
 }
-
 
 #post-show-button {
   outline: none;
@@ -304,6 +306,7 @@ a.book-entry {
 #post-show-button:focus {
   background-color:transparent;
 }
+
 
 /***********************************************************/
 /*pagedown*/
@@ -397,9 +400,6 @@ blockquote {
 {
     left: 300px;
 }
-
-
-
 
 .wmd-prompt-background
 {

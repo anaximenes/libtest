@@ -41,13 +41,7 @@ define([
 				}
 
 				if (currentState.menu === undefined) {
-					var models = [new Menu.Item({page: 'books'}), new Menu.Item({page:'questions'})]
-					// var models = [new Menu.Item({page: 'books'}), new Menu.Item({page:'questions'}), new Menu.Item({page:'sort', toRight: true})]
-					currentState.menu = new Menu.View({
-							collection: new Menu.Items(models, {
-								menu: 'header'
-							})
-						})
+					currentState.menu = adMenu('header', [{page: 'books'}, {page: 'questions'}])
 					$('#header').html(currentState.menu.render().el)
 				}
 
@@ -137,9 +131,11 @@ define([
 			},			
 
 			bookQuestions: function(book) {
+				var readButton = '<button type="button" class="btn btn-default btn-lg" style="padding-top: 4px; padding-bottom: 4px"> Read </button>'
 				currentState.subMenu = addMenu('sub-header', [
 					{page: 'description', path: '#!/books/' + book.id + '/'}, 
-					{page: 'edit', path: '#!/books/' + book.id + '/edit'}
+					{page: 'edit', path: '#!/books/' + book.id + '/edit'},
+					{page: 'read', path: '#', title: readButton, full: true}
 				])
 				$('#sub-header').html(currentState.subMenu.render().el)
 				Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'description'})

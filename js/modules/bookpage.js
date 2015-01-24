@@ -17,7 +17,6 @@ define([
 				
 				model.fetch({
 					success: function() {
-						console.log('#!/books/' + bookId)
 						Backbone.trigger('menu:additional', {
 													page: 'book',
 													model: model, 
@@ -33,8 +32,8 @@ define([
 
 				var menu = new Menu.View({
 					collection: new Menu.Items([
-							new Menu.Item({page: 'bookReviews', path: '#!/books/' + bookId + '/reviews'}),
-							new Menu.Item({page: 'bookQuestions', path: '#!/books/' + bookId + '/questions'}),
+							new Menu.Item({page: 'bookReviews', path: '#!/books/' + bookId + '/reviews/'}),
+							new Menu.Item({page: 'bookQuestions', path: '#!/books/' + bookId + '/questions/'}),
 							new Menu.Item({page: 'add', title: postButton, full: true})
 							// new Menu.Item({name: 'postComment'})
 						], {

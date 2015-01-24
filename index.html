@@ -79,6 +79,7 @@
               </label>
             </div>
             <button id='signin-button' class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <div class='text-center' style='margin-top: 20px'> <h4> <a href='#1/signup'> Sign up </a> </h4> </div>
           </form>
 
         </div>
@@ -93,7 +94,7 @@
                     <a><img class='book-image' style='display:none;' alt=""></a>
                     <a><img class='book-image' src="http://reslib.org/pict/<%= picture %>" alt=""></a>
                     <div style='display: inline;'>
-                        <div class='title'><h4> <a href='#!/books/<%= id %>'><%= title %></a> </h4></div>
+                        <div class='title'><h4> <a href='#!/books/<%= id %>/'><%= title %></a> </h4></div>
                         <div class='authors'> <h5>  <%= authors %> </h5> </div>
                         <div class='description'> <h4> <p> <%= description %> </p> </h4> </div>
                     </div>
@@ -114,7 +115,7 @@
                     <div style='display: inline;'>
                         <div class='title'><h4> <a href='#!/books/<%= id %>'><%= title %></a> </h4></div>
                         <div class='authors'> <h5>  <%= authors %> </h5> </div>
-                        <div class='description'> <h4> <p> <%- description %> </p> </h4> </div>
+                        <div class='description'> <h4> <p> <%= description %> </p> </h4> </div>
                     </div>
                 </div>
                 <div class='col-xs-1 text-center'>
@@ -130,7 +131,7 @@
 <!--         <div class='container book-entry' id='<%=id%>'>
             <div class='row'>
                 <div style='float: right'>
-                    <a style='font-size: 20px' href='http://reslib.org/#!/book/<%-url%>/<%-id%>/read/1'> Read! </a>
+                    <a style='font-size: 20px' href='http://reslib.org/#!/book/<%=url%>/<%=id%>/read/1'> Read! </a>
                 </div>
                 <a><img class='book-image' src="http://reslib.org/pict/<%= picture %>" alt=""></a>
                 <div style='display: inline;'>
@@ -155,7 +156,9 @@
                     <img class='book-image' src="http://reslib.org/pict/<%= picture %>" alt="">
                     <div style='display: inline;'>
                         <div class='title'>
-                            <h4> <%= title %> </h4>
+                            <h4> <%= title %> 
+                            <i id='favorite-button' class="fa fa-star<% if (!isFavorite) {%>-o<%}%> fa-1x"></i>
+                            </h4>
                         </div>
                         <div class='authors'> 
                             <div class='authors-label'> Authors: </div>
@@ -165,11 +168,6 @@
                         <div> <p> Publisher: <%= publisher %> </p> </div>
                     </div>
                 </div>
-                <div class='col-xs-1 text-center'>
-                    <p> <a style='font-size: 22px'> Read </a> </p>
-                    <i id='favorite-button' class="fa fa-star<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
-                    <p style='display:none'>add to Favorites</p>
-                </div>
             </div>
             <div class='row'>
                 <div> <h4> <p> <%= description %> </p> </h4> </div>
@@ -177,6 +175,13 @@
         </div>
 
     </script>
+
+<!--                     <div class='col-xs-1 text-center'>
+                    <p> <a style='font-size: 22px'> Read </a> </p>
+                    <i id='favorite-button' class="fa fa-star<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
+                    <p style='display:none'>add to Favorites</p>
+                </div>
+ -->
 
     <!-- Book card for editing template -->
     <script type='text/template' id = 'template-book-card-edit'> 
@@ -211,7 +216,7 @@
             <div class='question-stats' style='display: block; margin-right: 15px; float: left'>
                 <div class='question-votes' style='display: inline-block; margin: 15px;'>
                     <div class='text-center' style='font-size: 25px'>
-                        <%- rating %>
+                        <%= rating %>
                     </div>
                     <div>
                         votes
@@ -219,7 +224,7 @@
                 </div>
                 <div class='question-answers' style='display: inline-block; margin: 15px'>
                     <div class='text-center' style='font-size: 25px'>
-                        <%- answersCount %>
+                        <%= answersCount %>
                     </div>
                     <div>
                         answers
@@ -228,7 +233,7 @@
             </div>
 
             <div style='display: block; float: left'>
-                <div class='title'> <h4> <a href='#!/questions/<%= id %>'><%= title %></a> </h4> 
+                <div class='title'> <h4> <a href='#!/questions/<%= id %>/'><%= title %></a> </h4> 
                 <div class='authors'> 
                     <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= date %> </h5> 
                 <!-- <div class='content'> <h5> <p> <%= body %> </p> </h5> </div> -->
@@ -245,7 +250,7 @@
             <div class='question-stats' style='display: block; margin-right: 15px; float: left'>
                 <div class='question-votes' style='display: inline-block; margin: 15px;'>
                     <div class='text-center' style='font-size: 25px'>
-                        <%- rating %>
+                        <%= rating %>
                     </div>
                     <div>
                         votes
@@ -255,8 +260,8 @@
 
             <div style='display: block; float: left'>
                 <div class='authors'> 
-                    <h5>  by <i> <strong> <%- user.nickname %> </strong> </i> on <%- date %> </h5> 
-                    <div class='content'> <h5> <p> <%- body %> </p> </h5> </div>
+                    <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= date %> </h5> 
+                    <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
                 </div>
             </div>
         </div>
@@ -342,6 +347,7 @@
                 <div style='margin-left: 20%'>
                 </div>
             </div>
+            <hr>
         </div>
     </script>
                         <!-- <span class="glyphicon" aria-hidden="true"> <i class='fa fa-send'></i> </span>  -->
@@ -354,7 +360,7 @@
 
 
     <!-- Page is rendered inside this div -->
-    <div id='page' style='padding-bottom: 200px'>
+    <div id='page' style='padding-bottom: 300px'>
 	</div>
 
 

@@ -14,7 +14,6 @@ define([
 			},
 
 			bookReviews: function(id) {
-				console.log(id)
 				return root + "books/" + id + "/reviews/";
 			},
 

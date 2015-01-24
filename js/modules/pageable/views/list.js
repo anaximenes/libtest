@@ -23,7 +23,6 @@ define([
 	            	})
 				}
 	        	if (this.collection.isOnLastPage()) {
-	        		console.log('list loaded load')
 					Backbone.trigger('list:loaded', this.listType)
 				}
 	        },
@@ -59,22 +58,12 @@ define([
 	            }
 
 	            this.collection.updateAll()
-	            // for (var i = 0; i < this.collection.length; ++i) {
-	            // 	this.collection.at(i).fetch({
-	            // 		success: function(model, response) {
-	            // 			console.log(model.id, ' checked')
-	            // 		}
-	            // 	})
-	            // } 
 
 	            this.collection.fetch({
 	                success: function(response) {
 			        	if (that.collection.isOnLastPage()) {
 							Backbone.trigger('list:loaded', that.listType)
 						}
-	                },
-	                error: function(e) {
-	                	console.log('error ' + e)
 	                }
 	            })
 

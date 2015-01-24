@@ -33,7 +33,6 @@ define([
 	        		initialize: function() {
 	        			var that = this
 						this.listenTo(Backbone, 'list:loaded', function(which) {
-							console.log('list:loaded ' + which)
 							if (which === listType) {
 								that.show = false
 								that.render()

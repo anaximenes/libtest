@@ -25,7 +25,7 @@ define([
 				if (body === '') return
 				body = this.converter.makeHtml(body)
 
-				console.log('catched ', 'post:' + this.where)
+				// console.log('catched ', 'post:' + this.where)
 				Backbone.trigger('post:' + this.where, {title: title, body: body, id: this.id})
 			},
 
@@ -51,7 +51,6 @@ define([
 					if (options.page === 'bookQuestions') {
 						that.where = 'question'
 					}
-					console.log(that.where)
 				})
 
 				this.listenTo(Backbone, 'post:show', function() {
