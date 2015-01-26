@@ -1,3 +1,7 @@
+a:hover {
+  cursor: pointer;
+}
+
 #button-back {
   position: absolute; 
   top:0px; 
@@ -62,7 +66,7 @@ div#button-back:hover {
 
 .book-container {
   padding: 12px 0 10px 0;
-  /*border-bottom: 1px solid #e0e0e0;*/
+  border-bottom: 1px solid #e0e0e0;
   /*font-size: 20px*/
 }
 
@@ -291,7 +295,7 @@ a.book-entry {
 .post-title {
   font-size: larger;
   height: 2em;
-  width: 40%;
+  width: 100%;
 }
 
 #post-show-button {
@@ -319,9 +323,9 @@ blockquote {
 
 .wmd-panel
 {
-  /*margin-left: 20%;*/
-  margin-right: 40%;
-  width: 60%;
+  /*margin-left: 5%;*/
+  /*margin-right: 30%;*/
+  width: 100%;
   min-width: 500px;
 }
 

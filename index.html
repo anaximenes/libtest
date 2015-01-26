@@ -151,7 +151,7 @@
 
     <script type='text/template' id = 'template-book-card'> 
         <div class='container book-entry' id='<%=id%>'>
-            <div class='row book-container'>
+            <div class='row'>
                 <div class='col-xs-11'>
                     <img class='book-image' src="http://reslib.org/pict/<%= picture %>" alt="">
                     <div style='display: inline;'>
@@ -211,10 +211,10 @@
 
     <!-- Question list entry template -->
     <script type='text/template' id = 'template-questions-list-entry'> 
-        <div class='container question-entry'>
-        <div class='row class question-container'>
+        <div class='container question-container'>
+        <div class='row'>
             <div class='question-stats' style='display: block; margin-right: 15px; float: left'>
-                <div class='question-votes' style='display: inline-block; margin: 15px;'>
+                <div class='question-votes' style='display: inline-block; margin: 10px;'>
                     <div class='text-center' style='font-size: 25px'>
                         <%= rating %>
                     </div>
@@ -222,7 +222,7 @@
                         votes
                     </div>
                 </div>
-                <div class='question-answers' style='display: inline-block; margin: 15px'>
+                <div class='question-answers' style='display: inline-block; margin: 10px'>
                     <div class='text-center' style='font-size: 25px'>
                         <%= answersCount %>
                     </div>
@@ -233,9 +233,13 @@
             </div>
 
             <div style='display: block; float: left'>
-                <div class='title'> <h4> <a href='#!/questions/<%= id %>/'><%= title %></a> </h4> 
+                <div class='title'> <h4> <a href='#!/questions/<%= id %>/'><%= title %></a> </h4> </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div style='display: block; float: right'>
                 <div class='authors'> 
-                    <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= date %> </h5> 
+                    <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> 
                 <!-- <div class='content'> <h5> <p> <%= body %> </p> </h5> </div> -->
                 </div>
             </div>
@@ -260,7 +264,7 @@
 
             <div style='display: block; float: left'>
                 <div class='authors'> 
-                    <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= date %> </h5> 
+                    <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> 
                     <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
                 </div>
             </div>
@@ -284,7 +288,7 @@
         <div class='row'>
             <div class='title'><h3> <%= title %> </h3></div>
             <div class='authors'> 
-                <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= date %> </h5> 
+                <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> 
             </div>
             <div class='description' style='display: block;'> <h4> <p> <%= body %> </p> </h4> </div>
         </div>
@@ -293,8 +297,26 @@
     </script>
 
     <script type='text/template' id='template-reviews-list-entry'>
-        <div class='container review-entry'>
-            <div class='row review-container'>
+        <div class='container review-container'>
+            <div class='row'>
+                    <img class='book-image' src="img/avatar.png" alt="">
+                    <div style='display: inline;'>
+                        <div class='title'><h4> <%= title %> </h4></div>
+                        <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
+                    </div>
+                <div class='col-xs-11'>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='authors' style='float: right'> 
+                    <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> 
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+<!--             <div class='body'> <h4> <p> <%= description %> </p> </h4> </div>
                 <div style='display: block; float: left'>
                     <div class='title'> <h4> <%= title %> </h4> </div>
                     <div class='authors'> 
@@ -302,15 +324,13 @@
                         <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </script>
+ -->
 
     <script type='text/template' id='template-comments-list-entry'>
         <div class='container comments-entry' id='<%= id %>'>
             <div class='row'>
                 <div> <h3> <%= title %> </h3> </div>
-                <div> <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= date %> </h5> </div>
+                <div> <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> </div>
                 <p> <h4> <%= body %> </h4> </p>
             </div>
             <hr>
@@ -328,29 +348,43 @@
         </div>
     </script>
 
+                <!-- <div style='display: inline-block; margin-right: 1em'> <em style='font-size:larger;'> Title: </em> </div>  -->
     <script type='text/template' id='template-post'>
-        <div class='container'>
+        <div class='container review-container'>
             <div class='row'>
-                <div style='display: inline-block; margin-right: 1em'> <em> Title: </em> </div> 
-                <textarea id='post-title' class='post-title' style="vertical-align: bottom"> </textarea>
-            </div>
-            <div class='row'>
-                <div class='wmd-panel'>
-                    <div id='wmd-button-bar'></div>
-                    <textarea class='wmd-input' id='wmd-input'></textarea>
+                <img class='book-image' src="img/avatar.png" alt="">
+                <div style='display: inline-block; margin-left: +15px; width: 60%;'>
+                    <div class='row'>
+                        <textarea id='post-title' class='post-title' style="vertical-align: bottom" placeholder='Title'></textarea>
+                    </div>
+                    <div class='row'>
+                        <div class='wmd-panel'>
+                            <div id='wmd-button-bar'></div>
+                            <textarea class='wmd-input' id='wmd-input'></textarea>
+                        </div>
+                    
+                        <div class='wmd-panel wmd-preview' id='wmd-preview'></div>
+
+                        <a id='post-button' style='font-size: larger'> Send </a>
+                        <div style='margin-left: 20%'>
+                    </div>
                 </div>
-                
-                <div class='wmd-panel wmd-preview' id='wmd-preview'></div>
-                    <button type="button" id='post-button' class="btn btn-default btn-lg">
-                        Post
-                    </button>
-                <div style='margin-left: 20%'>
-                </div>
             </div>
-            <hr>
         </div>
     </script>
-                        <!-- <span class="glyphicon" aria-hidden="true"> <i class='fa fa-send'></i> </span>  -->
+
+                       <!-- <span class="glyphicon" aria-hidden="true"> <i class='fa fa-send'></i> </span>  -->
+
+
+
+    <script type='text/template' id='template-static-ask-question'>
+        <div class='container'>
+            <div class='row'>
+                <a>Ask a question</a>
+            </div>
+        </div>
+    </script>
+
 
 
     <!-- <hr> -->

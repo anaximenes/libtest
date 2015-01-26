@@ -20,9 +20,7 @@ define([
 
 			logOut: function() {
 				if (typeof(this.id) != 'undefined') {
-					console.log('hi!')
 					var model = new AuthModel({'id': this.id});
-					console.log(model)
 					model.destroy({url: Url('session'),
 						success: function() {
 							console.log('signed out!')
@@ -95,7 +93,6 @@ define([
 				user.fetch({
 					success: function(model, response) {
 						that.set('id', model.id)
-						console.log(that.id)
 						if (model.id) Backbone.trigger('user:signed', model.id)
 					}, error: function(e) {
 						console.log(e)

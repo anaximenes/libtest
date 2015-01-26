@@ -14,7 +14,6 @@ define([
 	        menu: '',
 
 	        initialize: function(models, options) {
-	        	// this.models = options.models || []
 	        	this.menu = options.menu
 	        	this.models = models
 	        	var that = this
@@ -23,10 +22,8 @@ define([
 	        		if (this.menu != options.menu) return
 	        		var page = options.page
 	        		if (allowed.has(page)) {
-	        			// console.log('transition: ' + page)
 		        		that.add(new MenuItem({page: page}), {merge: true})
 		        		Backbone.trigger('menu:activate', {menu: this.menu, page: page})
-		        		// console.log('menu:activate ', {menu: this.menu, page: page})
 		        	}
 	        	})
 
@@ -43,17 +40,17 @@ define([
 	        		Backbone.trigger('menu:activate', {menu: this.menu, page: 'add'})
 	        	})
 
-	        	this.listenTo(Backbone, 'user:signin', function(options) {
-	        		if (this.menu != 'sub-header') return
+	        	// this.listenTo(Backbone, 'user:signin', function(options) {
+	        	// 	if (this.menu != 'sub-header') return
 	        			
-	        		that.add(new MenuItem({page: 'favorites'}), {merge: true})
-	        	})
+	        	// 	that.add(new MenuItem({page: 'favorites'}), {merge: true})
+	        	// })
 
-	        	this.listenTo(Backbone, 'user:signout', function(options) {
-	        		if (this.menu != 'header') return
+	        	// this.listenTo(Backbone, 'user:signout', function(options) {
+	        	// 	if (this.menu != 'header') return
 
-	        		that.remove(new MenuItem({page: 'favorites'}), {merge: true})
-	        	})
+	        	// 	that.remove(new MenuItem({page: 'favorites'}), {merge: true})
+	        	// })
 	        }
 	    })
 

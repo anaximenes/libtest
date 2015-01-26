@@ -7,9 +7,10 @@ define([
 		'modules/questions/main',
 		'modules/menu/main',
 		'modules/utils/containerview',
-		'modules/post/main'
+		'modules/post/main',
+		'modules/static/views/view'
 	],
-	function($, _, Backbone, Url, Books, Questions, Menu, ContainerView, Post) {
+	function($, _, Backbone, Url, Books, Questions, Menu, ContainerView, Post, Static) {
 		var BookPage = ContainerView.extend({
 			initialize: function(bookId, bottom) {
 				var model = new Books.Model({'id': bookId})
@@ -49,6 +50,10 @@ define([
 				})
 
 				//------------------------------------------------------------------------------
+
+				var add = new Static({template: $('#template-static-ask-question').html()})
+
+				//------------------------------------------------------------------------------
 				
 				var postForm = new Post.view({id: bookId})
 
@@ -62,7 +67,7 @@ define([
 				// var comments = new Questions.FramedListView({collection: collection, listType: 'bookComments'})
 
 				//------------------------------------------------------------------------------
-				ContainerView.prototype.initialize.call(this, [card, menu, postForm, bottom])
+				ContainerView.prototype.initialize.call(this, [card, menu, postForm, bottom, add])
 				
 			}
 		})

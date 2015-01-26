@@ -19,13 +19,15 @@ define([
 	        		'password': this.$el.find('#inputPassword').val()
 	    		})
 	    		console.log(model)
-				model.save([], {
+				var xhr = model.save([], {
 					success: function(model, response) {
 						console.log('signed ', model.id)
 	        			Backbone.trigger('user:signin', model.id)
 					},
-					error: function(e) {
-						console.log(e)
+					error: function(model, response, xhr) {
+						console.log('here goes error')
+						console.log(model)
+						console.log(response.status)
 					}
 				})
 	        },
