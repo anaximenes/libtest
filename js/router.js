@@ -39,8 +39,7 @@ define([
 				'!/questions/:id(/)':            'question',
 				'!/signin(/)':                   'signin',
 				'!/signout(/)':                  'signout',
-				'!/users/:id(/)':                'user',
-				'!/users/:id/favorites(/)':      'favorites',
+				'!/user(/)':                     'userPage',
 				'!/test(/)':                     'test',
 				'*path':                         'root'
 			},
@@ -93,7 +92,7 @@ define([
 				this.user.logOut()
 			},
 
-			user: function() {
+			userPage: function() {
 				Controller.view('user', this.userId)
 			},
 
@@ -120,20 +119,20 @@ define([
 				var that = this
 				this.userId = undefined
 
-				var signed = function(id) {
-					that.userId = id
-				}
+				// var signed = function(id) {
+				// 	that.userId = id
+				// }
 				var openBook = function(obj) {
 					that.navigate('!/books/' + obj.model.get('id') + '/', true)
 				}
 				var openQuestion = function(obj) {
 					that.navigate('!/questions/' + obj.model.get('id') + '/', true)
 				}
-				var signIn = function(id) {
+				var signed = function(id) {
 					console.log('sign in ', id)
 					that.userId = id
 					Controller.userId = id
-					Backbone.history.history.back()
+					// Backbone.history.history.back()
 				}
 				var signOut = function() {
 					that.userId = undefined
@@ -156,7 +155,7 @@ define([
 				var eventHandler = {
 					'book:open':          openBook,
 					'question:open':      openQuestion,
-					'user:signin':        signIn,
+					// 'user:signin':        signIn,
 					'user:signout':       signOut,
 					'user:signed':        signed,
 					'search':             search,

@@ -129,7 +129,8 @@ define([
 				currentState.subMenu = Menu.get('book')
 				$('#sub-header').html(currentState.subMenu.render().el)
 				Backbone.trigger('controller:transition', {menu: 'book', page: 'description'})
-				Backbone.trigger('controller:transition', {menu: 'header', page: 'add'})
+				// Backbone.trigger('menu:extend', {menu: 'header', page: 'add', path: '!#/books/' + book.id + '/', title: })
+				// Backbone.trigger('controller:transition', {menu: 'header', page: 'add'})
 
 				var collection = new ReviewModule.PagedCollection([], {
 					url: function() {
@@ -206,7 +207,9 @@ define([
 			},
 
 			user: function() {
-
+				var view = new Backbone.View()
+				console.log('yo')
+				return view
 			},
 
 			test: function(status) {

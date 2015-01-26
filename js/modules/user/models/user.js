@@ -13,7 +13,6 @@ define([
 				var user = new Model();
 				user.fetch({
 					success: function(model, response) {
-						return model.id
 					}
 				})
 			},
@@ -28,6 +27,29 @@ define([
 						}
 					})
 				}
+			},
+
+			signin: function(data) {
+				var that = this
+	        	var model = new AuthModel({
+	        		'email': data.email,
+	        		'password': data.password
+	    		})
+				model.save([], {
+					success: function(model, response) {
+						console.log('signed ', model.id)
+	        			Backbone.trigger('user:signed', model.id)
+						that.set('id', model.id)
+						that.set('nickname', model.get('nickname'))
+						Backbone.history.history.back()
+					},
+					error: function(model, response, xhr) {
+						console.log('here goes error')
+						console.log(model)
+						console.log(response.status)
+					}
+				})
+
 			},
 
 			toggleFavorite: function(book) {
@@ -93,6 +115,7 @@ define([
 				user.fetch({
 					success: function(model, response) {
 						that.set('id', model.id)
+						that.set('nickname', model.get('nickname'))
 						if (model.id) Backbone.trigger('user:signed', model.id)
 					}, error: function(e) {
 						console.log(e)
@@ -102,9 +125,10 @@ define([
 				this.listenTo(Backbone, 'book:toggleFavorite', this.toggleFavorite)
 				this.listenTo(Backbone, 'post:question', this.postQuestion)
 				this.listenTo(Backbone, 'post:review', this.postReview)
-				this.listenTo(Backbone, 'user:signin', function(id) {
-					that.id = id
-				})
+				this.listenTo(Backbone, 'user:signin', this.signin)
+				// this.listenTo(Backbone, 'user:signin', function(id) {
+				// 	that.id = id
+				// })
 			}
 		})
 		

@@ -14,21 +14,9 @@ define([
 
 	        signin: function() {
 	        	event.preventDefault()
-	        	var model = new Model({
-	        		'email': this.$el.find('#inputEmail').val(),
-	        		'password': this.$el.find('#inputPassword').val()
-	    		})
-	    		console.log(model)
-				var xhr = model.save([], {
-					success: function(model, response) {
-						console.log('signed ', model.id)
-	        			Backbone.trigger('user:signin', model.id)
-					},
-					error: function(model, response, xhr) {
-						console.log('here goes error')
-						console.log(model)
-						console.log(response.status)
-					}
+	        	Backbone.trigger('user:signin', {
+		        	email: this.$el.find('#inputEmail').val(),
+					password: this.$el.find('#inputPassword').val()
 				})
 	        },
 
