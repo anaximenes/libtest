@@ -23,47 +23,40 @@ define([
 			'comments': {
 				id: 4,
 				title: 'Comments',
-				path: '#'
 			},
 			'reviews': {
 				id: 6,
 				title: 'Reviews',
-				path: '#'
 			},
 			'postComment': {
 				id: 7,
 				title: 'Post',
-				path: '#'
 			},
 			'questionAnswers': {
 				id: 8,
 				title: 'Answers',
-				path: '#'
 			},
 			'postAnswer': {
 				id: 9,
 				title: 'Post',
-				path: '#'
 			},
 			'sort': {
 				id: 10,
 				title: 'sort',
-				path: '#'
 			},
 			'all': {
 				id: 20,
 				title: 'all',
-				path: '#'
+				path: '#!/books/'
 			},
 			'favorites': {
 				id: 21,
 				title: 'favorites',
-				path: '#'
+				path: '#!/books/favorites/'
 			},
 			'description': {
 				id: 22,
 				title: 'description',
-				path: '#'
 			},
 			'edit': {
 				id: 23,
@@ -76,7 +69,7 @@ define([
 			'recent': {
 				id: 25,
 				title: 'recent',
-				path: '#'
+				path: '#!/books/recent/'
 			},
 			'bookQuestions': {
 				id: 30,
@@ -88,7 +81,6 @@ define([
 			},
 			'add': {
 				id: 101,
-				path: '#'
 			},
 			'images-toggler': {
 				id: 102,
@@ -96,15 +88,6 @@ define([
 			}
 		}
 
-	    // var Model = Backbone.Model.extend({
-	    // 	active: false,
-
-	    // 	initialize: function(options) {
-	    // 		options = options || {}
-	    // 		this.set('title', options.title || 'default page')
-	    // 		this.set('path', options.path || '#!/')
-	    // 	}
-	    // })
 	    var Model = Backbone.Model.extend({
 	    	initialize: function(options) {
 	    		var page = options.page

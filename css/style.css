@@ -126,12 +126,15 @@ h6, .h6 {
     padding:0px;
 }
 
+/***************************************************/
+
 .menu-item {
-  font-size: 17px;
-  font-weight: 100;
+  /*font-size: 17px;*/
+  /*font-weight: 100;*/
   padding-left: 20px;
   padding-right: 20px;
 }
+
 .sub-header-menu-item {
   font-size: 14px;
   font-weight: 100;
@@ -139,13 +142,29 @@ h6, .h6 {
   padding-right: 20px;
 }
 
-.menu-item.active {
-  font-size: 26px;
-  font-weight: 580;
+.book-menu-item, 
+.books-menu-item, 
+.question-menu-item,
+.questions-menu-item
+ {
+  font-size: 14px;
+  font-weight: 100;
+  padding-left: 20px;
+  padding-right: 20px;
 }
+
+.menu-item.active {
+  /*font-size: 26px;*/
+  /*font-weight: 580;*/
+}
+
+.book-menu-item.active,  
+.books-menu-item.active,  
+.question-menu-item.active, 
+.questions-menu-item.active, 
 .sub-header-menu-item.active {
   font-size: 21px;
-  font-weight: 580;
+  font-weight: 500;
 }
 
 a.menu-item {
@@ -158,6 +177,7 @@ a.menu-item.active {
   text-decoration: none;
 }
 
+.sub-menu-item,
 .header-menu-item {
   font-size: 19px;
   font-weight: 100;
@@ -165,6 +185,7 @@ a.menu-item.active {
   padding-right: 20px;
 }
 
+.sub-menu-item.active,
 .header-menu-item.active {
   font-size: 30px;
   font-weight: 580;

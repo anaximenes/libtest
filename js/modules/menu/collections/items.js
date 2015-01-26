@@ -22,35 +22,15 @@ define([
 	        		if (this.menu != options.menu) return
 	        		var page = options.page
 	        		if (allowed.has(page)) {
-		        		that.add(new MenuItem({page: page}), {merge: true})
 		        		Backbone.trigger('menu:activate', {menu: this.menu, page: page})
 		        	}
 	        	})
 
-	        	this.listenTo(Backbone, 'menu:additional', function(params) {
-	        		if (this.menu != params.menu) return
-
-	        		for (var i = 0; i < that.models.length; ++i) {
-	        			if (that.models[i].id === 101) {
-	        				that.add(new MenuItem({page: 'add', title: '"' + params.model.get('title') + '"', path: params.path}), {merge: true}, {at: i})
-	        			}
-	        		}
-	        		that.add(new MenuItem({page: 'add', title: '"' + params.model.get('title') + '"', path: params.path}), {merge: true})
-	        		that.trigger('add')
-	        		Backbone.trigger('menu:activate', {menu: this.menu, page: 'add'})
+	        	this.listenTo(Backbone, 'menu:extend', function(options) {
+	        		if (this.menu != options.menu) return
+	        		that.add(new MenuItem(options), {merge: true})
 	        	})
 
-	        	// this.listenTo(Backbone, 'user:signin', function(options) {
-	        	// 	if (this.menu != 'sub-header') return
-	        			
-	        	// 	that.add(new MenuItem({page: 'favorites'}), {merge: true})
-	        	// })
-
-	        	// this.listenTo(Backbone, 'user:signout', function(options) {
-	        	// 	if (this.menu != 'header') return
-
-	        	// 	that.remove(new MenuItem({page: 'favorites'}), {merge: true})
-	        	// })
 	        }
 	    })
 

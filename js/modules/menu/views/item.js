@@ -44,19 +44,16 @@ define([
 
 			activateMenu: function(options) {
 				var that = this
-				// console.log('activate menu', options, this.model)
 				if (options.menu != this.model.collection.menu) return
-				// console.log('activate menu PASS ', options.menu)
 
 				if (this.model.get('page') === options.page) {
-					setTimeout(function(){
+					// setTimeout(function(){
 				        $('#' +  that.model.collection.menu + '-menu-' + options.page).addClass('active')
-				    }, 10);
+				    // }, 10);
 				} else {
-					setTimeout(function(){
+					// setTimeout(function(){
 						$('#' + that.model.collection.menu + '-menu-' + that.model.get('page')).removeClass('active')
-						// $('.' + this.className + '.active').removeClass('active')
-				    }, 10);
+				    // }, 10);
 				}
 			},
 
@@ -67,7 +64,7 @@ define([
 				if (options.menu) this.menu = options.menu
 
 				this.listenTo(Backbone, 'menu:activate', this.activateMenu)
-				// this.listenTo(this.model, 'change', this.render)
+				this.listenTo(this.model, 'change', this.render)
 			}
 		})
 
