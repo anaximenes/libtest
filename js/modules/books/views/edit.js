@@ -1,9 +1,11 @@
 define([
 		'jquery',
 		'underscore',
-		'backbone'
+		'backbone',
+		'modules/utils/containerview',
+		'modules/post/main'
 	],
-	function($, _, Backbone) {
+	function($, _, Backbone, ContainerView, Post) {
 	    var CardItemView = Backbone.View.extend({
 	        template: $('#template-book-card-edit').html(),
 	        templateLoading: $('#template-book-entry-loading').html(),
@@ -22,6 +24,12 @@ define([
 	        initialize: function() {
 	            this.listenTo(this.model, 'change', this.render)
 	        }
+	    })
+
+	    var view = ContainerView.extend({
+	    	initialize: function(options) {
+		    	ContainerView.prototype.initialize.call(this, [new CardItemView(), new Post()])
+	    	}
 	    })
 
 	    return CardItemView

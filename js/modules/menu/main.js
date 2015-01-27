@@ -29,21 +29,24 @@ define([
 			pages: function(menu) {
 				var readButton = '<button type="button" class="btn btn-default btn-lg" style="padding-top: 4px; padding-bottom: 4px"> Read </button>'
 				return {
-				'header': 
-						[{page: 'books'}, {page: 'questions'}],
-				'books': 
-						[{page: 'all', path: '#!/books/'}, 
-						{page: 'favorites', path: '#!/books/favorites/'}, 
-						{page: 'recent', path: '#!/books/recent'}
-						],
-				'book': [
-						{page: 'description', path: this.base},
-						{page: 'edit', path: this.base + 'edit'},
-						{page: 'read', path: '#', title: readButton, full: true}
-						],
-				'questions':
-						[{page: 'all', path: '#!/questions/'}, 
-						]
+					'header': [
+						{page: 'books', title: 'Books', path: '#!/books/'},
+						{page: 'questions', title: 'Questions', path: '#!/questions/'}
+					],
+					'books': 
+						[{page: 'all', title: 'all', path: '#!/books/'}, 
+						{page: 'favorites', title: 'favorites', path: '#!/books/favorites/'}, 
+						{page: 'recent', title: 'recent', path: '#!/books/recent/'}
+					],
+					'book': [
+						{page: 'description', title: 'description', path: this.base},
+						{page: 'edit', title: 'edit', path: this.base + 'edit/'},
+						{page: 'read', title: 'read', path: '#'}
+						// {page: 'read', path: '#', title: readButton, full: true}
+					],
+					'questions':
+						[{page: 'all', title: 'all', path: '#!/questions/'}, 
+					]
 				}[menu]
 			},
 

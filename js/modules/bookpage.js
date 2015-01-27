@@ -20,11 +20,10 @@ define([
 					success: function() {
 						console.log(model)
 						Backbone.trigger('menu:extend', {
+													menu: 'header',
 													page: 'add',
-													// model: model, 
 													path: '#!/books/' + bookId + '/',
-													title: model.get('title'),
-													menu: 'header'
+													title: model.get('title')
 												})
 					}
 				})
@@ -33,16 +32,13 @@ define([
 
 				var postButton = '</a><button type="button" id="post-show-button" class="btn btn-default btn-lg" style="padding-top: 4px; padding-bottom: 4px"> Post </button><a>'
 
-				var menu = new Menu.View({
-					collection: new Menu.Items([
-							new Menu.Item({page: 'bookReviews', path: '#!/books/' + bookId + '/reviews/'}),
-							new Menu.Item({page: 'bookQuestions', path: '#!/books/' + bookId + '/questions/'}),
-							new Menu.Item({page: 'add', title: postButton, full: true})
-						], {
-							menu: 'sub'
-						}
-					)
-				})
+				var menu = Menu.add('sub', [
+							{page: 'bookReviews', title: 'Reviews', path: '#!/books/' + bookId + '/reviews/'},
+							{page: 'bookQuestions', title: 'Questions', path: '#!/books/' + bookId + '/questions/'},
+							{page: 'add', title: postButton, path: '#', full: true}
+						]
+				)
+				
 				this.listenTo(Backbone, 'menu:click', function(options) {
 					if (options.menu === 'sub' && options.page === 'add') {
 						Backbone.trigger('post:show')

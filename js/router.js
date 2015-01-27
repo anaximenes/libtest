@@ -9,20 +9,20 @@ define([
 		var Router = Backbone.Router.extend({
 			listener: new Backbone.View(),
 
-			// requireLogin: function(action) {
-			// 	if (this.user.loggedIn()) {
-			// 		action.success()
-			// 	} else {
-			// 		action.error === undefined ?
-			// 			this.navigate('!/signin/', {trigger: true, replace: true})
-			// 			:
-			// 			action.error()
-			// 	}
-			// },
+			requireLogin: function(action) {
+				if (this.user.isLogged()) {
+					action.success()
+				} else {
+					action.error === undefined ?
+						this.navigate('!/signin/', {trigger: true, replace: true})
+						:
+						action.error()
+				}
+			},
 
-			// ifLogged: function (callback) {
-			// 	this.requireLogin({success: callback, error: function() {}})
-			// },
+			ifLogged: function (callback) {
+				this.requireLogin({success: callback, error: function() {}})
+			},
 
 			routes: {
 				'!/books(/p:page)(/)':           'books',
@@ -93,22 +93,46 @@ define([
 			},
 
 			userPage: function() {
-				Controller.view('user', this.userId)
+				// var that = this
+				// this.requireLogin({
+				// 	success: function() {
+				// 		Controller.view('user', that.user.id)
+				// 	},
+				// 	error: function() {
+				// 		Controller.view('noUser')
+				// 	}
+				// })
+				Controller.view('user', this.user.id)
 			},
 
 			booksFavorites: function() {
-				console.log('### ', this.userId)
-				Controller.view('booksFavorites', this.userId)
+				// var that = this
+				// this.requireLogin({
+				// 	success: function() {
+				// 		Controller.view('booksFavorites', that.user.id)
+				// 	},
+				// 	error: function() {
+				// 		Controller.view('noFavorites')
+				// 	}
+				// })
+				Controller.view('booksFavorites', this.user.id)
 			},
 
 			booksRecent: function() {
-				console.log('### ', this.userId)
-				Controller.view('booksRecent', this.userId)
+				// var that = this
+				// this.requireLogin({
+				// 	success: function() {
+				// 		Controller.view('booksRecent', that.user.id)
+				// 	},
+				// 	error: function() {
+				// 		Controller.view('noRecent')
+				// 	}
+				// })
+				Controller.view('booksRecent', this.user.id)
 			},
 
 			questionsFavorites: function() {
-				console.log('### ', this.userId)
-				Controller.view('questionsFavorites', this.userId)
+				Controller.view('questionsFavorites', this.user.id)
 			},
 
 			test: function() {
@@ -117,11 +141,7 @@ define([
 
 			initialize: function() {
 				var that = this
-				this.userId = undefined
 
-				// var signed = function(id) {
-				// 	that.userId = id
-				// }
 				var openBook = function(obj) {
 					that.navigate('!/books/' + obj.model.get('id') + '/', true)
 				}
@@ -130,7 +150,6 @@ define([
 				}
 				var signed = function(id) {
 					console.log('sign in ', id)
-					that.userId = id
 					Controller.userId = id
 					// Backbone.history.history.back()
 				}

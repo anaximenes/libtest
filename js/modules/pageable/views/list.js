@@ -7,7 +7,7 @@ define([
 	    var CollectionView = Backbone.View.extend({
 	        model: Backbone.Model,
 	        ItemView: Backbone.View,
-	        processing: false,
+	        processing: false,  //it appears to be here for no particular reason but i'm scared to get rid of it
 
 	        loadUp: function() {
 	        	if (this.processing) {
@@ -67,9 +67,11 @@ define([
 	                }
 	            })
 
+	            var that = this
 	            this.listenTo(this.collection, 'add', this.addView)
 	            this.listenTo(this.collection, 'reset remove', this.render)
 	            this.listenTo(Backbone, 'page:scrollbottom', this.loadUp)
+	            this.listenTo(Backbone, 'page:update', this.collection.updateAll)
 	        },
 
 	        removeChildViews: function() {

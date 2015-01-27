@@ -10,6 +10,8 @@ define([
 			id: undefined,
 
 			isLogged: function() {
+				console.log(this)
+				return (typeof(this.id) != 'undefined')
 				var user = new Model();
 				user.fetch({
 					success: function(model, response) {
@@ -18,11 +20,13 @@ define([
 			},
 
 			logOut: function() {
+				var that = this
 				if (typeof(this.id) != 'undefined') {
 					var model = new AuthModel({'id': this.id});
 					model.destroy({url: Url('session'),
 						success: function() {
 							console.log('signed out!')
+							that.id = undefined
 							Backbone.trigger('user:signout')
 						}
 					})
@@ -94,9 +98,10 @@ define([
 				model.url = Url(where, this.id)
 				console.log(model)
 
-				model.save({
+				model.save([], {
 					success: function(response) {
 						console.log(response)
+						Backbone.trigger('page:update')
 					}
 				})
 			},
@@ -126,9 +131,6 @@ define([
 				this.listenTo(Backbone, 'post:question', this.postQuestion)
 				this.listenTo(Backbone, 'post:review', this.postReview)
 				this.listenTo(Backbone, 'user:signin', this.signin)
-				// this.listenTo(Backbone, 'user:signin', function(id) {
-				// 	that.id = id
-				// })
 			}
 		})
 		

@@ -28,8 +28,6 @@ define([
 
 	        	this.listenTo(Backbone, 'menu:extend', function(options) {
 	        		if (this.menu != options.menu) return
-	        		console.log('yo')
-	        		console.log(new MenuItem(options))
 	        		that.add(new MenuItem(options), {merge: true})
 		        	Backbone.trigger('menu:activate', {menu: this.menu, page: options.page})
 	        	})

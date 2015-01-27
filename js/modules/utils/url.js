@@ -45,6 +45,10 @@ define([
 				return root + "users/" + id + "/favorites/";
 			},
 
+			booksSearch: function(query) {
+				return root + "books/?query=" + query;
+			},
+
 			booksFavorites: function(id) {
 				return root + "users/" + id + "/favorites/";
 			},
