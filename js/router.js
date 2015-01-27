@@ -1,192 +1,192 @@
 define([
-		'jquery',
-		'underscore',
-		'backbone',
-		'controller',
-		'modules/user/main'
-	],
-	function($, _, Backbone, Controller, User) {
-		var Router = Backbone.Router.extend({
-			listener: new Backbone.View(),
+    'jquery',
+    'underscore',
+    'backbone',
+    'controller',
+    'modules/user/main'
+  ],
+  function($, _, Backbone, Controller, User) {
+    var Router = Backbone.Router.extend({
+      listener: new Backbone.View(),
 
-			requireLogin: function(action) {
-				if (this.user.isLogged()) {
-					action.success()
-				} else {
-					action.error === undefined ?
-						this.navigate('!/signin/', {trigger: true, replace: true})
-						:
-						action.error()
-				}
-			},
+      requireLogin: function(action) {
+        if (this.user.isLogged()) {
+          action.success()
+        } else {
+          action.error === undefined ?
+            this.navigate('!/signin/', {trigger: true, replace: true})
+            :
+            action.error()
+        }
+      },
 
-			ifLogged: function (callback) {
-				this.requireLogin({success: callback, error: function() {}})
-			},
+      ifLogged: function (callback) {
+        this.requireLogin({success: callback, error: function() {}})
+      },
 
-			routes: {
-				'!/books(/p:page)(/)':           'books',
-				'!/books/search/:query(/)':      'booksSearch',
-				'!/books/favorites(/)':  	     'booksFavorites',
-				'!/books/recent(/)':  	         'booksRecent',
-				'!/books/:id(/)':                'book',
-				'!/books/:id/questions(/)':      'bookQuestions',
-				'!/books/:id/reviews(/)':        'bookReviews',
-				'!/books/:id/edit(/)':           'bookEdit',
-				'!/questions(p:page)(/)':        'questions',
-				'!/questions/search/:query(/)':  'questionsSearch',
-				'!/questions/favorites(/)':      'questionsFavorites',
-				'!/questions/:id(/)':            'question',
-				'!/signin(/)':                   'signin',
-				'!/signout(/)':                  'signout',
-				'!/user(/)':                     'userPage',
-				'!/test(/)':                     'test',
-				'*path':                         'root'
-			},
+      routes: {
+        '!/books(/p:page)(/)':           'books',
+        '!/books/search/:query(/)':      'booksSearch',
+        '!/books/favorites(/)':        'booksFavorites',
+        '!/books/recent(/)':             'booksRecent',
+        '!/books/:id(/)':                'book',
+        '!/books/:id/questions(/)':      'bookQuestions',
+        '!/books/:id/reviews(/)':        'bookReviews',
+        '!/books/:id/edit(/)':           'bookEdit',
+        '!/questions(p:page)(/)':        'questions',
+        '!/questions/search/:query(/)':  'questionsSearch',
+        '!/questions/favorites(/)':      'questionsFavorites',
+        '!/questions/:id(/)':            'question',
+        '!/signin(/)':                   'signin',
+        '!/signout(/)':                  'signout',
+        '!/user(/)':                     'userPage',
+        '!/test(/)':                     'test',
+        '*path':                         'root'
+      },
 
-			root: function() {
-				this.navigate('!/books', true)
-			},
+      root: function() {
+        this.navigate('!/books', true)
+      },
 
-			books: function(page) {
-				Controller.view('books', page)
-			},
+      books: function(page) {
+        Controller.view('books', page)
+      },
 
-			booksSearch: function(page) {
-				Controller.view('booksSearch', page)
-			},
+      booksSearch: function(page) {
+        Controller.view('booksSearch', page)
+      },
 
-			book: function(id) {
-				Controller.view('bookReviews', {'id': id})
-			},
+      book: function(id) {
+        Controller.view('bookReviews', {'id': id})
+      },
 
-			bookQuestions: function(id) {
-				Controller.view('bookQuestions', {'id': id})
-			},
+      bookQuestions: function(id) {
+        Controller.view('bookQuestions', {'id': id})
+      },
 
-			bookReviews: function(id) {
-				Controller.view('bookReviews', {'id': id})
-			},
+      bookReviews: function(id) {
+        Controller.view('bookReviews', {'id': id})
+      },
 
-			bookEdit: function(id) {
-				Controller.view('bookEdit', {'id': id})
-			},
+      bookEdit: function(id) {
+        Controller.view('bookEdit', {'id': id})
+      },
 
-			questions: function(page) {
-				Controller.view('questions', page)
-			},
-			
-			questionsSearch: function(query) {
-				Controller.view('questionsSearch', query)
-			},
+      questions: function(page) {
+        Controller.view('questions', page)
+      },
+      
+      questionsSearch: function(query) {
+        Controller.view('questionsSearch', query)
+      },
 
-			question: function(id) {
-				Controller.view('questionAnswers', {'id': id})
-			},
+      question: function(id) {
+        Controller.view('questionAnswers', {'id': id})
+      },
 
-			signin: function() {
-				Controller.view('signin')
-			},
+      signin: function() {
+        Controller.view('signin')
+      },
 
-			signout: function() {
-				this.user.logOut()
-			},
+      signout: function() {
+        this.user.logOut()
+      },
 
-			userPage: function() {
-				// var that = this
-				// this.requireLogin({
-				// 	success: function() {
-				// 		Controller.view('user', that.user.id)
-				// 	},
-				// 	error: function() {
-				// 		Controller.view('noUser')
-				// 	}
-				// })
-				Controller.view('user', this.user.id)
-			},
+      userPage: function() {
+        // var that = this
+        // this.requireLogin({
+        //  success: function() {
+        //    Controller.view('user', that.user.id)
+        //  },
+        //  error: function() {
+        //    Controller.view('noUser')
+        //  }
+        // })
+        Controller.view('user', this.user.id)
+      },
 
-			booksFavorites: function() {
-				// var that = this
-				// this.requireLogin({
-				// 	success: function() {
-				// 		Controller.view('booksFavorites', that.user.id)
-				// 	},
-				// 	error: function() {
-				// 		Controller.view('noFavorites')
-				// 	}
-				// })
-				Controller.view('booksFavorites', this.user.id)
-			},
+      booksFavorites: function() {
+        // var that = this
+        // this.requireLogin({
+        //  success: function() {
+        //    Controller.view('booksFavorites', that.user.id)
+        //  },
+        //  error: function() {
+        //    Controller.view('noFavorites')
+        //  }
+        // })
+        Controller.view('booksFavorites', this.user.id)
+      },
 
-			booksRecent: function() {
-				// var that = this
-				// this.requireLogin({
-				// 	success: function() {
-				// 		Controller.view('booksRecent', that.user.id)
-				// 	},
-				// 	error: function() {
-				// 		Controller.view('noRecent')
-				// 	}
-				// })
-				Controller.view('booksRecent', this.user.id)
-			},
+      booksRecent: function() {
+        // var that = this
+        // this.requireLogin({
+        //  success: function() {
+        //    Controller.view('booksRecent', that.user.id)
+        //  },
+        //  error: function() {
+        //    Controller.view('noRecent')
+        //  }
+        // })
+        Controller.view('booksRecent', this.user.id)
+      },
 
-			questionsFavorites: function() {
-				Controller.view('questionsFavorites', this.user.id)
-			},
+      questionsFavorites: function() {
+        Controller.view('questionsFavorites', this.user.id)
+      },
 
-			test: function() {
-				Controller.view('test')
-			},
+      test: function() {
+        Controller.view('test')
+      },
 
-			initialize: function() {
-				var that = this
+      initialize: function() {
+        var that = this
 
-				var openBook = function(obj) {
-					that.navigate('!/books/' + obj.model.get('id') + '/', true)
-				}
-				var openQuestion = function(obj) {
-					that.navigate('!/questions/' + obj.model.get('id') + '/', true)
-				}
-				var signed = function(id) {
-					console.log('sign in ', id)
-					Controller.userId = id
-					// Backbone.history.history.back()
-				}
-				var signOut = function() {
-					that.userId = undefined
-					Controller.userId = undefined
-					Backbone.history.history.back()
-				}
-				var search = function(query) {
-					var url = Backbone.history.fragment.slice(2)
-					if (url.indexOf('books') === 0) {
-						that.navigate('#!/books/search/' + query, true)
-					} else if (url.indexOf('questions') === 0) {
-						that.navigate('#!/questions/search/' + query, true)
-					}
-				}
-				var back = function() {
-					console.log('BACK')
-					Backbone.history.back()
-				}
+        var openBook = function(obj) {
+          that.navigate('!/books/' + obj.model.get('id') + '/', true)
+        }
+        var openQuestion = function(obj) {
+          that.navigate('!/questions/' + obj.model.get('id') + '/', true)
+        }
+        var signed = function(id) {
+          console.log('sign in ', id)
+          Controller.userId = id
+          // Backbone.history.history.back()
+        }
+        var signOut = function() {
+          that.userId = undefined
+          Controller.userId = undefined
+          Backbone.history.history.back()
+        }
+        var search = function(query) {
+          var url = Backbone.history.fragment.slice(2)
+          if (url.indexOf('books') === 0) {
+            that.navigate('#!/books/search/' + query, true)
+          } else if (url.indexOf('questions') === 0) {
+            that.navigate('#!/questions/search/' + query, true)
+          }
+        }
+        var back = function() {
+          console.log('BACK')
+          Backbone.history.back()
+        }
 
-				var eventHandler = {
-					'book:open':          openBook,
-					'question:open':      openQuestion,
-					// 'user:signin':        signIn,
-					'user:signout':       signOut,
-					'user:signed':        signed,
-					'search':             search,
-					'backstrip':          back
-				}
+        var eventHandler = {
+          'book:open':          openBook,
+          'question:open':      openQuestion,
+          // 'user:signin':        signIn,
+          'user:signout':       signOut,
+          'user:signed':        signed,
+          'search':             search,
+          'backstrip':          back
+        }
 
-				for (var event in eventHandler) {
-					that.listener.listenTo(Backbone, event, eventHandler[event])
-				}
-			}
-		})
+        for (var event in eventHandler) {
+          that.listener.listenTo(Backbone, event, eventHandler[event])
+        }
+      }
+    })
 
-		return Router
-	}
+    return Router
+  }
 );

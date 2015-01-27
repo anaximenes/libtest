@@ -1,73 +1,73 @@
 define([
-		'jquery',
-		'underscore',
-		'backbone',
-		'modules/menu/models/item'
-	],
-	function($, _, Backbone, MenuItem) {
-		var MenuItemView = Backbone.View.extend({
-			tagName: 'div',
-			menu: '',
+    'jquery',
+    'underscore',
+    'backbone',
+    'modules/menu/models/item'
+  ],
+  function($, _, Backbone, MenuItem) {
+    var MenuItemView = Backbone.View.extend({
+      tagName: 'div',
+      menu: '',
 
-			attributes: function() {
-				return {
-					style: 'display: inline-block',
-				}
-			},
+      attributes: function() {
+        return {
+          style: 'display: inline-block',
+        }
+      },
 
-			events: {
-				'click': 'click'
-			},
+      events: {
+        'click': 'click'
+      },
 
-			click: function() {
-				Backbone.trigger('menu:click', {page: this.model.get('page'), menu: this.model.collection.menu})
-			},
+      click: function() {
+        Backbone.trigger('menu:click', {page: this.model.get('page'), menu: this.model.collection.menu})
+      },
 
-			render: function() {
-				var html = '<a id="<%=id%>" class="<%= classes %>" href="<%= href %>" > <%= title %> </a>'
-				var text = this.model.get('title')
+      render: function() {
+        var html = '<a id="<%=id%>" class="<%= classes %>" href="<%= href %>" > <%= title %> </a>'
+        var text = this.model.get('title')
 
-				
-				//to be FIXED !!!!
-				if (!this.model.get('full')) {
-					text = text.slice(0, 40) + (text.length > 40 ? '..."' : '')
-				}
-				
-				this.$el.html(_.template(html)({
-					'title': text, 
-					'href': this.model.get('path'), 
-					'id': this.model.collection.menu + '-menu-' + this.model.get('page'),
-					'classes': 'menu-item' + (this.classes ? ' ' + this.classes : '')
-				}))
-				return this
-			},
+        
+        //to be FIXED !!!!
+        if (!this.model.get('full')) {
+          text = text.slice(0, 40) + (text.length > 40 ? '..."' : '')
+        }
+        
+        this.$el.html(_.template(html)({
+          'title': text, 
+          'href': this.model.get('path'), 
+          'id': this.model.collection.menu + '-menu-' + this.model.get('page'),
+          'classes': 'menu-item' + (this.classes ? ' ' + this.classes : '')
+        }))
+        return this
+      },
 
-			activateMenu: function(options) {
-				var that = this
-				if (options.menu != this.model.collection.menu) return
+      activateMenu: function(options) {
+        var that = this
+        if (options.menu != this.model.collection.menu) return
 
-				if (this.model.get('page') === options.page) {
-					// setTimeout(function(){
-				        $('#' +  that.model.collection.menu + '-menu-' + options.page).addClass('active')
-				    // }, 10);
-				} else {
-					// setTimeout(function(){
-						$('#' + that.model.collection.menu + '-menu-' + that.model.get('page')).removeClass('active')
-				    // }, 10);
-				}
-			},
+        if (this.model.get('page') === options.page) {
+          // setTimeout(function(){
+                $('#' +  that.model.collection.menu + '-menu-' + options.page).addClass('active')
+            // }, 10);
+        } else {
+          // setTimeout(function(){
+            $('#' + that.model.collection.menu + '-menu-' + that.model.get('page')).removeClass('active')
+            // }, 10);
+        }
+      },
 
-			initialize: function(options) {
-				var that = this
-				options = options || {}
-				if (options.classes) this.classes = options.classes
-				if (options.menu) this.menu = options.menu
+      initialize: function(options) {
+        var that = this
+        options = options || {}
+        if (options.classes) this.classes = options.classes
+        if (options.menu) this.menu = options.menu
 
-				this.listenTo(Backbone, 'menu:activate', this.activateMenu)
-				this.listenTo(this.model, 'change', this.render)
-			}
-		})
+        this.listenTo(Backbone, 'menu:activate', this.activateMenu)
+        this.listenTo(this.model, 'change', this.render)
+      }
+    })
 
-		return MenuItemView
-	}
+    return MenuItemView
+  }
 )

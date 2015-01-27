@@ -1,78 +1,78 @@
 define([
-		'jquery',
-		'underscore'
-	],
-	function($, _) {
-		var root = "http://beta.reslib.org/api/"
-		var URLs = {
-			books: function() {
-				return root + "books/";
-			},
+    'jquery',
+    'underscore'
+  ],
+  function($, _) {
+    var root = "//beta.reslib.org/api/"
+    var URLs = {
+      books: function() {
+        return root + "books/";
+      },
 
-			book: function(id) {
-				return root + "books/" + id;
-			},
+      book: function(id) {
+        return root + "books/" + id;
+      },
 
-			bookReviews: function(id) {
-				return root + "books/" + id + "/reviews/";
-			},
+      bookReviews: function(id) {
+        return root + "books/" + id + "/reviews/";
+      },
 
-			bookQuestions: function(id) {
-				return root + "books/" + id + "/questions/";
-			},
+      bookQuestions: function(id) {
+        return root + "books/" + id + "/questions/";
+      },
 
-			bookQuestion: function(id, question) {
-				return root + "books/" + id + "/questions" + question;
-			},
+      bookQuestion: function(id, question) {
+        return root + "books/" + id + "/questions" + question;
+      },
 
-			questions: function() {
-				return root + "questions/";
-			},
+      questions: function() {
+        return root + "questions/";
+      },
 
-			userQuestions: function(id) {
-				return root + "users/" + id + "/questions/"
-			},
+      userQuestions: function(id) {
+        return root + "users/" + id + "/questions/"
+      },
 
-			userReviews: function(id) {
-				return root + "users/" + id + "/reviews/"
-			},
+      userReviews: function(id) {
+        return root + "users/" + id + "/reviews/"
+      },
 
-			question: function(id) {
-				return root + "questions/" + id;
-			},
+      question: function(id) {
+        return root + "questions/" + id;
+      },
 
-			favorites: function(id) {
-				return root + "users/" + id + "/favorites/";
-			},
+      favorites: function(id) {
+        return root + "users/" + id + "/favorites/";
+      },
 
-			booksSearch: function(query) {
-				return root + "books/?query=" + query;
-			},
+      booksSearch: function(query) {
+        return root + "books/?query=" + query;
+      },
 
-			booksFavorites: function(id) {
-				return root + "users/" + id + "/favorites/";
-			},
+      booksFavorites: function(id) {
+        return root + "users/" + id + "/favorites/";
+      },
 
-			booksRecent: function(id) {
-				return root + "users/" + id + "/recent/";
-			},
+      booksRecent: function(id) {
+        return root + "users/" + id + "/recent/";
+      },
 
-			questionsFavorites: function(id) {
-				// return root + "users/" + id + "/questions";
-			},
+      questionsFavorites: function(id) {
+        // return root + "users/" + id + "/questions";
+      },
 
-			session: function() {
-				return root + 'session'
-			}
+      session: function() {
+        return root + 'session'
+      }
 
-		}
+    }
 
-		var Url = function(type) {
-		  return URLs[type] ?
-		    URLs[type].apply(this, [].slice.call(arguments, 1)) :
-		    undefined;
-		}
+    var Url = function(type) {
+      return URLs[type] ?
+        URLs[type].apply(this, [].slice.call(arguments, 1)) :
+        undefined;
+    }
 
-		return Url
-	}
+    return Url
+  }
 )

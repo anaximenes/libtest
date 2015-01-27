@@ -1,35 +1,35 @@
 define([
-		'jquery',
-		'underscore',
-		'backbone',
-		'modules/user/models/auth'
-	],
-	function($, _, Backbone, Model) {
-	    SignInView = Backbone.View.extend({
-	        template: $('#template-signin').html(),
+    'jquery',
+    'underscore',
+    'backbone',
+    'modules/user/models/auth'
+  ],
+  function($, _, Backbone, Model) {
+    SignInView = Backbone.View.extend({
+      template: $('#template-signin').html(),
 
-	        events: {
-	        	'submit': 'signin'
-	        },
+      events: {
+        'submit': 'signin'
+      },
 
-	        signin: function() {
-	        	event.preventDefault()
-	        	Backbone.trigger('user:signin', {
-		        	email: this.$el.find('#inputEmail').val(),
-					password: this.$el.find('#inputPassword').val()
-				})
-	        },
+      signin: function() {
+        event.preventDefault()
+        Backbone.trigger('user:signin', {
+          email: this.$el.find('#inputEmail').val(),
+          password: this.$el.find('#inputPassword').val()
+        })
+      },
 
-	        render: function() {
-	            html = _.template(this.template)()
-	            this.$el.html(html)
-	            return this
-	        },
+      render: function() {
+        html = _.template(this.template)()
+        this.$el.html(html)
+        return this
+      },
 
-	        initialize: function() {
-	        }
-	    })
+      initialize: function() {
+      }
+    })
 
-	    return SignInView
-	}
+    return SignInView
+  }
 )

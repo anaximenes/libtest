@@ -1,139 +1,139 @@
 define([
-		'jquery',
-		'underscore',
-		'backbone',
-		'modules/utils/url',
-		'modules/user/models/auth'
-	],
-	function($, _, Backbone, Url, AuthModel) {
-		var UserModel = Backbone.Model.extend({
-			id: undefined,
+    'jquery',
+    'underscore',
+    'backbone',
+    'modules/utils/url',
+    'modules/user/models/auth'
+  ],
+  function($, _, Backbone, Url, AuthModel) {
+    var UserModel = Backbone.Model.extend({
+      id: undefined,
 
-			isLogged: function() {
-				console.log(this)
-				return (typeof(this.id) != 'undefined')
-				var user = new Model();
-				user.fetch({
-					success: function(model, response) {
-					}
-				})
-			},
+      isLogged: function() {
+        console.log(this)
+        return (typeof(this.id) != 'undefined')
+        var user = new Model();
+        user.fetch({
+          success: function(model, response) {
+          }
+        })
+      },
 
-			logOut: function() {
-				var that = this
-				if (typeof(this.id) != 'undefined') {
-					var model = new AuthModel({'id': this.id});
-					model.destroy({url: Url('session'),
-						success: function() {
-							console.log('signed out!')
-							that.id = undefined
-							Backbone.trigger('user:signout')
-						}
-					})
-				}
-			},
+      logOut: function() {
+        var that = this
+        if (typeof(this.id) != 'undefined') {
+          var model = new AuthModel({'id': this.id});
+          model.destroy({url: Url('session'),
+            success: function() {
+              console.log('signed out!')
+              that.id = undefined
+              Backbone.trigger('user:signout')
+            }
+          })
+        }
+      },
 
-			signin: function(data) {
-				var that = this
-	        	var model = new AuthModel({
-	        		'email': data.email,
-	        		'password': data.password
-	    		})
-				model.save([], {
-					success: function(model, response) {
-						console.log('signed ', model.id)
-	        			Backbone.trigger('user:signed', model.id)
-						that.set('id', model.id)
-						that.set('nickname', model.get('nickname'))
-						Backbone.history.history.back()
-					},
-					error: function(model, response, xhr) {
-						console.log('here goes error')
-						console.log(model)
-						console.log(response.status)
-					}
-				})
+      signin: function(data) {
+        var that = this
+        var model = new AuthModel({
+          'email': data.email,
+          'password': data.password
+        })
+        model.save([], {
+          success: function(model, response) {
+            console.log('signed ', model.id)
+            Backbone.trigger('user:signed', model.id)
+            that.set('id', model.id)
+            that.set('nickname', model.get('nickname'))
+            Backbone.history.history.back()
+          },
+          error: function(model, response, xhr) {
+            console.log('here goes error')
+            console.log(model)
+            console.log(response.status)
+          }
+        })
 
-			},
+      },
 
-			toggleFavorite: function(book) {
-				var url = Url('favorites', this.id)
-				console.log(url)
+      toggleFavorite: function(book) {
+        var url = Url('favorites', this.id)
+        console.log(url)
 
-				var Collection = Backbone.Collection.extend({
-					url: url
-				})
-				var collection = new Collection()
-				
-				var model = new Backbone.Model({
-					id: book.id,
-					urlRoot: url
-				})
+        var Collection = Backbone.Collection.extend({
+          url: url
+        })
+        var collection = new Collection()
+        
+        var model = new Backbone.Model({
+          id: book.id,
+          urlRoot: url
+        })
 
-				var fetch = function() {
-					book.fetch()
-				}
+        var fetch = function() {
+          book.fetch()
+        }
 
-				if (book.get('isFavorite')) {
-					model.destroy({
-						url: url + book.id, 
-						success: fetch,
-						error: fetch
-					})
-				} else {
-					collection.create({id: book.id}, {
-						success: fetch,
-						error: fetch
-					})
-				}
-			},
+        if (book.get('isFavorite')) {
+          model.destroy({
+            url: url + book.id, 
+            success: fetch,
+            error: fetch
+          })
+        } else {
+          collection.create({id: book.id}, {
+            success: fetch,
+            error: fetch
+          })
+        }
+      },
 
-			post: function(where, options) {
-				var model = new Backbone.Model({
-					usersId: this.id,
-					booksId: (options.id ? options.id : null),
-					title: options.title,
-					body: options.body
-				})
-				model.url = Url(where, this.id)
-				console.log(model)
+      post: function(where, options) {
+        var model = new Backbone.Model({
+          usersId: this.id,
+          booksId: (options.id ? options.id : null),
+          title: options.title,
+          body: options.body
+        })
+        model.url = Url(where, this.id)
+        console.log(model)
 
-				model.save([], {
-					success: function(response) {
-						console.log(response)
-						Backbone.trigger('page:update')
-					}
-				})
-			},
+        model.save([], {
+          success: function(response) {
+            console.log(response)
+            Backbone.trigger('page:update')
+          }
+        })
+      },
 
-			postQuestion: function(options) {
-				this.post('userQuestions', options)
-			},
+      postQuestion: function(options) {
+        this.post('userQuestions', options)
+      },
 
-			postReview: function(options) {
-				this.post('userReviews', options)
-			},
+      postReview: function(options) {
+        this.post('userReviews', options)
+      },
 
-			initialize: function() {
-				var that = this
-				var user = new AuthModel()
-				user.fetch({
-					success: function(model, response) {
-						that.set('id', model.id)
-						that.set('nickname', model.get('nickname'))
-						if (model.id) Backbone.trigger('user:signed', model.id)
-					}, error: function(e) {
-						console.log(e)
-					}
-				})
+      initialize: function() {
+        var that = this
+        var user = new AuthModel()
+        user.fetch({
+          success: function(model, response) {
+            that.set('id', model.id)
+            that.set('nickname', model.get('nickname'))
+            if (model.id) Backbone.trigger('user:signed', model.id)
+          }, error: function(e) {
+            console.log(e)
+          }
+        })
 
-				this.listenTo(Backbone, 'book:toggleFavorite', this.toggleFavorite)
-				this.listenTo(Backbone, 'post:question', this.postQuestion)
-				this.listenTo(Backbone, 'post:review', this.postReview)
-				this.listenTo(Backbone, 'user:signin', this.signin)
-			}
-		})
-		
-		return UserModel
-	}
+        this.listenTo(Backbone, 'book:toggleFavorite', this.toggleFavorite)
+        this.listenTo(Backbone, 'post:question', this.postQuestion)
+        this.listenTo(Backbone, 'post:review', this.postReview)
+        this.listenTo(Backbone, 'user:signin', this.signin)
+      }
+    })
+    
+    return UserModel
+  }
 )

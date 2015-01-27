@@ -1,410 +1,410 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Lib</title>
-    <link rel=stylesheet href='css/bootstrap.min.css'>
-    <link rel=stylesheet href='css/font-awesome.css'>
-    <link rel=stylesheet href='css/style.css'>
-    <script data-main='./js/config' src="./js/libs/require.js"></script>
+  <meta charset="UTF-8">
+  <title>Lib</title>
+  <link rel=stylesheet href='css/bootstrap.min.css'>
+  <link rel=stylesheet href='css/font-awesome.css'>
+  <link rel=stylesheet href='css/style.css'>
+  <script data-main='./js/config' src="./js/libs/require.js"></script>
 </head>
 <body>
 
-    <!-- Sign in/out on top of page -->
-    <div id='signInHeader' class='container' style='margin-top: 15px'>
-        <div id="footerleft"><p></p></div>
-        <div id="footercenter"><img src='img/logo.png' alt="Logo"></div> 
-        <div id="footerright"><p>
-            <a class='menu-signin-item' id='page-nickname' href="#!/user/"> </a>
-            <a class='menu-signin-item' id='page-signup' href="#">Sign up</a>
-            <a class='menu-signin-item' id='page-signin' href="#!/signin/">Sign in</a>
-            <a class='menu-signin-item' id='page-signout' href="#!/signout/">Sign out</a>
-        </p></div>
+  <!-- Sign in/out on top of page -->
+  <div id='signInHeader' class='container' style='margin-top: 15px'>
+    <div id="footerleft"><p></p></div>
+    <div id="footercenter"><img src='img/logo.png' alt="Logo"></div> 
+    <div id="footerright"><p>
+      <a class='menu-signin-item' id='page-nickname' href="#!/user/"> </a>
+      <a class='menu-signin-item' id='page-signup' href="#">Sign up</a>
+      <a class='menu-signin-item' id='page-signin' href="#!/signin/">Sign in</a>
+      <a class='menu-signin-item' id='page-signout' href="#!/signout/">Sign out</a>
+    </p></div>
+  </div>
+
+
+  <!-- Search bar-->
+  <div id='search-bar' class="container" style='margin-top: 10px; margin-bottom: 15px'>
+    <div style='text-align: center;'>
+      <div style='display: inline-block; vertical-align: top;'>
+        <form>
+          <input id='search-query' type="text" class="form-control" style='width: 350px;' placeholder="Search">
+        </form>
+      </div>
+      <div style='display: inline-block; vertical-align: top;'>
+        <button id='search-button' type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+      </div>
     </div>
+  </div>
+
+  <!-- Main menu placed here: -->
+  <div id='header'></div>
+    <!-- <hr style='margin-top: -15px'> -->
+
+  <!-- Sub menu here: -->
+  <div id='sub-header' style='margin-top: -15px; margin-bottom: -10px'></div>
 
 
-    <!-- Search bar-->
-    <div id='search-bar' class="container" style='margin-top: 10px; margin-bottom: 15px'>
-        <div style='text-align: center;'>
-            <div style='display: inline-block; vertical-align: top;'>
-                <form>
-                    <input id='search-query' type="text" class="form-control" style='width: 350px;' placeholder="Search">
-                </form>
-            </div>
-            <div style='display: inline-block; vertical-align: top;'>
-                <button id='search-button' type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main menu placed here: -->
-    <div id='header'></div>
-        <!-- <hr style='margin-top: -15px'> -->
-
-    <!-- Sub menu here: -->
-    <div id='sub-header' style='margin-top: -15px; margin-bottom: -10px'></div>
-
-
-    <!-- Menu template -->
+  <!-- Menu template -->
 <!--     <div class="container menu" style='margin-top: -10px;'>
-        <div class="menu-left">
-            <div style="display: inline-block">
-                <a id="header-menu-books" class="sub-menu-item active" href="#!/books/"> all </a>
-            </div>
-            <div style="display: inline-block">
-                <a id="header-menu-questions" class="sub-menu-item" href="#!/questions/"> recents </a>
-            </div>
-            <div style="display: inline-block">
-                <a id="header-menu-sort" class="sub-menu-item" href="#"> favorites </a>
-            </div>
-        </div>
-         <div class="menu-right">
-        </div>
+    <div class="menu-left">
+      <div style="display: inline-block">
+        <a id="header-menu-books" class="sub-menu-item active" href="#!/books/"> all </a>
+      </div>
+      <div style="display: inline-block">
+        <a id="header-menu-questions" class="sub-menu-item" href="#!/questions/"> recents </a>
+      </div>
+      <div style="display: inline-block">
+        <a id="header-menu-sort" class="sub-menu-item" href="#"> favorites </a>
+      </div>
     </div>
+     <div class="menu-right">
+    </div>
+  </div>
  -->
  
-    <!-- Sign in page -->
-    <script type='text/template' id = 'template-signin'> 
-       <div class="container">
+  <!-- Sign in page -->
+  <script type='text/template' id = 'template-signin'> 
+     <div class="container">
 
-          <form class="form-signin">
-            <h2 class="form-signin-heading">Sign in to ResLib</h2>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="remember-me"> Remember me
-              </label>
-            </div>
-            <button id='signin-button' class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <div class='text-center' style='margin-top: 20px'> <h4> <a href='#1/signup'> Sign up </a> </h4> </div>
-          </form>
+      <form class="form-signin">
+      <h2 class="form-signin-heading">Sign in to ResLib</h2>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <div class="checkbox">
+        <label>
+        <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button id='signin-button' class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <div class='text-center' style='margin-top: 20px'> <h4> <a href='#1/signup'> Sign up </a> </h4> </div>
+      </form>
 
+    </div>
+  </script>
+
+
+  <!-- Book list entry template     -->
+  <script type='text/template' id = 'template-books-list-entry'> 
+    <div class='container book-entry' id='<%=id%>'>
+      <div class='row book-container'>
+        <div class='col-xs-11'>
+          <a><img class='book-image' style='display:none;' alt=""></a>
+          <a><img class='book-image' src="http://reslib.org/pict/<%= picture %>" alt=""></a>
+          <div style='display: inline;'>
+            <div class='title'><h4> <a href='#!/books/<%= id %>/'><%= title %></a> </h4></div>
+            <div class='authors'> <h5>  <%= authors %> </h5> </div>
+            <div class='description'> <h4> <p> <%= description %> </p> </h4> </div>
+          </div>
         </div>
-    </script>
-
-
-    <!-- Book list entry template     -->
-    <script type='text/template' id = 'template-books-list-entry'> 
-        <div class='container book-entry' id='<%=id%>'>
-            <div class='row book-container'>
-                <div class='col-xs-11'>
-                    <a><img class='book-image' style='display:none;' alt=""></a>
-                    <a><img class='book-image' src="http://reslib.org/pict/<%= picture %>" alt=""></a>
-                    <div style='display: inline;'>
-                        <div class='title'><h4> <a href='#!/books/<%= id %>/'><%= title %></a> </h4></div>
-                        <div class='authors'> <h5>  <%= authors %> </h5> </div>
-                        <div class='description'> <h4> <p> <%= description %> </p> </h4> </div>
-                    </div>
-                </div>
-                <div class='col-xs-1 text-center'>
-                    <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
-                    <p style='display:none'>add to Favorites</p>
-                </div>
-            </div>
+        <div class='col-xs-1 text-center'>
+          <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
+          <p style='display:none'>add to Favorites</p>
         </div>
-    </script>    
+      </div>
+    </div>
+  </script>    
 
-    <!-- Book list entry with no image template -->
-    <script type='text/template' id = 'template-books-list-entry-no-image'> 
-        <div class='container book-entry' id='<%=id%>'>
-            <div class='row book-container'>
-                <div class='col-xs-11'>
-                    <div style='display: inline;'>
-                        <div class='title'><h4> <a href='#!/books/<%= id %>'><%= title %></a> </h4></div>
-                        <div class='authors'> <h5>  <%= authors %> </h5> </div>
-                        <div class='description'> <h4> <p> <%= description %> </p> </h4> </div>
-                    </div>
-                </div>
-                <div class='col-xs-1 text-center'>
-                    <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
-                    <p style='display:none'>add to Favorites</p>
-                </div>
-            </div>
+  <!-- Book list entry with no image template -->
+  <script type='text/template' id = 'template-books-list-entry-no-image'> 
+    <div class='container book-entry' id='<%=id%>'>
+      <div class='row book-container'>
+        <div class='col-xs-11'>
+          <div style='display: inline;'>
+            <div class='title'><h4> <a href='#!/books/<%= id %>'><%= title %></a> </h4></div>
+            <div class='authors'> <h5>  <%= authors %> </h5> </div>
+            <div class='description'> <h4> <p> <%= description %> </p> </h4> </div>
+          </div>
         </div>
-    </script>    
-            <!-- <hr> -->
+        <div class='col-xs-1 text-center'>
+          <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
+          <p style='display:none'>add to Favorites</p>
+        </div>
+      </div>
+    </div>
+  </script>    
+      <!-- <hr> -->
 
-    <!-- Book card template -->
+  <!-- Book card template -->
 <!--         <div class='container book-entry' id='<%=id%>'>
-            <div class='row'>
-                <div style='float: right'>
-                    <a style='font-size: 20px' href='http://reslib.org/#!/book/<%=url%>/<%=id%>/read/1'> Read! </a>
-                </div>
-                <a><img class='book-image' src="http://reslib.org/pict/<%= picture %>" alt=""></a>
-                <div style='display: inline;'>
-                    <div class='title'><h4> <a><%= title %></a> </h4></div>
-
-                    <div style='display: inline; float: right'>
-                        <i id='favorite-button' class="fa fa-star<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
-                    </div>
-
-                    <div class='authors'> <h5>  <%= authors %> </h5> </div>
-                    <div> <h4> <p> <%= description %> </p> </h4> </div>
-                </div>
-            </div>
-            <hr>
+      <div class='row'>
+        <div style='float: right'>
+          <a style='font-size: 20px' href='http://reslib.org/#!/book/<%=url%>/<%=id%>/read/1'> Read! </a>
         </div>
+        <a><img class='book-image' src="http://reslib.org/pict/<%= picture %>" alt=""></a>
+        <div style='display: inline;'>
+          <div class='title'><h4> <a><%= title %></a> </h4></div>
+
+          <div style='display: inline; float: right'>
+            <i id='favorite-button' class="fa fa-star<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
+          </div>
+
+          <div class='authors'> <h5>  <%= authors %> </h5> </div>
+          <div> <h4> <p> <%= description %> </p> </h4> </div>
+        </div>
+      </div>
+      <hr>
+    </div>
  -->
 
-    <script type='text/template' id = 'template-book-card'> 
-        <div class='container book-entry' id='<%=id%>'>
-            <div class='row'>
-                <div class='col-xs-11'>
-                    <img class='book-image' style='margin-bottom: 20px;' src="http://reslib.org/pict/<%= picture %>" alt="">
-                    <div style='display: inline;'>
-                        <div class='title'>
-                            <h4> <%= title %> 
-                            <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-1x"></i>
-                            </h4>
-                        </div>
-                        <div class='authors'> 
-                            <div class='authors-label'> Authors: </div>
-                            <%= authors %>
-                        </div>
-                        <div> <p> Year: <%= year %> </p> </div>
-                        <div> <p> Publisher: <%= publisher %> </p> </div>
-                    </div>
-                </div>
+  <script type='text/template' id = 'template-book-card'> 
+    <div class='container book-entry' id='<%=id%>'>
+      <div class='row'>
+        <div class='col-xs-11'>
+          <img class='book-image' style='margin-bottom: 20px;' src="http://reslib.org/pict/<%= picture %>" alt="">
+          <div style='display: inline;'>
+            <div class='title'>
+              <h4> <%= title %> 
+              <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-1x"></i>
+              </h4>
             </div>
-            <div class='row'>
-                <div> <h4> <p> <%= description %> </p> </h4> </div>
+            <div class='authors'> 
+              <div class='authors-label'> Authors: </div>
+              <%= authors %>
             </div>
+            <div> <p> Year: <%= year %> </p> </div>
+            <div> <p> Publisher: <%= publisher %> </p> </div>
+          </div>
         </div>
+      </div>
+      <div class='row'>
+        <div> <h4> <p> <%= description %> </p> </h4> </div>
+      </div>
+    </div>
 
-    </script>
+  </script>
 
 <!--                     <div class='col-xs-1 text-center'>
-                    <p> <a style='font-size: 22px'> Read </a> </p>
-                    <i id='favorite-button' class="fa fa-star<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
-                    <p style='display:none'>add to Favorites</p>
-                </div>
+          <p> <a style='font-size: 22px'> Read </a> </p>
+          <i id='favorite-button' class="fa fa-star<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
+          <p style='display:none'>add to Favorites</p>
+        </div>
  -->
 
-    <!-- Book card for editing template -->
-    <script type='text/template' id = 'template-book-card-edit'> 
-        <div class='container book-entry' id='<%=id%>'>
-            <div class='row'>
-                    <img class='book-image' style='margin-bottom: 20px;' src="http://reslib.org/pict/<%= picture %>" alt="">
-                    <div style='display: inline;'>
-                        <p> Title: <%= title %> </p>
-                        <p> Author(s): <%= authors %> </p>
-                        <p> Year: <%= year %> </p>
-                        <p> Publisher: <%= publisher %> </p>
-                    </div>
-            </div>
-            <div class='row'>
-                <strong>Description</strong>: <p> <%= description %> </p>
-            </div>
-        </div>
+  <!-- Book card for editing template -->
+  <script type='text/template' id = 'template-book-card-edit'> 
+    <div class='container book-entry' id='<%=id%>'>
+      <div class='row'>
+          <img class='book-image' style='margin-bottom: 20px;' src="http://reslib.org/pict/<%= picture %>" alt="">
+          <div style='display: inline;'>
+            <p> Title: <%= title %> </p>
+            <p> Author(s): <%= authors %> </p>
+            <p> Year: <%= year %> </p>
+            <p> Publisher: <%= publisher %> </p>
+          </div>
+      </div>
+      <div class='row'>
+        <strong>Description</strong>: <p> <%= description %> </p>
+      </div>
+    </div>
 
-    </script>
+  </script>
 
-    <!-- Book list entry not loaded completely template -->
-    <script type='text/template' id = 'template-book-entry-loading'>
-        <div class='container book-entry' id='<%= id %>'>
-        <div class='row'>
-            <h3> Loading... </h3>
-            <div class='authors'> <h4> please wait</h4> </div>
-        </div>
-        <hr>
-        </div>
-    </script>
+  <!-- Book list entry not loaded completely template -->
+  <script type='text/template' id = 'template-book-entry-loading'>
+    <div class='container book-entry' id='<%= id %>'>
+    <div class='row'>
+      <h3> Loading... </h3>
+      <div class='authors'> <h4> please wait</h4> </div>
+    </div>
+    <hr>
+    </div>
+  </script>
 
-    <!-- Question list entry template -->
-    <script type='text/template' id = 'template-questions-list-entry'> 
-        <div class='container question-container'>
-        <div class='row'>
-            <div class='question-stats' style='display: block; margin-right: 15px; float: left'>
-                <div class='question-votes' style='display: inline-block; margin: 10px;'>
-                    <div class='text-center' style='font-size: 25px'>
-                        <%= rating %>
-                    </div>
-                    <div>
-                        votes
-                    </div>
-                </div>
-                <div class='question-answers' style='display: inline-block; margin: 10px'>
-                    <div class='text-center' style='font-size: 25px'>
-                        <%= answersCount %>
-                    </div>
-                    <div>
-                        answers
-                    </div>
-                </div>
-            </div>
+  <!-- Question list entry template -->
+  <script type='text/template' id = 'template-questions-list-entry'> 
+    <div class='container question-container'>
+    <div class='row'>
+      <div class='question-stats' style='display: block; margin-right: 15px; float: left'>
+        <div class='question-votes' style='display: inline-block; margin: 10px;'>
+          <div class='text-center' style='font-size: 25px'>
+            <%= rating %>
+          </div>
+          <div>
+            votes
+          </div>
+        </div>
+        <div class='question-answers' style='display: inline-block; margin: 10px'>
+          <div class='text-center' style='font-size: 25px'>
+            <%= answersCount %>
+          </div>
+          <div>
+            answers
+          </div>
+        </div>
+      </div>
 
-            <div style='display: block; float: left'>
-                <div class='title'> <h4> <a href='#!/questions/<%= id %>/'><%= title %></a> </h4> </div>
-            </div>
+      <div style='display: block; float: left'>
+        <div class='title'> <h4> <a href='#!/questions/<%= id %>/'><%= title %></a> </h4> </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div style='display: block; float: right'>
+        <div class='authors'> 
+          <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> 
+        <!-- <div class='content'> <h5> <p> <%= body %> </p> </h5> </div> -->
         </div>
-        <div class='row'>
-            <div style='display: block; float: right'>
-                <div class='authors'> 
-                    <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> 
-                <!-- <div class='content'> <h5> <p> <%= body %> </p> </h5> </div> -->
-                </div>
-            </div>
-        </div>
+      </div>
+    </div>
 
-        </div>
-    </script>
+    </div>
+  </script>
 
-    <script type='text/template' id = 'template-answers-list-entry'>
-        <div class='container question-entry'>
-        <div class='row class question-container'>
-            <div class='question-stats' style='display: block; margin-right: 15px; float: left'>
-                <div class='question-votes' style='display: inline-block; margin: 15px;'>
-                    <div class='text-center' style='font-size: 25px'>
-                        <%= rating %>
-                    </div>
-                    <div>
-                        votes
-                    </div>
-                </div>
-            </div>
+  <script type='text/template' id = 'template-answers-list-entry'>
+    <div class='container question-entry'>
+    <div class='row class question-container'>
+      <div class='question-stats' style='display: block; margin-right: 15px; float: left'>
+        <div class='question-votes' style='display: inline-block; margin: 15px;'>
+          <div class='text-center' style='font-size: 25px'>
+            <%= rating %>
+          </div>
+          <div>
+            votes
+          </div>
+        </div>
+      </div>
 
-            <div style='display: block; float: left'>
-                <div class='authors'> 
-                    <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> 
-                    <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
-                </div>
-            </div>
+      <div style='display: block; float: left'>
+        <div class='authors'> 
+          <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> 
+          <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
         </div>
+      </div>
+    </div>
 
-        </div>
-    </script>
+    </div>
+  </script>
 
-    <script type='text/template' id = 'template-question-entry-loading'> 
-        <div class='container book-entry'>
-        <div class='row'>
-            <h3> Loading... </h3>
-            <div class='authors'> <h4> please wait</h4> </div>
-        </div>
-        <hr>
-        </div>
-    </script>
+  <script type='text/template' id = 'template-question-entry-loading'> 
+    <div class='container book-entry'>
+    <div class='row'>
+      <h3> Loading... </h3>
+      <div class='authors'> <h4> please wait</h4> </div>
+    </div>
+    <hr>
+    </div>
+  </script>
 
-    <script type='text/template' id = 'template-question-card'> 
-        <div class='container book-entry' id='<%=id%>'>
-        <div class='row'>
-            <div class='title'><h3> <%= title %> </h3></div>
-            <div class='authors'> 
-                <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> 
-            </div>
-            <div class='description' style='display: block;'> <h4> <p> <%= body %> </p> </h4> </div>
-        </div>
-        <hr>
-        </div>
-    </script>
+  <script type='text/template' id = 'template-question-card'> 
+    <div class='container book-entry' id='<%=id%>'>
+    <div class='row'>
+      <div class='title'><h3> <%= title %> </h3></div>
+      <div class='authors'> 
+        <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> 
+      </div>
+      <div class='description' style='display: block;'> <h4> <p> <%= body %> </p> </h4> </div>
+    </div>
+    <hr>
+    </div>
+  </script>
 
-    <script type='text/template' id='template-reviews-list-entry'>
-        <div class='container review-container'>
-            <div class='row'>
-                    <img class='book-image' src="img/avatar.png" alt="">
-                    <div style='display: inline;'>
-                        <div class='title'><h4> <%= title %> </h4></div>
-                        <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
-                    </div>
-                <div class='col-xs-11'>
-                </div>
-            </div>
-            <div class='row'>
-                <div class='authors' style='float: right'> 
-                    <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> 
-                </div>
-            </div>
+  <script type='text/template' id='template-reviews-list-entry'>
+    <div class='container review-container'>
+      <div class='row'>
+          <img class='book-image' src="img/avatar.png" alt="">
+          <div style='display: inline;'>
+            <div class='title'><h4> <%= title %> </h4></div>
+            <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
+          </div>
+        <div class='col-xs-11'>
         </div>
-    </script>
+      </div>
+      <div class='row'>
+        <div class='authors' style='float: right'> 
+          <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> 
+        </div>
+      </div>
+    </div>
+  </script>
 
 
 <!--             <div class='body'> <h4> <p> <%= description %> </p> </h4> </div>
-                <div style='display: block; float: left'>
-                    <div class='title'> <h4> <%= title %> </h4> </div>
-                    <div class='authors'> 
-                        <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= date %> </h5> 
-                        <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
-                    </div>
-                </div>
+        <div style='display: block; float: left'>
+          <div class='title'> <h4> <%= title %> </h4> </div>
+          <div class='authors'> 
+            <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= date %> </h5> 
+            <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
+          </div>
+        </div>
  -->
 
-    <script type='text/template' id='template-comments-list-entry'>
-        <div class='container comments-entry' id='<%= id %>'>
-            <div class='row'>
-                <div> <h3> <%= title %> </h3> </div>
-                <div> <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> </div>
-                <p> <h4> <%= body %> </h4> </p>
+  <script type='text/template' id='template-comments-list-entry'>
+    <div class='container comments-entry' id='<%= id %>'>
+      <div class='row'>
+        <div> <h3> <%= title %> </h3> </div>
+        <div> <h5>  by <i> <strong> <%= user.nickname %> </strong> </i> on <%= (new Date(date)).toDateString() %> </h5> </div>
+        <p> <h4> <%= body %> </h4> </p>
+      </div>
+      <hr>
+    </div>
+  </script>
+
+  <script type='text/template' id='template-list-loading'>
+    <div class='container'>
+      <div class='row text-center' style='margin-top: 10px;'>
+        <i class="fa fa-2x fa-spin fa-spinner"></i>
+        <h4 style='margin-top:15px;'>
+          <i> loading, please wait... </i> 
+        </h4>
+      </div>
+    </div>
+  </script>
+
+        <!-- <div style='display: inline-block; margin-right: 1em'> <em style='font-size:larger;'> Title: </em> </div>  -->
+  <script type='text/template' id='template-post'>
+    <div class='container review-container'>
+      <div class='row'>
+        <img class='book-image' src="img/avatar.png" alt="">
+        <div style='display: inline-block; margin-left: +15px; width: 60%;'>
+          <div class='row'>
+            <textarea id='post-title' class='post-title' style="vertical-align: bottom" placeholder='Title'></textarea>
+          </div>
+          <div class='row'>
+            <div class='wmd-panel'>
+              <div id='wmd-button-bar'></div>
+              <textarea class='wmd-input' id='wmd-input'></textarea>
             </div>
-            <hr>
+          
+            <div class='wmd-panel wmd-preview' id='wmd-preview'></div>
+
+            <a id='post-button' style='font-size: larger'> Send </a>
+            <div style='margin-left: 20%'>
+          </div>
         </div>
-    </script>
+      </div>
+    </div>
+  </script>
 
-    <script type='text/template' id='template-list-loading'>
-        <div class='container'>
-            <div class='row text-center' style='margin-top: 10px;'>
-                <i class="fa fa-2x fa-spin fa-spinner"></i>
-                <h4 style='margin-top:15px;'>
-                    <i> loading, please wait... </i> 
-                </h4>
-            </div>
-        </div>
-    </script>
-
-                <!-- <div style='display: inline-block; margin-right: 1em'> <em style='font-size:larger;'> Title: </em> </div>  -->
-    <script type='text/template' id='template-post'>
-        <div class='container review-container'>
-            <div class='row'>
-                <img class='book-image' src="img/avatar.png" alt="">
-                <div style='display: inline-block; margin-left: +15px; width: 60%;'>
-                    <div class='row'>
-                        <textarea id='post-title' class='post-title' style="vertical-align: bottom" placeholder='Title'></textarea>
-                    </div>
-                    <div class='row'>
-                        <div class='wmd-panel'>
-                            <div id='wmd-button-bar'></div>
-                            <textarea class='wmd-input' id='wmd-input'></textarea>
-                        </div>
-                    
-                        <div class='wmd-panel wmd-preview' id='wmd-preview'></div>
-
-                        <a id='post-button' style='font-size: larger'> Send </a>
-                        <div style='margin-left: 20%'>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </script>
-
-                       <!-- <span class="glyphicon" aria-hidden="true"> <i class='fa fa-send'></i> </span>  -->
+             <!-- <span class="glyphicon" aria-hidden="true"> <i class='fa fa-send'></i> </span>  -->
 
 
 
-    <script type='text/template' id='template-static-ask-question'>
-        <div class='container'>
-            <div class='row'>
-                <a>Ask a question</a>
-            </div>
-        </div>
-    </script>
+  <script type='text/template' id='template-static-ask-question'>
+    <div class='container'>
+      <div class='row'>
+        <a>Ask a question</a>
+      </div>
+    </div>
+  </script>
 
 
 
-    <!-- <hr> -->
-    
-    <div id='button-back' class='container-fluid col-xs-1'></div>
+  <!-- <hr> -->
+  
+  <div id='button-back' class='container-fluid col-xs-1'></div>
 
 
 
-    <!-- Page is rendered inside this div -->
-    <div id='page' style='padding-bottom: 300px'>
-	</div>
+  <!-- Page is rendered inside this div -->
+  <div id='page' style='padding-bottom: 300px'>
+  </div>
 
 
 <!--     <div id="top-link">
-        <a href="#top">наверх</a>
-    </div>
+    <a href="#top">наверх</a>
+  </div>
  -->
 </body>
 </html>
