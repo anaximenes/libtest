@@ -62,4 +62,5 @@ define([
     }
 
     return Menu
+  }
 )
