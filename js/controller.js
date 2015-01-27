@@ -27,7 +27,6 @@ define([
       view: function(page, params) {
         subHeaderDom.empty()
 
-        currentState.header || (currentState.header = new HeaderView({userId: this.userId}))
         currentState.search || (currentState.search = new SearchView())
         currentState.menu   || (currentState.menu   = Menu.get('header'))
         headerDom.html(currentState.menu.render().el)

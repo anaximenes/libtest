@@ -10,7 +10,8 @@ define([
       },
 
       signIn: function(id) {
-        this.userId = id
+        this.signed = true
+        // this.userId = id
         this.elements = this.elements.map(function(i) { return i.toggle() })
         // this.render()
       },
@@ -23,11 +24,12 @@ define([
           $('#page-nickname').hide()
         ]
 
-        this.userId = options.userId
+        this.signed = false
+        // this.userId = options.userId
         // this.render()
 
         this.listenTo(Backbone, 'user:signed', this.signIn)
-        this.listenTo(Backbone, 'user:signout', this.signIn)
+        this.listenTo(Backbone, 'user:signout', this.signOut)
       }
     })
 

@@ -26,7 +26,7 @@ define([
           model.destroy({url: Url('session'),
             success: function() {
               console.log('signed out!')
-              that.id = undefined
+              that.set('id', undefined)
               Backbone.trigger('user:signout')
             }
           })

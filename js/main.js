@@ -24,7 +24,8 @@ require([
     })();
 
     var user = new App.User.model();
-    var userview = new App.User.view({model: user});
+    App.User.init(user)
+    // var userview = new App.User.view({model: user});
     var Router = App.Router.extend({ user: user });
     var router = new Router();
     
