@@ -41,6 +41,10 @@ define([
         return root + "questions/" + id;
       },
 
+      answers: function(id) {
+        return root + 'questions/' + id + '/answers/'
+      },
+
       favorites: function(id) {
         return root + "users/" + id + "/favorites/";
       },

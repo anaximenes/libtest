@@ -3,9 +3,10 @@ define([
     'underscore',
     'backbone',
     'modules/utils/url',
+    'modules/utils/template',
     'modules/utils/containerview'
   ],
-  function($, _, Backbone, Url, ContainerView) {
+  function($, _, Backbone, Url, TemplateManager, ContainerView) {
     var FramedView = ContainerView.extend({
       initialize: function(options) {
         options = options || {}
@@ -18,12 +19,14 @@ define([
         var list = new this.ListView({collection: collection, listType: listType})
 
         var endView = Backbone.View.extend({
-          template: $('#template-list-loading').html(),
           show: true,
 
           render: function() {
             if (this.show) {
-              this.$el.html(_.template(this.template)())
+              var that = this
+              TemplateManager.get('list-loading', function(template) {
+                that.$el.html(template())
+              })
             } else {
               this.$el.empty()
             }

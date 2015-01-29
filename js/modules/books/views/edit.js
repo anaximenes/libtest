@@ -2,33 +2,24 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'modules/utils/template',
     'modules/utils/containerview',
     'modules/post/main'
   ],
-  function($, _, Backbone, ContainerView, Post) {
+  function($, _, Backbone, TemplateManager, ContainerView, Post) {
     var CardItemView = Backbone.View.extend({
-      template: $('#template-book-card-edit').html(),
-      templateLoading: $('#template-book-entry-loading').html(),
-
       render: function() {
-        var html = undefined
+        var that = this
         if (this.model.complete()) {
-          html = _.template(this.template)(this.model.toJSON())
-        } else {
-          html = _.template(this.templateLoading)(this.model.toJSON())
+          TemplateManager.get('books-card-edit', function(template) {
+            that.$el.html(template(that.model.present()))
+          })
         }
-        this.$el.html(html)
         return this
       },
 
       initialize: function() {
         this.listenTo(this.model, 'change', this.render)
-      }
-    })
-
-    var view = ContainerView.extend({
-      initialize: function(options) {
-        ContainerView.prototype.initialize.call(this, [new CardItemView(), new Post()])
       }
     })
 

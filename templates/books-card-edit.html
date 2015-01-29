@@ -1,0 +1,16 @@
+<!-- Book card for editing template -->
+
+<div class='container book-entry' id='<%=id%>'>
+  <div class='row'>
+      <img class='book-image' style='margin-bottom: 20px;' src="http://reslib.org/pict/<%= picture %>" alt="">
+      <div style='display: inline;'>
+        <p> Title: <%= title %> </p>
+        <p> Author(s): <%= authors %> </p>
+        <p> Year: <%= year %> </p>
+        <p> Publisher: <%= publisher %> </p>
+      </div>
+  </div>
+  <div class='row'>
+    <strong>Description</strong>: <p> <%= description %> </p>
+  </div>
+</div>

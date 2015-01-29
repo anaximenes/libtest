@@ -17,9 +17,9 @@ define([
         var that = this
         model.fetch({
           success: function() {
-            Backbone.trigger('menu:additional', {
+            Backbone.trigger('menu:extend', {
                 page: 'question',
-                model: model,
+                title: '"' + model.get('title') + '"',
                 path: '#!/questions/' + questionId + '/',
                 menu: 'header'
             })
@@ -37,7 +37,7 @@ define([
         var collection = new Answers.PagedCollection([], {
           questionId: questionId,
           url: function() {
-            return 'http://beta.reslib.org/api/questions/' + this.questionId + '/answers/'
+            return Url('answers', questionId)
           }
         })
 

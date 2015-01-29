@@ -2,7 +2,8 @@ require([
     'backbone',
     'app',
     'modules/utils/scrolling',
-    'modules/utils/backstrip'
+    'modules/utils/backstrip',
+    'text'
   ], function(Backbone, App, Scrolling, BackStrip) {
     (function() {
 

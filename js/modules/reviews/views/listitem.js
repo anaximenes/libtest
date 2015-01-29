@@ -1,21 +1,19 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
+    'backbone',
+    'modules/utils/template'
   ],
-  function($, _, Backbone) {
+  function($, _, Backbone, TemplateManager) {
     ListItemView = Backbone.View.extend({
-      template: $('#template-reviews-list-entry').html(),
-      templateLoading: $('#template-book-entry-loading').html(),
-
       render: function() {
-        var html = undefined
         if (this.model.complete()) {
-            html = _.template(this.template)(this.model.toJSON())
-         } else {
-            html = _.template(this.templateLoading)(this.model.toJSON())
-         }
-        this.$el.html(html)
+          var that = this
+          TemplateManager.get('reviews-list-entry', function(template) {
+            that.$el.html(template(that.model.toJSON()))
+          })
+        }
+
         return this
       },
 

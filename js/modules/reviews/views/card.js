@@ -1,24 +1,18 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
+    'backbone',
+    'modules/utils/template'
   ],
-  function($, _, Backbone) {
+  function($, _, Backbone, TemplateManager) {
     var CardItemView = Backbone.View.extend({
-      template: $('#template-book-card').html(),
-      templateLoading: $('#template-book-entry-loading').html(),
-
-      events: {
-      },
-
       render: function() {
-        var html = undefined
+        var that = this
         if (this.model.complete()) {
-            html = _.template(this.template)(this.model.toJSON())
-        } else {
-            html = _.template(this.templateLoading)(this.model.toJSON())
+          TemplateManager.get('reviews-card', function(template) {
+            that.$el.html(template(that.model.present()))
+          })
         }
-        this.$el.html(html)
         return this
       },
 

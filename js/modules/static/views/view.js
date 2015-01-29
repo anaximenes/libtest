@@ -5,20 +5,19 @@ define([
   ],
   function($, _, Backbone) {
     var StaticView = Backbone.View.extend({
-      // template: $('#template-post').html(),
-
       render: function() {
-        var html = _.template(this.template)()
-        this.$el.html(html)
+        // var html = _.template(this.template)()
+        var html = this.template()
+        wthis.$el.html(html)
         return this
       },
 
       initialize: function(options) {
         options || (options = {})
-        this.template = options.template || ''
+        this.template = options.template || _.template('')
       }
     })
 
-      return StaticView
+    return StaticView
   }
 )

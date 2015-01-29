@@ -1,12 +1,13 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
+    'backbone',
+    'modules/utils/template'
   ],
-  function($, _, Backbone) {
+  function($, _, Backbone, TemplateManager) {
     var CardItemView = Backbone.View.extend({
-      template: $('#template-book-card').html(),
-      templateLoading: $('#template-book-entry-loading').html(),
+      // template: $('#template-book-card').html(),
+      // templateLoading: $('#template-book-entry-loading').html(),
 
       events: {
         'click #favorite-button': 'toggleFavorite'
@@ -20,13 +21,15 @@ define([
       },
 
       render: function() {
-        var html = undefined
         if (this.model.complete()) {
-          html = _.template(this.template)(this.model.toJSON())
-        } else {
-          html = _.template(this.templateLoading)(this.model.toJSON())
+          console.log(this.model)
+          var that = this
+          TemplateManager.get('books-card', function(template) {
+            console.log(that.model.present())
+            that.$el.html(template(that.model.present()))
+          })
         }
-        this.$el.html(html)
+
         return this
       },
 

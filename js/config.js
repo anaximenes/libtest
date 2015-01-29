@@ -10,7 +10,8 @@ require.config({
     'markdown-converter': 'libs/pagedown/Markdown.Converter',
     'markdown-editor': 'libs/pagedown/Markdown.Editor',
     'markdown-sanitizer': 'libs/pagedown/Markdown.Sanitizer',
-    'markdown': 'libs/pagedown/markdown'    
+    'markdown': 'libs/pagedown/markdown',
+    text: "libs/text"
   },
 
   shim: {

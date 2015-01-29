@@ -2,12 +2,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'modules/utils/template',
     'markdown'
   ],
-  function($, _, Backbone, Markdown) {
+  function($, _, Backbone, TemplateManager, Markdown) {
     var PostView = Backbone.View.extend({
-      template: $('#template-post').html(),
-
       attributes: function() {
         return {
           style: 'display: none'
@@ -25,14 +24,25 @@ define([
         if (body === '') return
         body = this.converter.makeHtml(body)
 
-        // console.log('catched ', 'post:' + this.where)
         Backbone.trigger('post:' + this.where, {title: title, body: body, id: this.id})
       },
 
       render: function() {
-        var html = _.template(this.template)()
-        this.$el.html(html)
+        var that = this
+        TemplateManager.get('post-form', function(template) {
+          that.$el.html(template())
+          if (that.ready) that.run()
+          that.listenTo(that, 'loaded', that.run)
+        })
+
         return this
+      },
+
+      run: function() {
+        converter = new Markdown.getSanitizingConverter()
+        this.converter = converter
+        editor = new Markdown.Editor(converter)
+        editor.run()
       },
 
       initialize: function() {
@@ -40,10 +50,8 @@ define([
         var that = this
 
         this.listenTo(Backbone, 'page:rendered', function(options) {
-          converter = new Markdown.getSanitizingConverter()
-          this.converter = converter
-          editor = new Markdown.Editor(converter)
-          editor.run()
+          that.ready = true
+          that.trigger('loaded')
 
           if (options.page === 'bookReviews') {
             that.where = 'review'

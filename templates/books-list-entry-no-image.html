@@ -1,0 +1,17 @@
+ <!-- Book list entry with no image template -->
+<div class='container book-entry' id='<%=id%>'>
+  <div class='row book-container'>
+    <div class='col-xs-11'>
+      <div style='display: inline;'>
+        <div class='title'><h4> <a href='#!/books/<%= id %>'><%= title %></a> </h4></div>
+        <div class='authors'> <h5>  <%= authors %> </h5> </div>
+        <div class='description'> <h4> <p> <%= description %> </p> </h4> </div>
+      </div>
+    </div>
+    <div class='col-xs-1 text-center'>
+      <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
+      <p style='display:none'>add to Favorites</p>
+    </div>
+  </div>
+</div>
+ 

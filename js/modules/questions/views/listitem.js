@@ -1,13 +1,11 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
+    'backbone',
+    'modules/utils/template'
   ],
-  function($, _, Backbone) {
+  function($, _, Backbone, TemplateManager) {
     ListItemView = Backbone.View.extend({
-      template: $('#template-questions-list-entry').html(),
-      templateLoading: $('#template-question-entry-loading').html(),
-
       events: {
           'click .title, .book-image': 'click'
       },
@@ -17,15 +15,20 @@ define([
       },
 
       render: function() {
-        var html = undefined
-        html = _.template(this.template)(this.model.toJSON())
+        var that = this
+        TemplateManager.get('questions-list-entry', function(template) {
+          that.$el.html(template(that.model.toJSON()))
+        })
+
+        // var html = undefined
+        // html = _.template(this.template)(this.model.toJSON())
         // if (this.model.complete()) {
         //     console.log('QuestionView: render')
         //     html = _.template(this.template)(this.model.toJSON())
         //  } else {
         //     html = _.template(this.templateLoading)(this.model.toJSON())
         //  }
-        this.$el.html(html)
+        // this.$el.html(html)
         return this
       },
 

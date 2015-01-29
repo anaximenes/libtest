@@ -23,7 +23,7 @@ define([
                 menu: 'header',
                 page: 'add',
                 path: '#!/books/' + bookId + '/',
-                title: model.get('title')
+                title: '"' + model.get('title') + '"'
             })
           }
         })
@@ -48,7 +48,7 @@ define([
 
         //------------------------------------------------------------------------------
 
-        var add = new Static({template: $('#template-static-ask-question').html()})
+        // var add = new Static({template: $('#template-static-ask-question').html()})
 
         //------------------------------------------------------------------------------
         
@@ -64,7 +64,7 @@ define([
         // var comments = new Questions.FramedListView({collection: collection, listType: 'bookComments'})
 
         //------------------------------------------------------------------------------
-        ContainerView.prototype.initialize.call(this, [card, menu, postForm, bottom, add])
+        ContainerView.prototype.initialize.call(this, [card, menu, postForm, bottom])
         
       }
     })

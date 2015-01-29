@@ -5,16 +5,16 @@ define([
     'modules/books/main',
     'modules/questions/main',
     'modules/reviews/main',
-    'headerview',
     'searchboxview',
     'modules/menu/main',
     'modules/user/main',
     'modules/utils/url',
     'modules/bookpage',
     'modules/questionpage',
-    'modules/post/main'
+    'modules/static/views/view',
+    'modules/utils/template'
   ],
-  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, HeaderView, SearchView, Menu, User, Url, BookPage, QuestionPage, Post) {
+  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, SearchView, Menu, User, Url, BookPage, QuestionPage, Static, TM) {
     var currentState = {}
     
     var headerDom = $('#header')
@@ -190,7 +190,13 @@ define([
       },
 
       test: function(status) {
-        return view = new Post.view()
+        var view = new Static()
+        TM.get('a', function(res) {
+          console.log(res)
+          view.template = res
+          view.render()
+        })
+        return view
       }
     }
 

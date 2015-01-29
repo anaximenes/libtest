@@ -1,23 +1,28 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
+    'backbone',
+    'modules/utils/template'
   ],
-  function($, _, Backbone) {
+  function($, _, Backbone, TemplateManager) {
     var CardItemView = Backbone.View.extend({
-      template: $('#template-question-card').html(),
-      templateLoading: $('#template-question-entry-loading').html(),
-
       render: function() {
-        var html = undefined
+        var that = this
         if (this.model.complete()) {
-          console.log('complete')
-          html = _.template(this.template)(this.model.toJSON())
-        } else {
-          console.log('not complete')
-          html = _.template(this.templateLoading)(this.model.toJSON())
+          TemplateManager.get('questions-card', function(template) {
+            that.$el.html(template(that.model.toJSON()))
+          })
         }
-        this.$el.html(html)
+
+        // var html = undefined
+        // if (this.model.complete()) {
+        //   console.log('complete')
+        //   html = _.template(this.template)(this.model.toJSON())
+        // } else {
+        //   console.log('not complete')
+        //   html = _.template(this.templateLoading)(this.model.toJSON())
+        // }
+        // this.$el.html(html)
         return this
       },
 
