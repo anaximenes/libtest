@@ -7,12 +7,7 @@ define([
   ],
   function($, _, Backbone, TemplateManager, Markdown) {
     var PostView = Backbone.View.extend({
-      attributes: function() {
-        return {
-          style: 'display: none'
-        }
-      },
-
+      template: 'post-form',
       events: {
         'click #post-button': 'post'
       },
@@ -28,24 +23,31 @@ define([
       },
 
       render: function() {
+        if (this.show) this.$el.show()
+        else this.$el.hide()
+
         var that = this
-        TemplateManager.get('post-form', function(template) {
-          that.$el.html(template())
+        TemplateManager.get(this.template, function(template) {
+          that.$el.html(template({body: that.body}))
           if (that.ready) that.run()
-          that.listenTo(that, 'loaded', that.run)
+          else that.listenToOnce(that, 'loaded', that.run)
         })
 
         return this
       },
 
       run: function() {
-        converter = new Markdown.getSanitizingConverter()
-        this.converter = converter
-        editor = new Markdown.Editor(converter)
+        var converter = new Markdown.getSanitizingConverter()
+        var editor = new Markdown.Editor(converter)
         editor.run()
       },
 
-      initialize: function() {
+      initialize: function(options) {
+        options || (options = {})
+        this.show = options.show
+        if (options.template) this.template = options.template
+        if (options.body) this.body = options.body
+
         this.where = ''
         var that = this
 
@@ -67,6 +69,6 @@ define([
       }
     })
 
-      return PostView
+    return PostView
   }
 )

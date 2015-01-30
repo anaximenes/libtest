@@ -4,13 +4,43 @@
   <div class='row'>
       <img class='book-image' style='margin-bottom: 20px;' src="http://reslib.org/pict/<%= picture %>" alt="">
       <div style='display: inline;'>
-        <p> Title: <%= title %> </p>
-        <p> Author(s): <%= authors %> </p>
-        <p> Year: <%= year %> </p>
-        <p> Publisher: <%= publisher %> </p>
+        <div>
+
+          <form class="form-inline" role="">
+            <big> Title: </big>
+            <span id='book-edit-title-a' style='margin-left: 10px'>
+                <a> <%= title %> </a>
+              </span>
+            <span id='book-edit-title-input' style='display: none'>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="<%= title %>" style='width:300px'>
+              </div>
+              <a type='submit' style='margin-left: 10px'>save</a>
+              <a id='book-edit-title-cancel' style='margin-left: 7px'>cancel</a>
+            </span>
+          </form>
+
+          <form class="form-inline" role="">
+            <big> Author(s): </big>
+            <span id='book-edit-authors-a' style='margin-left: 10px'>
+                <a> <%= authors %> </a>
+              </span>
+            <span id='book-edit-authors-input' style='display: none'>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="<%= authors %>" style='width:300px'>
+              </div>
+              <a type='submit' style='margin-left: 10px'>save</a>
+              <a id='book-edit-authors-cancel' style='margin-left: 7px'>cancel</a>
+            </span>
+          </form>
+
+        </div>
       </div>
   </div>
+</div>
+
+<div class='container'> 
   <div class='row'>
-    <strong>Description</strong>: <p> <%= description %> </p>
+    <h4> Description: </h4>
   </div>
 </div>
