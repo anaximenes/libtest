@@ -5,22 +5,21 @@
     <div class='col-xs-11'>
       <img class='book-image' style='margin-bottom: 20px;' src="http://reslib.org/pict/<%= picture %>" alt="">
       <div style='display: inline;'>
-        <div class="">
-          <h4> <%= title %> <small>(<%=year%>)</small>
+        <div class='title'>
+          <h4> <%= title %> 
           <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-1x"></i>
           </h4>
         </div>
-        <div class=''> 
+        <div class='authors'> 
+          <div class='authors-label'> Authors: </div>
           <%= authors %>
         </div>
-        <!-- <div> <p> Publisher: <%= publisher %> </p> </div> -->
+        <div> <p> Year: <%= year %> </p> </div>
+        <div> <p> Publisher: <%= publisher %> </p> </div>
       </div>
     </div>
   </div>
-  
-  <% if (description) {%>
   <div class='row'>
-    <div class='well'><%= description %></div>
+    <div> <h4> <p> <%= description %> </p> </h4> </div>
   </div>
 </div>
-  <% } %>
