@@ -22,10 +22,8 @@ define([
 
       render: function() {
         if (this.model.complete()) {
-          console.log(this.model)
           var that = this
           TemplateManager.get('books-card', function(template) {
-            console.log(that.model.present())
             that.$el.html(template(that.model.present()))
           })
         }

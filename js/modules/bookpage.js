@@ -18,7 +18,6 @@ define([
         
         model.fetch({
           success: function() {
-            console.log(model)
             Backbone.trigger('menu:extend', {
                 menu: 'header',
                 page: 'add',

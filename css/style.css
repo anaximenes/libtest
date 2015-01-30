@@ -69,7 +69,7 @@ a:hover {
 
 
 a.menu-signin-item {
-  font-size: 18px; 
+  font-size: 1.1em; 
   margin-right: 10px;
 }
 
@@ -115,10 +115,9 @@ h6, .h6 {
 }
 
 .sub-header-menu-item {
-  font-size: 14px;
+  font-size: 1em;
+  /*font-size: 14px;*/
   font-weight: 100;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .book-menu-item, 
@@ -126,23 +125,23 @@ h6, .h6 {
 .question-menu-item,
 .questions-menu-item
  {
-  font-size: 14px;
+  font-size: 1em;
+  /*font-size: 14px;*/
   font-weight: 100;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
-.menu-item.active {
-  /*font-size: 26px;*/
-  /*font-weight: 580;*/
+/*.menu-item.active {
+  font-size: 26px;
+  font-weight: 580;
 }
-
+*/
 .book-menu-item.active,  
 .books-menu-item.active,  
 .question-menu-item.active, 
 .questions-menu-item.active, 
 .sub-header-menu-item.active {
-  font-size: 21px;
+  font-size: 1.3em;
+  /*font-size: 21px;*/
   font-weight: 500;
 }
 
@@ -158,16 +157,16 @@ a.menu-item.active {
 
 .sub-menu-item,
 .header-menu-item {
-  font-size: 19px;
+  font-size: 1.2em;
+  /*font-size: 19px;*/
   font-weight: 100;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .sub-menu-item.active,
 .header-menu-item.active {
-  font-size: 30px;
-  font-weight: 580;
+  font-size: 1.6em;
+  /*font-size: 30px;*/
+  font-weight: 500;
 }
 
 a.header-menu-item {
@@ -178,18 +177,6 @@ a.header-menu-item {
 a.header-menu-item.active {
   color: #333333;
   text-decoration: none;
-}
-
-.title a{
-  /*color: black;*/
-}
-
-
-a.book-entry {
-  /*color: black;*/
-  /*color: #333333;*/
-  /*text-decoration: none;*/
-  /*font-weight: 880;*/
 }
 
 

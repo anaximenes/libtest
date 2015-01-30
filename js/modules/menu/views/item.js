@@ -57,6 +57,16 @@ define([
         }
       },
 
+      addBadge: function(options) {
+        var that = this
+        if (options.menu != this.model.collection.menu) return
+        if (!options.count) return
+
+        if (this.model.get('page') === options.page) {
+          this.model.set('title', this.model.get('title') + ' <span class="badge">' + options.count + '</span>')
+        }
+      },
+
       initialize: function(options) {
         var that = this
         options = options || {}
@@ -64,6 +74,7 @@ define([
         if (options.menu) this.menu = options.menu
 
         this.listenTo(Backbone, 'menu:activate', this.activateMenu)
+        this.listenTo(Backbone, 'menu:addBadge', this.addBadge)
         this.listenTo(this.model, 'change', this.render)
       }
     })

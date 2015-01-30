@@ -10,8 +10,21 @@
           <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-1x"></i>
           </h4>
         </div>
-        <div class=''> 
-          <%= authors %>
+        <div class=''>
+          <span style='color: grey; margin-right: 4px'> Author(s): </span> 
+          <% for( var i = 0; i < authors.split().length; ++i) { %>
+            
+            <%= authors.split()[i] %>
+            
+          <% } %>
+        </div>
+        <div>
+          <span style='color: grey; margin-right: 4px'> Publisher: </span> 
+          <%=publisher%>
+        </div>
+        <div>
+          <span style='color: grey; margin-right: 4px'> ISBN: </span> 
+          <%= isbn10 || isbn13 %>
         </div>
         <!-- <div> <p> Publisher: <%= publisher %> </p> </div> -->
       </div>

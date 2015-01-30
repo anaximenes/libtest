@@ -11,8 +11,8 @@ define([
         'click #search-button': 'search'
       },
 
-      search: function() {
-        event.preventDefault()
+      search: function(e) {
+        e.preventDefault()
         var query = this.$el.find('#search-query').val()
         if (query) {
           Backbone.trigger('search', query)

@@ -23,30 +23,12 @@ define([
 
       render: function() {
         var that = this
-        TM.get('books-list-entry', function(template) {
-          html = template(that.model.present())
-          that.$el.html(html)
-        })
-        // if (this.model.complete()) {
-        //   html = template(this.model.present())
-        //   // html = _.template(this.template)(this.model.toJSON())
-        // } else {
-        //   html = _.template(this.templateLoading)(this.model.toJSON())
-        // }
-        // this.$el.html(html)
-        return this
-      },
-
-      render2: function() {
-        var html = undefined
-        
         if (this.model.complete()) {
-          html = _.template(this.template)(this.model.present())
-          // html = _.template(this.template)(this.model.toJSON())
-        } else {
-          html = _.template(this.templateLoading)(this.model.toJSON())
+          TM.get('books-list-entry', function(template) {
+            html = template(that.model.present())
+            that.$el.html(html)
+          })
         }
-        this.$el.html(html)
         return this
       },
 

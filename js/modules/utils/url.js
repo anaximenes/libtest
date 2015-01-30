@@ -65,6 +65,10 @@ define([
         // return root + "users/" + id + "/questions";
       },
 
+      questionsSearch: function(query) {
+        return root + "questions/?query=" + query
+      },
+
       session: function() {
         return root + 'session'
       }
