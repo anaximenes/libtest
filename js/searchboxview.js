@@ -14,6 +14,7 @@ define([
       search: function(e) {
         e.preventDefault()
         var query = this.$el.find('#search-query').val()
+        this.$el.find('#search-query').val('')
         if (query) {
           Backbone.trigger('search', query)
         }

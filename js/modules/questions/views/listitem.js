@@ -6,14 +6,6 @@ define([
   ],
   function($, _, Backbone, TemplateManager) {
     ListItemView = Backbone.View.extend({
-      events: {
-          'click .title, .book-image': 'click'
-      },
-
-      click: function() {
-        Backbone.trigger('question:open', this)
-      },
-
       render: function() {
         var that = this
         TemplateManager.get('questions-list-entry', function(template) {

@@ -27,7 +27,7 @@ define([
       routes: {
         '!/books(/p:page)(/)':           'books',
         '!/books/search/:query(/)':      'booksSearch',
-        '!/books/favorites(/)':        'booksFavorites',
+        '!/books/favorites(/)':          'booksFavorites',
         '!/books/recent(/)':             'booksRecent',
         '!/books/:id(/)':                'book',
         '!/books/:id/questions(/)':      'bookQuestions',
@@ -141,17 +141,11 @@ define([
 
       initialize: function() {
         var that = this
+        Controller.init()
 
-        var openBook = function(obj) {
-          that.navigate('!/books/' + obj.model.get('id') + '/', true)
-        }
-        var openQuestion = function(obj) {
-          that.navigate('!/questions/' + obj.model.get('id') + '/', true)
-        }
         var signed = function(id) {
           console.log('sign in ', id)
           Controller.userId = id
-          // Backbone.history.history.back()
         }
         var signOut = function() {
           that.userId = undefined
@@ -166,19 +160,18 @@ define([
             that.navigate('#!/questions/search/' + query, true)
           }
         }
-        var back = function() {
-          console.log('BACK')
-          Backbone.history.back()
+
+        var yell = function(options) {
+          console.log('controller:transition happened')
+          console.log(options)
         }
 
         var eventHandler = {
-          'book:open':          openBook,
-          'question:open':      openQuestion,
-          // 'user:signin':        signIn,
           'user:signout':       signOut,
           'user:signed':        signed,
           'search':             search,
-          'backstrip':          back
+
+          'controller:transition': yell
         }
 
         for (var event in eventHandler) {

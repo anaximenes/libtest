@@ -55,14 +55,6 @@ define([
 
         //------------------------------------------------------------------------------
 
-        // var collection = new Questions.PagedCollection([], {
-        //  url: function() {
-        //    return Url('bookComments', bookId)
-        //  }
-        // })
-        // var comments = new Questions.FramedListView({collection: collection, listType: 'bookComments'})
-
-        //------------------------------------------------------------------------------
         ContainerView.prototype.initialize.call(this, [card, menu, postForm, bottom])
         
       }

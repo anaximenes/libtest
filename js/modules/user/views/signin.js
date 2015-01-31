@@ -11,7 +11,7 @@ define([
         'submit': 'signin'
       },
 
-      signin: function() {
+      signin: function(event) {
         event.preventDefault()
         Backbone.trigger('user:signin', {
           email: this.$el.find('#inputEmail').val(),

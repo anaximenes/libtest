@@ -12,42 +12,42 @@ define([
     'modules/bookpage',
     'modules/questionpage',
     'modules/static/views/view',
-    'modules/utils/template'
+    'modules/utils/template',
+    'modules/utils/main'
   ],
-  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, SearchView, Menu, User, Url, BookPage, QuestionPage, Static, TM) {
+  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, SearchView, Menu, User, Url, BookPage, QuestionPage, Static, TM, Utils) {
     var currentState = {}
     
-    var headerDom = $('#header')
-    var subHeaderDom = $('#sub-header')
-    var pageDom = $('#page')
+    var $headerDom = $('#header')
+    var $subHeaderDom = $('#sub-header')
+    var $pageDom = $('#page')
+    
 
     var Controller = {
       currentView: undefined,
 
+      init: function() {
+        new SearchView()
+        $headerDom.html(Menu.get('header').render().el)
+        new Utils.MenuHandler()
+      },
+
       view: function(page, params) {
-        subHeaderDom.empty()
-
-        currentState.search || (currentState.search = new SearchView())
-        currentState.menu   || (currentState.menu   = Menu.get('header'))
-        headerDom.html(currentState.menu.render().el)
-
-        console.log('Controller: ' + page)
-        Backbone.trigger('controller:transition', {menu: 'header', page: page})
+        $subHeaderDom.empty()
 
         if (currentState.subMenu) currentState.subMenu.remove();
         if (this.currentView) this.currentView.remove();
-        this.currentView = this[page](params)
-        pageDom.html(this.currentView.render().el)
 
-        Backbone.trigger('menu:activate', {menu: 'sub', page: page})
+        this.currentView = this[page](params)
+        $pageDom.html(this.currentView.render().el)
+
         Backbone.trigger('page:rendered', {page: page, options: params})
       },
       
 
       books: function(page) {
         currentState.subMenu = Menu.get('books')
-        subHeaderDom.html(currentState.subMenu.render().el)
-        Backbone.trigger('controller:transition', {menu: 'books', page: 'all'})
+        $subHeaderDom.html(currentState.subMenu.render().el)
 
         currentState.books = currentState.books ? currentState.books : new BookModule.PagedCollection()
         currentState.books.currentPage = page || currentState.books.currentPage || 0
@@ -57,8 +57,7 @@ define([
 
       booksBase: function(url, options) {
         currentState.subMenu = Menu.get('books')
-        subHeaderDom.html(currentState.subMenu.render().el)
-        Backbone.trigger('controller:transition', {menu: 'header', page: 'books'})
+        $subHeaderDom.html(currentState.subMenu.render().el)
 
         var view = new BookModule.FramedListView({
           collection: new BookModule.PagedCollection([], {
@@ -73,28 +72,23 @@ define([
       booksSearch: function(query) {
         var view = this.booksBase('booksSearch', query)
         Backbone.trigger('menu:extend', {menu: 'books', page: 'add', path: '#!/books/search/' + query, title: '"' + query + '"'})
-        Backbone.trigger('controller:transition', {menu: 'books', page: 'add'})
         return view
       },
 
       booksFavorites: function(userId) {
         var view = this.booksBase('booksFavorites', userId)
-        Backbone.trigger('controller:transition', {menu: 'books', page: 'favorites'})
         return view
       },
 
       booksRecent: function(userId) {
         var view = this.booksBase('booksRecent', userId)
-        Backbone.trigger('controller:transition', {menu: 'books', page: 'recent'})
         return view
       },      
 
       bookQuestions: function(book) {
         Menu.set({path: '#!/books/' + book.id + '/'})
         currentState.subMenu = Menu.get('book')
-        subHeaderDom.html(currentState.subMenu.render().el)
-        Backbone.trigger('controller:transition', {menu: 'book', page: 'description'})
-        Backbone.trigger('controller:transition', {menu: 'header', page: 'add'})
+        $subHeaderDom.html(currentState.subMenu.render().el)
 
         var collection = new QuestionModule.PagedCollection([], {
           url: function() {
@@ -110,8 +104,7 @@ define([
       bookReviews: function(book) {       
         Menu.set({path: '#!/books/' + book.id + '/'})
         currentState.subMenu = Menu.get('book')
-        subHeaderDom.html(currentState.subMenu.render().el)
-        Backbone.trigger('controller:transition', {menu: 'book', page: 'description'})
+        $subHeaderDom.html(currentState.subMenu.render().el)
 
         var collection = new ReviewModule.PagedCollection([], {
           url: function() {
@@ -127,9 +120,7 @@ define([
       bookEdit: function(book) {
         Menu.set({path: '#!/books/' + book.id + '/'})
         currentState.subMenu = Menu.get('book')
-        subHeaderDom.html(currentState.subMenu.render().el)
-        Backbone.trigger('controller:transition', {menu: 'book', page: 'edit'})
-        Backbone.trigger('controller:transition', {menu: 'header', page: 'add'})
+        $subHeaderDom.html(currentState.subMenu.render().el)
 
         var model = new BookModule.Model({'id': book.id})
         var view = new BookModule.EditView({'model': model})
@@ -146,13 +137,11 @@ define([
       },
 
       questionsSearch: function(query) {
-        currentState.subMenu = Menu.add('sub-header', [
+        currentState.subMenu = Menu.add('questions', [
           {page: 'all', title: 'all', path: '#!/questions/'}, 
-          {page: 'add', path: '#!/books/search/' + query, title: '"' + query + '"'}
+          {page: 'search', path: '#!/books/search/' + query, title: '"' + query + '"'}
         ])
-        subHeaderDom.html(currentState.subMenu.render().el)
-        Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'add'})
-        Backbone.trigger('controller:transition', {menu: 'header', page: 'questions'})
+        $subHeaderDom.html(currentState.subMenu.render().el)
 
         var collection = new QuestionModule.PagedCollection([], { url: Url('questionsSearch', query) })
         var view = new QuestionModule.FramedListView({ collection: collection })
@@ -161,7 +150,6 @@ define([
 
       questionsFavorites: function(userId) {
         //nope, we don't have it
-        Backbone.trigger('controller:transition', {menu: 'sub-header', page: 'favorites'})
         var view = new BookModule.PagedListView({
           collection: new BookModule.PagedCollection([], {
             url: function() {

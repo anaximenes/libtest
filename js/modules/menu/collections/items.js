@@ -18,18 +18,10 @@ define([
         this.models = models
         var that = this
 
-        this.listenTo(Backbone, 'controller:transition', function(options) {
-          if (this.menu != options.menu) return
-          var page = options.page
-          if (allowed.has(page)) {
-            Backbone.trigger('menu:activate', {menu: this.menu, page: page})
-          }
-        })
-
         this.listenTo(Backbone, 'menu:extend', function(options) {
           if (this.menu != options.menu) return
           that.add(new MenuItem(options), {merge: true})
-          Backbone.trigger('menu:activate', {menu: this.menu, page: options.page})
+          Backbone.trigger('menu:refresh')
         })
       }
     })
