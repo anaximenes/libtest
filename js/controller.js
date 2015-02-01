@@ -30,6 +30,7 @@ define([
         new SearchView()
         $headerDom.html(Menu.get('header').render().el)
         new Utils.MenuHandler()
+        new Utils.PageTitleHandler()
       },
 
       view: function(page, params) {

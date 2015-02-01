@@ -23,6 +23,7 @@ define([
                 path: '#!/questions/' + questionId + '/',
                 menu: 'header'
             })
+            Backbone.trigger('question:fetched', model)
           }
         })
 

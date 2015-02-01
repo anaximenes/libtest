@@ -24,6 +24,7 @@ define([
                 path: '#!/books/' + bookId + '/',
                 title: '"' + model.get('title') + '"'
             })
+            Backbone.trigger('book:fetched', model)
           }
         })
 
