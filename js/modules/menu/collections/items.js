@@ -5,10 +5,6 @@ define([
     'modules/menu/models/item'
   ],
   function($, _, Backbone, MenuItem) {
-    var allowed = new Set([
-      'books', 'questions', 'favorites', 'comments', 'add', 'recent', 'all', 'edit', 'description'
-    ])
-
     var Collection = Backbone.Collection.extend({
       model: MenuItem,
       menu: '',
