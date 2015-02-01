@@ -13,9 +13,10 @@ define([
     'modules/questionpage',
     'modules/static/views/view',
     'modules/utils/template',
-    'modules/utils/main'
+    'modules/utils/main',
+    'modules/template'
   ],
-  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, SearchView, Menu, User, Url, BookPage, QuestionPage, Static, TM, Utils) {
+  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, SearchView, Menu, User, Url, BookPage, QuestionPage, Static, TM, Utils, TMP) {
     var currentState = {}
     
     var $headerDom = $('#header')
@@ -172,6 +173,11 @@ define([
         return view
       },
 
+      signup: function() {
+        var view = new User.signupView()
+        return view
+      },
+
       user: function() {
         var view = new Backbone.View()
         console.log('yo doug')
@@ -179,12 +185,13 @@ define([
       },
 
       test: function(status) {
-        var view = new Static()
-        TM.get('a', function(res) {
-          console.log(res)
-          view.template = res
-          view.render()
-        })
+        // var view = new Static({template: TMP.get('')})
+
+        // TM.get('a', function(res) {
+        //   console.log(res)
+        //   view.template = res
+        //   view.render()
+        // })
         return view
       }
     }

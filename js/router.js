@@ -38,6 +38,7 @@ define([
         '!/questions/favorites(/)':      'questionsFavorites',
         '!/questions/:id(/)':            'question',
         '!/signin(/)':                   'signin',
+        '!/signup(/)':                   'signup',
         '!/signout(/)':                  'signout',
         '!/user(/)':                     'userPage',
         '!/test(/)':                     'test',
@@ -86,6 +87,10 @@ define([
 
       signin: function() {
         Controller.view('signin')
+      },
+
+      signup: function() {
+        Controller.view('signup')
       },
 
       signout: function() {

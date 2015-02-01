@@ -8,7 +8,7 @@ define([
       render: function() {
         // var html = _.template(this.template)()
         var html = this.template()
-        wthis.$el.html(html)
+        this.$el.html(html)
         return this
       },
 

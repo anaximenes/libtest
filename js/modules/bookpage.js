@@ -24,6 +24,10 @@ define([
                 path: '#!/books/' + bookId + '/',
                 title: '"' + model.get('title') + '"'
             })
+            Backbone.trigger('menu:extend', {
+              menu: 'book', 
+              page: 'read', title: 'read', path: '//beta.reslib.org/#!/book/' + model.get('url') + '/' + model.id + '/read/1'
+            })
             Backbone.trigger('book:fetched', model)
           }
         })

@@ -47,13 +47,9 @@ define([
         if (options.menu != this.model.collection.menu) return
 
         if (this.model.get('page') === options.page) {
-          // setTimeout(function(){
-                $('#' +  that.model.collection.menu + '-menu-' + options.page).addClass('active')
-            // }, 10);
+          $('#' +  that.model.collection.menu + '-menu-' + options.page).addClass('active')
         } else {
-          // setTimeout(function(){
-            $('#' + that.model.collection.menu + '-menu-' + that.model.get('page')).removeClass('active')
-            // }, 10);
+          $('#' + that.model.collection.menu + '-menu-' + that.model.get('page')).removeClass('active')
         }
       },
 

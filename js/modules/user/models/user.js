@@ -3,9 +3,10 @@ define([
     'underscore',
     'backbone',
     'modules/utils/url',
-    'modules/user/models/auth'
+    'modules/user/models/auth',
+    'modules/user/models/signup'
   ],
-  function($, _, Backbone, Url, AuthModel) {
+  function($, _, Backbone, Url, AuthModel, SignupModel) {
     var UserModel = Backbone.Model.extend({
       id: undefined,
 
@@ -54,6 +55,30 @@ define([
           }
         })
 
+      },
+
+      signup: function(data) {
+        console.log('signup!')
+        var that = this
+        var model = new SignupModel({
+          'email': data.email,
+          'password': data.password,
+          'fullname': data.name
+        })
+        model.save([], {
+          success: function(model, response) {
+            console.log('signed up ', model.id)
+            Backbone.trigger('user:signed', model.id)
+            that.set('id', model.id)
+            that.set('nickname', model.get('nickname'))
+            Backbone.history.history.back()
+          },
+          error: function(model, response, xhr) {
+            console.log('here goes error')
+            console.log(model)
+            console.log(response.status)
+          }
+        })
       },
 
       toggleFavorite: function(book) {
@@ -131,6 +156,7 @@ define([
         this.listenTo(Backbone, 'post:question', this.postQuestion)
         this.listenTo(Backbone, 'post:review', this.postReview)
         this.listenTo(Backbone, 'user:signin', this.signin)
+        this.listenTo(Backbone, 'user:signup', this.signup)
       }
     })
     

@@ -8,12 +8,20 @@ define([
   function($, _, Backbone, TemplateManager, Model) {
     SignInView = Backbone.View.extend({
       events: {
-        'submit': 'signin'
+        'submit': 'signin',
       },
 
       signin: function(event) {
         event.preventDefault()
         Backbone.trigger('user:signin', {
+          email: this.$el.find('#inputEmail').val(),
+          password: this.$el.find('#inputPassword').val()
+        })
+      },
+
+      signup: function(event) {
+        event.preventDefault()
+        Backbone.trigger('user:signup', {
           email: this.$el.find('#inputEmail').val(),
           password: this.$el.find('#inputPassword').val()
         })

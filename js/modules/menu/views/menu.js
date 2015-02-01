@@ -9,7 +9,6 @@ define([
       className: 'container menu',
 
       render: function() {
-        //console.log('... ' + this.className)
         this.$el.empty().html('<div class="menu-left"></div> <div class="menu-right"></div>')
         for (var i = 0; i < this.collection.length; ++i) {
           var model = this.collection.at(i)
@@ -33,9 +32,6 @@ define([
         this.collection = options.collection
 
         this.listenTo(this.collection, 'add remove reset', this.render)
-        this.listenTo(Backbone, 'page:rendered', function() {
-          // Backbone.trigger()
-        })
       }
     })
 

@@ -71,6 +71,10 @@ define([
 
       session: function() {
         return root + 'session'
+      },
+
+      users: function() {
+        return root + 'users/'
       }
 
     }
