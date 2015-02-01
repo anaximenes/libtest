@@ -26,7 +26,7 @@ define([
             })
             Backbone.trigger('menu:extend', {
               menu: 'book', 
-              page: 'read', title: 'read', path: '//beta.reslib.org/#!/book/' + model.get('url') + '/' + model.id + '/read/1'
+              page: 'read', title: 'read', path: '//alpha.reslib.org/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(model.get('sourceUrl')))
             })
             Backbone.trigger('book:fetched', model)
           }
