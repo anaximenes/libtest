@@ -2,24 +2,23 @@ require.config({
   deps: ['main'],
 
   paths: {
-    jquery: "libs/jquery.min",
-    underscore: "libs/underscore.min",
-    backbone: "libs/backbone.min",
-    // backbone: "libs/backbone",
-    // bootstrap: ".libs/bootstrap",
-    'markdown-converter': 'libs/pagedown/Markdown.Converter',
-    'markdown-editor': 'libs/pagedown/Markdown.Editor',
-    'markdown-sanitizer': 'libs/pagedown/Markdown.Sanitizer',
-    'markdown': 'libs/pagedown/markdown',
-    text: "libs/text"
+    'jquery': "/vendor/jquery/dist/jquery",
+    'underscore': "/vendor/lodash/lodash",
+    'backbone': "/vendor/backbone/backbone",
+    'markdown': '/vendor/pagedown/Markdown.Editor',
+    'markdown-converter': '/vendor/pagedown/Markdown.Converter',
+    'markdown-sanitizer': '/vendor/pagedown/Markdown.Sanitizer',
+    'text': '/vendor/requirejs-text/text'
   },
 
   shim: {
-    'markdown-editor': {
-      deps: ['markdown-converter']
+    'markdown': {
+      deps: ['markdown-sanitizer'],
+      exports: "Markdown"
     },
     'markdown-sanitizer': {
-      deps: ['markdown-converter']
+      deps: ['markdown-converter'],
+      exports: "Markdown"
     }
   }
 });
