@@ -9,7 +9,7 @@ define([
       el: $('#page-nickname'),
 
       render: function() {
-        html = '<a href="#!/user/">' + this.model.get('nickname') + '</a>'
+        html = '<a href="/user/">' + this.model.get('nickname') + '</a>'
         this.$el.html(html)
         return this
       },

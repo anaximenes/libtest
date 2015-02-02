@@ -14,7 +14,7 @@ define([
       Items: MenuItems,
       Item:  MenuItem,
 
-      base: '#!/books/',
+      base: '/books/',
 
       add: function(menu, pages) {
         var models = []
@@ -30,13 +30,13 @@ define([
         var readButton = '<button type="button" class="btn btn-default btn-lg" style="padding-top: 4px; padding-bottom: 4px"> Read </button>'
         return {
           'header': [
-            {page: 'books', title: 'Books', path: '#!/books/'},
-            {page: 'questions', title: 'Questions', path: '#!/questions/'}
+            {page: 'books', title: 'Books', path: '/books/'},
+            {page: 'questions', title: 'Questions', path: '/questions/'}
           ],
           'books': 
-            [{page: 'all', title: 'all', path: '#!/books/'}, 
-            {page: 'favorites', title: 'favorites', path: '#!/books/favorites/'}, 
-            {page: 'recent', title: 'recent', path: '#!/books/recent/'}
+            [{page: 'all', title: 'all', path: '/books/'}, 
+            {page: 'favorites', title: 'favorites', path: '/books/favorites/'}, 
+            {page: 'recent', title: 'recent', path: '/books/recent/'}
           ],
           'book': [
             {page: 'description', title: 'description', path: this.base},
@@ -45,7 +45,7 @@ define([
             // {page: 'read', path: '#', title: readButton, full: true}
           ],
           'questions':
-            [{page: 'all', title: 'all', path: '#!/questions/'}, 
+            [{page: 'all', title: 'all', path: '/questions/'}, 
           ]
         }[menu]
       },
