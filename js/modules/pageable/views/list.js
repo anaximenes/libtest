@@ -63,7 +63,9 @@ define([
         this.listenTo(this.collection, 'add', this.addView)
         this.listenTo(this.collection, 'reset remove', this.render)
         this.listenTo(Backbone, 'page:scrollbottom', this.loadUp)
-        this.listenTo(Backbone, 'page:update', this.collection.updateAll)
+        this.listenTo(Backbone, 'page:update', function() {
+          that.collection.updateAll()
+        })
       },
 
       removeChildViews: function() {

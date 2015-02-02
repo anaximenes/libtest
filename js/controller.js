@@ -12,11 +12,9 @@ define([
     'modules/bookpage',
     'modules/questionpage',
     'modules/static/views/view',
-    'modules/utils/template',
     'modules/utils/main',
-    // 'modules/template'
   ],
-  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, SearchView, Menu, User, Url, BookPage, QuestionPage, Static, TM, Utils) {
+  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, SearchView, Menu, User, Url, BookPage, QuestionPage, Static, Utils) {
     var currentState = {}
     
     var $headerDom = $('#header')
