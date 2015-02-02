@@ -29,8 +29,27 @@ require([
     // var userview = new App.User.view({model: user});
     var Router = App.Router.extend({ user: user });
     var router = new Router();
-    
-    Backbone.history.start({ pushState: false });
+    $(document).on("click", "a[href^='/']", function(event) {
+      var href, passThrough, url;
+      href = $(event.currentTarget).attr('href');
+      passThrough = href.indexOf('reader') >= 0;
+      if (!passThrough && !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
+        event.preventDefault();
+        url = href.replace(/^\//, '');
+        router.navigate(url, {
+          trigger: true
+        });
+        return false;
+      }
+    });
+
+    $(function() {
+      if (window.location.hash.indexOf('!') > -1) {
+        return window.location = window.location.hash.substring(2);
+      }
+    });
+
+    Backbone.history.start({ pushState: true });
     Scrolling.initialize();
 
     // BackStrip.initialize()

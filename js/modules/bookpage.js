@@ -21,12 +21,12 @@ define([
             Backbone.trigger('menu:extend', {
                 menu: 'header',
                 page: 'add',
-                path: '#!/books/' + bookId + '/',
+                path: '/books/' + bookId + '/',
                 title: '"' + model.get('title') + '"'
             })
             Backbone.trigger('menu:extend', {
               menu: 'book', 
-              page: 'read', title: 'read', path: '//alpha.reslib.org/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(model.get('sourceUrl')))
+              page: 'read', title: 'read', path: '/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(model.get('sourceUrl')))
             })
             Backbone.trigger('book:fetched', model)
           }
@@ -37,8 +37,8 @@ define([
         var postButton = '</a><button type="button" id="post-show-button" class="btn btn-default btn-lg" style="padding-top: 4px; padding-bottom: 4px"> Post </button><a>'
 
         var menu = Menu.add('sub', [
-              {page: 'bookReviews', title: 'Reviews', path: '#!/books/' + bookId + '/reviews/'},
-              {page: 'bookQuestions', title: 'Questions', path: '#!/books/' + bookId + '/questions/'},
+              {page: 'bookReviews', title: 'Reviews', path: '/books/' + bookId + '/reviews/'},
+              {page: 'bookQuestions', title: 'Questions', path: '/books/' + bookId + '/questions/'},
               {page: 'add', title: postButton, path: '#', full: true}
             ]
         )
