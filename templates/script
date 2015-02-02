@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cat /dev/null > lst
+cat /dev/null > ret
+j=0
+for i in $( ls ); do
+	s=${i%.html}
+	echo "t$j = require('text!/templates/$i')," >> lst;
+	echo "'$s': t$j," >> ret;
+	let "j += 1"
+done
+
+less ret
