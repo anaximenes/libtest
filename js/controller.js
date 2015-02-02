@@ -73,7 +73,7 @@ define([
 
       booksSearch: function(query) {
         var view = this.booksBase('booksSearch', query)
-        Backbone.trigger('menu:extend', {menu: 'books', page: 'add', path: '#!/books/search/' + query, title: '"' + query + '"'})
+        Backbone.trigger('menu:extend', {menu: 'books', page: 'add', path: '/books/search/' + query, title: '"' + query + '"'})
         return view
       },
 
@@ -88,7 +88,7 @@ define([
       },      
 
       bookQuestions: function(book) {
-        Menu.set({path: '#!/books/' + book.id + '/'})
+        Menu.set({path: '/books/' + book.id + '/'})
         currentState.subMenu = Menu.get('book')
         $subHeaderDom.html(currentState.subMenu.render().el)
 
@@ -104,7 +104,7 @@ define([
       },
 
       bookReviews: function(book) {       
-        Menu.set({path: '#!/books/' + book.id + '/'})
+        Menu.set({path: '/books/' + book.id + '/'})
         currentState.subMenu = Menu.get('book')
         $subHeaderDom.html(currentState.subMenu.render().el)
 
@@ -120,7 +120,7 @@ define([
       },
 
       bookEdit: function(book) {
-        Menu.set({path: '#!/books/' + book.id + '/'})
+        Menu.set({path: '/books/' + book.id + '/'})
         currentState.subMenu = Menu.get('book')
         $subHeaderDom.html(currentState.subMenu.render().el)
 
@@ -140,8 +140,8 @@ define([
 
       questionsSearch: function(query) {
         currentState.subMenu = Menu.add('questions', [
-          {page: 'all', title: 'all', path: '#!/questions/'}, 
-          {page: 'search', path: '#!/books/search/' + query, title: '"' + query + '"'}
+          {page: 'all', title: 'all', path: '/questions/'}, 
+          {page: 'search', path: '/books/search/' + query, title: '"' + query + '"'}
         ])
         $subHeaderDom.html(currentState.subMenu.render().el)
 

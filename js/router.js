@@ -14,7 +14,7 @@ define([
           action.success()
         } else {
           action.error === undefined ?
-            this.navigate('!/signin/', {trigger: true, replace: true})
+            this.navigate('/signin', {trigger: true, replace: true})
             :
             action.error()
         }
@@ -25,28 +25,28 @@ define([
       },
 
       routes: {
-        '!/books(/p:page)(/)':           'books',
-        '!/books/search/:query(/)':      'booksSearch',
-        '!/books/favorites(/)':          'booksFavorites',
-        '!/books/recent(/)':             'booksRecent',
-        '!/books/:id(/)':                'book',
-        '!/books/:id/questions(/)':      'bookQuestions',
-        '!/books/:id/reviews(/)':        'bookReviews',
-        '!/books/:id/edit(/)':           'bookEdit',
-        '!/questions(p:page)(/)':        'questions',
-        '!/questions/search/:query(/)':  'questionsSearch',
-        '!/questions/favorites(/)':      'questionsFavorites',
-        '!/questions/:id(/)':            'question',
-        '!/signin(/)':                   'signin',
-        '!/signup(/)':                   'signup',
-        '!/signout(/)':                  'signout',
-        '!/user(/)':                     'userPage',
-        '!/test(/)':                     'test',
+        'books(/p:page)(/)':           'books',
+        'books/search/:query(/)':      'booksSearch',
+        'books/favorites(/)':          'booksFavorites',
+        'books/recent(/)':             'booksRecent',
+        'books/:id(/)':                'book',
+        'books/:id/questions(/)':      'bookQuestions',
+        'books/:id/reviews(/)':        'bookReviews',
+        'books/:id/edit(/)':           'bookEdit',
+        'questions(p:page)(/)':        'questions',
+        'questions/search/:query(/)':  'questionsSearch',
+        'questions/favorites(/)':      'questionsFavorites',
+        'questions/:id(/)':            'question',
+        'signin(/)':                   'signin',
+        'signup(/)':                   'signup',
+        'signout(/)':                  'signout',
+        'user(/)':                     'userPage',
+        'test(/)':                     'test',
         '*path':                         'root'
       },
 
       root: function() {
-        this.navigate('!/books', true)
+        this.navigate('/books', true)
       },
 
       books: function(page) {
@@ -160,9 +160,9 @@ define([
         var search = function(query) {
           var url = Backbone.history.fragment.slice(2)
           if (url.indexOf('books') === 0) {
-            that.navigate('#!/books/search/' + query, true)
+            that.navigate('/books/search/' + query, true)
           } else if (url.indexOf('questions') === 0) {
-            that.navigate('#!/questions/search/' + query, true)
+            that.navigate('/questions/search/' + query, true)
           }
         }
 

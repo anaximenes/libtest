@@ -20,7 +20,7 @@ define([
             Backbone.trigger('menu:extend', {
                 page: 'question',
                 title: '"' + model.get('title') + '"',
-                path: '#!/questions/' + questionId + '/',
+                path: '/questions/' + questionId + '/',
                 menu: 'header'
             })
             Backbone.trigger('question:fetched', model)
@@ -30,7 +30,7 @@ define([
         //------------------------------------------------------------------------------
 
         var menu = Menu.add('sub', [
-            {page: 'questionAnswers', title: 'Answers', path: '#!/questions/' + questionId + '/'},
+            {page: 'questionAnswers', title: 'Answers', path: '/questions/' + questionId + '/'},
         ])
 
         //------------------------------------------------------------------------------

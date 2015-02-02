@@ -21,12 +21,12 @@ define([
             Backbone.trigger('menu:extend', {
                 menu: 'header',
                 page: 'add',
-                path: '#!/books/' + bookId + '/',
+                path: '/books/' + bookId + '/',
                 title: '"' + model.get('title') + '"'
             })
             Backbone.trigger('menu:extend', {
               menu: 'book', 
-              page: 'read', title: 'read', path: '//alpha.reslib.org/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(model.get('sourceUrl')))
+              page: 'read', title: 'read', path: '/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(model.get('sourceUrl')))
             })
             Backbone.trigger('book:fetched', model)
           }
