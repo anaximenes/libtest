@@ -141,7 +141,6 @@ h6, .h6 {
 .question-menu-item.active, 
 .questions-menu-item.active, 
 .sub-header-menu-item.active {
-  font-size: 1.3em;
   /*font-size: 21px;*/
   font-weight: 300;
 }
@@ -165,7 +164,6 @@ a.menu-item.active {
 
 .sub-menu-item.active,
 .header-menu-item.active {
-  font-size: 1.6em;
   /*font-size: 30px;*/
   font-weight: 300;
 }
