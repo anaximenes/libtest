@@ -3,10 +3,10 @@ define([
     'underscore',
     'backbone',
     'modules/utils/url',
-    'modules/utils/template',
-    'modules/utils/containerview'
+    'modules/utils/containerview',
+    'text!/templates/list-loading.html'
   ],
-  function($, _, Backbone, Url, TemplateManager, ContainerView) {
+  function($, _, Backbone, Url, ContainerView, Template) {
     var FramedView = ContainerView.extend({
       initialize: function(options) {
         options = options || {}
@@ -23,10 +23,7 @@ define([
 
           render: function() {
             if (this.show) {
-              var that = this
-              TemplateManager.get('list-loading', function(template) {
-                that.$el.html(template())
-              })
+              this.$el.html(_.template(Template)())
             } else {
               this.$el.empty()
             }

@@ -63,7 +63,6 @@ define([
         this.models = models || []
         options = options || {}
         if (options.currentPage) this.currentPage = options.currentPage
-        console.log('on page: ' + this.currentPage)
       }
     })
 

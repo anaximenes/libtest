@@ -32,7 +32,6 @@ define([
       },
 
       run: function() {
-        console.log($(document).find('#wmd-button-bar'))
         var converter = new Markdown.getSanitizingConverter()
         this.converter = converter
         var editor = new Markdown.Editor(converter)

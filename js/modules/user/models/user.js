@@ -81,7 +81,6 @@ define([
 
       toggleFavorite: function(book) {
         var url = Url('favorites', this.id)
-        console.log(url)
 
         var Collection = Backbone.Collection.extend({
           url: url

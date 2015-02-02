@@ -2,9 +2,8 @@ require([
     'backbone',
     'app',
     'modules/utils/scrolling',
-    'modules/utils/backstrip',
     'text'
-  ], function(Backbone, App, Scrolling, BackStrip) {
+  ], function(Backbone, App, Scrolling) {
     (function() {
 
       var proxiedSync = Backbone.sync;
@@ -29,6 +28,7 @@ require([
     // var userview = new App.User.view({model: user});
     var Router = App.Router.extend({ user: user });
     var router = new Router();
+
     $(document).on("click", "a[href^='/']", function(event) {
       var href, passThrough, url;
       href = $(event.currentTarget).attr('href');
@@ -51,7 +51,5 @@ require([
 
     Backbone.history.start({ pushState: true });
     Scrolling.initialize();
-
-    // BackStrip.initialize()
   }
 )
