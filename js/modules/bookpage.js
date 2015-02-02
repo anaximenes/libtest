@@ -35,8 +35,8 @@ define([
         //------------------------------------------------------------------------------
 
         var menu = Menu.add('sub', [
-              {page: 'bookReviews', title: 'Reviews', path: '#!/books/' + bookId + '/reviews/'},
-              {page: 'bookQuestions', title: 'Questions', path: '#!/books/' + bookId + '/questions/'},
+              {page: 'bookReviews', title: 'Reviews', path: '/books/' + bookId + '/reviews/'},
+              {page: 'bookQuestions', title: 'Questions', path: '/books/' + bookId + '/questions/'},
               {page: 'add', title: 'Post', path: '#', full: true}
             ]
         )
