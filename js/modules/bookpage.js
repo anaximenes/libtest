@@ -34,12 +34,10 @@ define([
 
         //------------------------------------------------------------------------------
 
-        var postButton = '</a><button type="button" id="post-show-button" class="btn btn-default btn-lg" style="padding-top: 4px; padding-bottom: 4px"> Post </button><a>'
-
         var menu = Menu.add('sub', [
               {page: 'bookReviews', title: 'Reviews', path: '#!/books/' + bookId + '/reviews/'},
               {page: 'bookQuestions', title: 'Questions', path: '#!/books/' + bookId + '/questions/'},
-              {page: 'add', title: postButton, path: '#', full: true}
+              {page: 'add', title: 'Post', path: '#', full: true}
             ]
         )
         
@@ -56,7 +54,7 @@ define([
 
         //------------------------------------------------------------------------------
         
-        var postForm = new Post.view({id: bookId})
+        var postForm = new Post.UserPostView({id: bookId})
 
         //------------------------------------------------------------------------------
 

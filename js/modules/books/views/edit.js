@@ -2,11 +2,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'modules/utils/template',
     'modules/utils/containerview',
+    'text!/templates/books/books-card-edit.html',
     'modules/post/main'
   ],
-  function($, _, Backbone, TemplateManager, ContainerView, Post) {
+  function($, _, Backbone, ContainerView, Template, Post) {
     var EditView = Backbone.View.extend({
       events: {
         'click #book-edit-title-a': 'clickTitle',
@@ -44,9 +44,7 @@ define([
       render: function() {
         var that = this
         if (this.model.complete()) {
-          TemplateManager.get('books-card-edit', function(template) {
-            that.$el.html(template(that.model.present()))
-          })
+          this.$el.html(_.template(Template)(this.model.present()))
         }
         return this
       },
@@ -59,7 +57,7 @@ define([
     var EditPage = ContainerView.extend({
       initialize: function(options) {
         var edit = new EditView(options)
-        var post = new Post.view({show: true, template: 'post-book-edit'})
+        var post = new Post.PlainView({show: true})
 
         this.listenTo(options.model, 'change', function() {
           post.body = options.model.get('description')

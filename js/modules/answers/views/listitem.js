@@ -2,15 +2,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'modules/utils/template'
+    'text!/templates/answers/answers-list-entry.html'
   ],
-  function($, _, Backbone, TemplateManager) {
+  function($, _, Backbone, Template) {
     ListItemView = Backbone.View.extend({
       render: function() {
-        var that = this
-        TemplateManager.get('answers-list-entry', function(template) {
-          that.$el.html(template(that.model.toJSON()))
-        })
+        this.$el.html(_.template(Template)(this.model.toJSON()))
         return this
       },
 

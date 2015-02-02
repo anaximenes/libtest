@@ -8,6 +8,9 @@ define([
   ],
   function($, _, Backbone, Url, AuthModel, SignupModel) {
     var UserModel = Backbone.Model.extend({
+      defaults: {
+        nickname: ''
+      },
       id: undefined,
 
       isLogged: function() {
@@ -127,6 +130,11 @@ define([
           success: function(response) {
             console.log(response)
             Backbone.trigger('page:update')
+          }, 
+          error: function(model, xhr, options) {
+            console.log('bad luck...')
+            console.log(xhr)
+            console.log(options)
           }
         })
       },

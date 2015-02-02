@@ -8,7 +8,8 @@ require.config({
     'markdown': '/vendor/pagedown/Markdown.Editor',
     'markdown-converter': '/vendor/pagedown/Markdown.Converter',
     'markdown-sanitizer': '/vendor/pagedown/Markdown.Sanitizer',
-    'text': '/vendor/requirejs-text/text'
+    'text': '/vendor/requirejs-text/text',
+    'i18n': '/vendor/requirejs-i18n/i18n'
   },
 
   shim: {

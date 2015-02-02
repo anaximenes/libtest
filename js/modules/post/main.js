@@ -2,11 +2,13 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'modules/post/views/post-form',
+    'modules/post/views/userpost',
+    'modules/post/views/plainpost'
   ],
-  function($, _, Backbone, Post) {
+  function($, _, Backbone, UserPost, PlainPost) {
     return {
-      'view':     Post, 
+      'UserPostView':  UserPost,
+      'PlainView':     PlainPost,
     }
   }
 )

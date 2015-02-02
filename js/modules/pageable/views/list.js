@@ -7,7 +7,7 @@ define([
     var CollectionView = Backbone.View.extend({
       model: Backbone.Model,
       ItemView: Backbone.View,
-      processing: false,  //it appears to be here for no particular reason but i'm scared to get rid of it
+      processing: false,  //it appears to be here for no particular reason but I'm not sure if I should get rid of it
 
       loadUp: function() {
         if (this.processing) {
@@ -58,14 +58,6 @@ define([
         }
 
         this.collection.updateAll()
-
-        this.collection.fetch({
-          success: function(response) {
-            if (that.collection.isOnLastPage()) {
-              Backbone.trigger('list:loaded', that.listType)
-            }
-          }
-        })
 
         var that = this
         this.listenTo(this.collection, 'add', this.addView)

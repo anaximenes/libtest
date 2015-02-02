@@ -2,27 +2,14 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'modules/utils/template'
+    'text!/templates/questions/questions-card.html'
   ],
-  function($, _, Backbone, TemplateManager) {
+  function($, _, Backbone, Template) {
     var CardItemView = Backbone.View.extend({
       render: function() {
-        var that = this
         if (this.model.complete()) {
-          TemplateManager.get('questions-card', function(template) {
-            that.$el.html(template(that.model.toJSON()))
-          })
+          this.$el.html(_.template(Template)(this.model.toJSON()))
         }
-
-        // var html = undefined
-        // if (this.model.complete()) {
-        //   console.log('complete')
-        //   html = _.template(this.template)(this.model.toJSON())
-        // } else {
-        //   console.log('not complete')
-        //   html = _.template(this.templateLoading)(this.model.toJSON())
-        // }
-        // this.$el.html(html)
         return this
       },
 

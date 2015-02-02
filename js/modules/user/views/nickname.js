@@ -2,14 +2,15 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'modules/user/models/user'
+    'modules/user/models/user',
+    'text!/templates/user/nickname.html'
   ],
-  function($, _, Backbone, Model) {
+  function($, _, Backbone, Model, template) {
     SignInView = Backbone.View.extend({
       el: $('#page-nickname'),
 
       render: function() {
-        html = '<a href="#!/user/">' + this.model.get('nickname') + '</a>'
+        html = _.template(template)(this.model.toJSON())
         this.$el.html(html)
         return this
       },

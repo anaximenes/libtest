@@ -2,16 +2,15 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'modules/utils/template'
+    'text!/templates/reviews/reviews-list-entry.html'
+    // ^ fix
   ],
-  function($, _, Backbone, TemplateManager) {
+  function($, _, Backbone, Template) {
     var CardItemView = Backbone.View.extend({
       render: function() {
         var that = this
         if (this.model.complete()) {
-          TemplateManager.get('reviews-card', function(template) {
-            that.$el.html(template(that.model.present()))
-          })
+          this.$el.html(_.template(Template)(that.model.present()))
         }
         return this
       },

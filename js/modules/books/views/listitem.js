@@ -2,14 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'modules/utils/template'
+    'text!/templates/books/books-list-entry.html'
   ],
-  function($, _, Backbone, TM) {
+  function($, _, Backbone, Template) {
     ListItemView = Backbone.View.extend({
-      template: $('#template-books-list-entry').html(),
-      // template: $('#template-books-list-entry-no-image').html(),
-      templateLoading: $('#template-book-entry-loading').html(),
-
       events: {
         'click #favorite-button': 'toggleFavorite'
       },
@@ -24,10 +20,7 @@ define([
       render: function() {
         var that = this
         if (this.model.complete()) {
-          TM.get('books-list-entry', function(template) {
-            html = template(that.model.present())
-            that.$el.html(html)
-          })
+          this.$el.html(_.template(Template)(this.model.present()))
         }
         return this
       },

@@ -2,10 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'modules/utils/template',
-    'modules/user/models/auth'
+    'text!/templates/user/signup.html'
   ],
-  function($, _, Backbone, TemplateManager, Model) {
+  function($, _, Backbone, template) {
     SignUpView = Backbone.View.extend({
       events: {
         'submit': 'signup',
@@ -27,9 +26,7 @@ define([
 
       render: function() {
         var that = this
-        TemplateManager.get('signup', function(template) {
-          that.$el.html(template())
-        })
+        this.$el.html(_.template(template)())
         return this
       },
 

@@ -2,13 +2,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'modules/utils/template'
+    'text!/templates/books/books-card.html',
+    'i18n!modules/nls/page-books-card'
   ],
-  function($, _, Backbone, TemplateManager) {
+  function($, _, Backbone, template, i18n) {
     var CardItemView = Backbone.View.extend({
-      // template: $('#template-book-card').html(),
-      // templateLoading: $('#template-book-entry-loading').html(),
-
       events: {
         'click #favorite-button': 'toggleFavorite'
       },
@@ -22,12 +20,9 @@ define([
 
       render: function() {
         if (this.model.complete()) {
-          var that = this
-          TemplateManager.get('books-card', function(template) {
-            that.$el.html(template(that.model.present()))
-          })
+          var model = _.extend(this.model.present(), i18n)
+          this.$el.html(_.template(template)(model))
         }
-
         return this
       },
 
