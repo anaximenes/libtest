@@ -14,7 +14,12 @@ define([
       post: function() {
         //add error messages before return
         var title = this.$el.find('.post-title').val().trim()
-        if (title === '') return
+        if (title === '') {
+          this.$('.error-title').show()
+          return
+        } else {
+          this.$('.error-title').hide()
+        }
         var body = this.$el.find('#wmd-input').val().trim()
         if (body === '') return
         body = this.converter.makeHtml(body)

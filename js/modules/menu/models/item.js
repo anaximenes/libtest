@@ -1,9 +1,10 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
+    'backbone',
+    'i18n!modules/nls/menu'
   ],
-  function($, _, Backbone) {
+  function($, _, Backbone, i18n) {
     var ID = 0;
     var pageMap = {}
 
@@ -12,7 +13,14 @@ define([
         id = pageMap[options.page] || (pageMap[options.page] = ++ID)
         this.set('page', options.page)
         this.set('id', pageMap[options.page])
-        this.set('title', options.title)
+        
+        if (i18n[options.title]) {
+          this.set('title', i18n[options.title])
+        } else {
+          this.set('title', options.title)
+        }
+        
+        this.set('class', options.class)
         this.set('path', options.path)
         this.set('toRight', options.toRight ? true : false)
         this.set('full', options.full ? true : false)

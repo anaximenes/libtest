@@ -31,7 +31,7 @@ define([
         options = options || {}
         this.collection = options.collection
 
-        this.listenTo(this.collection, 'add remove reset', this.render)
+        this.listenTo(this.collection, 'add remove reset change', this.render)
       }
     })
 

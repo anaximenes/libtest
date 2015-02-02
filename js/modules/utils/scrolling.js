@@ -7,16 +7,14 @@ define([
 
     var $el = $(window)
 
-    var tolerance = 800
+    var tolerance = 1200
 
     _.extend(Scrolling, Backbone.Events)
 
     Scrolling.trackScrolling = function() {
       $el.on('scroll', _.throttle(
         function(event) {
-          var body = document.body;
-          var threshold = body.scrollHeight - window.innerHeight - tolerance;
-          if (body.scrollTop > threshold) {
+          if($(document).scrollTop() + $(window).height() + tolerance >= $(document).height()) {
             Backbone.trigger('page:scrollbottom');
           }
         }, 500)

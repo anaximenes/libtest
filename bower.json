@@ -27,6 +27,7 @@
     "pagedown": "~1.1.0",
     "requirejs-text": "~2.0.13",
     "bootstrap": "~3.3.2",
-    "requirejs-i18n": "~2.0.4"
+    "requirejs-i18n": "~2.0.4",
+    "font-awesome": "~4.3.0"
   }
 }

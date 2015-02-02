@@ -66,7 +66,10 @@ define([
       initialize: function(options) {
         var that = this
         options = options || {}
+        this.classes = ''
         if (options.classes) this.classes = options.classes
+        if (this.model.get('class')) this.classes = this.classes + ' ' + this.model.get('class')
+
         if (options.menu) this.menu = options.menu
 
         this.listenTo(Backbone, 'menu:activate', this.activateMenu)

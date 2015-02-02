@@ -42,7 +42,7 @@ define([
         'signout(/)':                  'signout',
         'user(/)':                     'userPage',
         'test(/)':                     'test',
-        '*path':                         'root'
+        '*path':                       'root'
       },
 
       root: function() {
@@ -86,10 +86,16 @@ define([
       },
 
       signin: function() {
+        if (this.user.isLogged()) {
+          Backbone.history.history.back()
+        }
         Controller.view('signin')
       },
 
       signup: function() {
+        if (this.user.isLogged()) {
+          Backbone.history.history.back()
+        }
         Controller.view('signup')
       },
 
@@ -158,11 +164,11 @@ define([
           Backbone.history.history.back()
         }
         var search = function(query) {
-          var url = Backbone.history.fragment.slice(2)
-          if (url.indexOf('books') === 0) {
-            that.navigate('/books/search/' + query, true)
-          } else if (url.indexOf('questions') === 0) {
+          var url = Backbone.history.fragment
+          if (url.indexOf('questions') === 0) {
             that.navigate('/questions/search/' + query, true)
+          } else {  //if (url.indexOf('books') === 0) {
+            that.navigate('/books/search/' + query, true)
           }
         }
 

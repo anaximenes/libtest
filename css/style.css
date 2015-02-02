@@ -6,6 +6,10 @@
   cursor: pointer;
 }
 
+a:focus {
+ outline: 0 none;
+}
+
 a:hover {
   cursor: pointer;
 }
@@ -180,6 +184,10 @@ a.header-menu-item.active {
   text-decoration: none;
 }
 
+.menu-item.button-read {
+  color: darkred;
+}
+
 
 .nav-search {
   margin-left: 40px
@@ -212,7 +220,7 @@ a.header-menu-item.active {
   margin-right: 40px;
 }
 
-.book-card-image {
+.books-card-image {
   float: left;
   max-width: 200px;
   /*max-height: 100%;*/

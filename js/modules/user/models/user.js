@@ -16,11 +16,6 @@ define([
       isLogged: function() {
         console.log(this)
         return (typeof(this.id) != 'undefined')
-        var user = new Model();
-        user.fetch({
-          success: function(model, response) {
-          }
-        })
       },
 
       logOut: function() {
