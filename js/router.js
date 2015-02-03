@@ -157,7 +157,9 @@ define([
 
         var signed = function(id) {
           console.log('sign in ', id)
-          Controller.userId = id
+          if (Backbone.history.fragment.slice(0, 6) === 'signin') {
+            Backbone.history.history.back()
+          }
         }
         var signOut = function() {
           Backbone.history.history.back()
