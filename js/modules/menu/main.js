@@ -57,7 +57,7 @@ define([
         this.base = options.path || this.base
       },
 
-      get: function(menu, addPages) {
+      get: function(menu) {
         return this.add(menu, this.pages(menu))
         // return menuCollection[menu] || (menuCollection[menu] = Menu.add(menu, Menu.pages(menu)))
       }

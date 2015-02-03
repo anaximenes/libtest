@@ -1,5 +1,0 @@
-define({
-	'root': {
-		'books': 'books'
-	}
-})

@@ -2,15 +2,16 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/list-loading.html'
+    'text!/templates/list-loading.html',
+    'i18n!modules/nls/loading'
   ],
-  function($, _, Backbone, Template) {
+  function($, _, Backbone, Template, i18n) {
     var endView = Backbone.View.extend({
       show: true,
 
       render: function() {
         if (this.show) {
-          this.$el.html(_.template(Template)())
+          this.$el.html(_.template(Template)(i18n))
         } else {
           this.$el.empty()
         }
