@@ -5,6 +5,7 @@ define([
   ],
   function($, _, Backbone) {
     var MenuHandler = Backbone.View.extend({
+      // menus to be activated on each page:
       pageMap: {
         'books':            {'header': 'books', 'books': 'all'},
         'booksRecent':      {'header': 'books', 'books': 'recent'},
@@ -14,7 +15,7 @@ define([
         'bookEdit':         {'header': 'add', 'book': 'edit'},
         'bookReviews':      {'header': 'add', 'book': 'description', 'sub': 'bookReviews'},
         'bookQuestions':    {'header': 'add', 'book': 'description', 'sub': 'bookQuestions'},
-        'questions':        {'header': 'questions'}, //, 'questions': 'all'}]
+        'questions':        {'header': 'questions'},
         'questionsSearch':  {'header': 'questions', 'questions': 'search'},
         'question':         {'header': 'question', 'sub': 'questionAnswers'},
         'questionAnswers':  {'header': 'question', 'sub': 'questionAnswers'}

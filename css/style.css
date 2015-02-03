@@ -14,12 +14,13 @@ a:hover {
   cursor: pointer;
 }
 
+ul {
+  max-height: 35px;
+}
 
 .menu {
     text-align: justify;
-    /*letter-spacing: 1px;*/
-    /*height: 8em;*/
-    /*padding: 2em 10%;*/
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .menu-left,
@@ -74,7 +75,7 @@ a:hover {
 
 
 a.menu-signin-item {
-  font-size: 1.1em; 
+  font-size: 1.1em;
   margin-right: 10px;
 }
 
@@ -111,6 +112,10 @@ h6, .h6 {
 
 /***************************************************/
 
+.menu-item-li {
+  display: inline-block;
+}
+
 .menu-item {
   /*font-size: 17px;*/
   /*font-weight: 100;*/
@@ -124,8 +129,8 @@ h6, .h6 {
   font-weight: 100;
 }
 
-.book-menu-item, 
-.books-menu-item, 
+.book-menu-item,
+.books-menu-item,
 .question-menu-item,
 .questions-menu-item
  {
@@ -139,10 +144,10 @@ h6, .h6 {
   font-weight: 580;
 }
 */
-.book-menu-item.active,  
-.books-menu-item.active,  
-.question-menu-item.active, 
-.questions-menu-item.active, 
+.book-menu-item.active,
+.books-menu-item.active,
+.question-menu-item.active,
+.questions-menu-item.active,
 .sub-header-menu-item.active {
   font-size: 1.3em;
   /*font-size: 21px;*/
@@ -209,7 +214,7 @@ a.header-menu-item.active {
 .avatar-image {
   float: left;
   width: 110px;
-  margin-right: 40px;  
+  margin-right: 40px;
 }
 
 .book-image {
@@ -326,48 +331,48 @@ blockquote {
   min-width: 500px;
 }
 
-.wmd-button-bar 
+.wmd-button-bar
 {
   width: 100%;
-  background-color: Silver; 
+  background-color: Silver;
 }
 
-.wmd-input 
-{ 
+.wmd-input
+{
   height: 200px;
   width: 100%;
   /*background-color: Gainsboro;*/
   border: 1px solid DarkGray;
 }
 
-.wmd-preview 
-{ 
+.wmd-preview
+{
   /*background-color: aliceblue; */
   /*background-color: LightGrey; */
   padding: 2px;
   /*border: 1px solid LightGray;*/
 }
 
-.wmd-button-row 
+.wmd-button-row
 {
-  position: relative; 
+  position: relative;
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
   margin-top: 10px;
-  padding: 0px;  
+  padding: 0px;
   height: 20px;
 }
 
 .wmd-spacer
 {
-  width: 1px; 
-  height: 20px; 
+  width: 1px;
+  height: 20px;
   margin-left: 14px;
-  
+
   position: absolute;
   background-color: Silver;
-  display: inline-block; 
+  display: inline-block;
   list-style: none;
 }
 

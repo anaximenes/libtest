@@ -2,18 +2,14 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'modules/menu/models/item'
+    'modules/menu/models/item',
+    'text!/templates/menu-item.html'
   ],
-  function($, _, Backbone, MenuItem) {
+  function($, _, Backbone, MenuItem, Template) {
     var MenuItemView = Backbone.View.extend({
-      tagName: 'div',
+      tagName: 'li',
+      className: 'menu-item-li',
       menu: '',
-
-      attributes: function() {
-        return {
-          style: 'display: inline-block',
-        }
-      },
 
       events: {
         'click': 'click'
@@ -24,36 +20,35 @@ define([
       },
 
       render: function() {
-        var html = '<a id="<%=id%>" class="<%= classes %>" href="<%= href %>" > <%= title %> </a>'
         var text = this.model.get('title')
 
-        
         //to be FIXED !!!!
         if (!this.model.get('full')) {
           text = text.slice(0, 40) + (text.length > 40 ? '..."' : '')
         }
-        
-        this.$el.html(_.template(html)({
-          'title': text, 
-          'href': this.model.get('path'), 
+
+        this.$el.html(_.template(Template)({
+          'title': text,
+          'href': this.model.get('path'),
           'id': this.model.collection.menu + '-menu-' + this.model.get('page'),
-          'classes': 'menu-item' + (this.classes ? ' ' + this.classes : '')
         }))
+        this.$('a').addClass(this.classes || '')
+
         return this
       },
 
       activateMenu: function(options) {
-        var that = this
         if (options.menu != this.model.collection.menu) return
 
         if (this.model.get('page') === options.page) {
-          $('#' +  that.model.collection.menu + '-menu-' + options.page).addClass('active')
+          this.$('a').addClass('active')
         } else {
-          $('#' + that.model.collection.menu + '-menu-' + that.model.get('page')).removeClass('active')
+          this.$('a').removeClass('active')
         }
       },
 
       addBadge: function(options) {
+        // experimental feature
         var that = this
         if (options.menu != this.model.collection.menu) return
         if (!options.count) return
@@ -64,14 +59,11 @@ define([
       },
 
       initialize: function(options) {
-        var that = this
         options = options || {}
-        this.classes = ''
-        if (options.classes) this.classes = options.classes
+        this.classes = options.classes || ''
         if (this.model.get('class')) this.classes = this.classes + ' ' + this.model.get('class')
 
-        if (options.menu) this.menu = options.menu
-
+        var that = this
         this.listenTo(Backbone, 'menu:activate', this.activateMenu)
         this.listenTo(Backbone, 'menu:addBadge', this.addBadge)
         this.listenTo(this.model, 'change', this.render)

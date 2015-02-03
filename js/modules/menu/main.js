@@ -16,6 +16,7 @@ define([
 
       base: '/books/',
 
+      // create menu given items (pages)
       add: function(menu, pages) {
         var models = []
         for (var i = 0; i < pages.length; ++i) {
@@ -26,30 +27,31 @@ define([
         })
       },
 
+      // menu items to be created in each menu
       pages: function(menu) {
-        var readButton = '<button type="button" class="btn btn-default btn-lg" style="padding-top: 4px; padding-bottom: 4px"> Read </button>'
         return {
           'header': [
             {page: 'books', title: 'Books', path: '/books/'},
             {page: 'questions', title: 'Questions', path: '/questions/'}
           ],
-          'books': 
-            [{page: 'all', title: 'all', path: '/books/'}, 
-            {page: 'favorites', title: 'favorites', path: '/books/favorites/'}, 
+          'books':
+            [{page: 'all', title: 'all', path: '/books/'},
+            {page: 'favorites', title: 'favorites', path: '/books/favorites/'},
             {page: 'recent', title: 'recent', path: '/books/recent/'}
           ],
           'book': [
             {page: 'description', title: 'description', path: this.base},
             {page: 'edit', title: 'edit', path: this.base + 'edit/'},
             {page: 'read', title: 'read', path: '#'}
-            // {page: 'read', path: '#', title: readButton, full: true}
           ],
           'questions':
-            [{page: 'all', title: 'all', path: '/questions/'}, 
+            [{page: 'all', title: 'all', path: '/questions/'},
           ]
         }[menu]
       },
 
+      // set path in book menu to corresponding book
+      // better be done more gracefully
       set: function(options) {
         options || (options = {})
         this.base = options.path || this.base
