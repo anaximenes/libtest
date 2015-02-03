@@ -22,9 +22,6 @@ define([
             }
           })
         }
-        if (this.collection.isOnLastPage()) {
-          Backbone.trigger('list:loaded', this.listType)
-        }
       },
 
       addView: function(model) {
@@ -50,12 +47,6 @@ define([
         this.views = []
         options = options ? options : {}
         this.collection = options.collection
-        this.listType = options.listType
-        var that = this
-
-        if (this.collection.parsed && this.collection.isOnLastPage()) {
-          Backbone.trigger('list:loaded', this.listType)
-        }
 
         this.collection.updateAll()
 
@@ -80,7 +71,7 @@ define([
         Backbone.View.prototype.remove.call(this);
       }
     })
-  
+
     return CollectionView
   }
 )

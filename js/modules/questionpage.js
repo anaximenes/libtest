@@ -13,7 +13,7 @@ define([
       initialize: function(questionId) {
         var model = new Questions.Model({'id': questionId})
         var card = new Questions.CardView({'model': model})
-        
+
         var that = this
         model.fetch({
           success: function() {
@@ -42,15 +42,12 @@ define([
           }
         })
 
-        var answers = new Answers.FramedListView({
-            collection: collection,
-            listType: 'questionAnswers'
-        })
+        var answers = new Answers.FramedListView({collection: collection})
 
         //------------------------------------------------------------------------------
-        
+
         ContainerView.prototype.initialize.call(this, [card, menu, answers])
-        
+
       }
     })
 

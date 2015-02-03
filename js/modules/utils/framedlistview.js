@@ -4,48 +4,25 @@ define([
     'backbone',
     'modules/utils/url',
     'modules/utils/containerview',
-    'text!/templates/list-loading.html'
+    'modules/utils/listendview',
   ],
-  function($, _, Backbone, Url, ContainerView, Template) {
+  function($, _, Backbone, Url, ContainerView, EndView) {
     var FramedView = ContainerView.extend({
       initialize: function(options) {
         options = options || {}
-        var listType = options.listType
-          
+
         var collection = options.collection ||
                       new this.Collection([], {
                         url: this.url
                       })
-        var list = new this.ListView({collection: collection, listType: listType})
+        var list = new this.ListView({collection: collection})
 
-        var endView = Backbone.View.extend({
-          show: true,
-
-          render: function() {
-            if (this.show) {
-              this.$el.html(_.template(Template)())
-            } else {
-              this.$el.empty()
-            }
-            return this
-          },
-
-          initialize: function() {
-            var that = this
-            this.listenTo(Backbone, 'list:loaded', function(which) {
-              if (which === listType) {
-                that.show = false
-                that.render()
-              }
-            })
-          }
-        })
-        var end = new endView()
+        var end = new EndView({collection: collection})
 
         ContainerView.prototype.initialize.call(this, [list, end])
       }
     })
-  
+
     return FramedView
   }
 )

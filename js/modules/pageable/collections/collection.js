@@ -15,6 +15,15 @@ define([
         var prefix = (stringUrl.indexOf('?') > -1 ? '&' : '?')
         this.url = page ? stringUrl + prefix + 'start=' + page : stringUrl
         options.remove = false
+
+        var that = this
+        callback = options.success
+        options.success = function() {
+          if (that.isOnLastPage()) {
+            that.trigger('loaded')
+          }
+          if (callback && typeof(callback === 'function')) callback()
+        }
         Backbone.Collection.prototype.fetch.call(this, options)
 
         this.url = url
@@ -34,6 +43,7 @@ define([
         return (this.currentPage + 2) in this.pages
       },
       isOnLastPage: function() {
+        if (!this.parsed) return false
         return this.pages[this.currentPage + 2] === undefined
       },
       isOnFirstPage: function() {
@@ -53,7 +63,7 @@ define([
       parse: function(response) {
         this.parsed = true
         this.totalEntries = response.total
-        // this.currentPage = response.current
+        // this.fetchedPage = response.current
         this.pages = _.extend(this.pages, response.pages)
         return response.results
       },

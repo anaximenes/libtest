@@ -16,11 +16,11 @@ define([
   ],
   function($, _, Backbone, BookModule, QuestionModule, ReviewModule, SearchView, Menu, User, Url, BookPage, QuestionPage, Static, Utils) {
     var currentState = {}
-    
+
     var $headerDom = $('#header')
     var $subHeaderDom = $('#sub-header')
     var $pageDom = $('#page')
-    
+
 
     var Controller = {
       currentView: undefined,
@@ -43,7 +43,7 @@ define([
 
         Backbone.trigger('page:rendered', {page: page, options: params})
       },
-      
+
 
       books: function(page) {
         currentState.subMenu = Menu.get('books')
@@ -83,7 +83,7 @@ define([
       booksRecent: function(userId) {
         var view = this.booksBase('booksRecent', userId)
         return view
-      },      
+      },
 
       bookQuestions: function(book) {
         Menu.set({path: '/books/' + book.id + '/'})
@@ -95,13 +95,13 @@ define([
             return Url('bookQuestions', book.id)
           }
         })
-        var questions = new QuestionModule.FramedListView({collection: collection, listType: 'bookQuestions'})
+        var questions = new QuestionModule.FramedListView({collection: collection})
 
         var view = new BookPage(book.id, questions)
         return view
       },
 
-      bookReviews: function(book) {       
+      bookReviews: function(book) {
         Menu.set({path: '/books/' + book.id + '/'})
         currentState.subMenu = Menu.get('book')
         $subHeaderDom.html(currentState.subMenu.render().el)
@@ -111,7 +111,7 @@ define([
             return Url('bookReviews', book.id)
           }
         })
-        var reviews = new ReviewModule.FramedListView({collection: collection, listType: 'bookReviews'})
+        var reviews = new ReviewModule.FramedListView({collection: collection})
 
         var view = new BookPage(book.id, reviews)
         return view
@@ -138,7 +138,7 @@ define([
 
       questionsSearch: function(query) {
         currentState.subMenu = Menu.add('questions', [
-          {page: 'all', title: 'all', path: '/questions/'}, 
+          {page: 'all', title: 'all', path: '/questions/'},
           {page: 'search', path: '/books/search/' + query, title: '"' + query + '"'}
         ])
         $subHeaderDom.html(currentState.subMenu.render().el)
@@ -183,13 +183,7 @@ define([
       },
 
       test: function(status) {
-        // var view = new Static({template: TMP.get('')})
-
-        // TM.get('a', function(res) {
-        //   console.log(res)
-        //   view.template = res
-        //   view.render()
-        // })
+        var view = new Static()
         return view
       }
     }
