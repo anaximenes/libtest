@@ -14,7 +14,8 @@ define([
           action.success()
         } else {
           action.error === undefined ?
-            this.navigate('/signin', {trigger: true, replace: true})
+            // this.navigate('/signin/', {trigger: true})
+            this.navigate('/signin/', {trigger: true, replace: true})
             :
             action.error()
         }
@@ -76,7 +77,7 @@ define([
       questions: function(page) {
         Controller.view('questions', page)
       },
-      
+
       questionsSearch: function(query) {
         Controller.view('questionsSearch', query)
       },
@@ -117,29 +118,29 @@ define([
       },
 
       booksFavorites: function() {
-        // var that = this
-        // this.requireLogin({
-        //  success: function() {
-        //    Controller.view('booksFavorites', that.user.id)
-        //  },
-        //  error: function() {
-        //    Controller.view('noFavorites')
-        //  }
-        // })
-        Controller.view('booksFavorites', this.user.id)
+        var that = this
+        this.requireLogin({
+         success: function() {
+           Controller.view('booksFavorites', that.user.id)
+         },
+         // error: function() {
+         //   Controller.view('noFavorites')
+         // }
+        })
+        // Controller.view('booksFavorites', this.user.id)
       },
 
       booksRecent: function() {
-        // var that = this
-        // this.requireLogin({
-        //  success: function() {
-        //    Controller.view('booksRecent', that.user.id)
-        //  },
-        //  error: function() {
-        //    Controller.view('noRecent')
+        var that = this
+        this.requireLogin({
+         success: function() {
+           Controller.view('booksRecent', that.user.id)
+         },
+         // error: function() {
+         //   Controller.view('noRecent')
         //  }
-        // })
-        Controller.view('booksRecent', this.user.id)
+        })
+        // Controller.view('booksRecent', this.user.id)
       },
 
       questionsFavorites: function() {
@@ -159,30 +160,21 @@ define([
           Controller.userId = id
         }
         var signOut = function() {
-          that.userId = undefined
-          Controller.userId = undefined
           Backbone.history.history.back()
         }
         var search = function(query) {
           var url = Backbone.history.fragment
           if (url.indexOf('questions') === 0) {
             that.navigate('/questions/search/' + query, true)
-          } else {  //if (url.indexOf('books') === 0) {
+          } else {
             that.navigate('/books/search/' + query, true)
           }
-        }
-
-        var yell = function(options) {
-          console.log('controller:transition happened')
-          console.log(options)
         }
 
         var eventHandler = {
           'user:signout':       signOut,
           'user:signed':        signed,
           'search':             search,
-
-          'controller:transition': yell
         }
 
         for (var event in eventHandler) {

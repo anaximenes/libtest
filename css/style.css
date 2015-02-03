@@ -14,7 +14,7 @@ a:hover {
   cursor: pointer;
 }
 
-ul {
+ul.menu {
   max-height: 35px;
 }
 

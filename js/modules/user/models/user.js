@@ -14,7 +14,6 @@ define([
       id: undefined,
 
       isLogged: function() {
-        console.log(this)
         return (typeof(this.id) != 'undefined')
       },
 
@@ -86,7 +85,7 @@ define([
           url: url
         })
         var collection = new Collection()
-        
+
         var model = new Backbone.Model({
           id: book.id,
           urlRoot: url
@@ -98,7 +97,7 @@ define([
 
         if (book.get('isFavorite')) {
           model.destroy({
-            url: url + book.id, 
+            url: url + book.id,
             success: fetch,
             error: fetch
           })
@@ -124,7 +123,7 @@ define([
           success: function(response) {
             console.log(response)
             Backbone.trigger('page:update')
-          }, 
+          },
           error: function(model, xhr, options) {
             console.log('bad luck...')
             console.log(xhr)
@@ -150,7 +149,7 @@ define([
             that.set('nickname', model.get('nickname'))
             if (model.id) Backbone.trigger('user:signed', model.id)
           }, error: function(e) {
-            console.log(e)
+            // console.log(e)
           }
         })
 
@@ -161,7 +160,7 @@ define([
         this.listenTo(Backbone, 'user:signup', this.signup)
       }
     })
-    
+
     return UserModel
   }
 )
