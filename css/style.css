@@ -329,7 +329,7 @@ blockquote {
   /*margin-left: 5%;*/
   /*margin-right: 30%;*/
   width: 100%;
-  min-width: 500px;
+  /*min-width: 500px;*/
 }
 
 .wmd-button-bar
@@ -341,7 +341,7 @@ blockquote {
 .wmd-input
 {
   height: 200px;
-  width: 100%;
+  /*width: 100%;*/
   /*background-color: Gainsboro;*/
   border: 1px solid DarkGray;
 }

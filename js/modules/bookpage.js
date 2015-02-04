@@ -39,8 +39,7 @@ define([
 
         var menu = Menu.add('sub', [
               {page: 'bookReviews', title: 'Reviews', path: '/books/' + bookId + '/reviews/'},
-              {page: 'bookQuestions', title: 'Questions', path: '/books/' + bookId + '/questions/'},
-              {page: 'add', title: '</a>Post<a>', path: '', full: true}
+              {page: 'bookQuestions', title: 'Questions', path: '/books/' + bookId + '/questions/'}
             ]
         )
 
@@ -57,7 +56,11 @@ define([
 
         //------------------------------------------------------------------------------
 
-        var postForm = new Post.UserPostView({id: bookId, collection: bottom.collection})
+        var postForm = new Post.UserPostView({
+          id: bookId,
+          collection: bottom.collection,
+          show: true
+        })
 
         //------------------------------------------------------------------------------
 
