@@ -1,12 +1,6 @@
-<div class='row text-center' style="margin-top: 20px;">
-  <h3>
-    <%= label_h1_a %><span class='button-read'><%= label_read %></span><%= label_h1_b %>
-    <!-- You can always find books you <span class='button-read'>read</span> here. -->
-    <small><%= label_small %></small>
-    <!-- <small> Only works when you are logged in! </small> -->
-
-    <!-- <small> Books will automatically appear here when you click <span style='color:red'>read</span> </small> -->
-    <!-- <small> But you have to be logged in so we can keep track of them for you!</small> -->
-  </h3>
-  <h4 style='margin-top: 20px'> <%= label_bottom %> <a href='/signin/'><%= label_signin %></a> <%= label_or %> <a href='/signup/'><%= label_signup %></a></h4>
+<div class='row text-center' style='margin-top: 30px'>
+  <h1><%= label_h1_a %><span class='button-read'><%= label_read %></span><%= label_h1_b %></h1>
+  <p class="text-muted lead"><%= label_small %>
+  <br>
+  <%= label_bottom %> <a href='/signin/'><%= label_signin %></a> <%= label_or %> <a href='/signup/'><%= label_signup %></a>!</p>
 </div>
