@@ -198,9 +198,15 @@ define([
         })
 
         var view = new View()
-        require(['text!/templates/nofavorites.html'], function(template) {
-          view.template = template
-          view.render()
+        require([
+          'text!/templates/nofavorites.html',
+          'i18n!modules/nls/nofavorites',
+          'i18n!modules/nls/header'
+          ], function(template, a, b) {
+            console.log(a)
+            _.extend(a, b)
+            view.template = _.template(template)(a)
+            view.render()
         })
         return view
       },
@@ -210,9 +216,14 @@ define([
         $subHeaderDom.html(currentState.subMenu.render().el)
 
         var view = new Static()
-        require(['text!/templates/norecent.html'], function(template) {
-          view.template = template
-          view.render()
+        require([
+          'text!/templates/norecent.html',
+          'i18n!modules/nls/norecent',
+          'i18n!modules/nls/header'
+          ], function(template, a, b) {
+            _.extend(a, b)
+            view.template = _.template(template)(a)
+            view.render()
         })
         return view
       },
