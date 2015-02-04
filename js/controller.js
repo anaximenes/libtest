@@ -203,7 +203,6 @@ define([
           'i18n!modules/nls/nofavorites',
           'i18n!modules/nls/header'
           ], function(template, a, b) {
-            console.log(a)
             _.extend(a, b)
             view.template = _.template(template)(a)
             view.render()

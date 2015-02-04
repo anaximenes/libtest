@@ -1,3 +1,5 @@
+var locale = localStorage.getItem('locale') || 'ru';
+
 require.config({
   deps: ['main'],
 
@@ -10,6 +12,12 @@ require.config({
     'markdown-sanitizer': '/vendor/pagedown/Markdown.Sanitizer',
     'text': '/vendor/requirejs-text/text',
     'i18n': '/vendor/requirejs-i18n/i18n'
+  },
+
+  config: {
+    i18n: {
+      locale: locale
+    }
   },
 
   shim: {
