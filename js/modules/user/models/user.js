@@ -122,6 +122,7 @@ define([
         model.save([], {
           success: function(newModel, response) {
             options.collection.add(newModel.toJSON(), {at: 0})
+            Backbone.trigger('post:show')
           },
           error: function(model, xhr, options) {
             console.log('bad luck...')

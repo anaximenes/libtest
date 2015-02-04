@@ -25,23 +25,19 @@ define([
       },
 
       addView: function(model, collection, options) {
-        this.last || (this.last = -1)
         var current = this.collection.indexOf(model)
 
         var view = new this.ItemView({
           model: model
         })
 
-        if (!this.views.length || this.views.length === current) this.views.push(view)
-        else this.views.splice(current, 0, view)
-
-        if (this.collection.indexOf(model) > this.last) {
+        if (!this.views.length || this.views.length === current) {
+          this.views.push(view)
           this.$el.append(this.views[this.views.length - 1].render().el)
         } else {
+          this.views.splice(current, 0, view)
           this.draw()
         }
-
-        this.last = current;
       },
 
       draw: function() {
