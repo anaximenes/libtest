@@ -15,7 +15,7 @@ define([
       initialize: function(bookId, bottom) {
         var model = new Books.Model({'id': bookId})
         var card = new Books.CardView({'model': model})
-        
+
         model.fetch({
           success: function() {
             Backbone.trigger('menu:extend', {
@@ -43,7 +43,7 @@ define([
               {page: 'add', title: '</a>Post<a>', path: '', full: true}
             ]
         )
-        
+
         this.listenTo(Backbone, 'menu:click', function(options) {
           if (options.menu === 'sub' && options.page === 'add') {
             Backbone.trigger('post:show')
@@ -56,13 +56,13 @@ define([
         // var add = new Static({template: $('#template-static-ask-question').html()})
 
         //------------------------------------------------------------------------------
-        
-        var postForm = new Post.UserPostView({id: bookId})
+
+        var postForm = new Post.UserPostView({id: bookId, collection: bottom.collection})
 
         //------------------------------------------------------------------------------
 
         ContainerView.prototype.initialize.call(this, [card, menu, postForm, bottom])
-        
+
       }
     })
 

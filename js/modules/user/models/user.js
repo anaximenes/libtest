@@ -120,9 +120,8 @@ define([
         console.log(model)
 
         model.save([], {
-          success: function(response) {
-            console.log(response)
-            Backbone.trigger('page:update')
+          success: function(newModel, response) {
+            options.collection.add(newModel.toJSON(), {at: 0})
           },
           error: function(model, xhr, options) {
             console.log('bad luck...')

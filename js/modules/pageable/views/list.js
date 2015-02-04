@@ -24,22 +24,41 @@ define([
         }
       },
 
-      addView: function(model) {
-        this.views.push(new this.ItemView({
+      addView: function(model, collection, options) {
+        this.last || (this.last = -1)
+        var current = this.collection.indexOf(model)
+
+        var view = new this.ItemView({
           model: model
-        }))
-        this.$el.append(this.views[this.views.length - 1].render().el)
+        })
+
+        if (!this.views.length || this.views.length === current) this.views.push(view)
+        else this.views.splice(current, 0, view)
+
+        if (this.collection.indexOf(model) > this.last) {
+          this.$el.append(this.views[this.views.length - 1].render().el)
+        } else {
+          this.draw()
+        }
+
+        this.last = current;
+      },
+
+      draw: function() {
+        this.$el.empty()
+        for (var i = 0; i < this.views.length; i++) {
+          this.$el.append(this.views[i].render().el)
+        }
       },
 
       render: function() {
-        this.$el.empty()
         this.removeChildViews()
         for (var i = 0; i < this.collection.length; i++) {
           this.views.push(new this.ItemView({
             model: this.collection.at(i)
           }))
-          this.$el.append(this.views[i].render().el)
         }
+        this.draw()
         return this
       },
 

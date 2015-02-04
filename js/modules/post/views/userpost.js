@@ -24,7 +24,12 @@ define([
         if (body === '') return
         body = this.converter.makeHtml(body)
 
-        Backbone.trigger('post:' + this.where, {title: title, body: body, id: this.id})
+        Backbone.trigger('post:' + this.where, {
+          title: title,
+          body: body,
+          id: this.id,
+          collection: this.collection
+        })
       },
 
       render: function() {
@@ -46,6 +51,7 @@ define([
       initialize: function(options) {
         options || (options = {})
         this.show = options.show
+        this.collection = options.collection
 
         this.where = ''
         var that = this
