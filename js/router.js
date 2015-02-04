@@ -10,15 +10,11 @@ define([
       listener: new Backbone.View(),
 
       requireLogin: function(action) {
-        if (this.user.isLogged()) {
-          action.success()
-        } else {
-          action.error === undefined ?
-            // this.navigate('/signin/', {trigger: true})
-            this.navigate('/signin/', {trigger: true, replace: true})
-            :
-            action.error()
-        }
+        action || (action = {})
+        var that = this
+        action.error || function() { that.navigate('/signin/', {trigger: true}) }
+
+        this.user.checkState(action)
       },
 
       ifLogged: function (callback) {
@@ -120,12 +116,12 @@ define([
       booksFavorites: function() {
         var that = this
         this.requireLogin({
-         success: function() {
-           Controller.view('booksFavorites', that.user.id)
-         },
-         // error: function() {
-         //   Controller.view('noFavorites')
-         // }
+          success: function() {
+            Controller.view('booksFavorites', that.user.id)
+          },
+          error: function() {
+            Controller.view('noFavorites')
+          }
         })
         // Controller.view('booksFavorites', this.user.id)
       },
@@ -133,12 +129,12 @@ define([
       booksRecent: function() {
         var that = this
         this.requireLogin({
-         success: function() {
-           Controller.view('booksRecent', that.user.id)
-         },
-         // error: function() {
-         //   Controller.view('noRecent')
-        //  }
+          success: function() {
+            Controller.view('booksRecent', that.user.id)
+          },
+          error: function() {
+            Controller.view('noRecent')
+          }
         })
         // Controller.view('booksRecent', this.user.id)
       },

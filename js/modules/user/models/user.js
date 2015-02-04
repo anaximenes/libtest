@@ -13,8 +13,28 @@ define([
       },
       id: undefined,
 
+      //don't trust this!
       isLogged: function() {
         return (typeof(this.id) != 'undefined')
+      },
+
+      checkState: function(action) {
+        action || (action = {})
+        var user = new AuthModel()
+
+        var that = this
+        user.fetch({
+          success: function(model, response) {
+            that.set('id', model.id)
+            that.set('nickname', model.get('nickname'))
+            that.set('checked', true)
+            if (model.id) Backbone.trigger('user:signed', model.id)
+            if (action.success) action.success()
+          }, error: function(e) {
+            that.set('checked', true)
+            if (action.error) action.error()
+          }
+        })
       },
 
       logOut: function() {
@@ -31,6 +51,19 @@ define([
         }
       },
 
+      requireLogin: function(action) {
+        if (this.get('checked')) {
+          if (typeof(this.id) != 'undefined') {
+            action.success()
+          } else {
+            action.error()
+          }
+        } else {
+          checkState(action)
+        }
+      },
+
+
       signin: function(data) {
         var that = this
         var model = new AuthModel({
@@ -40,10 +73,10 @@ define([
         model.save([], {
           success: function(model, response) {
             console.log('signed ', model.id)
-            Backbone.trigger('user:signed', model.id)
             that.set('id', model.id)
             that.set('nickname', model.get('nickname'))
-            Backbone.history.history.back()
+            Backbone.trigger('user:signed', model.id)
+            // Backbone.history.history.back()
           },
           error: function(model, response, xhr) {
             console.log('here goes error')
@@ -65,10 +98,9 @@ define([
         model.save([], {
           success: function(model, response) {
             console.log('signed up ', model.id)
-            Backbone.trigger('user:signed', model.id)
             that.set('id', model.id)
             that.set('nickname', model.get('nickname'))
-            Backbone.history.history.back()
+            Backbone.trigger('user:signed', model.id)
           },
           error: function(model, response, xhr) {
             console.log('here goes error')
@@ -141,17 +173,9 @@ define([
       },
 
       initialize: function() {
-        var that = this
-        var user = new AuthModel()
-        user.fetch({
-          success: function(model, response) {
-            that.set('id', model.id)
-            that.set('nickname', model.get('nickname'))
-            if (model.id) Backbone.trigger('user:signed', model.id)
-          }, error: function(e) {
-            // console.log(e)
-          }
-        })
+        this.set('checked', false)
+
+        this.checkState()
 
         this.listenTo(Backbone, 'book:toggleFavorite', this.toggleFavorite)
         this.listenTo(Backbone, 'post:question', this.postQuestion)

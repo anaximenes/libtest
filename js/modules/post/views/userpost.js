@@ -22,33 +22,40 @@ define([
       close: function() {
         this.erase()
         this.$('.post-input').slideUp('fast', 'swing')
-      },
+        this.validate()
+     },
 
       erase: function() {
         this.$el.find('.post-title').val('')
         this.$el.find('#wmd-input').val('')
       },
 
-      post: function() {
-        //add error messages before return
-        var title = this.$el.find('.post-title').val().trim()
+      validate: function(title, body) {
+        var ok = true
         if (title === '') {
           this.$('.form-title').addClass('has-error')
           this.$('.error-title').show()
-          return
+          ok = false
         } else {
           this.$('.form-title').removeClass('has-error')
           this.$('.error-title').hide()
         }
-        var body = this.$el.find('#wmd-input').val().trim()
         if (body === '') {
           this.$('.form-body').addClass('has-error')
           this.$('.error-body').show()
-          return
+          ok = false
         } else {
           this.$('.form-body').RemoveClass('has-error')
           this.$('.error-body').hide()
         }
+        return ok
+      },
+
+      post: function() {
+        var title = this.$el.find('.post-title').val().trim()
+        var body = this.$el.find('#wmd-input').val().trim()
+        if (!this.validate(title, body)) return
+
         body = this.converter.makeHtml(body)
 
         Backbone.trigger('post:' + this.where, {

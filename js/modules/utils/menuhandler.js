@@ -9,12 +9,16 @@ define([
       pageMap: {
         'books':            {'header': 'books', 'books': 'all'},
         'booksRecent':      {'header': 'books', 'books': 'recent'},
+        'noRecent':         {'header': 'books', 'books': 'recent'},
         'booksFavorites':   {'header': 'books', 'books': 'favorites'},
+        'noFavorites':      {'header': 'books', 'books': 'favorites'},
         'booksSearch':      {'header': 'books', 'books': 'add'},
+
         'book':             {'header': 'add', 'book': 'description'},
         'bookEdit':         {'header': 'add', 'book': 'edit'},
         'bookReviews':      {'header': 'add', 'book': 'description', 'sub': 'bookReviews'},
         'bookQuestions':    {'header': 'add', 'book': 'description', 'sub': 'bookQuestions'},
+
         'questions':        {'header': 'questions'},
         'questionsSearch':  {'header': 'questions', 'questions': 'search'},
         'question':         {'header': 'question', 'sub': 'questionAnswers'},

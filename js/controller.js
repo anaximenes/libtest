@@ -182,6 +182,41 @@ define([
         return view
       },
 
+      noFavorites: function() {
+        currentState.subMenu = Menu.get('books')
+        $subHeaderDom.html(currentState.subMenu.render().el)
+
+        var View = Static.extend({
+          events: {
+            'click .fa': 'click'
+          },
+
+          click: function() {
+            this.$('.fa').toggleClass('fa-bookmark-o')
+            this.$('.fa').toggleClass('fa-bookmark')
+          }
+        })
+
+        var view = new View()
+        require(['text!/templates/nofavorites.html'], function(template) {
+          view.template = template
+          view.render()
+        })
+        return view
+      },
+
+      noRecent: function() {
+        currentState.subMenu = Menu.get('books')
+        $subHeaderDom.html(currentState.subMenu.render().el)
+
+        var view = new Static()
+        require(['text!/templates/norecent.html'], function(template) {
+          view.template = template
+          view.render()
+        })
+        return view
+      },
+
       test: function(status) {
         var view = new Static()
         return view

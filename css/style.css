@@ -188,6 +188,10 @@ a.header-menu-item.active {
   text-decoration: none;
 }
 
+.button-read {
+  color: darkred;
+}
+
 .menu-item.button-read {
   color: darkred;
 }
