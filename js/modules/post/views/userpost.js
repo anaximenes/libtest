@@ -31,6 +31,7 @@ define([
       },
 
       validate: function(title, body) {
+        console.log('validate')
         var ok = true
         if (title === '') {
           this.$('.form-title').addClass('has-error')
@@ -45,9 +46,10 @@ define([
           this.$('.error-body').show()
           ok = false
         } else {
-          this.$('.form-body').RemoveClass('has-error')
+          this.$('.form-body').removeClass('has-error')
           this.$('.error-body').hide()
         }
+        console.log(ok)
         return ok
       },
 
