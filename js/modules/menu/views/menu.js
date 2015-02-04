@@ -7,7 +7,7 @@ define([
   function($, _, Backbone, ItemView) {
     var MenuView = Backbone.View.extend({
       tagName: 'ul',
-      className: 'container menu',
+      className: 'list-inline',
 
       render: function() {
         this.$el.empty()
