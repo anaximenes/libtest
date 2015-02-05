@@ -156,12 +156,12 @@ define([
           if (Backbone.history.fragment.slice(0, 6) === 'signin') {
             Backbone.history.history.back()
           }
-          Backbone.trigger('menu:extend', {
-            menu: 'header',
-            page: 'user',
-            title: that.user.get('nickname'),
-            class: 'pull-right'
-          })
+          // Backbone.trigger('menu:extend', {
+          //   menu: 'header',
+          //   page: 'user',
+          //   title: that.user.get('nickname'),
+          //   class: 'pull-right'
+          // })
         }
         var signOut = function() {
           Backbone.history.history.back()
