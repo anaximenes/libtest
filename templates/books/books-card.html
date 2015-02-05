@@ -1,38 +1,33 @@
 <!-- Book card -->
 
 <div class='row book-entry'>
-  <a href='//beta.reslib.org/book/<%= url %>/<%= id %>/read/1'>
-    <img class='books-card-image' style='margin-bottom: 20px;' src="http://reslib.org/pict/<%= picture %>" alt="">
-  </a>
-  <div style='display: inline;'>
-    <div class="">
-      <h4> <%= title %> <small>(<%=year%>)</small>
+  <div class='hidden-xs col-sm-4'>
+    <div style=''>
+      <a>
+        <img class='img-rounded' style='width: 100%;' src="http://reslib.org/pict/<%= picture %>" alt="">
+      </a>
+    </div>
+  </div>
+  <div class='col-xs-12 col-sm-8'>
+    <h4> <%= title %> <small>(<%=year%>)</small>
       <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-1x"></i>
-      </h4>
-    </div>
-    <div class=''>
-      <span style='color: grey; margin-right: 4px'> <%= label_author %>: </span>
-      <!-- <span style='color: grey; margin-right: 4px'> Author(s): </span>  -->
-      <% for( var i = 0; i < authors.split().length; ++i) { %>
-
-        <%= authors.split()[i] %>
-
-      <% } %>
-    </div>
+    </h4>
+    <span class='book-card-field'> <%= label_author %>: </span>
+    <% for( var i = 0; i < authors.split().length; ++i) { %>
+      <%= authors.split()[i] %>
+    <% } %>
     <div>
-      <span style='color: grey; margin-right: 4px'> <%= label_publisher %>: </span>
+      <span class='book-card-field'> <%= label_publisher %>: </span>
       <%=publisher%>
     </div>
     <div>
-      <span style='color: grey; margin-right: 4px'> ISBN: </span>
+      <span class='book-card-field'> ISBN: </span>
       <%= isbn10 || isbn13 %>
     </div>
-    <!-- <div> <p> Publisher: <%= publisher %> </p> </div> -->
+
+    <% if (description) {%>
+      <div class='well'><%= description %></div>
+    <% } %>
+
   </div>
 </div>
-
-<% if (description) {%>
-  <div class='row'>
-    <div class='well'><%= description %></div>
-  </div>
-<% } %>

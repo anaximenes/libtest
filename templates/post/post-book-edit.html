@@ -1,17 +1,16 @@
 <!-- Book edit post form -->
 
 <div class='row'>
-  <div style='display: inline-block; margin-left: +15px; width:100%;'>
-    <div class='row'>
-      <div class='wmd-panel wmd-preview well' id='wmd-preview'></div>
+  <div class='wmd-panel wmd-preview well' id='wmd-preview'></div>
 
+  <div class='form'>
+    <div class="form-group form-body">
       <div class='wmd-panel'>
         <div id='wmd-button-bar'></div>
-        <textarea class='wmd-input' id='wmd-input'><%= body %></textarea>
+        <textarea type='text' class='wmd-input form-control' style='min-height: 300px' id='wmd-input'><%= body %></textarea>
       </div>
-
-      <a id='post-button' style='font-size: larger'> save </a>
-      <a id='post-button' style='font-size: larger'> cancel </a>
     </div>
+    <a id='post-button' style='font-size: larger'> save </a>
+    <a id='post-button' style='font-size: larger'> cancel </a>
   </div>
 </div>

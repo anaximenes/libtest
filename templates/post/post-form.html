@@ -1,9 +1,9 @@
 <!-- Review post form -->
 
-<div class='review-container'>
+<div class='row review-container'>
   <div class='row'>
     <div class='col-xs-2'>
-      <img class='avatar-image' src="/img/avatar.png" alt="">
+      <img class='img-responsive avatar-image' src="/img/avatar.png" alt="">
     </div>
     <div class='col-xs-10'>
       <div class='row'>
@@ -13,7 +13,7 @@
               <input type="text" class="form-control post-title" id="inputError1" placeholder='<%= label_invitation_title %>'>
             </div>
             <div class="col-xs-3">
-              <label class="control-label error-title" for="inputError1" style='font-size: larger; display: none;'>Please add title</label>
+              <label class="control-label error-title" for="inputError1" style='font-size: larger; display: none;'>Title is required</label>
             </div>
           </div>
         </div>
@@ -24,12 +24,12 @@
             <div class="form-group form-body">
               <div class='col-xs-9'>
                 <div class='wmd-panel'>
-                  <div id='wmd-button-bar'></div>
-                  <textarea type='text' class='wmd-input form-control' style='min-height: 200px' id='wmd-input'> </textarea>
+                  <div id='wmd-button-bar' style='display: none;'></div>
+                  <textarea type='text' class='wmd-input form-control' style='min-height: 200px' id='wmd-input'></textarea>
                 </div>
               </div>
               <div class="col-xs-3">
-                <label class="control-label error-body" for="wmd-input" style='font-size: larger; display: none; margin-top:40px '>Please add something</label>
+                <label class="control-label error-body" for="wmd-input" style='font-size: larger; display: none; margin-top:40px '>Tell us something</label>
               </div>
             </div>
           </div>

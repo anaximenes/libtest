@@ -1,45 +1,67 @@
 <!-- Book card for editing template -->
 
-<div class='container book-entry' id='<%=id%>'>
-  <div class='row'>
-      <img class='books-card-image' style='margin-bottom: 20px;' src="http://reslib.org/pict/<%= picture %>" alt="">
-      <div style='display: inline;'>
-        <div>
 
-          <form class="form-inline" role="">
-            <span id='book-edit-title-a' style='margin-left: 10px'>
-                <h4><a> <%= title %> </a></h4>
-              </span>
-            <span id='book-edit-title-input' style='display: none'>
-              <div class="form-group">
-                <input type="text" class="form-control input-bg" placeholder="<%= title %>" style='width:500px'>
-              </div>
-              <a type='submit' style='margin-left: 10px'>save</a>
-              <a id='book-edit-title-cancel' style='margin-left: 7px'>cancel</a>
-            </span>
-          </form>
-
-          <form class="form-inline" role="">
-            <big> Author(s): </big>
-            <span id='book-edit-authors-a' style='margin-left: 10px'>
-                <a> <%= authors %> </a>
-              </span>
-            <span id='book-edit-authors-input' style='display: none'>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="<%= authors %>" style='width:300px'>
-              </div>
-              <a type='submit' style='margin-left: 10px'>save</a>
-              <a id='book-edit-authors-cancel' style='margin-left: 7px'>cancel</a>
-            </span>
-          </form>
-
+<div class='row'>
+  <div class='hidden-xs col-sm-4'>
+    <div style=''>
+      <a>
+        <img class='img-rounded' style='width: 100%;' src="http://reslib.org/pict/<%= picture %>" alt="">
+      </a>
+    </div>
+  </div>
+  <div class='col-sm-8'>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="input-title" class="col-sm-2 control-label">Title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="input-title" placeholder="<%= title %>">
         </div>
       </div>
+      <div class="form-group">
+        <label for="input-authors" class="col-sm-2 control-label">Authors</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="input-authors" placeholder="<%= authors %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="input-publisher" class="col-sm-2 control-label">Publisher</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="input-publisher" placeholder="<%= publisher %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="input-year" class="col-sm-2 control-label">Year</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="input-year" placeholder="<%= year %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="input-isbn-10" class="col-sm-2 control-label">isbn10</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="input-isbn-10" placeholder="<%= isbn10 %>">
+        </div>
+        <label for="input-isbn-13" class="col-sm-2 control-label">isbn13</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="input-isbn-13" placeholder="<%= isbn13 %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="input-tags" class="col-sm-2 control-label">Tags</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="input-tags" placeholder="">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">save</button>
+          <button type="" class="btn btn-default">discard</button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
 
-<div class='container'>
-  <div class='row'>
-    <h4> Description: </h4>
-  </div>
+
+<div class='row' style='margin-top: 20px'>
+  <h4> Description: </h4>
 </div>

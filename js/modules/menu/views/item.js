@@ -7,7 +7,6 @@ define([
   ],
   function($, _, Backbone, MenuItem, Template) {
     var MenuItemView = Backbone.View.extend({
-      tagName: 'li',
       className: 'menu-item-li',
       menu: '',
 

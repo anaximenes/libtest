@@ -1,13 +1,15 @@
 <!-- Reviews list entry -->
 
-<div class='review-container'>
+<div class='row review-container'>
   <div class='row'>
-      <img class='avatar-image' src="/img/avatar.png" alt="">
-      <div style='display: inline;'>
-        <div class='title'><h4> <%= title %> </h4></div>
-        <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
+    <div class='col-xs-2'>
+      <div style=''>
+        <img class='img-responsive avatar-image' src="/img/avatar.png" alt="">
       </div>
-    <div class='col-xs-11'>
+    </div>
+    <div class='col-xs-10'>
+      <div class='title'><h4> <%= title %> </h4></div>
+      <div class='content'> <h5> <p> <%= body %> </p> </h5> </div>
     </div>
   </div>
   <div class='row'>
