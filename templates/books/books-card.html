@@ -1,33 +1,45 @@
 <!-- Book card -->
 
-<div class='row book-entry'>
+<div class='row book-entry' itemscope itemtype='http://schema.org/Book'>
   <div class='hidden-xs col-sm-4'>
     <div style=''>
       <a>
-        <img class='img-rounded' style='width: 100%;' src="http://reslib.org/pict/<%= picture %>" alt="">
+        <img class='img-rounded' style='width: 100%;' src="http://reslib.org/pict/<%= picture %>" alt="" itemprop='image'>
       </a>
     </div>
   </div>
   <div class='col-xs-12 col-sm-8'>
-    <h4> <%= title %> <small>(<%=year%>)</small>
+    <h4>
+      <span itemprop='name'><%= title %></span>
+      <small>
+        (<span itemprop='datePublished'><%=year%></span>)
+      </small>
       <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-1x"></i>
     </h4>
     <span class='book-card-field'> <%= label_author %>: </span>
-    <% for( var i = 0; i < authors.split().length; ++i) { %>
-      <%= authors.split()[i] %>
-    <% } %>
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <% for( var i = 0; i < authors.split().length; ++i) { %>
+          <span itemprop="name"><%= authors.split()[i].trim() %></span>
+      <% } %>
+        </span>
     <div>
       <span class='book-card-field'> <%= label_publisher %>: </span>
-      <%=publisher%>
+      <span itemprop='publisher'><%=publisher%></span>
     </div>
     <div>
       <span class='book-card-field'> ISBN: </span>
-      <%= isbn10 || isbn13 %>
+      <span itemprop='isbn'><%= isbn10 || isbn13 %></span>
+    </div>
+    <div>
+      <span class='book-card-field'> <%= label_pages %>: </span>
+      <span itemprop='numberOfPages'><%= pages %></span>
     </div>
 
     <% if (description) {%>
-      <div class='well'><%= description %></div>
+      <div class='well' itemprop='description'><%= description %></div>
     <% } %>
+
+    <div itemprop='url' style='display: none;'>http://reslib.org/books/<%= id %>/</div>
 
   </div>
 </div>

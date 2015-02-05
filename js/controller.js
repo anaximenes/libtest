@@ -124,7 +124,16 @@ define([
 
         var model = new BookModule.Model({'id': book.id})
         var view = new BookModule.EditView({'model': model})
-        model.fetch()
+        model.fetch({
+          success: function(model) {
+            Backbone.trigger('menu:extend', {
+                menu: 'header',
+                page: 'add',
+                path: '/books/' + book.id + '/',
+                title: '"' + model.get('title') + '"'
+            })
+          }
+        })
         return view
       },
 
