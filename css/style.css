@@ -14,6 +14,10 @@ a:hover {
   cursor: pointer;
 }
 
+div.row img {
+  width: 100%;
+}
+
 .menu {
     text-align: justify;
     padding-bottom: 0.2em;
@@ -308,7 +312,7 @@ blockquote {
 .wmd-button-bar
 {
   width: 100%;
-  background-color: Silver;
+  /*background-color: Silver;*/
 }
 
 .wmd-input

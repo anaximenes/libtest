@@ -73,14 +73,18 @@ define([
         else this.$el.hide()
 
         this.$el.html(_.template(Template)(i18n))
+        this.run()
 
         return this
       },
 
       run: function() {
+        var $button = this.$('#wmd-button-bar')
+        var $preview = this.$('#wmd-preview')
+        var $input = this.$('#wmd-input')
         var converter = new Markdown.getSanitizingConverter()
         this.converter = converter
-        var editor = new Markdown.Editor(converter)
+        var editor = new Markdown.Editor(converter, {button: $button, preview: $preview, input: $input})
         editor.run()
       },
 
@@ -99,8 +103,6 @@ define([
           if (options.page === 'bookQuestions') {
             that.where = 'question'
           }
-
-          that.run()
         })
 
         this.listenTo(Backbone, 'post:show', function() {

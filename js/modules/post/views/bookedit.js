@@ -3,23 +3,23 @@ define([
     'underscore',
     'backbone',
     'text!/templates/post/post-book-edit.html',
+    'i18n!modules/nls/post',
     'markdown'
   ],
-  function($, _, Backbone, Template, Markdown) {
+  function($, _, Backbone, Template, i18n, Markdown) {
     var PostView = Backbone.View.extend({
       events: {
-        'click #post-button': 'post'
+        'click .button-save': 'save',
+        'click .button-cancel': 'cancel'
       },
 
-      post: function() {
-        //add error messages before return
-        var title = this.$el.find('.post-title').val().trim()
-        if (title === '') return
-        var body = this.$el.find('#wmd-input').val().trim()
+      save: function(event) {
+        var body = this.$('.wmd-input').val().trim()
         if (body === '') return
-        body = this.converter.makeHtml(body)
-
-        Backbone.trigger('post:' + this.where, {title: title, body: body, id: this.id})
+        this.body = this.converter.makeHtml(body)
+        // Backbone.trigger('post:' + this.where, { body: body, id: this.id})
+        Backbone.trigger('book:edit:save', { description: this.body })
+        // Backbone.trigger('postform:save', { body: this.body })
       },
 
       render: function() {
@@ -27,14 +27,18 @@ define([
         else this.$el.hide()
 
         this.$el.html(_.template(Template)({body: this.body}))
-
+        this.run()
         return this
       },
 
       run: function() {
+        var $button = this.$('.wmd-button-bar')
+        var $preview = this.$('.wmd-preview')
+        var $input = this.$('.wmd-input')
+
         var converter = new Markdown.getSanitizingConverter()
         this.converter = converter
-        var editor = new Markdown.Editor(converter)
+        var editor = new Markdown.Editor(converter, {button: $button, preview: $preview, input: $input})
         editor.run()
       },
 
@@ -42,15 +46,7 @@ define([
         options || (options = {})
         this.show = options.show
         this.body = options.body || ''
-
         this.where = ''
-        var that = this
-
-        this.listenTo(Backbone, 'page:rendered', this.run)
-
-        this.listenTo(Backbone, 'post:show', function() {
-          this.$el.toggle()
-        })
       }
     })
 

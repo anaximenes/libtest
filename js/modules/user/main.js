@@ -6,9 +6,10 @@ define([
     'modules/user/views/signin',
     'modules/user/views/signup',
     'modules/user/models/user',
-    'modules/user/views/headerview'
+    'modules/user/views/headerview',
+    'modules/user/models/bookedit'
   ],
-  function($, _, Backbone, UserModel, SignInView, SignUpView, User, HeaderView) {
+  function($, _, Backbone, UserModel, SignInView, SignUpView, User, HeaderView, BookEdit) {
     return {
       AuthModel: UserModel,
       signinView: SignInView,
@@ -17,6 +18,7 @@ define([
 
       init: function(user) {
         new HeaderView({model: user})
+        new BookEdit()
       }
     }
   }

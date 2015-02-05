@@ -172,6 +172,29 @@ define([
         this.post('userReviews', options)
       },
 
+      // bookEdit: function(where, options) {
+      //   var model = new Backbone.Model({
+      //     // usersId: this.id,
+      //     booksId: options.id
+      //     title: options.title,
+      //     body: options.body
+      //   })
+      //   model.url = Url(where, this.id)
+      //   console.log(model)
+
+      //   model.save([], {
+      //     success: function(newModel, response) {
+      //       options.collection.add(newModel.toJSON(), {at: 0})
+      //       Backbone.trigger('post:accepted')
+      //     },
+      //     error: function(model, xhr, options) {
+      //       console.log('bad luck...')
+      //       console.log(xhr)
+      //       console.log(options)
+      //     }
+      //   })
+      // },
+
       initialize: function() {
         this.set('checked', false)
 

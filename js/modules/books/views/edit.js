@@ -9,36 +9,52 @@ define([
   function($, _, Backbone, ContainerView, Template, Post) {
     var EditView = Backbone.View.extend({
       events: {
-        'click #book-edit-title-a': 'clickTitle',
-        'click #book-edit-title-cancel': 'clickTitleCancel',
-        'click #book-edit-authors-a': 'clickAuthors',
-        'click #book-edit-authors-cancel': 'clickAuthorsCancel',
+        'submit': 'save',
+        'click .button-save': 'save',
+        'click .form-control': 'click'
       },
 
-      clickTitle: function() {
-        console.log('yo')
-        this.$('#book-edit-title-input').show()
-        this.$('#book-edit-title-a').hide()
+      init: function() {
+        var els = this.$('.form-control')
+        console.log(els[i])
+        for (var i = 0; i < els.length; ++i) {
+          $(els[i]).val($(els[i]).placeholder)
+        }
       },
 
-      clickTitleCancel: function(e) {
-        e.preventDefault()
-        console.log('yo')
-        this.$('#book-edit-title-input').hide()
-        this.$('#book-edit-title-a').show()
+      click: function(event) {
+        element = $(event.target)
+        if (element.val() === '') {
+          element.val(element[0].placeholder)
+        }
       },
 
-      clickAuthors: function() {
-        console.log('yo')
-        this.$('#book-edit-authors-input').show()
-        this.$('#book-edit-authors-a').hide()
-      },
+      save: function(event) {
+        event.preventDefault()
+        var attrs = {}
+        var title = this.$('.input-title').val().trim()
+        // if (title) attrs.title = title
+        var publisher = this.$('.input-publisher').val().trim()
+        // if (publisher) attrs.publisher = publisher
+        var year = this.$('.input-year').val().trim()
+        // if (year) attrs.year = year
+        var isbn10 = this.$('.input-isbn-10').val().trim()
+        // if (isbn10) attrs.isbn10 = isbn10
+        var isbn13 = this.$('.input-isbn-13').val().trim()
+        // if (isbn13) attrs.isbn13 = isbn13
 
-      clickAuthorsCancel: function(e) {
-        e.preventDefault()
-        console.log('yo')
-        this.$('#book-edit-authors-input').hide()
-        this.$('#book-edit-authors-a').show()
+        attrs.title = title
+        attrs.publisher = publisher
+        attrs.year = year
+        attrs.isbn10 = isbn10
+        attrs.isbn13 = isbn13
+
+        console.log(attrs)
+        // return
+
+        if (!$.isEmptyObject(attrs)) {
+          Backbone.trigger('book:edit:save', attrs)
+        }
       },
 
       render: function() {
@@ -46,6 +62,7 @@ define([
         if (this.model.complete()) {
           this.$el.html(_.template(Template)(this.model.present()))
         }
+        // this.init()
         return this
       },
 

@@ -10,53 +10,52 @@
 </head>
 <body>
 
-  <!-- Sign in/out on top of page -->
-  <div id='signInHeader' class='container' style='margin-top: 15px'>
-    <div id="footerleft"><p></p></div>
-    <div id="footercenter"><img src='/img/logo.png' alt="Logo"></div>
-    <div id="footerright"><p>
-      <a class='menu-signin-item' id='page-nickname' href="/user/"> </a>
-      <a class='menu-signin-item' id='page-signup' href="/signup/">sign up</a>
-      <a class='menu-signin-item' id='page-signin' href="/signin/">sign in</a>
-      <a class='menu-signin-item' id='page-signout' href="/signout/">sign out</a>
-    </p></div>
-  </div>
-
-
-  <!-- Search bar-->
-  <div id='search-bar' class="container" style='margin-top: 10px; margin-bottom: 15px'>
-    <div style='text-align: center;'>
-      <div style='display: inline-block; vertical-align: top;'>
-        <form>
-          <input id='search-query' type="text" class="form-control" style='width: 350px;' placeholder="Search">
-        </form>
-      </div>
-      <div style='display: inline-block; vertical-align: top;'>
-        <button id='search-button' type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-      </div>
-    </div>
-  </div>
-
-
-
   <div class='container'>
     <div class='col-xs-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1'>
 
-  <!-- Main menu placed here: -->
-  <div id='header'></div>
-    <!-- <hr style='margin-top: -15px'> -->
+      <!-- Sign in/out on top of page -->
+      <div id='signInHeader' style='margin-top: 15px'>
+        <div class='row'>
+          <div class='col-xs-4 col-xs-offset-4'>
+            <img class='img-responsive' style='margin: auto; width: 160px' src='/img/logo.png' alt="Logo">
+          </div>
+          <div class='col-xs-4 text-right'>
+            <a class='menu-signin-item' id='page-nickname' href="/user/"> </a>
+            <a class='menu-signin-item' id='page-signup' href="/signup/">sign up</a>
+            <a class='menu-signin-item' id='page-signin' href="/signin/">sign in</a>
+            <a class='menu-signin-item' id='page-signout' href="/signout/">sign out</a>
+          </div>
+        </div>
+      </div>
 
-  <!-- Sub menu here: -->
-  <div id='sub-header'></div>
+      <!-- Search bar-->
+      <div id='search-bar' style='margin-top: 10px; margin-bottom: 15px'>
+        <div style='text-align: center;'>
+          <div style='display: inline-block; vertical-align: top;'>
+            <form>
+              <input id='search-query' type="text" class="form-control" style='width: 350px;' placeholder="Search">
+            </form>
+          </div>
+          <div style='display: inline-block; vertical-align: top;'>
+            <button id='search-button' type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+          </div>
+        </div>
+      </div>
 
-  <!-- Page is rendered inside this div -->
-  <div id='page' style='padding-bottom: 400px'>
+      <!-- Main menu placed here: -->
+      <div id='header'></div>
+        <!-- <hr style='margin-top: -15px'> -->
+
+      <!-- Sub menu here: -->
+      <div id='sub-header'></div>
+
+      <!-- Page is rendered inside this div -->
+      <div id='page' style='padding-bottom: 400px'>
 
       </div>
 
     </div>
   </div>
-
 
 </body>
 </html>

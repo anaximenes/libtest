@@ -3,12 +3,12 @@ define([
     'underscore',
     'backbone',
     'modules/post/views/userpost',
-    'modules/post/views/plainpost'
+    'modules/post/views/bookedit'
   ],
-  function($, _, Backbone, UserPost, PlainPost) {
+  function($, _, Backbone, UserPost, BookEdit) {
     return {
       'UserPostView':  UserPost,
-      'PlainView':     PlainPost,
+      'PlainView':     BookEdit,
     }
   }
 )
