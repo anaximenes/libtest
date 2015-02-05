@@ -10,7 +10,7 @@ define([
     var EditView = Backbone.View.extend({
       events: {
         'submit': 'save',
-        'click .button-save': 'save',
+        'click .button-save': 'saveButton',
         'click .button-cancel': 'cancel',
         'click .form-control': 'click'
       },
@@ -22,7 +22,18 @@ define([
         }
       },
 
-      save: function(event) {
+      save: function(attrs) {
+        if (!$.isEmptyObject(attrs)) {
+          this.model.save(attrs, {
+            success: function() {
+            },
+            error: function() {
+            }
+          })
+        }
+      },
+
+      saveButton: function(event) {
         event.preventDefault()
         var attrs = {}
         attrs.title = this.$('.input-title').val().trim()
@@ -31,15 +42,7 @@ define([
         attrs.isbn10 = this.$('.input-isbn-10').val().trim()
         attrs.isbn13 = this.$('.input-isbn-13').val().trim()
 
-        if (!$.isEmptyObject(attrs)) {
-          this.model.save(attrs, {
-            success: function() {
-
-            },
-            error: function() {
-            }
-          })
-        }
+        this.save(attrs)
       },
 
       cancel: function(event) {
@@ -57,6 +60,7 @@ define([
 
       initialize: function() {
         this.listenTo(this.model, 'change', this.render)
+        this.listenTo(Backbone, 'book:edit:save', this.save)
       }
     })
 
@@ -70,7 +74,6 @@ define([
           post.body = options.model.get('description')
           post.render()
         })
-
         ContainerView.prototype.initialize.call(this, [edit, post])
       }
     })
