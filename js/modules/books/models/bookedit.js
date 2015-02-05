@@ -4,7 +4,6 @@ define([
     'backbone',
     'modules/utils/url',
     'modules/books/models/book',
-    // 'modules/user/models/auth',
   ],
   function($, _, Backbone, Url, BookModel) {
     var BookEdit = Backbone.Model.extend({
@@ -18,14 +17,12 @@ define([
       },
 
       save: function(options) {
-        // options || (options = {})
         var model = new BookModel({
           url: function() {
             return Url('book', this.get('bookId'))
           },
           id: this.get('bookId')
         })
-        model.set('description', options.description)
         model.fetch({
           success: function(model) {
             model.save(options)
