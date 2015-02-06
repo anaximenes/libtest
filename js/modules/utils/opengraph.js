@@ -1,10 +1,9 @@
 define([
   'jquery',
   'underscore',
-  'backbone',
-  'text!/templates/opengraph.html'
+  'backbone'
   ],
-  function($, _, Backbone, Template) {
+  function($, _, Backbone) {
     ogMap = function(model) {
       model || (model = new Backbone.Model)
       return {
