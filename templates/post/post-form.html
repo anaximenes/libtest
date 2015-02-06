@@ -40,6 +40,14 @@
           </div>
         </div>
         <div style='margin-bottom: 0.5em'>
+          <div class='row save-error' style='display: none;'>
+            <div class='col-xs-9'>
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> We couldn't send your message, please try again later.
+              </div>
+            </div>
+          </div>
           <a id='post-button' style='font-size: larger'><%= label_send %></a>
           <a class='button-cancel' style='font-size: larger; margin-left: 5px'><%= label_cancel %></a>
         </div>

@@ -2,7 +2,8 @@ require([
     'backbone',
     'app',
     'modules/utils/scrolling',
-    'text'
+    'text',
+    'bootstrap'
   ], function(Backbone, App, Scrolling) {
     (function() {
 

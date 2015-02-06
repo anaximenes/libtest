@@ -30,6 +30,7 @@ define([
         $headerDom.html(Menu.get('header').render().el)
         new Utils.MenuHandler()
         new Utils.PageTitleHandler()
+        new Utils.OpenGraphHandler()
       },
 
       view: function(page, params) {

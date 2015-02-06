@@ -21,14 +21,15 @@ define([
 
       close: function() {
         this.erase()
+        this.$('.save-error').hide()
         this.$('.post-input').slideUp('fast', 'swing')
         this.$('.user-avatar').slideUp('fast', 'swing')
         this.validate()
      },
 
       erase: function() {
-        this.$el.find('.post-title').val('')
-        this.$el.find('#wmd-input').val('')
+        this.$('.post-title').val('')
+        this.$('#wmd-input').val('')
       },
 
       validate: function(title, body) {
@@ -109,8 +110,12 @@ define([
         this.listenTo(Backbone, 'post:show', function() {
           this.$el.toggle()
         })
-        this.listenTo(Backbone, 'post:accepted', function() {
+        this.listenTo(Backbone, 'post:save:ok', function() {
+          that.$('.save-error').show()
           this.close()
+        })
+        this.listenTo(Backbone, 'post:save:error', function() {
+          that.$('.save-error').show()
         })
       }
     })

@@ -28,6 +28,7 @@
     "bootstrap": "~3.3.2",
     "requirejs-i18n": "~2.0.4",
     "font-awesome": "~4.3.0",
-    "pagedown": "anaximenes/pagedown"
+    "pagedown": "anaximenes/pagedown",
+    "jquery": "~2.1.3"
   }
 }
