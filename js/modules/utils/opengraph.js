@@ -5,7 +5,7 @@ define([
   ],
   function($, _, Backbone) {
     ogMap = function(model) {
-      model || (model = new Backbone.Model)
+      model || (model = new Backbone.Model())
       return {
         'type':         'books.book',
         'url':          '//reslib.org/books/' + model.id + '/',
