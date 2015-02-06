@@ -176,6 +176,7 @@ a.header-menu-item.active {
 }
 
 .menu-item.button-read {
+  font-size: 1.3em;
   color: darkred;
 }
 
@@ -273,8 +274,6 @@ a.header-menu-item.active {
 
 .post-title {
   font-size: larger;
-  height: 2em;
-  width: 100%;
 }
 
 #post-show-button {

@@ -12,7 +12,7 @@ define([
       requireLogin: function(action) {
         action || (action = {})
         var that = this
-        action.error || function() { that.navigate('/signin/', {trigger: true}) }
+        action.error || (action.error = function() { that.navigate('/signin/', {trigger: true}) })
 
         this.user.checkState(action)
       },
@@ -39,35 +39,65 @@ define([
         'signout(/)':                  'signout',
         'user(/)':                     'userPage',
         'test(/)':                     'test',
-        '*path':                       'root'
+        '(/)':                         'root'
       },
 
       root: function() {
-        this.navigate('/books', true)
+        this.navigate('/books/', true)
       },
 
       books: function(page) {
         Controller.view('books', page)
+        var that = this
       },
 
       booksSearch: function(page) {
         Controller.view('booksSearch', page)
       },
 
+      bookInit: function(id) {
+        var user = this.user
+        this.ifLogged(function() {
+          if (user.get('state') === -1) {
+            Backbone.trigger('menu:extend', {
+              menu: 'book', page: 'edit', title: 'edit', path: '/books/' + id + '/edit/'
+            })
+          }
+        })
+      },
+
       book: function(id) {
+        this.bookInit(id)
         Controller.view('bookReviews', {'id': id})
       },
 
       bookQuestions: function(id) {
+        this.bookInit(id)
         Controller.view('bookQuestions', {'id': id})
       },
 
       bookReviews: function(id) {
+        this.bookInit(id)
         Controller.view('bookReviews', {'id': id})
       },
 
       bookEdit: function(id) {
-        Controller.view('bookEdit', {'id': id})
+        var that = this
+        var user = this.user
+        this.requireLogin({
+          success: function() {
+            if (user.get('state') === -1) {
+              Controller.view('bookEdit', {'id': id})
+              Backbone.trigger('menu:extend', {
+                menu: 'book', page: 'edit', title: 'edit', path: '/books/' + id + '/edit/'
+              })
+            } else {
+              // #bad request
+              that.navigate('/', true)
+            }
+          }
+        })
+        // Controller.view('bookEdit', {'id': id})
       },
 
       questions: function(page) {
@@ -123,7 +153,6 @@ define([
             Controller.view('noFavorites')
           }
         })
-        // Controller.view('booksFavorites', this.user.id)
       },
 
       booksRecent: function() {
@@ -136,7 +165,6 @@ define([
             Controller.view('noRecent')
           }
         })
-        // Controller.view('booksRecent', this.user.id)
       },
 
       questionsFavorites: function() {

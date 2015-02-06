@@ -13,9 +13,9 @@ define([
       },
       id: undefined,
 
-      //don't trust this!
       isLogged: function() {
-        return (typeof(this.id) != 'undefined')
+        console.log(this.get('checked'))
+        return this.get('checked') && (typeof(this.id) != 'undefined')
       },
 
       checkState: function(action) {
@@ -25,8 +25,7 @@ define([
         var that = this
         user.fetch({
           success: function(model, response) {
-            that.set('id', model.id)
-            that.set('nickname', model.get('nickname'))
+            _.extend(that, model)
             that.set('checked', true)
             if (model.id) Backbone.trigger('user:signed', model.id)
             if (action.success) action.success()
@@ -35,20 +34,6 @@ define([
             if (action.error) action.error()
           }
         })
-      },
-
-      logOut: function() {
-        var that = this
-        if (typeof(this.id) != 'undefined') {
-          var model = new AuthModel({'id': this.id});
-          model.destroy({url: Url('session'),
-            success: function() {
-              console.log('signed out!')
-              that.set('id', undefined)
-              Backbone.trigger('user:signout')
-            }
-          })
-        }
       },
 
       requireLogin: function(action) {
@@ -64,6 +49,20 @@ define([
       },
 
 
+      logOut: function() {
+        var that = this
+        if (typeof(this.id) != 'undefined') {
+          var model = new AuthModel({'id': this.id});
+          model.destroy({url: Url('session'),
+            success: function() {
+              console.log('signed out!')
+              that.set('id', undefined)
+              Backbone.trigger('user:signout')
+            }
+          })
+        }
+      },
+
       signin: function(data) {
         var that = this
         var model = new AuthModel({
@@ -73,10 +72,8 @@ define([
         model.save([], {
           success: function(model, response) {
             console.log('signed ', model.id)
-            that.set('id', model.id)
-            that.set('nickname', model.get('nickname'))
+            _.extend(that, model)
             Backbone.trigger('user:signed', model.id)
-            // Backbone.history.history.back()
           },
           error: function(model, response, xhr) {
             console.log('here goes error')
@@ -98,8 +95,7 @@ define([
         model.save([], {
           success: function(model, response) {
             console.log('signed up ', model.id)
-            that.set('id', model.id)
-            that.set('nickname', model.get('nickname'))
+            _.extend(that, model)
             Backbone.trigger('user:signed', model.id)
           },
           error: function(model, response, xhr) {
@@ -113,9 +109,7 @@ define([
       toggleFavorite: function(book) {
         var url = Url('favorites', this.id)
 
-        var Collection = Backbone.Collection.extend({
-          url: url
-        })
+        var Collection = Backbone.Collection.extend({ url: url })
         var collection = new Collection()
 
         var model = new Backbone.Model({
@@ -154,9 +148,10 @@ define([
         model.save([], {
           success: function(newModel, response) {
             options.collection.add(newModel.toJSON(), {at: 0})
-            Backbone.trigger('post:accepted')
+            Backbone.trigger('post:save:ok')
           },
           error: function(model, xhr, options) {
+            Backbone.trigger('post:save:error')
             console.log('bad luck...')
             console.log(xhr)
             console.log(options)
@@ -172,39 +167,16 @@ define([
         this.post('userReviews', options)
       },
 
-      // bookEdit: function(where, options) {
-      //   var model = new Backbone.Model({
-      //     // usersId: this.id,
-      //     booksId: options.id
-      //     title: options.title,
-      //     body: options.body
-      //   })
-      //   model.url = Url(where, this.id)
-      //   console.log(model)
-
-      //   model.save([], {
-      //     success: function(newModel, response) {
-      //       options.collection.add(newModel.toJSON(), {at: 0})
-      //       Backbone.trigger('post:accepted')
-      //     },
-      //     error: function(model, xhr, options) {
-      //       console.log('bad luck...')
-      //       console.log(xhr)
-      //       console.log(options)
-      //     }
-      //   })
-      // },
-
       initialize: function() {
         this.set('checked', false)
-
-        this.checkState()
 
         this.listenTo(Backbone, 'book:toggleFavorite', this.toggleFavorite)
         this.listenTo(Backbone, 'post:question', this.postQuestion)
         this.listenTo(Backbone, 'post:review', this.postReview)
         this.listenTo(Backbone, 'user:signin', this.signin)
         this.listenTo(Backbone, 'user:signup', this.signup)
+
+        this.checkState()
       }
     })
 

@@ -15,13 +15,14 @@ define([
       },
 
       open: function() {
-        // this.$('.post-input').show()
         this.$('.post-input').slideDown('fast', 'swing')
+        this.$('.user-avatar').slideDown('fast', 'swing')
       },
 
       close: function() {
         this.erase()
         this.$('.post-input').slideUp('fast', 'swing')
+        this.$('.user-avatar').slideUp('fast', 'swing')
         this.validate()
      },
 

@@ -41,8 +41,8 @@ define([
           ],
           'book': [
             {page: 'description', title: 'description', path: this.base},
-            {page: 'edit', title: 'edit', path: this.base + 'edit/'},
-            {page: 'read', title: 'read', path: '#'}
+            // {page: 'edit', title: 'edit', path: this.base + 'edit/'},
+            {page: 'read', title: 'read', path: ''}
           ],
           'questions':
             [{page: 'all', title: 'all', path: '/questions/'},

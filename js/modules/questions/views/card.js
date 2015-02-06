@@ -8,7 +8,7 @@ define([
     var CardItemView = Backbone.View.extend({
       render: function() {
         if (this.model.complete()) {
-          this.$el.html(_.template(Template)(this.model.toJSON()))
+          this.$el.html(_.template(Template)(this.model.present()))
         }
         return this
       },

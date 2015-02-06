@@ -3,12 +3,12 @@
 <div class='row review-container'>
   <div class='row'>
     <div class='col-xs-2'>
-      <img class='img-responsive avatar-image' src="/img/avatar.png" alt="">
+      <img class='img-responsive avatar-image user-avatar' style='display: none;' src="/img/avatar.png" alt="">
     </div>
     <div class='col-xs-10'>
-      <div class='row'>
-        <div class='form'>
-          <div class="form-group form-title">
+      <div class='form'>
+        <div class="form-group form-title">
+          <div class='row'>
             <div class="col-xs-9">
               <input type="text" class="form-control post-title" id="inputError1" placeholder='<%= label_invitation_title %>'>
             </div>
@@ -19,9 +19,9 @@
         </div>
       </div>
       <div class='post-input' style='display:none'>
-        <div class='row'>
-          <div class='form'>
-            <div class="form-group form-body">
+        <div class='form'>
+          <div class="form-group form-body">
+            <div class='row'>
               <div class='col-xs-9'>
                 <div class='wmd-panel'>
                   <div id='wmd-button-bar' style='display: none;'></div>
@@ -34,15 +34,15 @@
             </div>
           </div>
         </div>
-
-        <div class='row' style='margin-top: 5px'>
+        <div class='row'>
           <div class='col-xs-9'>
-            <div class='wmd-panel wmd-preview' style='border: 1px solid #e0e0e0;' id='wmd-preview'></div>
+            <div class='wmd-panel wmd-preview form-control' style='height: auto; border: 1px solid #e0e0e0;' id='wmd-preview'></div>
           </div>
         </div>
-
-        <a id='post-button' style='font-size: larger'><%= label_send %></a>
-        <a class='button-cancel' style='font-size: larger; margin-left: 5px'><%= label_cancel %></a>
+        <div style='margin-bottom: 0.5em'>
+          <a id='post-button' style='font-size: larger'><%= label_send %></a>
+          <a class='button-cancel' style='font-size: larger; margin-left: 5px'><%= label_cancel %></a>
+        </div>
       </div>
     </div>
   </div>

@@ -17,9 +17,7 @@ define([
         var body = this.$('.wmd-input').val().trim()
         if (body === '') return
         this.body = this.converter.makeHtml(body)
-        // Backbone.trigger('post:' + this.where, { body: body, id: this.id})
         Backbone.trigger('book:edit:save', { description: this.body })
-        // Backbone.trigger('postform:save', { body: this.body })
       },
 
       render: function() {

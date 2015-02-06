@@ -132,6 +132,14 @@ define([
                 path: '/books/' + book.id + '/',
                 title: '"' + model.get('title') + '"'
             })
+            Backbone.trigger('menu:extend', {
+              menu: 'book',
+              page: 'read',
+              // class: 'button-read',
+              title: 'read',
+              path: '/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(model.get('sourceUrl')))
+            })
+            Backbone.trigger('book:fetched', model)
           }
         })
         return view
