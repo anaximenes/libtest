@@ -146,6 +146,15 @@ define([
         return view
       },
 
+      bookReport: function(book) {
+        Menu.set({path: '/books/' + book.id + '/'})
+        currentState.subMenu = Menu.get('book')
+        $subHeaderDom.html(currentState.subMenu.render().el)
+
+        var view = new BookModule.ReportView({id: book.id})
+        return view
+      },
+
 
       questions: function(page) {
         currentState.questions = currentState.questions ? currentState.questions : new QuestionModule.PagedCollection()

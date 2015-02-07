@@ -42,7 +42,8 @@ define([
           'book': [
             {page: 'description', title: 'description', path: this.base},
             // {page: 'edit', title: 'edit', path: this.base + 'edit/'},
-            {page: 'read', title: 'read', path: ''}
+            {page: 'read', title: 'read', path: ''},
+            {page: 'report', title: 'report', path: this.base + 'report/', toRight: true}
           ],
           'questions':
             [{page: 'all', title: 'all', path: '/questions/'},

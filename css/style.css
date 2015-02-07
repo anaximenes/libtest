@@ -18,13 +18,6 @@ div.row img {
   width: 100%;
 }
 
-.menu {
-    text-align: justify;
-    padding-bottom: 0.2em;
-    margin-bottom: 0.8em;
-    border-bottom: 1px solid #e0e0e0;
-}
-
 .question-container {
   padding: 12px 0 10px 0;
   border-bottom: 1px solid #e0e0e0;
@@ -98,8 +91,20 @@ h6, .h6 {
 
 /***************************************************/
 
-ul.list-inline {
-  border-bottom: solid 1px #e0e0e0;
+.menu {
+    text-align: justify;
+    padding-bottom: 0.2em;
+    margin-bottom: 0.8em;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.menu-right {
+  margin-bottom: 0.1em;
+  margin-right: -30px;
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
 }
 
 .menu-item-li {

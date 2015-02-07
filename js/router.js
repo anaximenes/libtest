@@ -30,6 +30,7 @@ define([
         'books/:id/questions(/)':      'bookQuestions',
         'books/:id/reviews(/)':        'bookReviews',
         'books/:id/edit(/)':           'bookEdit',
+        'books/:id/report(/)':         'bookReport',
         'questions(p:page)(/)':        'questions',
         'questions/search/:query(/)':  'questionsSearch',
         'questions/favorites(/)':      'questionsFavorites',
@@ -79,6 +80,11 @@ define([
       bookReviews: function(id) {
         this.bookInit(id)
         Controller.view('bookReviews', {'id': id})
+      },
+
+      bookReport: function(id) {
+        this.bookInit(id)
+        Controller.view('bookReport', {'id': id})
       },
 
       bookEdit: function(id) {

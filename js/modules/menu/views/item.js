@@ -32,6 +32,7 @@ define([
           'id': this.model.collection.menu + '-menu-' + this.model.get('page'),
         }))
         this.$('a').addClass(this.classes || '')
+        this.$el.addClass((this.model.get('toRight') ? 'menu-right' : ''))
 
         return this
       },

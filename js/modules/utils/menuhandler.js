@@ -18,6 +18,7 @@ define([
         'bookEdit':         {'header': 'add', 'book': 'edit'},
         'bookReviews':      {'header': 'add', 'book': 'description', 'sub': 'bookReviews'},
         'bookQuestions':    {'header': 'add', 'book': 'description', 'sub': 'bookQuestions'},
+        'bookReport':       {'header': 'add', 'book': 'report'},
 
         'questions':        {'header': 'questions'},
         'questionsSearch':  {'header': 'questions', 'questions': 'search'},

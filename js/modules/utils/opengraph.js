@@ -7,8 +7,8 @@ define([
     ogMap = function(model) {
       model || (model = new Backbone.Model())
       return {
-        'type':         'books.book',
-        'url':          '//reslib.org/books/' + model.id + '/',
+        'type':          'books.book',
+        'url':           '//reslib.org/books/' + model.id + '/',
         'title':         model.get('title'),
         'author':        model.get('author'),
         'description':   model.get('description'),
@@ -21,7 +21,7 @@ define([
       var fields = ogMap(model)
       for (var i in fields) {
         $('meta[name="og:' + i + '"]').remove();
-        if (model) {
+        if (model && fields[i]) {
           $('head').append('<meta name="og:' + i + '" content="' + fields[i] + '">');
         }
       }
