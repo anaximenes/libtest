@@ -73,12 +73,13 @@ define([
           success: function(model, response) {
             console.log('signed ', model.id)
             _.extend(that, model)
+            that.set('checked', true)
             Backbone.trigger('user:signed', model.id)
           },
           error: function(model, response, xhr) {
             console.log('here goes error')
             console.log(model)
-            console.log(response.status)
+            console.log(response)
           }
         })
 
@@ -87,19 +88,26 @@ define([
       signup: function(data) {
         console.log('signup!')
         var that = this
+
         var model = new SignupModel({
           'email': data.email,
           'password': data.password,
-          'fullname': data.name
+          'verifyPassword': data.password,
+          'fullname': data.name,
+          'nickname': data.name
         })
+        var cloned = model.clone()
+
         model.save([], {
-          success: function(model, response) {
+          success: function(newModel, response) {
             console.log('signed up ', model.id)
-            _.extend(that, model)
-            Backbone.trigger('user:signed', model.id)
+            Backbone.trigger('user:signin', {
+              email: cloned.get('email'),
+              password: cloned.get('password')
+            })
           },
           error: function(model, response, xhr) {
-            console.log('here goes error')
+            console.log('here goes signup error')
             console.log(model)
             console.log(response.status)
           }

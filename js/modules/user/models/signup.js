@@ -9,12 +9,15 @@ define([
       url: function() {
         return Url('users')
       },
-      
+
       defaults: {
-        announce: "",
-        accept: "",
-        referer: ""
-      }
+        announce: true,
+        accept: true,
+        referer: "",
+        locale: 'ru',
+        nickname: '',
+        timeZone: "Europe/London"
+      },
     })
 
     return Model

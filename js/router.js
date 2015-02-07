@@ -187,7 +187,7 @@ define([
 
         var signed = function(id) {
           console.log('sign in ', id)
-          if (Backbone.history.fragment.slice(0, 6) === 'signin') {
+          if (Backbone.history.fragment.slice(0, 4) === 'sign') {
             Backbone.history.history.back()
           }
           // Backbone.trigger('menu:extend', {
