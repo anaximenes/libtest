@@ -5,7 +5,7 @@ define([
     state: 'other',
 
     set: function(title) {
-      document.title = (title ? title + ' | ' : '') + 'Reslib'
+      document.title = (title ? title  : 'Research Library')
     },
 
     go: function(options) {

@@ -61,6 +61,10 @@ define([
         return root + "users/" + id + "/recent/";
       },
 
+      reportBook: function(id) {
+        return root + 'books/' + id + '/reports/';
+      },
+
       questionsFavorites: function(id) {
         // return root + "users/" + id + "/questions";
       },

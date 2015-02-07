@@ -2,8 +2,6 @@
 
 <div class='row book-entry'>
   <div class='col-xs-8 col-xs-offset-2'>
-
-  <div>  <!-- style='border: 1px solid #eee'> -->
     <ul class="nav nav-tabs nav-report" style='margin-bottom: 0.5em'>
       <li class='report-open active' role="presentation">
         <a role="tab" data-toggle="tab">this book doesn't open</a>
@@ -16,22 +14,31 @@
       </li>
     </ul>
 
-    <div style='margin-bottom: 0.5em'>
-      <div class='text-report text-report-open' style='display: none;'>
-        Describe what happens when you try to open it.
+    <!-- <div style='padding: 0em 0.5em 0em 0.5em;'> -->
+    <div>
+      <div style='margin-top: 0.5em; margin-bottom: 0.5em;'>
+        <div class='text-report text-report-open' style='display: none;'>
+          Describe what happens when you try to open it:
+        </div>
+        <div class='text-report text-report-copyright' style='display: none;'>
+          Please provide confirmation that you are eligible for such claim:
+        </div>
+        <div class='text-report text-report-other' style='display: none;'>
+          Describe your problem:
+        </div>
       </div>
-      <div class='text-report text-report-copyright' style='display: none;'>
-        Please provide confirmation that you are eligible for such claim.
+
+      <div class='form-group'>
+        <textarea class="form-control report-message" rows="3" style='margin-bottom: 0.5em;'></textarea>
       </div>
-      <div class='text-report text-report-other' style='display: none;'>
-        Describe your problem.
+
+      <button type='submit' class='btn btn-default button-report'>submit</button>
+      <span class="report-ok glyphicon glyphicon-ok" aria-hidden="true" style='margin-left: 0.5em; display: none;'></span>
+
+      <div class='alert alert-danger report-error' style='margin-top: 0.5em; display: none;'>
+        Sorry, an error occured while processing your request.
       </div>
     </div>
-
-    <textarea class="form-control" rows="3" style='margin-bottom: 0.5em;'></textarea>
-
-    <button type='submit' class='btn btn-default button-report'>submit</button>
-  </div>
 
   </div>
 </div>
