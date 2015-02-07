@@ -4,13 +4,13 @@
   <div class='col-xs-8 col-xs-offset-2'>
     <ul class="nav nav-tabs nav-report" style='margin-bottom: 0.5em'>
       <li class='report-open active' role="presentation">
-        <a role="tab" data-toggle="tab">this book doesn't open</a>
+        <a role="tab" data-toggle="tab"><%- label_wont_open %></a>
       </li>
       <li class='report-copyright' role="presentation">
-        <a role="tab" data-toggle="tab">copyright infringement</a>
+        <a role="tab" data-toggle="tab"><%- label_copyright %></a>
       </li>
       <li class='report-other' role="presentation">
-        <a role="tab" data-toggle="tab">other</a>
+        <a role="tab" data-toggle="tab"><%- label_other %></a>
       </li>
     </ul>
 
@@ -18,13 +18,13 @@
     <div>
       <div style='margin-top: 0.5em; margin-bottom: 0.5em;'>
         <div class='text-report text-report-open' style='display: none;'>
-          Describe what happens when you try to open it:
+          <%- label_help_wont_open %>
         </div>
         <div class='text-report text-report-copyright' style='display: none;'>
-          Please provide confirmation that you are eligible for such claim:
+          <%- label_help_copyright %>
         </div>
         <div class='text-report text-report-other' style='display: none;'>
-          Describe your problem:
+          <%- label_help_other %>
         </div>
       </div>
 
@@ -32,11 +32,11 @@
         <textarea class="form-control report-message" rows="3" style='margin-bottom: 0.5em;'></textarea>
       </div>
 
-      <button type='submit' class='btn btn-default button-report'>submit</button>
+      <button type='submit' class='btn btn-default button-report'><%- label_submit %></button>
       <span class="report-ok glyphicon glyphicon-ok" aria-hidden="true" style='margin-left: 0.5em; display: none;'></span>
 
       <div class='alert alert-danger report-error' style='margin-top: 0.5em; display: none;'>
-        Sorry, an error occured while processing your request.
+        <%- label_submit_error %>
       </div>
     </div>
 

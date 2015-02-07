@@ -3,8 +3,9 @@ define([
     'underscore',
     'backbone',
     'text!/templates/user/signin.html',
+    'i18n!modules/nls/sign'
   ],
-  function($, _, Backbone, template) {
+  function($, _, Backbone, Template, i18n) {
     SignInView = Backbone.View.extend({
       events: {
         'submit': 'signin',
@@ -28,7 +29,7 @@ define([
 
       render: function() {
         var that = this
-        this.$el.html(_.template(template)())
+        this.$el.html(_.template(Template)(i18n))
         return this
       },
 

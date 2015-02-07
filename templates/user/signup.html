@@ -1,14 +1,14 @@
 <!-- Sign in page -->
 
 <form class="form-signin">
-  <h2 class="form-signin-heading">Sign up to ResLib</h2>
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input type="name" id="inputName" class="form-control" placeholder="Your name" required>
-  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-  <input type="password" id="inputPasswordRepeat" class="form-control" placeholder="Password one more time" required>
+  <h2 class="form-signin-heading"><%- label_welcome_Sign_up %></h2>
+  <label for="inputEmail" class="sr-only"><%- label_email %></label>
+  <input type="email" id="inputEmail" class="form-control" placeholder="<%- label_email %>" required autofocus>
+  <label for="inputPassword" class="sr-only"><%- label_password %></label>
+  <input type="name" id="inputName" class="form-control" placeholder="<%- label_name %>" required>
+  <input type="password" id="inputPassword" class="form-control" placeholder="<%- label_password %>" required>
+  <input type="password" id="inputPasswordRepeat" class="form-control" placeholder="<%- label_password_repeat %>" required>
 
-  <button id='signup-button' class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-  <div class='text-center' style='margin-top: 20px'> <h4> <a href='/signin'> Sign in </a> </h4> </div>
+  <button id='signup-button' class="btn btn-lg btn-primary btn-block" type="submit"><%- label_Sign_up %></button>
+  <div class='text-center' style='margin-top: 20px'> <h4> <a href='/signin'> <%- label_Sign_in %> </a> </h4> </div>
 </form>

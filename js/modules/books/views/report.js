@@ -4,9 +4,10 @@ define([
     'backbone',
     'modules/utils/url',
     'text!/templates/books/books-report.html',
+    'i18n!modules/nls/report',
     'bootstrap'
   ],
-  function($, _, Backbone, Url, Template) {
+  function($, _, Backbone, Url, Template, i18n) {
     var ReportView = Backbone.View.extend({
       events: {
         'click .nav-report a':      'report',
@@ -26,6 +27,7 @@ define([
         this.$('.text-report').slideUp('fast')
         this.$('.text-report-other').slideDown('fast')
         this.$('.report-ok').hide()
+        this.$('.report-error').hide()
         this.type = 'other'
       },
 
@@ -33,6 +35,7 @@ define([
         this.$('.text-report').slideUp('fast')
         this.$('.text-report-open').slideDown('fast')
         this.$('.report-ok').hide()
+        this.$('.report-error').hide()
         this.type = 'open'
       },
 
@@ -40,6 +43,7 @@ define([
         this.$('.text-report').slideUp('fast')
         this.$('.text-report-copyright').slideDown('fast')
         this.$('.report-ok').hide()
+        this.$('.report-error').hide()
         this.type = 'copyright'
       },
 
@@ -84,7 +88,7 @@ define([
       },
 
       render: function() {
-        this.$el.html(_.template(Template)())
+        this.$el.html(_.template(Template)(i18n))
         this.reportOpen()
 
         return this

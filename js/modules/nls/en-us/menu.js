@@ -9,4 +9,5 @@ define({
   'all': 'all',
   'favorites': 'favorites',
   'recent': 'recent',
+  'report': 'report'
 })
