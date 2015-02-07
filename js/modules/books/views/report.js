@@ -75,6 +75,8 @@ define([
           url: Url('reportBook', this.bookId),
           data: model.toJSON(),
           xhrFields: { withCredentials: true },
+          crossDomain: true,
+          dataType: 'json',
           success: function() {
             that.$('.report-message').val('')
             that.$('.report-error').hide()

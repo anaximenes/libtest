@@ -23,7 +23,9 @@ define([
         'questions':        {'header': 'questions'},
         'questionsSearch':  {'header': 'questions', 'questions': 'search'},
         'question':         {'header': 'question', 'sub': 'questionAnswers'},
-        'questionAnswers':  {'header': 'question', 'sub': 'questionAnswers'}
+        'questionAnswers':  {'header': 'question', 'sub': 'questionAnswers'},
+
+        'user':             {'header': 'profile', 'user': 'info'}
       },
 
       handle: function(options) {
