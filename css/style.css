@@ -121,6 +121,7 @@ h6, .h6 {
   font-weight: 100;
 }
 
+.user-menu-item,
 .book-menu-item,
 .books-menu-item,
 .question-menu-item,
@@ -135,6 +136,7 @@ h6, .h6 {
   font-weight: 580;
 }
 */
+.user-menu-item.active,
 .book-menu-item.active,
 .books-menu-item.active,
 .question-menu-item.active,

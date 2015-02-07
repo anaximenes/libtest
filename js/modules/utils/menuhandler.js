@@ -22,6 +22,7 @@ define([
 
         'questions':        {'header': 'questions'},
         'questionsSearch':  {'header': 'questions', 'questions': 'search'},
+
         'question':         {'header': 'question', 'sub': 'questionAnswers'},
         'questionAnswers':  {'header': 'question', 'sub': 'questionAnswers'},
 
@@ -30,6 +31,16 @@ define([
 
       handle: function(options) {
         options || (options = {})
+
+        if (options.page) {
+          if (['book', 'bookEdit', 'bookQuestions', 'bookReviews'].indexOf(options.page) != -1) {
+            this.bookId = options.options.id
+          }
+          if (['question', 'questionAnswers'].indexOf(options.page) != -1) {
+            this.questionId = options.options.id
+          }
+        }
+
         this.page = options.page || this.page
 
         var menus = this.pageMap[this.page]
@@ -38,9 +49,40 @@ define([
         }
       },
 
+      updateBookMenuItem: function(model) {
+        if (this.bookId == model.id) {
+          Backbone.trigger('menu:extend', {
+              menu: 'header',
+              page: 'add',
+              path: '/books/' + this.bookId + '/',
+              title: '"' + model.get('title') + '"'
+          })
+          Backbone.trigger('menu:extend', {
+            menu: 'book',
+            page: 'read',
+            class: 'button-read',
+            title: 'read',
+            path: '/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(model.get('sourceUrl')))
+          })
+        }
+      },
+
+      updateQuestionMenuItem: function(model) {
+        if (this.questionId == model.id) {
+          Backbone.trigger('menu:extend', {
+              page: 'question',
+              title: '"' + model.get('title') + '"',
+              path: '/questions/' + this.questionId + '/',
+              menu: 'header'
+          })
+        }
+      },
+
       initialize: function() {
         this.listenTo(Backbone, 'page:rendered', this.handle)
         this.listenTo(Backbone, 'menu:refresh', this.handle)
+        this.listenTo(Backbone, 'book:fetched', this.updateBookMenuItem)
+        this.listenTo(Backbone, 'question:fetched', this.updateQuestionMenuItem)
       }
     })
 

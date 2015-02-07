@@ -137,16 +137,12 @@ define([
       },
 
       userPage: function() {
-        // var that = this
-        // this.requireLogin({
-        //  success: function() {
-        //    Controller.view('user', that.user.id)
-        //  },
-        //  error: function() {
-        //    Controller.view('noUser')
-        //  }
-        // })
-        Controller.view('user', this.user.id)
+        var that = this
+        this.requireLogin({
+          success: function() {
+            Controller.view('user', that.user.id)
+          }
+        })
       },
 
       booksFavorites: function() {

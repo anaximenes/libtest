@@ -18,19 +18,6 @@ define([
 
         model.fetch({
           success: function() {
-            Backbone.trigger('menu:extend', {
-                menu: 'header',
-                page: 'add',
-                path: '/books/' + bookId + '/',
-                title: '"' + model.get('title') + '"'
-            })
-            Backbone.trigger('menu:extend', {
-              menu: 'book',
-              page: 'read',
-              class: 'button-read',
-              title: 'read',
-              path: '/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(model.get('sourceUrl')))
-            })
             Backbone.trigger('book:fetched', model)
           }
         })
@@ -38,21 +25,9 @@ define([
         //------------------------------------------------------------------------------
 
         var menu = Menu.add('sub', [
-              {page: 'bookReviews', title: 'Reviews', path: '/books/' + bookId + '/reviews/'},
-              {page: 'bookQuestions', title: 'Questions', path: '/books/' + bookId + '/questions/'}
-            ]
-        )
-
-        this.listenTo(Backbone, 'menu:click', function(options) {
-          if (options.menu === 'sub' && options.page === 'add') {
-            Backbone.trigger('post:show')
-            menu.$el.find('#post-show-button').toggleClass('active')
-          }
-        })
-
-        //------------------------------------------------------------------------------
-
-        // var add = new Static({template: $('#template-static-ask-question').html()})
+          {page: 'bookReviews', title: 'Reviews', path: '/books/' + bookId + '/reviews/'},
+          {page: 'bookQuestions', title: 'Questions', path: '/books/' + bookId + '/questions/'}
+        ])
 
         //------------------------------------------------------------------------------
 

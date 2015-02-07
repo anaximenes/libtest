@@ -79,6 +79,10 @@ define([
 
       users: function() {
         return root + 'users/'
+      },
+
+      user: function(id) {
+        return root + 'users/' + id + '/';
       }
 
     }

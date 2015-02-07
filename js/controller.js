@@ -203,7 +203,7 @@ define([
         return view
       },
 
-      user: function() {
+      user: function(id) {
         Backbone.trigger('menu:extend', {
           menu: 'header',
           page: 'profile',
@@ -211,10 +211,10 @@ define([
           path: '/user/',
           toRight: true
         })
-        currentState.subMenu = Menu.add('user', [{page: 'info', title: 'info', path: '/user/'}])
+        currentState.subMenu = Menu.get('user')
         $subHeaderDom.html(currentState.subMenu.render().el)
 
-        var view = new Backbone.View()
+        var view = new User.ProfileView({ id: id })
         return view
       },
 

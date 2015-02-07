@@ -47,6 +47,9 @@ define([
           ],
           'questions':
             [{page: 'all', title: 'all', path: '/questions/'},
+          ],
+          'user':
+            [{page: 'info', title: 'info', path: '/user/'}
           ]
         }[menu]
       },

@@ -17,12 +17,6 @@ define([
         var that = this
         model.fetch({
           success: function() {
-            Backbone.trigger('menu:extend', {
-                page: 'question',
-                title: '"' + model.get('title') + '"',
-                path: '/questions/' + questionId + '/',
-                menu: 'header'
-            })
             Backbone.trigger('question:fetched', model)
           }
         })
