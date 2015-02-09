@@ -111,7 +111,6 @@ define([
             }
           }
         })
-        // Controller.view('bookEdit', {'id': id})
       },
 
       questions: function(page) {
@@ -199,8 +198,6 @@ define([
           Backbone.history.history.back()
         }
         var search = function(query) {
-          query = encodeURIComponent(query)
-
           var url = Backbone.history.fragment
           if (url.indexOf('questions') === 0) {
             that.navigate('/questions/search/' + query, true)

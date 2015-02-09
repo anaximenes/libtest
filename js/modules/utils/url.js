@@ -71,6 +71,7 @@ define([
       },
 
       questionsSearch: function(query) {
+        query = encodeURIComponent(query)
         return root + "questions/?query=" + query
       },
 

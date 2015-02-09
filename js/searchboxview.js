@@ -14,7 +14,6 @@ define([
       search: function(e) {
         e.preventDefault()
         var query = this.$('#search-query').val().trim()
-        // query = encodeURIComponent(query)
         if (query) {
           Backbone.trigger('search', query)
         }
