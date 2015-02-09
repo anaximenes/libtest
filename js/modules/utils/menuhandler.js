@@ -62,7 +62,7 @@ define([
             page: 'read',
             class: 'button-read',
             title: 'read',
-            path: '/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(model.get('sourceUrl')))
+            path: model.getReaderUrl()
           })
         }
       },

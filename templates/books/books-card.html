@@ -3,7 +3,7 @@
 <div class='row book-entry' itemscope itemtype='http://schema.org/Book'>
   <div class='hidden-xs col-sm-4'>
     <div style=''>
-      <a>
+      <a href='<%= readerUrl %>'>
         <img class='img-rounded' style='width: 100%;' src="http://reslib.org/pict/<%= picture %>" alt="" itemprop='image'>
       </a>
     </div>
@@ -33,6 +33,16 @@
     <div>
       <span class='book-card-field'> <%= label_pages %>: </span>
       <span itemprop='numberOfPages'><%= pages %></span>
+    </div>
+    <div>
+      <span class='book-card-field'> rating: </span>
+      <span itemprop='numberOfPages'>4.7</span>
+      <span class='book-card-field' style='margin-left: 1em;'> rate: </span>
+      <span itemprop='numberOfPages' class='rating'>
+        <!-- <div class="rating"> -->
+          <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+        <!-- </div> -->
+      </span>
     </div>
 
     <% if (description) {%>

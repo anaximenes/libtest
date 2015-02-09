@@ -12,12 +12,12 @@ define([
   ],
   function($, _, Backbone, Url, Books, Questions, Menu, ContainerView, Post, Static) {
     var BookPage = ContainerView.extend({
-      initialize: function(bookId, bottom) {
-        var model = new Books.Model({'id': bookId})
-        var card = new Books.CardView({'model': model})
+      initialize: function(book, bottom) {
+        // var model = new Books.Model({'id': bookId})
+        var card = new Books.CardView({ 'model': book })
 
-        model.fetch({
-          success: function() {
+        book.fetch({
+          success: function(model) {
             Backbone.trigger('book:fetched', model)
           }
         })
@@ -25,14 +25,14 @@ define([
         //------------------------------------------------------------------------------
 
         var menu = Menu.add('sub', [
-          {page: 'bookReviews', title: 'Reviews', path: '/books/' + bookId + '/reviews/'},
-          {page: 'bookQuestions', title: 'Questions', path: '/books/' + bookId + '/questions/'}
+          {page: 'bookReviews', title: 'Reviews', path: '/books/' + book.id + '/reviews/'},
+          {page: 'bookQuestions', title: 'Questions', path: '/books/' + book.id + '/questions/'}
         ])
 
         //------------------------------------------------------------------------------
 
         var postForm = new Post.UserPostView({
-          id: bookId,
+          id: book.id,
           collection: bottom.collection,
           show: true
         })

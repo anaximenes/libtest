@@ -31,6 +31,14 @@ define([
         new Utils.MenuHandler()
         new Utils.PageTitleHandler()
         new Utils.OpenGraphHandler()
+
+        currentState.book = {}
+        var that = this
+
+        _.extend(this, Backbone.Events)
+        this.listenTo(Backbone, 'book:fetched', function(model) {
+          currentState.book[model.id] = model
+        })
       },
 
       view: function(page, params) {
@@ -98,7 +106,8 @@ define([
         })
         var questions = new QuestionModule.FramedListView({collection: collection})
 
-        var view = new BookPage(book.id, questions)
+        var bookModel = currentState.book[book.id] || new BookModule.Model({ id: book.id })
+        var view = new BookPage(bookModel, questions)
         return view
       },
 
@@ -114,7 +123,8 @@ define([
         })
         var reviews = new ReviewModule.FramedListView({collection: collection})
 
-        var view = new BookPage(book.id, reviews)
+        var bookModel = currentState.book[book.id] || new BookModule.Model({ id: book.id })
+        var view = new BookPage(bookModel, reviews)
         return view
       },
 
