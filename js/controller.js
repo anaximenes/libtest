@@ -63,7 +63,8 @@ define([
         var view = new BookModule.FramedListView({
           collection: new BookModule.PagedCollection([], {
             url: function() {
-              return Url(url, encodeURIComponent(options)); // hotfix
+              options = encodeURIComponent(options); // hotfix
+              return Url(url, options)
             }
           })
         })
@@ -71,9 +72,9 @@ define([
       },
 
       booksSearch: function(query) {
-        var view = this.booksBase('booksSearch', query);
-        Backbone.trigger('menu:extend', {menu: 'books', page: 'add', path: '/books/search/' + query, title: '"' + query + '"'});
-        return view;
+        var view = this.booksBase('booksSearch', query)
+        Backbone.trigger('menu:extend', {menu: 'books', page: 'add', path: '/books/search/' + query, title: '"' + query + '"'})
+        return view
       },
 
       booksFavorites: function(userId) {
