@@ -11,13 +11,16 @@
     <input type="name" id="inputName" class="form-control" placeholder="<%- label_name %>" required>
   </div>
   <div class='form-group form-password'>
+    <label for="inputPassword" class="sr-only"><%- label_password %></label>
     <input type="password" id="inputPassword" class="form-control" placeholder="<%- label_password %>" required>
+
+    <label for="inputPasswordRepeat" class="sr-only"><%- label_password %></label>
     <input type="password" id="inputPasswordRepeat" class="form-control" placeholder="<%- label_password_repeat %>" required>
-    <div class='alert alert-danger error-password-match' style='display: none;'>Passwords don't match</div>
+    <div class='alert alert-danger error-password-match' style='display: none;'><%= label_password_match %></div>
   </div>
 
   <div class='alert alert-danger error-signup' style='display: none;'>
-    This email is already registred.
+    <%= label_email_taken %>
   </div>
 
   <button id='signup-button' class="btn btn-lg btn-primary btn-block" type="submit"><%- label_Sign_up %></button>
