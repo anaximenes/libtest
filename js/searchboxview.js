@@ -20,15 +20,18 @@ define([
         }
       },
 
+      handleTransition: function(options) {
+        if (options.page != 'booksSearch' && options.page != 'questionsSearch') {
+          this.$('#search-query').val('')
+        }
+      },
+
       render: function() {
         return this
       },
 
       initialize: function (options) {
-        this.listenTo(Backbone, 'page:rendered', function(options) {
-          if (options.page != 'booksSearch' && options.page != 'questionsSearch')
-          this.$('#search-query').val('')
-        })
+        this.listenTo(Backbone, 'page:rendered', this.handleTransition)
       }
     })
 
