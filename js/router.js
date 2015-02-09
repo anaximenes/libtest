@@ -54,8 +54,8 @@ define([
         var that = this
       },
 
-      booksSearch: function(page) {
-        Controller.view('booksSearch', page)
+      booksSearch: function(query) {
+        Controller.view('booksSearch', query)
       },
 
       bookInit: function(id) {
@@ -111,7 +111,6 @@ define([
             }
           }
         })
-        // Controller.view('bookEdit', {'id': id})
       },
 
       questions: function(page) {
@@ -194,12 +193,6 @@ define([
           if (Backbone.history.fragment.slice(0, 4) === 'sign') {
             Backbone.history.history.back()
           }
-          // Backbone.trigger('menu:extend', {
-          //   menu: 'header',
-          //   page: 'user',
-          //   title: that.user.get('nickname'),
-          //   class: 'pull-right'
-          // })
         }
         var signOut = function() {
           Backbone.history.history.back()
