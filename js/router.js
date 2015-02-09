@@ -40,7 +40,9 @@ define([
         'signout(/)':                  'signout',
         'user(/)':                     'userPage',
         'test(/)':                     'test',
-        '(/)':                         'root'
+        '(/)':                         'root',
+
+        'book/:title/:id(/)':          'bookBackCompatability'
       },
 
       root: function() {
@@ -68,6 +70,12 @@ define([
       },
 
       book: function(id) {
+        this.bookInit(id)
+        Controller.view('bookReviews', {'id': id})
+      },
+
+      bookBackCompatability: function(title, id) {
+        // this.navigate('/books/' + id + '/', true)
         this.bookInit(id)
         Controller.view('bookReviews', {'id': id})
       },

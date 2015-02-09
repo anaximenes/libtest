@@ -1,0 +1,29 @@
+<!-- Book card -->
+
+<div class='row book-entry' itemscope itemtype='http://schema.org/Book'>
+  <div class='hidden-xs col-sm-4'>
+    <div style='height: 300px'>
+
+    </div>
+  </div>
+  <div class='col-xs-12 col-sm-8'>
+    <h4>
+      <span itemprop='name'></span>
+      <small>
+        (<span itemprop='datePublished'></span>)
+      </small>
+      <i id='favorite-button' class="fa fa-bookmark-o fa-1x"></i>
+    </h4>
+    <span class='book-card-field'> <%= label_author %>: </span>
+    <div>
+      <span class='book-card-field'> <%= label_publisher %>: </span>
+    </div>
+    <div>
+      <span class='book-card-field'> ISBN: </span>
+    </div>
+    <div>
+      <span class='book-card-field'> <%= label_pages %>: </span>
+    </div>
+
+  </div>
+</div>
