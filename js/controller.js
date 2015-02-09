@@ -63,7 +63,6 @@ define([
         var view = new BookModule.FramedListView({
           collection: new BookModule.PagedCollection([], {
             url: function() {
-              options = encodeURIComponent(options); // hotfix
               return Url(url, options)
             }
           })
@@ -171,8 +170,8 @@ define([
         ])
         $subHeaderDom.html(currentState.subMenu.render().el)
 
-        var collection = new QuestionModule.PagedCollection([], { url: Url('questionsSearch', encodeURIComponent(query)) }); //hotfix
-        var view = new QuestionModule.FramedListView({ collection: collection });
+        var collection = new QuestionModule.PagedCollection([], { url: Url('questionsSearch', query) })
+        var view = new QuestionModule.FramedListView({ collection: collection })
         return view
       },
 
