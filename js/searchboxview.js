@@ -13,8 +13,8 @@ define([
 
       search: function(e) {
         e.preventDefault()
-        var query = this.$el.find('#search-query').val()
-        this.$el.find('#search-query').val('')
+        var query = this.$('#search-query').val().trim()
+        // query = encodeURIComponent(query)
         if (query) {
           Backbone.trigger('search', query)
         }
@@ -25,8 +25,9 @@ define([
       },
 
       initialize: function (options) {
-        this.listenTo(Backbone, 'controller:transition', function() {
-          this.$el.find('#search-query').val('')
+        this.listenTo(Backbone, 'page:rendered', function(options) {
+          if (options.page != 'booksSearch' && options.page != 'questionsSearch')
+          this.$('#search-query').val('')
         })
       }
     })

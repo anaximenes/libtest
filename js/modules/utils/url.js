@@ -50,6 +50,7 @@ define([
       },
 
       booksSearch: function(query) {
+        query = encodeURIComponent(query)
         return root + "books/?query=" + query;
       },
 
