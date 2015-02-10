@@ -13,7 +13,7 @@ define([
 
         stringUrl = (typeof(this.url) === 'function' ? this.url() : this.url)
         var prefix = (stringUrl.indexOf('?') > -1 ? '&' : '?')
-        this.url = page ? stringUrl + prefix + 'start=' + page : stringUrl
+        this.url = page ? stringUrl + prefix + 'pageNumber=' + page : stringUrl
         options.remove = false
 
         var that = this
@@ -40,11 +40,11 @@ define([
       },
 
       thereIsMore: function() {
-        return (this.currentPage + 2) in this.pages
+        return (this.currentPage < this.totalPages - 1)
       },
       isOnLastPage: function() {
         if (!this.parsed) return false
-        return this.pages[this.currentPage + 2] === undefined
+        return (this.totalPages === 0 || this.totalPages - 1 === this.currentPage)
       },
       isOnFirstPage: function() {
         return this.currentPage === 0
@@ -62,14 +62,14 @@ define([
 
       parse: function(response) {
         this.parsed = true
-        this.totalEntries = response.total
-        // this.fetchedPage = response.current
-        this.pages = _.extend(this.pages, response.pages)
-        return response.results
+        this.totalPages = response.totalPages
+        this.totalItems = response.totalItems
+        this.itemsPerPage = response.itemsPerPage
+
+        return response.page.items
       },
 
       initialize: function (models, options) {
-        this.pages = {}
         this.models = models || []
         options = options || {}
         if (options.currentPage) this.currentPage = options.currentPage

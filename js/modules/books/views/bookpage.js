@@ -3,18 +3,15 @@ define([
     'underscore',
     'backbone',
     'modules/utils/url',
-    'modules/books/main',
-    'modules/questions/main',
+    'modules/books/views/card',
     'modules/menu/main',
     'modules/utils/containerview',
-    'modules/post/main',
-    'modules/static/views/view'
+    'modules/post/main'
   ],
-  function($, _, Backbone, Url, Books, Questions, Menu, ContainerView, Post, Static) {
+  function($, _, Backbone, Url, CardView, Menu, ContainerView, Post) {
     var BookPage = ContainerView.extend({
       initialize: function(book, bottom) {
-        // var model = new Books.Model({'id': bookId})
-        var card = new Books.CardView({ 'model': book })
+        var card = new CardView({ 'model': book })
 
         book.fetch({
           success: function(model) {

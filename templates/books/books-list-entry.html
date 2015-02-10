@@ -4,13 +4,19 @@
   </div>
   <div class='col-xs-9'>
       <div class='title'><h5> <a href='/books/<%= id %>/'><%= title %></a> </h5></div>
-      <div class='authors'> <h5>  <%= authors %> </h5> </div>
+      <div class='authors'>
+        <h5>
+          <% for( var i = 0; i < authors.split(', ').length; ++i) { %>
+              <span><a href='/books/search/<%= authors.split(', ')[i] %>'><%= authors.split(', ')[i] %></a></span>
+          <% } %>
+        </h5>
+      </div>
+
       <div>
         <%= description %>
       </div>
   </div>
   <div class='col-xs-1 text-center'>
     <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
-    <p style='display:none'>add to Favorites</p>
   </div>
 </div>

@@ -39,8 +39,11 @@ define([
         'signup(/)':                   'signup',
         'signout(/)':                  'signout',
         'user(/)':                     'userPage',
+        'user/answers(/)':             'userAnswers',
         'test(/)':                     'test',
-        '(/)':                         'root'
+        '(/)':                         'root',
+
+        'book/:title/:id(/)':          'bookBackCompatability'
       },
 
       root: function() {
@@ -52,8 +55,8 @@ define([
         var that = this
       },
 
-      booksSearch: function(page) {
-        Controller.view('booksSearch', page)
+      booksSearch: function(query) {
+        Controller.view('booksSearch', query)
       },
 
       bookInit: function(id) {
@@ -61,20 +64,26 @@ define([
         this.ifLogged(function() {
           if (user.get('state') === -1) {
             Backbone.trigger('menu:extend', {
-              menu: 'book', page: 'edit', title: 'edit', path: '/books/' + id + '/edit/'
+              menu: 'book', page: 'ed it', title: 'edit', path: '/books/' + id + '/edit/'
             })
           }
         })
       },
 
       book: function(id) {
-        this.bookInit(id)
         Controller.view('bookReviews', {'id': id})
+        this.bookInit(id)
+      },
+
+      bookBackCompatability: function(title, id) {
+        // this.navigate('/books/' + id + '/', true)
+        Controller.view('bookReviews', {'id': id})
+        this.bookInit(id)
       },
 
       bookQuestions: function(id) {
-        this.bookInit(id)
         Controller.view('bookQuestions', {'id': id})
+        this.bookInit(id)
       },
 
       bookReviews: function(id) {
@@ -83,8 +92,8 @@ define([
       },
 
       bookReport: function(id) {
-        this.bookInit(id)
         Controller.view('bookReport', {'id': id})
+        this.bookInit(id)
       },
 
       bookEdit: function(id) {
@@ -103,7 +112,6 @@ define([
             }
           }
         })
-        // Controller.view('bookEdit', {'id': id})
       },
 
       questions: function(page) {
@@ -141,6 +149,15 @@ define([
         this.requireLogin({
           success: function() {
             Controller.view('user', that.user.id)
+          }
+        })
+      },
+
+      userAnswers: function() {
+        var that = this
+        this.requireLogin({
+          success: function() {
+            Controller.view('userAnswers', that.user.id)
           }
         })
       },
@@ -186,12 +203,6 @@ define([
           if (Backbone.history.fragment.slice(0, 4) === 'sign') {
             Backbone.history.history.back()
           }
-          // Backbone.trigger('menu:extend', {
-          //   menu: 'header',
-          //   page: 'user',
-          //   title: that.user.get('nickname'),
-          //   class: 'pull-right'
-          // })
         }
         var signOut = function() {
           Backbone.history.history.back()

@@ -20,7 +20,7 @@ define([
       render: function() {
         var that = this
         if (this.model.complete()) {
-          this.$el.html(_.template(Template)(this.model.presentShort()))
+          this.$el.html(_.template(Template)(this.model.present({ short: true })))
         }
         return this
       },

@@ -5,8 +5,9 @@ define([
   ],
   function($, _, Backbone) {
     var StaticView = Backbone.View.extend({
+      template: '',
+
       render: function() {
-        // var html = _.template(this.template)()
         var html
         if (typeof(this.template) === 'function') {
           html = this.template()
@@ -19,7 +20,7 @@ define([
 
       initialize: function(options) {
         options || (options = {})
-        this.template = options.template || _.template('')
+        if (options.template) this.template = options.template
       }
     })
 

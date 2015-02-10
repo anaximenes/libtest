@@ -13,10 +13,17 @@ define([
 
       search: function(e) {
         e.preventDefault()
-        var query = this.$el.find('#search-query').val()
-        this.$el.find('#search-query').val('')
+        var query = this.$('#search-query').val().trim()
         if (query) {
           Backbone.trigger('search', query)
+        }
+      },
+
+      handleTransition: function(options) {
+        if (options.page != 'booksSearch' && options.page != 'questionsSearch') {
+          this.$('#search-query').val('')
+        } else {
+          this.$('#search-query').val(options.options)
         }
       },
 
@@ -25,9 +32,7 @@ define([
       },
 
       initialize: function (options) {
-        this.listenTo(Backbone, 'controller:transition', function() {
-          this.$el.find('#search-query').val('')
-        })
+        this.listenTo(Backbone, 'page:rendered', this.handleTransition)
       }
     })
 
