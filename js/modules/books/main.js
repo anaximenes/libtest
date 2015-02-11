@@ -17,13 +17,13 @@ define([
     saved.models = {}
     saved.collections = {}
 
-    var allView = function() {
+    var getAllView = function() {
       saved.collections.all || (saved.collections.all = new PagedCollection())
       var view = new FramedListView({ collection: saved.collections.all })
       return view
     }
 
-    var baseView = function(url, options) {
+    var getBaseView = function(url, options) {
       var view = new FramedListView({
         collection: new PagedCollection([], {
           url: function() {
@@ -34,19 +34,19 @@ define([
       return view
     }
 
-    var searchView = function(query) {
-      return baseView('booksSearch', query)
+    var getSearchView = function(query) {
+      return getBaseView('booksSearch', query)
     }
 
-    var favoritesView = function(userId) {
-      return baseView('booksFavorites', userId)
+    var getFavoritesView = function(userId) {
+      return getBaseView('booksFavorites', userId)
     }
 
-    var recentView = function(userId) {
-      return baseView('booksRecent', userId)
+    var getRecentView = function(userId) {
+      return getBaseView('booksRecent', userId)
     }
 
-    var editView = function(book) {
+    var getEditView = function(book) {
       var model = new BookModel({ 'id': book.id })
       var view = new EditView({ 'model': model })
       model.fetch({
@@ -57,11 +57,11 @@ define([
       return view
     }
 
-    var reportView = function(book) {
+    var getReportView = function(book) {
       return new ReportView({ id: book.id })
     }
 
-    var bookPage = function(bookId, bottom) {
+    var getBookPageView = function(bookId, bottom) {
       var model = saved.models[bookId] || (saved.models[bookId] = new BookModel({ id: bookId }))
       return new BookPageView(model, bottom)
     }
@@ -76,13 +76,13 @@ define([
       'BookPageView':      BookPageView,
       'PagedCollection':   PagedCollection,
       'Model':             BookModel,
-      'allView':           allView,
-      'searchView':        searchView,
-      'favoritesView':     favoritesView,
-      'recentView':        recentView,
-      'editView':          editView,
-      'reportView':        reportView,
-      'bookPage':          bookPage,
+      'getAllView':        getAllView,
+      'getSearchView':     getSearchView,
+      'getFavoritesView':  getFavoritesView,
+      'getRecentView':     getRecentView,
+      'getEditView':       getEditView,
+      'getReportView':     getReportView,
+      'getBookPageView':   getBookPageView,
       'saved':             saved
     }
   }

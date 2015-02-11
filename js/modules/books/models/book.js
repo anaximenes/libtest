@@ -18,6 +18,23 @@ define([
         // 'description'
       ],
 
+      checkState: function() {
+        $.ajax({
+          type: 'HEAD',
+          url: '//178.63.105.73/pdf/' + btoa(this.get('sourceUrl')),
+
+          statusCode: {
+            404: function() {
+              console.log('no book, folks(')
+            },
+            200: function(data, status, jqxhr) {
+              size = jqxhr.getResponseHeader('Content-Length')
+              console.log(size)
+            }
+          },
+        })
+      },
+
       getReaderUrl: function() {
         if (!this.get('sourceUrl')) return ''
         else return '/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(this.get('sourceUrl')))
@@ -48,10 +65,9 @@ define([
           return model.toJSON()
         }
 
-        // var templateModel = this.clone()
         model.unset('authors')
         var authors = this.get('authors').map(function(author) { return author.firstName })
-        return _.extend(model.toJSON(), {authors: authors.join(', ')})
+        return _.extend(model.toJSON(), { authors: authors.join(', ') })
       }
     })
 

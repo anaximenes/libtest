@@ -52,6 +52,7 @@ define([
       },
 
       updateBookMenuItem: function(model) {
+        var size = undefined
         if (this.bookId == model.id) {
           Backbone.trigger('menu:extend', {
               menu: 'header',
@@ -59,10 +60,11 @@ define([
               path: '/books/' + this.bookId + '/',
               title: '"' + model.get('title') + '"'
           })
+          // model.checkState()
           Backbone.trigger('menu:extend', {
             menu: 'book',
             page: 'read',
-            class: 'button-read',
+            class: (size ? 'button-read' : ''),
             title: 'read',
             path: model.getReaderUrl()
           })

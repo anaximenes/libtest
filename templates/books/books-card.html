@@ -44,6 +44,16 @@
         <!-- </div> -->
       </span>
     </div>
+    <div style='margin-bottom: 0.5em;'>
+      <span class='book-card-field'> Tags:</span>
+      <span class='tagsinput' style='font-size: 1.2em'>
+        <% for (var i = 0; i < tags.length; ++i) { %>
+          <span class='tag label label-success'>
+            <%= tags[i].title %>
+          </span>
+        <% } %>
+      </span>
+    </div>
 
     <% if (description) {%>
       <div class='well' itemprop='description'><%= description %></div>

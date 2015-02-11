@@ -35,7 +35,7 @@ define([
       },
 
       view: function(page, params) {
-        Backbone.trigger('page:render', {page: page, options: params})
+        Backbone.trigger('page:render', { page: page, options: params })
 
         $subHeaderDom.empty()
 
@@ -54,26 +54,26 @@ define([
       books: function(page) {
         currentState.subMenu = Menu.get('books')
 
-        return BookModule.allView()
+        return BookModule.getAllView()
       },
 
       booksSearch: function(query) {
         currentState.subMenu = Menu.get('books')
         Backbone.trigger('menu:extend', {menu: 'books', page: 'add', path: '/books/search/' + query, title: '"' + query + '"'})
 
-        return BookModule.searchView(query)
+        return BookModule.getSearchView(query)
       },
 
       booksFavorites: function(userId) {
         currentState.subMenu = Menu.get('books')
 
-        return BookModule.favoritesView(userId)
+        return BookModule.getFavoritesView(userId)
       },
 
       booksRecent: function(userId) {
         currentState.subMenu = Menu.get('books')
 
-        return BookModule.recentView(userId)
+        return BookModule.getRecentView(userId)
       },
 
       bookQuestions: function(book) {
@@ -86,7 +86,7 @@ define([
         })
         var questions = new QuestionModule.FramedListView({collection: collection})
 
-        var view = new BookModule.bookPage(book.id, questions)
+        var view = BookModule.getBookPageView(book.id, questions)
         return view
       },
 
@@ -100,20 +100,20 @@ define([
         })
         var reviews = new ReviewModule.FramedListView({collection: collection})
 
-        var view = new BookModule.bookPage(book.id, reviews)
+        var view = BookModule.getBookPageView(book.id, reviews)
         return view
       },
 
       bookEdit: function(book) {
         currentState.subMenu = Menu.get('book')
 
-        return BookModule.editView(book)
+        return BookModule.getEditView(book)
       },
 
       bookReport: function(book) {
         currentState.subMenu = Menu.get('book')
 
-        return BookModule.reportView(book)
+        return BookModule.getReportView(book)
       },
 
 
@@ -193,7 +193,15 @@ define([
       },
 
       test: function(status) {
-        var view = new Static()
+        var view = new (Static.extend({
+          initialize: function() {
+          }
+        }))()
+
+        require(['text!/templates/test.html'], function(template) {
+          view.template = _.template(template)
+          view.render()
+        })
         return view
       }
     }

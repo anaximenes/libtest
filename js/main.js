@@ -3,7 +3,8 @@ require([
     'app',
     'modules/utils/scrolling',
     'text',
-    'bootstrap'
+    'bootstrap',
+    'selectize'
   ], function(Backbone, App, Scrolling) {
     (function() {
 
@@ -17,7 +18,7 @@ require([
           }
 
           if (!options.xhrFields) {
-            options.xhrFields = {withCredentials: true};
+            options.xhrFields = {withCredentials: false};
           }
 
           return proxiedSync(method, model, options);
@@ -26,7 +27,6 @@ require([
 
     var user = new App.User.model();
     App.User.init(user)
-    // var userview = new App.User.view({model: user});
     var Router = App.Router.extend({ user: user });
     var router = new Router();
 
