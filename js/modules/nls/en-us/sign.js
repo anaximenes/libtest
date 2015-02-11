@@ -6,5 +6,8 @@ define({
   'label_Sign_up': 'Sign up',
   'label_password': 'Password',
   'label_password_repeat': 'Repeat password',
-  'label_email': 'Email'
+  'label_email': 'Email',
+  'label_password_match': "Passwords don't match.",
+  'label_email_taken': 'This email is already registred.',
+  'label_auth_error': 'The email or password you entered is incorrect.'
 })

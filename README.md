@@ -8,6 +8,9 @@ Run debug server.
 If you use nginx please configure it as described in Gruntfile.js rules section.
 `grunt server`
 
+### Development
+Please read the rules before commit.
+https://github.com/anaximenes/libtest/wiki/Правила-разработки.
 
 ### Modules
 

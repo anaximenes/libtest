@@ -87,6 +87,7 @@ define([
             Backbone.trigger('user:signed', model.id)
           },
           error: function(model, response, xhr) {
+            Backbone.trigger('user:signin:error')
             console.log('here goes error')
             console.log(model)
             console.log(response)
@@ -117,6 +118,7 @@ define([
             })
           },
           error: function(model, response, xhr) {
+            Backbone.trigger('user:signup:error')
             console.log('here goes signup error')
             console.log(model)
             console.log(response.status)
