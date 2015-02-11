@@ -3,9 +3,10 @@ define([
     'underscore',
     'backbone',
     'text!/templates/books/books-card.html',
+    'text!/templates/books/books-card-loading.html',
     'i18n!modules/nls/page-books-card'
   ],
-  function($, _, Backbone, template, i18n) {
+  function($, _, Backbone, Template, TemplateLoading, i18n) {
     var CardItemView = Backbone.View.extend({
       events: {
         'click #favorite-button': 'toggleFavorite'
@@ -21,7 +22,9 @@ define([
       render: function() {
         if (this.model.complete()) {
           var model = _.extend(this.model.present(), i18n)
-          this.$el.html(_.template(template)(model))
+          this.$el.html(_.template(Template)(model))
+        } else {
+          this.$el.html(_.template(TemplateLoading)(i18n))
         }
         return this
       },

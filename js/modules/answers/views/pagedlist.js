@@ -12,13 +12,14 @@ define([
       model: Model,
 
       initialize: function(options) {
-        BaseCollectionView.prototype.initialize.apply(this, [options])
         this.ItemView = ListItemView
         options = options ? options : {}
         this.collection = options.collection ? options.collection : new Collection()
+
+        BaseCollectionView.prototype.initialize.apply(this, [options])
       }
     })
-  
+
     return CollectionView
   }
 )

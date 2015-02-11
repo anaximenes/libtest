@@ -11,6 +11,7 @@ require.config({
     'markdown': '/vendor/pagedown/Markdown.Editor',
     'markdown-converter': '/vendor/pagedown/Markdown.Converter',
     'markdown-sanitizer': '/vendor/pagedown/Markdown.Sanitizer',
+    'selectize': '/vendor/selectize/dist/js/standalone/selectize',
     'text': '/vendor/requirejs-text/text',
     'i18n': '/vendor/requirejs-i18n/i18n',
   },
@@ -23,8 +24,7 @@ require.config({
 
   shim: {
     'bootstrap': {
-      deps: ['jquery'],
-      exports: 'jQuery'
+      deps: ['jquery']
     },
     'markdown': {
       deps: ['markdown-sanitizer'],

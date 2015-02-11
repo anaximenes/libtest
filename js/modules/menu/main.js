@@ -41,24 +41,26 @@ define([
           ],
           'book': [
             {page: 'description', title: 'description', path: this.base},
-            // {page: 'edit', title: 'edit', path: this.base + 'edit/'},
             {page: 'read', title: 'read', path: ''},
             {page: 'report', title: 'report', path: this.base + 'report/', toRight: true}
           ],
           'questions':
             [{page: 'all', title: 'all', path: '/questions/'},
           ],
-          'user':
-            [{page: 'info', title: 'info', path: '/user/'}
+          'user': [
+            {page: 'userQuestions', title: 'questions', path: '/user/questions'},
+            {page: 'userAnswers', title: 'answers', path: '/user/answers'},
+            {page: 'info', title: 'info', path: '/user/'}
           ]
         }[menu]
       },
 
-      // set path in book menu to corresponding book
-      // better be done more gracefully
       set: function(options) {
-        options || (options = {})
-        this.base = options.path || this.base
+        if (['book', 'bookEdit', 'bookReviews', 'bookQuestions', 'bookReport'].indexOf(options.page) != -1) {
+          this.base = '/books/' + options.options.id + '/'
+        } else {
+          this.base = '/books/'
+        }
       },
 
       get: function(menu) {
@@ -66,6 +68,13 @@ define([
         // return menuCollection[menu] || (menuCollection[menu] = Menu.add(menu, Menu.pages(menu)))
       }
     }
+
+    _.extend(Menu, Backbone.Events)
+
+    Menu.initialize = function() {
+      this.listenTo(Backbone, 'page:render', this.set)
+    }
+    Menu.initialize()
 
     return Menu
   }

@@ -5,16 +5,13 @@ define([
     'modules/utils/url'
   ],
   function($, _, Backbone, Url) {
-    var BookModel = Backbone.Model.extend({
+    var AnswerModel = Backbone.Model.extend({
       url: function() {
         return Url('answer', this.id)
       },
 
-      favorite: undefined,
-
       properties: [
         'id',
-        // 'description'
       ],
 
       complete: function() {
@@ -25,6 +22,6 @@ define([
       }
     })
 
-    return BookModel
+    return AnswerModel
   }
 )

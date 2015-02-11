@@ -6,6 +6,7 @@ define({
   'description': 'description',
   'edit': 'edit',
   'read': 'read',
+  'currently unavailable': 'currently unavailable',
   'all': 'all',
   'favorites': 'favorites',
   'recent': 'recent',

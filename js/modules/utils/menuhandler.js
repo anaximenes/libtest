@@ -26,7 +26,9 @@ define([
         'question':         {'header': 'question', 'sub': 'questionAnswers'},
         'questionAnswers':  {'header': 'question', 'sub': 'questionAnswers'},
 
-        'user':             {'header': 'profile', 'user': 'info'}
+        'user':             {'header': 'profile', 'user': 'info'},
+        'userQuestions':    {'header': 'profile', 'user': 'userQuestions'},
+        'userAnswers':      {'header': 'profile', 'user': 'userAnswers'}
       },
 
       handle: function(options) {
@@ -50,6 +52,7 @@ define([
       },
 
       updateBookMenuItem: function(model) {
+        var size = undefined
         if (this.bookId == model.id) {
           Backbone.trigger('menu:extend', {
               menu: 'header',
@@ -57,13 +60,29 @@ define([
               path: '/books/' + this.bookId + '/',
               title: '"' + model.get('title') + '"'
           })
-          Backbone.trigger('menu:extend', {
-            menu: 'book',
-            page: 'read',
-            class: 'button-read',
-            title: 'read',
-            path: '/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(model.get('sourceUrl')))
-          })
+          model.checkState()
+        }
+      },
+
+      updateReadButton: function(model) {
+        if (this.bookId == model.id) {
+          if (model.get('size')) {
+            Backbone.trigger('menu:extend', {
+              menu: 'book',
+              page: 'read',
+              class: 'button-read',
+              title: 'read',
+              path: model.getReaderUrl(),
+              tagTitle: model.get('size') + ' bytes'
+            })
+          } else {
+            Backbone.trigger('menu:extend', {
+              menu: 'book',
+              page: 'read',
+              class: ' disabled',
+              title: 'currently unavailable',
+            })
+          }
         }
       },
 
@@ -82,6 +101,8 @@ define([
         this.listenTo(Backbone, 'page:rendered', this.handle)
         this.listenTo(Backbone, 'menu:refresh', this.handle)
         this.listenTo(Backbone, 'book:fetched', this.updateBookMenuItem)
+        this.listenTo(Backbone, 'book:reader:ok', this.updateReadButton)
+        this.listenTo(Backbone, 'book:reader:error', this.updateReadButton)
         this.listenTo(Backbone, 'question:fetched', this.updateQuestionMenuItem)
       }
     })
