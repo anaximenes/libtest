@@ -4,6 +4,16 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    jshint: {
+      all: ['Gruntfile.js', 'js/**/*.js'],
+      options: {
+        asi: true,
+        browser: true,
+        globals: {
+          jQuery: true
+        },
+      },
+    },
     connect: {
       options: {
         port: 8000
@@ -47,8 +57,10 @@ module.exports = function(grunt) {
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-connect-rewrite');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task(s).
   grunt.registerTask('server', ['configureRewriteRules', 'connect:development::keepalive']);
+  grunt.registerTask('lint', ['jshint']);
 
 };
