@@ -6,8 +6,12 @@
   <input type="email" id="inputEmail" class="form-control" placeholder="<%- label_email %>" required autofocus>
   <label for="inputPassword" class="sr-only"><%- label_password %></label>
   <input type="password" id="inputPassword" class="form-control" placeholder="<%- label_password %>" required>
-
   <button id='signin-button' class="btn btn-lg btn-primary btn-block" type="submit"><%- label_Sign_in %></button>
+
+  <div class='alert alert-danger signin-error' style='display: none; margin-top: 0.5em;'>
+    <%= label_auth_error %>
+  </div>
+
   <div class='text-center' style='margin-top: 20px'> <h4> <a href='/signup'><%- label_Sign_up %></a> </h4> </div>
 </form>
 
