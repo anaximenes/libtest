@@ -19,30 +19,29 @@ define([
       ],
 
       checkState: function() {
-        var that = this
         $.ajax({
           type: 'HEAD',
           url: '//178.63.105.73/pdf/' + btoa(this.get('sourceUrl')),
 
           statusCode: {
             200: function(data, status, jqxhr) {
-              console.log('yep, we have it!')
-              that.set('size', jqxhr.getResponseHeader('Content-Length'))
-              Backbone.trigger('book:reader:ok', that)
-            }
+              this.set('size', jqxhr.getResponseHeader('Content-Length'))
+              Backbone.trigger('book:reader:ok', this)
+            }.bind(this)
           },
 
           error: function(data, status, jqxhr) {
-            console.log('no book, folks(')
-            that.set('size', undefined)
-            Backbone.trigger('book:reader:error', that)
-          }
+            this.set('size', undefined)
+            Backbone.trigger('book:reader:error', this)
+          }.bind(this)
         })
       },
 
       getReaderUrl: function() {
+        var locale = localStorage.getItem('locale') || 'ru'
+        locale = locale.slice(0, 2)
         if (!this.get('sourceUrl')) return ''
-        else return '/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(this.get('sourceUrl')))
+        else return '/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(this.get('sourceUrl'))) + '#locale=' + locale
       },
 
       complete: function() {
