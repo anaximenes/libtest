@@ -420,3 +420,25 @@ blockquote {
   font-size: 0.8em;
   font-weight: bold;
 }
+
+.question-votes {
+  display: inline-block;
+  margin: 10px;
+}
+
+.question-votes-plus, .question-votes-minus {
+  cursor: pointer;
+}
+
+.question-votes-value {
+  text-align: center;
+  font-size: large;
+}
+
+.question-votes-value.positive {
+  color: darkGreen;
+}
+
+.question-votes-value.negative {
+  color: darkRed;
+}
