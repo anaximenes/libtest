@@ -18,7 +18,7 @@ require([
           }
 
           if (!options.xhrFields) {
-            options.xhrFields = {withCredentials: false};
+            options.xhrFields = {withCredentials: true};
           }
 
           return proxiedSync(method, model, options);

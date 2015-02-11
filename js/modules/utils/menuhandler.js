@@ -60,14 +60,29 @@ define([
               path: '/books/' + this.bookId + '/',
               title: '"' + model.get('title') + '"'
           })
-          // model.checkState()
-          Backbone.trigger('menu:extend', {
-            menu: 'book',
-            page: 'read',
-            class: (size ? 'button-read' : ''),
-            title: 'read',
-            path: model.getReaderUrl()
-          })
+          model.checkState()
+        }
+      },
+
+      updateReadButton: function(model) {
+        if (this.bookId == model.id) {
+          if (model.get('size')) {
+            Backbone.trigger('menu:extend', {
+              menu: 'book',
+              page: 'read',
+              class: 'button-read',
+              title: 'read',
+              path: model.getReaderUrl(),
+              tagTitle: model.get('size') + ' bytes'
+            })
+          } else {
+            Backbone.trigger('menu:extend', {
+              menu: 'book',
+              page: 'read',
+              class: ' disabled',
+              title: 'currently unavailable',
+            })
+          }
         }
       },
 
@@ -86,6 +101,8 @@ define([
         this.listenTo(Backbone, 'page:rendered', this.handle)
         this.listenTo(Backbone, 'menu:refresh', this.handle)
         this.listenTo(Backbone, 'book:fetched', this.updateBookMenuItem)
+        this.listenTo(Backbone, 'book:reader:ok', this.updateReadButton)
+        this.listenTo(Backbone, 'book:reader:error', this.updateReadButton)
         this.listenTo(Backbone, 'question:fetched', this.updateQuestionMenuItem)
       }
     })

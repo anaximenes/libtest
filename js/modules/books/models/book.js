@@ -19,19 +19,24 @@ define([
       ],
 
       checkState: function() {
+        var that = this
         $.ajax({
           type: 'HEAD',
           url: '//178.63.105.73/pdf/' + btoa(this.get('sourceUrl')),
 
           statusCode: {
-            404: function() {
-              console.log('no book, folks(')
-            },
             200: function(data, status, jqxhr) {
-              size = jqxhr.getResponseHeader('Content-Length')
-              console.log(size)
+              console.log('yep, we have it!')
+              that.set('size', jqxhr.getResponseHeader('Content-Length'))
+              Backbone.trigger('book:reader:ok', that)
             }
           },
+
+          error: function(data, status, jqxhr) {
+            console.log('no book, folks(')
+            that.set('size', undefined)
+            Backbone.trigger('book:reader:error', that)
+          }
         })
       },
 

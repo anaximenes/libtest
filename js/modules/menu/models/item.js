@@ -26,6 +26,7 @@ define([
         this.set('path', options.path)
         this.set('toRight', options.toRight ? true : false)
         this.set('full', options.full ? true : false)
+        this.set('tagTitle', options.tagTitle || '') //this.get('title'))
       }
     })
 

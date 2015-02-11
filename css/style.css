@@ -266,6 +266,11 @@ a.header-menu-item.active {
   color: darkred;
 }
 
+.menu-item.button-read-unavailable {
+  font-size: 1.3em;
+  color: grey;
+}
+
 
 .nav-search {
   margin-left: 40px
