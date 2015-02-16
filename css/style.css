@@ -505,24 +505,21 @@ blockquote {
   font-weight: bold;
 }
 
-.question-votes {
-  display: inline-block;
-  margin: 10px;
-}
-
-.question-votes-plus, .question-votes-minus {
+.question-votes p {
   cursor: pointer;
+  margin: 0;
+  text-align: center;
 }
 
-.question-votes-value {
+.question-votes div {
   text-align: center;
   font-size: large;
 }
 
-.question-votes-value.positive {
+.question-votes div.positive {
   color: darkGreen;
 }
 
-.question-votes-value.negative {
+.question-votes div.negative {
   color: darkRed;
 }

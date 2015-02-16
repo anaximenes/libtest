@@ -2,17 +2,19 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'modules/questions/views/votes',
-    'text!/templates/questions/questions-card.html'
+    'text!/templates/questions/questions-card.html',
+    'modules/questions/views/votes'
   ],
   function($, _, Backbone, Template, VotesView) {
     var CardItemView = Backbone.View.extend({
+      votesView: new VotesView(),
+
       render: function() {
         if (this.model.complete()) {
           this.$el.html(_.template(Template)(this.model.present()))
-          this.$el.find('.questions-votes-container').each(function(){
-            //$(this).html(VotesView.render());
-          });
+          this.votesView.model = this.model;
+          this.votesView.$el = this.$el.find('.questions-votes-container').first();
+          this.votesView.render();
         }
         return this
       },

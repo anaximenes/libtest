@@ -31,18 +31,6 @@ define([
 
       initialize: function() {
         this.set('converter', new Markdown.getSanitizingConverter())
-      },
-
-      vote: function(action) {
-        var actions = ['up','down','undo'];
-        if (actions.indexOf(action) == -1) return false;
-
-        var data = {
-          type: 'q',
-          id: this.id,
-          vote: action
-        };
-
       }
     })
 
