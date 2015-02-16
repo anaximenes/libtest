@@ -48,7 +48,7 @@ define([
         if (!this.properties) return true
         var that = this
         return this.properties.reduce(function(prev, cur) {
-          return prev && (that.get(cur) != undefined)
+          return prev && (that.get(cur) !== undefined)
         }, true)
       },
 

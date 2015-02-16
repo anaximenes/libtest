@@ -9,22 +9,19 @@ define([
       model: MenuItem,
       menu: '',
 
-      initialize: function(models, options) {
-        this.menu = options.menu
-        this.models = models
-        var that = this
+      newItem: function(options) {
+        if (this.menu === options.menu) {
+          this.add(new MenuItem(options), {merge: true});
+          Backbone.trigger('menu:refresh');
+        }
+      },
 
-        // Adds menu item if non existed with the same id, else rewrites.
-        // When done calls menu:refresh to delegate
-        // menu item activation process to utils/menuhandler
-        this.listenTo(Backbone, 'menu:extend', function(options) {
-          if (this.menu != options.menu) return
-          that.add(new MenuItem(options), {merge: true})
-          Backbone.trigger('menu:refresh')
-        })
+      initialize: function(models, options) {
+        this.menu = options.menu;
+        this.models = models;
       }
     })
 
-    return Collection
+    return Collection;
   }
 )

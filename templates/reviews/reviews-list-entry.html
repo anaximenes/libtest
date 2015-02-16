@@ -1,31 +1,33 @@
 <!-- Reviews list entry -->
 
 <div class='row review-container' itemprop="review" itemscope itemtype="http://data-vocabulary.org/Review">
-  <div class='row'>
-    <div class='col-xs-2'>
-      <div style=''>
-        <img class='img-responsive avatar-image' src="/img/avatar.png" alt="">
+  <div class='col-xs-12'>
+    <div class='row'>
+      <div class='col-xs-2'>
+        <div style=''>
+          <img class='img-responsive avatar-image' src="/img/avatar.png" alt="">
+        </div>
+      </div>
+      <div class='col-xs-10'>
+        <div class='title'>
+          <h4><span itemprop='summary'><%= title %></span></h4>
+        </div>
+        <div class='content'>
+          <p>
+            <span itemprop='description'><%= body %></span>
+          </p>
+        </div>
       </div>
     </div>
-    <div class='col-xs-10'>
-      <div class='title'>
-        <h4><span itemprop='summary'><%= title %></span></h4>
-      </div>
-      <div class='content'>
-        <h5> <p>
-          <span itemprop='description'><%= body %></span>
-         </p> </h5>
+    <div class='row'>
+      <div class='col-xs-12 text-right'>
+        <div class='authors'>
+          <h5> left by <i><strong><span itemprop="reviewer"><%= user.nickname %></span></strong></i>
+           on <span itemprop='dtreviewed'><%= (new Date(date)).toDateString() %></span> </h5>
+        </div>
       </div>
     </div>
-  </div>
-  <div class='row'>
-    <div class='col-xs-12 text-right'>
-      <div class='authors'>
-        <h5> left by <i><strong><span itemprop="reviewer"><%= user.nickname %></span></strong></i>
-         on <span itemprop='dtreviewed'><%= (new Date(date)).toDateString() %></span> </h5>
-      </div>
-    </div>
-  </div>
 
-  <div itemprop='itemreviewed' style='display: none;'><%= book.title %></div>
+    <div itemprop='itemreviewed' style='display: none;'><%= book.title %></div>
+  </div>
 </div>

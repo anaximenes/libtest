@@ -1,3 +1,9 @@
+.image-grey-out {
+  opacity: 0.2;
+    -webkit-filter: grayscale(100%);
+}
+
+
 /*tags*/
 .tagsinput {
   background-color: #fff;

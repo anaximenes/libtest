@@ -3,9 +3,10 @@ define([
     'underscore',
     'backbone',
     'text!/templates/list-loading.html',
+    'text!/templates/list-end.html',
     'i18n!modules/nls/loading'
   ],
-  function($, _, Backbone, Template, i18n) {
+  function($, _, Backbone, Template, TemplateEnd, i18n) {
     var endView = Backbone.View.extend({
       show: true,
 
@@ -13,7 +14,7 @@ define([
         if (this.show) {
           this.$el.html(_.template(Template)(i18n))
         } else {
-          this.$el.empty()
+          this.$el.empty().html(TemplateEnd)
         }
         return this
       },

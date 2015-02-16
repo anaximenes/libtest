@@ -46,7 +46,7 @@ define([
       },
 
       favorites: function(id) {
-        return root + "users/" + id + "/favorites/";
+        return root + "favorites?userId=" + id;
       },
 
       booksSearch: function(query) {
@@ -55,7 +55,7 @@ define([
       },
 
       booksFavorites: function(id) {
-        return root + "users/" + id + "/favorites/";
+        return root + "favorites?userId=" + id;
       },
 
       booksRecent: function(id) {

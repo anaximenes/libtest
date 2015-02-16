@@ -58,6 +58,12 @@ define([
     }
 
     var getReportView = function(book) {
+      var model = new BookModel({ id: book.id })
+      model.fetch({
+        success: function(model) {
+          Backbone.trigger('book:fetched', model)
+        }
+      })
       return new ReportView({ id: book.id })
     }
 

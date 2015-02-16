@@ -2,8 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'modules/utils/tools'
   ],
-  function($, _, Backbone) {
+  function($, _, Backbone, Tools) {
     var MenuHandler = Backbone.View.extend({
       // menus to be activated on each page:
       pageMap: {
@@ -35,7 +36,7 @@ define([
         options || (options = {})
 
         if (options.page) {
-          if (['book', 'bookEdit', 'bookQuestions', 'bookReviews'].indexOf(options.page) != -1) {
+          if (['book', 'bookEdit', 'bookQuestions', 'bookReviews', 'bookReport'].indexOf(options.page) != -1) {
             this.bookId = options.options.id
           }
           if (['question', 'questionAnswers'].indexOf(options.page) != -1) {
@@ -73,7 +74,7 @@ define([
               class: 'button-read',
               title: 'read',
               path: model.getReaderUrl(),
-              tagTitle: model.get('size') + ' bytes'
+              tagTitle: Tools.convertBytes(model.get('size'))
             })
           } else {
             Backbone.trigger('menu:extend', {
@@ -81,6 +82,7 @@ define([
               page: 'read',
               class: ' disabled',
               title: 'currently unavailable',
+              path: ''
             })
           }
         }

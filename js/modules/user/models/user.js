@@ -133,8 +133,8 @@ define([
         var collection = new Collection()
 
         var model = new Backbone.Model({
-          id: book.id,
-          urlRoot: url
+          bookId: book.id,
+          // urlRoot: url
         })
 
         var fetch = function() {
@@ -143,12 +143,13 @@ define([
 
         if (book.get('isFavorite')) {
           model.destroy({
-            url: url + book.id,
+            // url: url,
             success: fetch,
             error: fetch
           })
         } else {
-          collection.create({id: book.id}, {
+          model.save([], {
+            url: url,
             success: fetch,
             error: fetch
           })

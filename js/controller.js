@@ -194,6 +194,40 @@ define([
 
       test: function(status) {
         var view = new (Static.extend({
+          render: function() {
+            Static.prototype.render.call(this)
+
+            this.$('.select-test').selectize({
+              delimiter: ',',
+              persist: false,
+              valueField: 'id',
+              labelField: 'title',
+              searchField: 'title',
+              create: function(input, callback) {
+                var a = {title: input, id: 100}
+                callback(a)
+              },
+              render: {
+                option: function(item, escape) {
+                  return '<div>' + escape(item.title) + '</div>'
+                }
+              },
+              load: function(query, callback) {
+                if (!query.length) return callback()
+
+                $.ajax({
+                  type: 'GET',
+                  url: '//beta.reslib.org/api/tags',
+                  success: function(data) {
+                    callback(data.results)
+                  }
+                })
+              }
+            })
+
+            return this
+          },
+
           initialize: function() {
           }
         }))()

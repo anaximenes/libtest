@@ -9,7 +9,7 @@ define([
   function($, _, Backbone, ContainerView, Template, Post) {
     var EditView = Backbone.View.extend({
       events: {
-        'submit': 'save',
+        'submit': 'saveButton',
         'click .button-save': 'saveButton',
         'click .button-cancel': 'cancel',
         'click .form-control': 'click'
@@ -42,6 +42,10 @@ define([
         attrs.isbn10 = this.$('.input-isbn-10').val().trim()
         attrs.isbn13 = this.$('.input-isbn-13').val().trim()
 
+        var selectize = this.$('.input-tags')
+        selectize = selectize[0].selectize
+        console.log(selectize.items)
+
         this.save(attrs)
       },
 
@@ -55,6 +59,64 @@ define([
         if (this.model.complete()) {
           this.$el.html(_.template(Template)(this.model.present()))
         }
+
+        var TagModel = Backbone.Model
+        var TagsCollection = Backbone.Collection.extend({
+          url: function() {
+            return '//beta.reslib.org/api/tags' + (this.query ? '' : '')
+          },
+
+          parse: function(response) {
+            return response.results
+          },
+
+          initialize: function(options) {
+            options = options || {}
+            if (options.query) this.query = options.query
+          }
+        })
+
+        this.$('.input-tags').selectize({
+          labelField: 'title',
+          searchField: 'title',
+          valueField: 'id',
+          options: [{title: 'a', id: 1}],
+          ID: -1,
+          create: function(input, callback) {
+            callback({ title: input, id: 0 })
+            // var model = new Backbone.Model()
+            // model.save({ title: input }, {
+            //   url: '//beta.reslib.org/api/tags/',
+            //   success: function() {
+            //     callback({ title: input, id: model.id })
+            //   },
+            //   error: function() {
+            //     console.log('error saving tag')
+            //     callback()
+            //   }
+            // })
+          },
+          render: {
+            option: function(item, escape) {
+              console.log(item)
+              return '<div>' + escape(item.title) + '</div>'
+            }
+          },
+          load: function(query, callback) {
+            var collection = new TagsCollection({ query: query })
+            collection.fetch({
+              success: function() {
+                var output = collection.models
+                output = output.map(function(e) { return { title: e.get('title'), id: e.id } })
+                console.log(output)
+                callback(output)
+              },
+              error: function() {
+                callback()
+              }
+            })
+          }
+        })
         return this
       },
 
