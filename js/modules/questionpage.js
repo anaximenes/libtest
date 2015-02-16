@@ -30,9 +30,8 @@ define([
         //------------------------------------------------------------------------------
 
         var collection = new Answers.PagedCollection([], {
-          questionId: questionId,
           url: function() {
-            return Url('answers', questionId)
+            return Url('questionAnswers', questionId)
           }
         })
 

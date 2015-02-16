@@ -20,6 +20,16 @@ define([
 
       checkState: function(action) {
         action || (action = {})
+
+        if (this.get('checked')) {
+          if (this.id) {
+            if (action.success) action.success()
+          } else {
+            if (action.error) action.error()
+          }
+          return
+        }
+
         var user = new AuthModel()
 
         var that = this

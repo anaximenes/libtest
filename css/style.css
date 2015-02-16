@@ -1,3 +1,78 @@
+/*tags*/
+.tagsinput {
+  background-color: #fff;
+  /*border: 1px solid #ccc;*/
+  /*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);*/
+  /*display: inline-block;*/
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  color: #555;
+  vertical-align: middle;
+  /*border-radius: 4px;*/
+  max-width: 100%;
+  /*line-height: 22px;*/
+  cursor: text;
+}
+.tagsinput input {
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  width: auto !important;
+  max-width: inherit;
+}
+.tagsinput input:focus {
+  border: none;
+  box-shadow: none;
+}
+.tagsinput .tag {
+  margin-right: 2px;
+  color: white;
+}
+.tagsinput .tag [data-role="remove"] {
+  margin-left: 8px;
+  cursor: pointer;
+}
+.tagsinput .tag [data-role="remove"]:after {
+  content: "x";
+  padding: 0px 2px;
+}
+.tagsinput .tag [data-role="remove"]:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.tagsinput .tag [data-role="remove"]:hover:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+/*truncate long description*/
+.truncate {
+  max-width: 300px;
+  /*width: auto;*/
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/*stars for rating*/
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
+
+/*add to favorites icon*/
 .fa-bookmark-o:hover {
   color: grey;
   cursor: pointer;
@@ -19,12 +94,16 @@ div.row img {
 }
 
 .question-container {
-  padding: 12px 0 10px 0;
   border-bottom: 1px solid #e0e0e0;
   /*font-size: 20px*/
 }
 
 .review-container {
+  border-bottom: 1px solid #e0e0e0;
+  /*font-size: 20px*/
+}
+
+.answer-container {
   border-bottom: 1px solid #e0e0e0;
   /*font-size: 20px*/
 }
@@ -185,6 +264,11 @@ a.header-menu-item.active {
 .menu-item.button-read {
   font-size: 1.3em;
   color: darkred;
+}
+
+.menu-item.button-read-unavailable {
+  font-size: 1.3em;
+  color: grey;
 }
 
 

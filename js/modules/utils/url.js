@@ -41,8 +41,8 @@ define([
         return root + "questions/" + id;
       },
 
-      answers: function(id) {
-        return root + 'questions/' + id + '/answers/'
+      questionAnswers: function(id) {
+        return root + 'answers/?questionId=' + id
       },
 
       favorites: function(id) {
@@ -85,6 +85,14 @@ define([
 
       user: function(id) {
         return root + 'users/' + id + '/';
+      },
+
+      userAnswers: function(id) {
+        return root + 'answers/?userid=' + id;
+      },
+
+      userQuestions: function(id) {
+        return root// + 'questions/' + id + '/';
       }
 
     }

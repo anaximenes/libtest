@@ -30,6 +30,7 @@ define([
           'title': text,
           'href': this.model.get('path'),
           'id': this.model.collection.menu + '-menu-' + this.model.get('page'),
+          'tagTitle': this.model.get('tagTitle')
         }))
         this.$('a').addClass(this.classes || '')
         this.$el.addClass((this.model.get('toRight') ? 'menu-right' : ''))

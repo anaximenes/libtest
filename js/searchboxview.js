@@ -22,6 +22,8 @@ define([
       handleTransition: function(options) {
         if (options.page != 'booksSearch' && options.page != 'questionsSearch') {
           this.$('#search-query').val('')
+        } else {
+          this.$('#search-query').val(options.options)
         }
       },
 
