@@ -12,13 +12,10 @@ define([
 
       toggleFavorite: function() {
         Backbone.trigger('book:toggleFavorite', this.model)
-
         this.model.set('isFavorite', !this.model.get('isFavorite'))
-        this.render()
       },
 
       render: function() {
-        var that = this
         if (this.model.complete()) {
           this.$el.html(_.template(Template)(this.model.present({ short: true })))
         }

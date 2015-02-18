@@ -2,11 +2,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'modules/utils/url',
     'modules/utils/containerview',
     'text!/templates/books/books-card-edit.html',
     'modules/post/main'
   ],
-  function($, _, Backbone, ContainerView, Template, Post) {
+  function($, _, Backbone, Url, ContainerView, Template, Post) {
     var EditView = Backbone.View.extend({
       events: {
         'submit': 'saveButton',
@@ -63,7 +64,7 @@ define([
         var TagModel = Backbone.Model
         var TagsCollection = Backbone.Collection.extend({
           url: function() {
-            return '//beta.reslib.org/api/tags' + (this.query ? '' : '')
+            return Url('tagsSearch', this.query || '')
           },
 
           parse: function(response) {
@@ -86,7 +87,7 @@ define([
             callback({ title: input, id: 0 })
             // var model = new Backbone.Model()
             // model.save({ title: input }, {
-            //   url: '//beta.reslib.org/api/tags/',
+            //   url: Url('tags'),
             //   success: function() {
             //     callback({ title: input, id: model.id })
             //   },
@@ -98,7 +99,6 @@ define([
           },
           render: {
             option: function(item, escape) {
-              console.log(item)
               return '<div>' + escape(item.title) + '</div>'
             }
           },
@@ -108,7 +108,6 @@ define([
               success: function() {
                 var output = collection.models
                 output = output.map(function(e) { return { title: e.get('title'), id: e.id } })
-                console.log(output)
                 callback(output)
               },
               error: function() {

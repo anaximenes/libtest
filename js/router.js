@@ -40,6 +40,7 @@ define([
         'signout(/)':                  'signout',
         'user(/)':                     'userPage',
         'user/answers(/)':             'userAnswers',
+        'user/questions(/)':           'userQuestions',
         'test(/)':                     'test',
         '(/)':                         'root',
 
@@ -164,6 +165,15 @@ define([
         this.requireLogin({
           success: function() {
             Controller.view('userAnswers', that.user.id)
+          }
+        })
+      },
+
+      userQuestions: function() {
+        var that = this
+        this.requireLogin({
+          success: function() {
+            Controller.view('userQuestions', that.user.id)
           }
         })
       },

@@ -3,7 +3,8 @@ define([
     'underscore'
   ],
   function($, _) {
-    var root = "//beta.reslib.org/api/"
+    var root = "//reslib.org/api/"
+    // var root = "//beta.reslib.org/api/"
     var URLs = {
       books: function() {
         return root + "books/";
@@ -22,7 +23,7 @@ define([
       },
 
       bookQuestion: function(id, question) {
-        return root + "books/" + id + "/questions" + question;
+        return root + "books/" + id + "/questions/" + question;
       },
 
       questions: function() {
@@ -42,11 +43,13 @@ define([
       },
 
       questionAnswers: function(id) {
-        return root + 'answers/?questionId=' + id
+        return root + 'questions/' + id + '/answers';
+        // return root + 'answers?questionId=' + id
       },
 
       favorites: function(id) {
-        return root + "favorites?userId=" + id;
+        return root + "users/" + id + "/favorites";
+        // return root + "favorites?userId=" + id;
       },
 
       booksSearch: function(query) {
@@ -55,19 +58,16 @@ define([
       },
 
       booksFavorites: function(id) {
-        return root + "favorites?userId=" + id;
+        return root + 'users/' + id + '/favorites/';
+        // return root + "favorites?userId=" + id;
       },
 
       booksRecent: function(id) {
-        return root + "users/" + id + "/recent/";
+        return root + "users/" + id + "/recent";
       },
 
       reportBook: function(id) {
-        return root + 'books/' + id + '/reports/';
-      },
-
-      questionsFavorites: function(id) {
-        // return root + "users/" + id + "/questions";
+        return root + 'books/' + id + '/reports';
       },
 
       questionsSearch: function(query) {
@@ -88,11 +88,20 @@ define([
       },
 
       userAnswers: function(id) {
-        return root + 'answers/?userid=' + id;
+        return root + 'users/' + id + '/answers';
+        // return root + 'answers/?userid=' + id;
       },
 
       userQuestions: function(id) {
-        return root// + 'questions/' + id + '/';
+        return root + 'users/' + id + '/questions';
+      },
+
+      tags: function() {
+        return root + 'tags';
+      },
+
+      tagsSearch: function(query) {
+        return root + 'tags?query=' + (this.query ? '' : '');
       }
 
     }

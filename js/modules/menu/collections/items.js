@@ -16,6 +16,13 @@ define([
         }
       },
 
+      removeItem: function(options) {
+        if (this.menu === options.menu) {
+          this.remove(this.findWhere({page: options.page}));
+          Backbone.trigger('menu:refresh');
+        }
+      },
+
       initialize: function(models, options) {
         this.menu = options.menu;
         this.models = models;

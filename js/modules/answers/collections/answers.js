@@ -3,7 +3,8 @@ define([
     'underscore',
     'backbone',
     'modules/utils/url',
-    'modules/pageable/collections/collection2',
+    'modules/pageable/collections/collection',
+    // 'modules/pageable/collections/collection2',
     'modules/answers/models/answer'
   ],
   function($, _, Backbone, Url, BasePagedCollection, Model) {

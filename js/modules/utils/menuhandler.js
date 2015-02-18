@@ -42,6 +42,10 @@ define([
           if (['question', 'questionAnswers'].indexOf(options.page) != -1) {
             this.questionId = options.options.id
           }
+
+          if (['user', 'userAnswers', 'userQuestions'].indexOf(options.page) === -1) {
+            Backbone.trigger('menu:remove', {menu: 'header', page: 'profile'})
+          }
         }
 
         this.page = options.page || this.page

@@ -15,13 +15,13 @@ define([
         'authors',
         'title',
         'isFavorite'
-        // 'description'
       ],
 
       checkState: function() {
         $.ajax({
           type: 'HEAD',
           url: '//178.63.105.73/pdf/' + btoa(this.get('sourceUrl')),
+          cache: false,
 
           statusCode: {
             200: function(data, status, jqxhr) {
@@ -69,8 +69,14 @@ define([
           return model.toJSON()
         }
 
+        // new api
+        // model.unset('authors')
+        // var authors = this.get('authors').map(function(author) { return author.firstName })
+        // return _.extend(model.toJSON(), { authors: authors.join(', ') })
+
+        // old api
         model.unset('authors')
-        var authors = this.get('authors').map(function(author) { return author.firstName })
+        var authors = this.get('authors').map(function(author) { return author })
         return _.extend(model.toJSON(), { authors: authors.join(', ') })
       }
     })

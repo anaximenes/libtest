@@ -127,29 +127,20 @@ define([
       },
 
       toggleFavorite: function(book) {
-        var url = Url('favorites', this.id)
-
-        var Collection = Backbone.Collection.extend({ url: url })
-        var collection = new Collection()
-
-        var model = new Backbone.Model({
-          bookId: book.id,
-          // urlRoot: url
-        })
-
         var fetch = function() {
-          book.fetch()
+          book.fetch();
         }
 
+        var model = new Backbone.Model({ id: book.id })
         if (book.get('isFavorite')) {
           model.destroy({
-            // url: url,
+            url: Url('booksFavorites', this.id) + book.id,
             success: fetch,
             error: fetch
           })
         } else {
-          model.save([], {
-            url: url,
+          model.save({ id: book.id, isFavorite: true }, {
+            url: Url('booksFavorites', this.id) + book.id,
             success: fetch,
             error: fetch
           })
