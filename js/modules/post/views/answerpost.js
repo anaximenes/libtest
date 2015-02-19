@@ -2,47 +2,42 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/post/post-form.html',
+    'text!/templates/post/post-form-simple.html',
     'i18n!modules/nls/post',
     'markdown'
   ],
   function($, _, Backbone, Template, i18n, Markdown) {
-    var PostView = Backbone.View.extend({
+    var AnswerPost = Backbone.View.extend({
       events: {
-        'click .post-title': 'open',
+        'click .wmd-input': 'open',
         'click .button-cancel': 'close',
         'click #post-button': 'post'
       },
 
       open: function() {
-        this.$('.post-input').slideDown('fast', 'swing')
+        this.$('.wmd-input').attr('rows', 6) //slideDown('fast', 'swing')
         this.$('.user-avatar').slideDown('fast', 'swing')
+        this.$('.post-preview').slideDown('fast', 'swing')
+        this.$('.post-buttons').slideDown('fast', 'swing')
       },
 
       close: function() {
         this.erase()
         this.$('.save-error').hide()
-        this.$('.post-input').slideUp('fast', 'swing')
+        this.$('.wmd-input').attr('rows', '1')
+        this.$('.post-buttons').slideUp('fast', 'swing')
+        this.$('.post-preview').slideUp('fast', 'swing')
         this.$('.user-avatar').slideUp('fast', 'swing')
         this.validate()
      },
 
       erase: function() {
-        this.$('.post-title').val('')
         this.$('#wmd-input').val('')
       },
 
-      validate: function(title, body) {
+      validate: function(body) {
         console.log('validate')
         var ok = true
-        if (title === '') {
-          this.$('.form-title').addClass('has-error')
-          this.$('.error-title').show()
-          ok = false
-        } else {
-          this.$('.form-title').removeClass('has-error')
-          this.$('.error-title').hide()
-        }
         if (body === '') {
           this.$('.form-body').addClass('has-error')
           this.$('.error-body').show()
@@ -56,14 +51,12 @@ define([
       },
 
       post: function() {
-        var title = this.$el.find('.post-title').val().trim()
         var body = this.$el.find('#wmd-input').val().trim()
-        if (!this.validate(title, body)) return
+        if (!this.validate(body)) return
 
         body = this.converter.makeHtml(body)
 
         Backbone.trigger('post:' + this.where, {
-          title: title,
           body: body,
           id: this.id,
           collection: this.collection
@@ -105,7 +98,7 @@ define([
           if (options.page === 'bookQuestions') {
             that.where = 'question'
           }
-          if (options.page === 'question') {
+          if (options.page === 'questionAnswers') {
             that.where = 'answer'
           }
         })
@@ -123,6 +116,6 @@ define([
       }
     })
 
-    return PostView
+    return AnswerPost
   }
 )

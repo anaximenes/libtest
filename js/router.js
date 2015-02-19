@@ -38,7 +38,7 @@ define([
         'signin(/)':                   'signin',
         'signup(/)':                   'signup',
         'signout(/)':                  'signout',
-        'user(/)':                     'userPage',
+        // 'user(/)':                     'userPage',
         'user/answers(/)':             'userAnswers',
         'user/questions(/)':           'userQuestions',
         'test(/)':                     'test',

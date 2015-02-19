@@ -1,0 +1,45 @@
+<!-- Review post form -->
+
+<div class='row review-container'>
+  <div class='col-xs-2'>
+    <img class='img-responsive avatar-image user-avatar' style='display: none;' src="/img/avatar.png" alt="">
+  </div>
+  <div class='col-xs-10'>
+    <div class='post-input' style=''>
+      <div class='form'>
+        <div class="form-group form-body">
+          <div class='row'>
+            <div class='col-xs-9'>
+              <div class='wmd-panel'>
+                <div id='wmd-button-bar' style='display: none;'></div>
+                <textarea type='text' rows='1' class='wmd-input form-control' style='' id='wmd-input' placeholder=''></textarea>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <label class="control-label error-body" for="wmd-input" style='font-size: larger; display: none; margin-top:40px '>Tell us something</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='row post-preview' style='display: none;'>
+        <div class='col-xs-9'>
+          <div class='wmd-panel wmd-preview form-control' style='height: auto; border: 1px solid #e0e0e0;' id='wmd-preview'></div>
+        </div>
+      </div>
+      <div style='margin-bottom: 0.5em'>
+        <div class='row save-error' style='display: none;'>
+          <div class='col-xs-9'>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>Error!</strong> We couldn't send your message, please try again later.
+            </div>
+          </div>
+        </div>
+        <div class='post-buttons' style='display: none;'>
+          <a id='post-button' style='font-size: larger'><%= label_send %></a>
+          <a class='button-cancel' style='font-size: larger; margin-left: 5px'><%= label_cancel %></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

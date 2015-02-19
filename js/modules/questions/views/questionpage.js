@@ -27,7 +27,7 @@ define([
 
         //------------------------------------------------------------------------------
 
-        var postForm = new Post.UserPostView({
+        var postForm = new Post.AnswerPostView({
           id: model.id,
           collection: bottom.collection,
           show: true

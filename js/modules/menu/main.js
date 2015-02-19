@@ -48,9 +48,9 @@ define([
             [{page: 'all', title: 'all', path: '/questions/'},
           ],
           'user': [
-            {page: 'userQuestions', title: 'questions', path: '/user/questions'},
-            {page: 'userAnswers', title: 'answers', path: '/user/answers'},
-            {page: 'info', title: 'info', path: '/user/'}
+            {page: 'userQuestions', title: 'questions', path: '/user/questions/'},
+            {page: 'userAnswers', title: 'answers', path: '/user/answers/'},
+            // {page: 'info', title: 'info', path: '/user/'}
           ]
         }[menu]
       },

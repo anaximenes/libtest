@@ -19,6 +19,16 @@ define([
         return this.properties.reduce(function(prev, cur) {
           return prev && (that.get(cur) != undefined)
         }, true)
+      },
+
+      present: function() {
+        var copy = this.clone()
+        copy.set('body', this.get('converter').makeHtml(copy.get('body')))
+        return copy.toJSON()
+      },
+
+      initialize: function() {
+        this.set('converter', new Markdown.getSanitizingConverter())
       }
     })
 

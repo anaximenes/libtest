@@ -38,6 +38,10 @@ define([
         return root + "users/" + id + "/reviews/"
       },
 
+      userAnswers: function(id) {
+        return root + "questions/" + id + "/answers/"
+      },
+
       question: function(id) {
         return root + "questions/" + id;
       },
