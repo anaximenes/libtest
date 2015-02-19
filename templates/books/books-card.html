@@ -3,9 +3,13 @@
 <div class='row book-entry' itemscope itemtype='http://schema.org/Book'>
   <div class='hidden-xs col-sm-4'>
     <div style=''>
-      <a href='<%= readerUrl %>'>
+      <% if (!isUnavailable) { %>
+        <a href='<%= readerUrl %>'>
+      <% } %>
         <img class='img-rounded' style='width: 100%;' src="http://reslib.org/pict/<%= picture %>" alt="" itemprop='image'>
-      </a>
+      <% if (!isUnavailable) { %>
+        </a>
+      <% } %>
     </div>
   </div>
   <div class='col-xs-12 col-sm-8'>

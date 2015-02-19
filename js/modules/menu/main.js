@@ -41,7 +41,7 @@ define([
           ],
           'book': [
             {page: 'description', title: 'description', path: this.base},
-            {page: 'read', title: 'read', path: ''},
+            {page: 'read', title: 'currently unavailable', path: ''},
             {page: 'report', title: 'report', path: this.base + 'report/', toRight: true}
           ],
           'questions':

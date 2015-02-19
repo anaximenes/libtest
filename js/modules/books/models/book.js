@@ -10,6 +10,10 @@ define([
         return Url('book', this.id)
       },
 
+      defaults: {
+        isUnavailable: false
+      },
+
       properties: [
         'id',
         'authors',
@@ -32,6 +36,7 @@ define([
 
           error: function(data, status, jqxhr) {
             this.set('size', undefined)
+            this.set('isUnavailable', true)
             Backbone.trigger('book:reader:error', this)
           }.bind(this)
         })
