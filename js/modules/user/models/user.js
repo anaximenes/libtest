@@ -155,8 +155,6 @@ define([
           body: options.body
         })
         model.url = Url(where, options.questionId || this.id)
-        debugger;
-        console.log(model)
 
         model.save([], {
           success: function(newModel, response) {
