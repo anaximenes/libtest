@@ -1,5 +1,6 @@
 define({
   'label_signin': 'войти',
   'label_signout': 'выйти',
-  'label_signup': 'создать аккаунт'
+  'label_signup': 'создать аккаунт',
+  'label_old': 'старый'
 })

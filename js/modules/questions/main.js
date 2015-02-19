@@ -3,6 +3,7 @@ define([
     'underscore',
     'backbone',
     // 'modules/questions/views/list',
+    'modules/utils/url',
     'modules/questions/views/pagedlist',
     'modules/questions/views/card',
     'modules/questions/views/framedlist',
@@ -10,7 +11,7 @@ define([
     'modules/questions/collections/pagedcollection',
     'modules/questions/models/question'
   ],
-  function($, _, Backbone, PagedListView, CardView, FramedListView, QuestionPageView, PagedCollection, QuestionModel) {
+  function($, _, Backbone, Url, PagedListView, CardView, FramedListView, QuestionPageView, PagedCollection, QuestionModel) {
     var saved = {};
     saved.models = {};
     saved.collections = {};

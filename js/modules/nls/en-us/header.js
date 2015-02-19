@@ -1,5 +1,6 @@
 define({
   'label_signin': 'sign in',
   'label_signout': 'sign out',
-  'label_signup': 'sign up'
+  'label_signup': 'sign up',
+  'label_old': 'old'
 })
