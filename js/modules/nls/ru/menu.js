@@ -1,8 +1,11 @@
 define({
   'Books': 'Книги',
   'Questions': 'Вопросы',
+  'questions': 'вопросы',
   'Reviews': 'Отзывы',
-  'Post': 'Написать',
+  'Answers': 'Ответы',
+  'answers': 'ответы',
+  'Profile': 'Профиль',
   'description': 'описание',
   'edit': 'править',
   'read': 'читать',
