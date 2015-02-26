@@ -78,14 +78,8 @@ define([
       },
 
       bookBackCompatability: function(title, id) {
-        // this.navigate('/books/' + id + '/', true)
-        Controller.view('bookReviews', {'id': id})
-        this.bookInit(id)
-      },
-
-      bookBackCompatability: function(title, id) {
-        // this.navigate('/books/' + id + '/', true)
-        Controller.view('bookReviews', {'id': id})
+        this.navigate('/books/' + id + '/', false)
+        Controller.view('bookReviews', { 'id': id })
         this.bookInit(id)
       },
 

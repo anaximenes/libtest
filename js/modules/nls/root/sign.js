@@ -9,5 +9,6 @@ define({
   'label_email': 'Адрес электронной почты',
   'label_password_match': 'Пароли не совпадают.',
   'label_email_taken': 'Этот адрес уже зарегистрирован.',
-  'label_auth_error': 'Неправильная пара логин-пароль.'
+  'label_auth_error': 'Неправильная пара логин-пароль.',
+  'label_please_signin': "Пожалуйста, <a href='/signin/'>авторизируйтесь</a>"
 })
