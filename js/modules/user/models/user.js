@@ -127,23 +127,45 @@ define([
       },
 
       toggleFavorite: function(book) {
-        var fetch = function() {
+        if (!this.isLogged()) {
           book.fetch();
+          Backbone.trigger('book:toggleFavorite:unauth', book)
+          return
+        }
+
+        var success = function(model, response, options) {
+          book.fetch();
+        }
+        var error = function(model, response, options) {
+          book.fetch();
+          console.log(response.responseText)
+          console.log(response.statusText)
+          console.log(response.status)
+          console.log(options.xhr)
+          console.log(options.xhr.status)
+          console.log(options.xhr.responseText)
+          Backbone.trigger('book:toggleFavorite:unauth', book)
         }
 
         var model = new Backbone.Model({ id: book.id })
         if (book.get('isFavorite')) {
           model.destroy({
             url: Url('booksFavorites', this.id) + book.id,
-            success: fetch,
-            error: fetch
+            success: success,
+            error: error
           })
         } else {
-          model.save({ id: book.id, isFavorite: true }, {
+          xhr = model.save({ id: book.id, isFavorite: true }, {
             url: Url('booksFavorites', this.id) + book.id,
-            success: fetch,
-            error: fetch
+            success: success,
+            error: error,
+            statusCode: {
+              401: function() {
+                console.log('401')
+              }
+            }
           })
+          console.log(xhr)
         }
       },
 

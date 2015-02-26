@@ -44,7 +44,8 @@ define([
         'test(/)':                     'test',
         '(/)':                         'root',
 
-        'book/:title/:id(/)':          'bookBackCompatability'
+        'book/:title/:id(/)':          'bookBackCompatability',
+        '!/book/:title/:id(/)':          'bookBackCompatability'
       },
 
       root: function() {
@@ -231,11 +232,15 @@ define([
             that.navigate('/books/search/' + query, true)
           }
         }
+        var demandLogin = function() {
+          this.requireLogin();
+        }.bind(this)
 
         var eventHandler = {
           'user:signout':       signOut,
           'user:signed':        signed,
-          'search':             search
+          'search':             search,
+          'demandLogin':        demandLogin
         }
 
         for (var event in eventHandler) {

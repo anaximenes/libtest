@@ -5,6 +5,8 @@ define([
     'modules/utils/url'
   ],
   function($, _, Backbone, Url) {
+    var converter = new Markdown.getSanitizingConverter();
+
     var BookModel = Backbone.Model.extend({
       url: function() {
         return Url('book', this.id)
@@ -60,6 +62,10 @@ define([
       present: function(options) {
         options || (options = {})
         var model = this.clone()
+
+        if (model.get('description')) {
+          model.set('description', converter.makeHtml(model.get('description')))
+        }
 
         if (options.short) {
           if (model.get('description')) {

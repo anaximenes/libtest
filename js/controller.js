@@ -207,6 +207,7 @@ define([
       },
 
       test: function(status) {
+        return BookModule.getAllGridView()
         //development playground
         var view = new (Static.extend({
           render: function() {
