@@ -27,8 +27,6 @@ define([
         $.ajax({
           type: 'HEAD',
           url: '//178.63.105.73/pdf/' + btoa(this.get('sourceUrl')),
-          cache: false,
-
           statusCode: {
             200: function(data, status, jqxhr) {
               this.set('size', jqxhr.getResponseHeader('Content-Length'))
