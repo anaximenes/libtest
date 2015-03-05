@@ -6,9 +6,9 @@ define([
     'modules/pageable/collections/collection',
     'modules/questions/models/question'
   ],
-  function($, _, Backbone, Url, BasePagedCollection, BookModel) {
+  function($, _, Backbone, Url, BasePagedCollection, QuestionModel) {
     var PagedCollection = BasePagedCollection.extend({
-      model: BookModel,
+      model: QuestionModel,
       url: function() {
         return Url('questions')
       },

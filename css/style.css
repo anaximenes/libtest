@@ -504,3 +504,39 @@ blockquote {
   font-size: 0.8em;
   font-weight: bold;
 }
+
+.question-votes p {
+  cursor: pointer;
+  margin: 0;
+  text-align: center;
+}
+
+.question-votes div {
+  text-align: center;
+  font-size: large;
+}
+
+.question-votes div.positive {
+  color: green;
+}
+
+.question-votes div.negative {
+  color: darkRed;
+}
+
+.question-votes i {
+  font-weight: normal;
+  display: block;
+  text-align: center;
+  padding-right: 0;
+  color: #999;
+  cursor: pointer;
+}
+
+.question-votes i.active {
+  color: #333;
+}
+
+.question-votes .glyphicon-arrow-down {
+  margin-top: 1px;
+}
