@@ -1,7 +1,7 @@
 <div class='question-votes'>
-  <p data-action="up">+</p>
+  <i data-action="up" class="glyphicon glyphicon-chevron-up"></i>
   <div class='question-votes-value<% if (rating > 0) { %> positive<% } %><% if (rating < 0) { %> negative<% } %>'>
     <%= rating %>
   </div>
-  <p data-action="down">–</p>
+  <i data-action="down" class="glyphicon glyphicon-chevron-down"></i>
 </div>

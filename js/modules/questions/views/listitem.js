@@ -7,18 +7,21 @@ define([
   ],
   function($, _, Backbone, Template, VotesView) {
     ListItemView = Backbone.View.extend({
-      votesView: new VotesView(),
+      votesView: undefined,
 
       render: function() {
         this.$el.html(_.template(Template)(this.model.toJSON()))
-
-        this.votesView.model = this.model;
-        this.votesView.$el = this.$el.find('.questions-votes-container').first();
-        this.votesView.render();
+        this.$('.questions-votes-container').html(this.votesView.render().el);
         return this
       },
 
+      remove: function() {
+        this.votesView.remove();
+        Backbone.View.prototype.remove.apply(this);
+      },
+
       initialize: function() {
+        this.votesView = new VotesView({ model: this.model });
         this.listenTo(this.model, 'change', this.render)
       }
     })

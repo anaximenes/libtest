@@ -6,25 +6,31 @@ define([
   ],
   function($, _, Backbone, Template) {
     var VotesView = Backbone.View.extend({
-      render: function() {
-        var self = this;
-        this.$el.html(_.template(Template)(this.model.present()));
-        this.$el.find('p').each(function(){
-          $(this).click(function(){
-            self.vote($(this).data('action'));
-          });
-        });
-        return this;
+      events: {
+        'click i': 'click'
       },
 
-      initialize: function() {
-        //this.listenTo(this.model, 'change', this.render);
+      click: function(e) {
+        var $t = $(e.target);
+        var action = $t.hasClass('active') ? 'undo' : $t.data('action');
+        if (this.vote(action)) {
+          this.$('i').removeClass('active');
+          if (action != 'undo') this.$('i.glyphicon-chevron-'+$t.data('action')).addClass('active');
+        }
+      },
+
+      render: function() {
+        if (this.model.complete()) {
+          this.$el.html(_.template(Template)(this.model.present()));
+        }
+        return this;
       },
 
       vote: function(action) {
         var actions = ['up','down','undo'];
         if (actions.indexOf(action) == -1) return false;
         console.log(action);
+        return true;
       }
 
     });

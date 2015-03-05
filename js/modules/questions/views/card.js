@@ -13,7 +13,7 @@ define([
         if (this.model.complete()) {
           this.$el.html(_.template(Template)(this.model.present()))
           this.votesView.model = this.model;
-          this.votesView.$el = this.$el.find('.questions-votes-container').first();
+          this.votesView.$el = this.$('.questions-votes-container').first();
           this.votesView.render();
         }
         return this

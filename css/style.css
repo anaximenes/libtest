@@ -517,9 +517,26 @@ blockquote {
 }
 
 .question-votes div.positive {
-  color: darkGreen;
+  color: green;
 }
 
 .question-votes div.negative {
   color: darkRed;
+}
+
+.question-votes i {
+  font-weight: normal;
+  display: block;
+  text-align: center;
+  padding-right: 0;
+  color: #999;
+  cursor: pointer;
+}
+
+.question-votes i.active {
+  color: #333;
+}
+
+.question-votes .glyphicon-arrow-down {
+  margin-top: 1px;
 }
