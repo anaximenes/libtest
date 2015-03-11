@@ -74,6 +74,11 @@ define([
         return root + 'books/' + id + '/reports';
       },
 
+      // TODO: Fix after api implementation.
+      feedback: function () {
+        return root + 'books/' + 1620450 + '/reports';
+      },
+
       questionsSearch: function(query) {
         query = encodeURIComponent(query)
         return root + "questions/?query=" + query

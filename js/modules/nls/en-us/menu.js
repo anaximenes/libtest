@@ -13,5 +13,7 @@ define({
   'all': 'all',
   'favorites': 'favorites',
   'recent': 'recent',
-  'report': 'report'
+  'report': 'report',
+  'feedback': 'feedback',
+  'Feedback': 'Feedback'
 })

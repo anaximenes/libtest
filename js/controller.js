@@ -12,8 +12,9 @@ define([
     'modules/static/views/view',
     'modules/nodata/main',
     'modules/utils/main',
+    'modules/feedback/main',
   ],
-  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, AnswerModule, SearchView, Menu, User, Static, NoData, Utils) {
+  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, AnswerModule, SearchView, Menu, User, Static, NoData, Utils, FeedbackModule) {
     var currentState = {}
 
     var $headerDom = $('#header')
@@ -30,6 +31,7 @@ define([
         new Utils.MenuHandler()
         new Utils.PageTitleHandler()
         new Utils.OpenGraphHandler()
+        new FeedbackModule.ButtonView();
       },
 
       view: function(page, params) {
@@ -177,6 +179,19 @@ define([
         var collection = new AnswerModule.PagedCollection([], { url: Utils.Url('userAnswers', id) })
         var view = new AnswerModule.FramedListView({ collection: collection })
         return view
+      },
+      feedback: function (id) {
+        Backbone.trigger('menu:extend', {
+          menu: 'header',
+          page: 'feedback',
+          title: 'Feedback',
+          path: '/feedback/',
+          // toRight: true
+        })
+
+        var view = new FeedbackModule.FormView();
+        return view;
+
       },
 
       userQuestions: function(id) {

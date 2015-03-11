@@ -29,7 +29,8 @@ define([
 
         'user':             {'header': 'profile', 'user': 'info'},
         'userQuestions':    {'header': 'profile', 'user': 'userQuestions'},
-        'userAnswers':      {'header': 'profile', 'user': 'userAnswers'}
+        'userAnswers':      {'header': 'profile', 'user': 'userAnswers'},
+        'feedback':         {'header': 'feedback'}
       },
 
       handle: function(options) {
