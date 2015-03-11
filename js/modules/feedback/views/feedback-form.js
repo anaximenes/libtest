@@ -58,23 +58,3 @@ define([
     return ReportView
   }
 )
-/*
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'text!/templates/feedback/button.html',
-    'text!/templates/feedback/feedback-form.html',
-  ],
-  function($, _, Backbone, ButtonTemplate, FormTemplate) {
-    var View = Backbone.View.extend({
-      render: function () {
-        console.log('feedback');
-        return this;
-      }
-    });
-
-    return View;
-  }
-)
-*/
