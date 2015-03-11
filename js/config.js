@@ -2,6 +2,7 @@ var locale = localStorage.getItem('locale') || 'ru';
 
 require.config({
   deps: ['main'],
+  urlArgs: "bust=v4",
 
   paths: {
     'jquery': "/vendor/jquery/dist/jquery",

@@ -71,7 +71,7 @@ define([
 
       updateReadButton: function(model) {
         if (this.bookId == model.id) {
-          if (model.get('size')) {
+          if (model.get('size') !== undefined) {
             Backbone.trigger('menu:extend', {
               menu: 'book',
               page: 'read',
