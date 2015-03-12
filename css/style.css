@@ -517,7 +517,6 @@ blockquote {
  */
 .feedback-button {
     position: fixed;
-    width: 100px;
     height: 30px;
     bottom: 3em;
     left: 0px;

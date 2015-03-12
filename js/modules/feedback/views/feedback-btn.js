@@ -4,8 +4,9 @@ define([
     'backbone',
     'text!/templates/feedback/button.html',
     'text!/templates/feedback/feedback-form.html',
+    'i18n!modules/nls/menu'
   ],
-  function($, _, Backbone, ButtonTemplate, FormTemplate) {
+  function($, _, Backbone, ButtonTemplate, FormTemplate, i18n) {
     var View = Backbone.View.extend({
       events: {
         'click .feedback-button': 'showForm'
@@ -16,7 +17,7 @@ define([
       },
 
       render: function () {
-        this.$el.html(_.template(ButtonTemplate));
+        this.$el.html(_.template(ButtonTemplate)(i18n));
         return this;
       },
 

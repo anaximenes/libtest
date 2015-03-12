@@ -47,6 +47,10 @@ define([
           if (['user', 'userAnswers', 'userQuestions'].indexOf(options.page) === -1) {
             Backbone.trigger('menu:remove', {menu: 'header', page: 'profile'})
           }
+
+          if (['feedback'].indexOf(options.page) === -1) {
+            Backbone.trigger('menu:remove', {menu: 'header', page: 'feedback'})
+          }
         }
 
         this.page = options.page || this.page

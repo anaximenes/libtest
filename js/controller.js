@@ -180,18 +180,17 @@ define([
         var view = new AnswerModule.FramedListView({ collection: collection })
         return view
       },
+
       feedback: function (id) {
         Backbone.trigger('menu:extend', {
           menu: 'header',
           page: 'feedback',
           title: 'Feedback',
-          path: '/feedback/',
-          // toRight: true
-        })
+          path: '/feedback/'
+        });
 
         var view = new FeedbackModule.FormView();
         return view;
-
       },
 
       userQuestions: function(id) {

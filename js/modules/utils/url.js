@@ -3,8 +3,8 @@ define([
     'underscore'
   ],
   function($, _) {
-    var root = "//reslib.org/api/"
-    // var root = "//beta.reslib.org/api/"
+    // var root = "//reslib.org/api/"
+    var root = "//beta.reslib.org/api/"
     var URLs = {
       books: function() {
         return root + "books/";
