@@ -28,7 +28,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          'index.prod.html': 'index.html'
+          'index.html': 'index.base.html'
         }
       }
     },
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
         { from: '^/js/(.*)$', to: '/js/$1' },
         { from: '^/templates/(.*)$', to: '/templates/$1' },
         { from: '^/build/(.*)$', to: '/build/$1' },
-        { from: '^/(.*)', to: '/index.html' },
+        { from: '^/(.*)', to: '/index.base.html' },
         // Internal rewrite
       ],
       development: {
