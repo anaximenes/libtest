@@ -67,7 +67,7 @@ module.exports = function(grunt) {
         { from: '^/js/(.*)$', to: '/js/$1' },
         { from: '^/templates/(.*)$', to: '/templates/$1' },
         { from: '^/build/(.*)$', to: '/build/$1' },
-        { from: '^/(.*)', to: '/index.prod.html' },
+        { from: '^/(.*)', to: '/index.html' },
         // Internal rewrite
       ],
       development: {
