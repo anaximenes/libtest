@@ -3,9 +3,9 @@ define([
     'underscore',
     'backbone',
     'modules/static/views/view',
-    'text!/templates/norecent.html',
-    'i18n!modules/nls/norecent',
-    'i18n!modules/nls/header'
+    'text!templates/norecent.html',
+    'i18n!nls/norecent',
+    'i18n!nls/header'
   ],
   function($, _, Backbone, Static, Template, i18nA, i18nB) {
     var noRecent = Static.extend({

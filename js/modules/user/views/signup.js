@@ -2,8 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/user/signup.html',
-    'i18n!modules/nls/sign'
+    'text!templates/user/signup.html',
+    'i18n!nls/sign'
   ],
   function($, _, Backbone, Template, i18n) {
     SignUpView = Backbone.View.extend({

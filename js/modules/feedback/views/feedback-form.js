@@ -3,8 +3,8 @@ define([
     'underscore',
     'backbone',
     'modules/utils/url',
-    'text!/templates/feedback/feedback-form.html',
-    'i18n!modules/nls/report',
+    'text!templates/feedback/feedback-form.html',
+    'i18n!nls/report',
     'bootstrap'
   ],
   function($, _, Backbone, Url, Template, i18n) {

@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/books/books-grid-entry.html'
+    'text!templates/books/books-grid-entry.html'
   ],
   function($, _, Backbone, Template) {
     ListItemView = Backbone.View.extend({

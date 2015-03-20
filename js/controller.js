@@ -262,7 +262,7 @@ define([
           }
         }))()
 
-        require(['text!/templates/test.html'], function(template) {
+        require(['text!templates/test.html'], function(template) {
           view.template = _.template(template)
           view.render()
         })

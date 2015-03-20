@@ -2,8 +2,8 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!/templates/user/header.html',
-  'i18n!modules/nls/header'
+  'text!templates/user/header.html',
+  'i18n!nls/header'
   ], function($, _, Backbone, Template, i18n) {
 
     var HeaderView = Backbone.View.extend({

@@ -2,9 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/feedback/button.html',
-    'text!/templates/feedback/feedback-form.html',
-    'i18n!modules/nls/menu'
+    'text!templates/feedback/button.html',
+    'text!templates/feedback/feedback-form.html',
+    'i18n!nls/menu'
   ],
   function($, _, Backbone, ButtonTemplate, FormTemplate, i18n) {
     var View = Backbone.View.extend({
