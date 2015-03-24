@@ -30,6 +30,17 @@ module.exports = function(grunt) {
         files: {
           'index.html': 'index.base.html'
         }
+      },
+      beta: {
+        options: {
+          curlyTags: {
+            buildDate:    '<%= grunt.template.today("yyyy-mm-dd") %>',
+            buildCommit:  '<%= meta.revision %>'
+          }
+        },
+        files: {
+          'index.html': 'index.base.html'
+        }
       }
     },
 
@@ -108,5 +119,6 @@ module.exports = function(grunt) {
   grunt.registerTask('server', ['configureRewriteRules', 'connect:development::keepalive']);
   grunt.registerTask('lint', ['jshint']);
   grunt.registerTask('prod', ['revision', 'targethtml:prod', 'requirejs', 'copy']);
+  grunt.registerTask('beta', ['revision', 'targethtml:beta', 'requirejs', 'copy']);
 
 };
