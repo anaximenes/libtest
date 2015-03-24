@@ -7,13 +7,14 @@ define([
     'modules/books/views/edit',
     'modules/books/views/report',
     'modules/books/views/framedlist',
+    'modules/books/views/add',
     'modules/books/views/bookpage',
     'modules/books/collections/pagedcollection',
     'modules/books/models/book',
-    'modules/utils/url',
+    'modules/utils/main',
     'modules/books/views/gridview'
   ],
-  function($, _, Backbone, ListView, CardView, EditView, ReportView, FramedListView, BookPageView, PagedCollection, BookModel, Url, GridView) {
+  function($, _, Backbone, ListView, CardView, EditView, ReportView, FramedListView, AddView, BookPageView, PagedCollection, BookModel, Utils, GridView) {
     var saved = {}
     saved.models = {}
     saved.collections = {}
@@ -32,7 +33,7 @@ define([
       var view = new FramedListView({
         collection: new PagedCollection([], {
           url: function() {
-            return Url(url, options)
+            return Utils.Url(url, options)
           }
         })
       })
@@ -72,6 +73,10 @@ define([
       return new ReportView({ id: book.id })
     }
 
+    var getAddView = function(userId) {
+      return new AddView();
+    }
+
     var getBookPageView = function(bookId, bottom) {
       var model = saved.models[bookId] || (saved.models[bookId] = new BookModel({ id: bookId }))
       return new BookPageView(model, bottom)
@@ -94,6 +99,7 @@ define([
       'getRecentView':     getRecentView,
       'getEditView':       getEditView,
       'getReportView':     getReportView,
+      'getAddView':        getAddView,
       'getBookPageView':   getBookPageView,
       'saved':             saved
     }

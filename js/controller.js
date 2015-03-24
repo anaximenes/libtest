@@ -74,6 +74,12 @@ define([
         return BookModule.getRecentView(userId)
       },
 
+      booksAdd: function(userId) {
+        currentState.subMenu = Menu.get('books');
+
+        return BookModule.getAddView(userId);
+      },
+
       bookQuestions: function(book) {
         currentState.subMenu = Menu.get('book')
 

@@ -26,6 +26,7 @@ define([
         'books/search/:query(/)':      'booksSearch',
         'books/favorites(/)':          'booksFavorites',
         'books/recent(/)':             'booksRecent',
+        'books/add(/)':                'booksAdd',
         'books/:id(/)':                'book',
         'books/:id/questions(/)':      'bookQuestions',
         'books/:id/reviews(/)':        'bookReviews',
@@ -38,7 +39,7 @@ define([
         'signin(/)':                   'signin',
         'signup(/)':                   'signup',
         'signout(/)':                  'signout',
-        // 'user(/)':                     'userPage',
+         // 'user(/)':                     'userPage',
         'user/answers(/)':             'userAnswers',
         'user/questions(/)':           'userQuestions',
         'test(/)':                     'test',
@@ -197,6 +198,13 @@ define([
         })
       },
 
+      booksAdd: function() {
+        // Controller.view('booksAdd', this.user.id);
+        this.requireLogin({ success: function() {
+          Controller.view('booksAdd', this.user.id);
+        }.bind(this) })
+      },
+
       questionsFavorites: function() {
         Controller.view('questionsFavorites', this.user.id)
       },
@@ -229,12 +237,16 @@ define([
         var demandLogin = function() {
           this.requireLogin();
         }.bind(this)
+        var openBook = function(book) {
+          this.navigate('books/' + book, true);
+        }.bind(this)
 
         var eventHandler = {
           'user:signout':       signOut,
           'user:signed':        signed,
           'search':             search,
-          'demandLogin':        demandLogin
+          'demandLogin':        demandLogin,
+          'openBook':           openBook
         }
 
         for (var event in eventHandler) {

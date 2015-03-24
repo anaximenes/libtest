@@ -3,15 +3,17 @@ define([
     'modules/utils/menuhandler',
     'modules/utils/pagetitle',
     'modules/utils/opengraph',
-    'modules/utils/tools'
+    'modules/utils/tools',
+    'modules/utils/containerview'
   ],
-  function(Url, MenuHandler, TitleHandler, OpenGraphHandler, Tools) {
+  function(Url, MenuHandler, TitleHandler, OpenGraphHandler, Tools, ContainerView) {
     return {
         Url:              Url,
         MenuHandler:      MenuHandler,
         PageTitleHandler: TitleHandler,
         OpenGraphHandler: OpenGraphHandler,
-        Tools:            Tools
+        Tools:            Tools,
+        ContainerView:    ContainerView
     }
   }
 )
