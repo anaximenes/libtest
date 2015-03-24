@@ -3,7 +3,7 @@ require([], function() {
   require.config({
     config: {
       i18n: {
-        locale: localStorage.getItem("locale") // specify default locale
+        locale: localStorage.getItem("locale") || 'ru'
       }
     }
   });
