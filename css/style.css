@@ -510,3 +510,27 @@ blockquote {
   font-size: 0.8em;
   font-weight: bold;
 }
+
+/*
+ * Feedback button
+ *
+ */
+.feedback-button {
+    position: fixed;
+    height: 30px;
+    bottom: 3em;
+    left: 0px;
+    z-index: 999;
+    border-top-left-radius:0px; 
+    border-top-right-radius:0px; 
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg); 
+    -moz-transform: rotate(-90deg); 
+    -o-transform: rotate(-90deg); 
+}
+

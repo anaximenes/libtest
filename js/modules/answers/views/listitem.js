@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/answers/answers-list-entry.html'
+    'text!templates/answers/answers-list-entry.html'
   ],
   function($, _, Backbone, Template) {
     ListItemView = Backbone.View.extend({

@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone',
     'modules/menu/models/item',
-    'text!/templates/menu-item.html'
+    'text!templates/menu-item.html'
   ],
   function($, _, Backbone, MenuItem, Template) {
     var MenuItemView = Backbone.View.extend({

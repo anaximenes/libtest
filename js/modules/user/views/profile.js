@@ -3,8 +3,8 @@ define([
   'underscore',
   'backbone',
   'modules/user/models/userdata',
-  'text!/templates/user/profile.html',
-  // 'i18n!modules/nls/profile'
+  'text!templates/user/profile.html',
+  // 'i18n!nls/profile'
   ], function($, _, Backbone, UserModel, Template) {//, i18n) {
 
     var ProfileView = Backbone.View.extend({
