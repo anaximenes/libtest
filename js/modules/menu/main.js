@@ -40,10 +40,10 @@ define([
             [{page: 'all', title: 'all', path: '/books/'},
             {page: 'favorites', title: 'favorites', path: '/books/favorites/'},
             {page: 'recent', title: 'recent', path: '/books/recent/'},
-            (this.userSignedIn ?
-              {page: 'addBook', title: 'add book', path: '/books/add/'} :
-              {page: 'addBook', title: 'add book', path: '/signin/'}
-            )
+            // (this.userSignedIn ?
+            //   {page: 'addBook', title: 'add book', path: '/books/add/'} :
+            //   {page: 'addBook', title: 'add book', path: '/signin/'}
+            // )
           ],
           'book': [
             {page: 'description', title: 'description', path: this.base},

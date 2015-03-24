@@ -85,7 +85,8 @@ define([
           isbn10: (isbnType === 'isbn13' ? null : isbn),
           // id: 1241360
         })
-        model.save({
+        model.save([], {
+          url: Utils.Url('books'),
           success: function() {
             this.$('.book-info').slideUp('fast');
             Backbone.trigger('openBook', model.id);
