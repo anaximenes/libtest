@@ -14,5 +14,7 @@ define({
   'favorites': 'favorites',
   'recent': 'recent',
   'report': 'report',
+  'feedback': 'feedback',
+  'Feedback': 'Feedback',
   'add book': 'add book'
 })

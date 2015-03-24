@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'i18n!modules/nls/menu'
+    'i18n!nls/menu'
   ],
   function($, _, Backbone, i18n) {
     // id's required by collection

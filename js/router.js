@@ -46,7 +46,8 @@ define([
         '(/)':                         'root',
 
         'book/:title/:id(/)':          'bookBackCompatability',
-        '!/book/:title/:id(/)':          'bookBackCompatability'
+        '!/book/:title/:id(/)':        'bookBackCompatability',
+        'feedback(/)':                 'feedback'
       },
 
       root: function() {
@@ -172,6 +173,10 @@ define([
             Controller.view('userQuestions', that.user.id)
           }
         })
+      },
+
+      feedback: function() {
+          Controller.view('feedback');
       },
 
       booksFavorites: function() {

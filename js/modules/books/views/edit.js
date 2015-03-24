@@ -4,7 +4,7 @@ define([
     'backbone',
     'modules/utils/url',
     'modules/utils/containerview',
-    'text!/templates/books/books-card-edit.html',
+    'text!templates/books/books-card-edit.html',
     'modules/post/main'
   ],
   function($, _, Backbone, Url, ContainerView, Template, Post) {

@@ -2,9 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/books/books-card.html',
-    'text!/templates/books/books-card-loading.html',
-    'i18n!modules/nls/page-books-card'
+    'text!templates/books/books-card.html',
+    'text!templates/books/books-card-loading.html',
+    'i18n!nls/page-books-card'
   ],
   function($, _, Backbone, Template, TemplateLoading, i18n) {
     var CardItemView = Backbone.View.extend({

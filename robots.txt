@@ -1,0 +1,20 @@
+User-agent: *
+Disallow: /$
+Disallow: /reader
+Disallow: /questions
+Disallow: /signup
+Disallow: /signin
+Disallow: /books/$
+Disallow: /books/favorites/
+Disallow: /books/recent/
+Disallow: /books/*/edit
+Disallow: /books/*/report
+Disallow: /books/*/questions
+Disallow: /books/*/reviews
+Disallow: /user
+Disallow: /books/search
+Disallow: /?_escaped_fragment_=/*/read*
+Disallow: /!
+
+
+Sitemap: http://reslib.org/sitemap.xml

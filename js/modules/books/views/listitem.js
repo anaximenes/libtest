@@ -2,8 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/books/books-list-entry.html',
-    'i18n!modules/nls/sign'
+    'text!templates/books/books-list-entry.html',
+    'i18n!nls/sign'
   ],
   function($, _, Backbone, Template, i18n) {
     ListItemView = Backbone.View.extend({

@@ -6,5 +6,6 @@ define({
   'label_help_copyright': 'Please provide confirmation that you are eligible for such claim:',
   'label_help_other': 'Describe your problem:',
   'label_submit_error': 'Sorry, an error occured while processing your request.',
-  'label_submit': 'submit'
+  'label_submit': 'submit',
+  'label_back': 'close'
 })

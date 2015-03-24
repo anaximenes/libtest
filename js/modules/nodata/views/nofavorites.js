@@ -3,9 +3,9 @@ define([
     'underscore',
     'backbone',
     'modules/static/views/view',
-    'text!/templates/nofavorites.html',
-    'i18n!modules/nls/nofavorites',
-    'i18n!modules/nls/header'
+    'text!templates/nofavorites.html',
+    'i18n!nls/nofavorites',
+    'i18n!nls/header'
   ],
   function($, _, Backbone, Static, Template, i18nA, i18nB) {
     var noFavorites = Static.extend({

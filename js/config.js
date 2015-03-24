@@ -1,9 +1,9 @@
-var locale = localStorage.getItem('locale') || 'ru';
-
 require.config({
   deps: ['main'],
-
   paths: {
+    'templates': '../templates',
+    'nls': '../js/modules/nls',
+
     'jquery': "/vendor/jquery/dist/jquery",
     'bootstrap': "/vendor/bootstrap/dist/js/bootstrap",
     'underscore': "/vendor/lodash/lodash",
@@ -18,7 +18,7 @@ require.config({
 
   config: {
     i18n: {
-      locale: locale
+      locale: 'ru'
     }
   },
 
