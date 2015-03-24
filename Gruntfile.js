@@ -30,6 +30,17 @@ module.exports = function(grunt) {
         files: {
           'index.html': 'index.base.html'
         }
+      },
+      beta: {
+        options: {
+          curlyTags: {
+            buildDate:    '<%= grunt.template.today("yyyy-mm-dd") %>',
+            buildCommit:  '<%= meta.revision %>'
+          }
+        },
+        files: {
+          'index.html': 'index.base.html'
+        }
       }
     },
 
