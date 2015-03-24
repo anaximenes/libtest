@@ -3,9 +3,9 @@ define([
     'underscore',
     'backbone',
     'modules/utils/main',
-    'text!/templates/books/books-add.html',
-    'i18n!modules/nls/addbook',
-    'i18n!modules/nls/page-books-card',
+    'text!templates/books/books-add.html',
+    'i18n!nls/addbook',
+    'i18n!nls/page-books-card',
     'bootstrap'
   ],
   function($, _, Backbone, Utils, Template, i18nAddBook, i18nBookCard) {
