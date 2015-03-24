@@ -119,5 +119,6 @@ module.exports = function(grunt) {
   grunt.registerTask('server', ['configureRewriteRules', 'connect:development::keepalive']);
   grunt.registerTask('lint', ['jshint']);
   grunt.registerTask('prod', ['revision', 'targethtml:prod', 'requirejs', 'copy']);
+  grunt.registerTask('beta', ['revision', 'targethtml:beta', 'requirejs', 'copy']);
 
 };
