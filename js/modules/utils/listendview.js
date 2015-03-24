@@ -2,9 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/list-loading.html',
-    'text!/templates/list-end.html',
-    'i18n!modules/nls/loading'
+    'text!templates/list-loading.html',
+    'text!templates/list-end.html',
+    'i18n!nls/loading'
   ],
   function($, _, Backbone, Template, TemplateEnd, i18n) {
     var endView = Backbone.View.extend({

@@ -13,7 +13,8 @@ define([
         'noRecent':         {'header': 'books', 'books': 'recent'},
         'booksFavorites':   {'header': 'books', 'books': 'favorites'},
         'noFavorites':      {'header': 'books', 'books': 'favorites'},
-        'booksSearch':      {'header': 'books', 'books': 'add'},
+        'booksSearch':      {'header': 'books', 'books': 'add'}, //maybe extra instead add?
+        'booksAdd':         {'header': 'books', 'books': 'addBook'},
 
         'book':             {'header': 'add', 'book': 'description'},
         'bookEdit':         {'header': 'add', 'book': 'edit'},
@@ -29,7 +30,8 @@ define([
 
         'user':             {'header': 'profile', 'user': 'info'},
         'userQuestions':    {'header': 'profile', 'user': 'userQuestions'},
-        'userAnswers':      {'header': 'profile', 'user': 'userAnswers'}
+        'userAnswers':      {'header': 'profile', 'user': 'userAnswers'},
+        'feedback':         {'header': 'feedback'}
       },
 
       handle: function(options) {
@@ -45,6 +47,10 @@ define([
 
           if (['user', 'userAnswers', 'userQuestions'].indexOf(options.page) === -1) {
             Backbone.trigger('menu:remove', {menu: 'header', page: 'profile'})
+          }
+
+          if (['feedback'].indexOf(options.page) === -1) {
+            Backbone.trigger('menu:remove', {menu: 'header', page: 'feedback'})
           }
         }
 

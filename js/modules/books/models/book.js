@@ -5,6 +5,8 @@ define([
     'modules/utils/url'
   ],
   function($, _, Backbone, Url) {
+    var converter = new Markdown.getSanitizingConverter();
+
     var BookModel = Backbone.Model.extend({
       url: function() {
         return Url('book', this.id)
@@ -25,14 +27,16 @@ define([
         $.ajax({
           type: 'HEAD',
           url: '//cdn.reslib.org/check_pdf/' + btoa(this.get('sourceUrl')),
-          statusCode: {
-            200: function(data, status, jqxhr) {
+          dataType: '22',
+          url: '//178.63.105.73/pdf/' + btoa(this.get('sourceUrl')),
+          success: function(data, status, jqxhr) {
               this.set('size', jqxhr.getResponseHeader('Content-Length'))
               Backbone.trigger('book:reader:ok', this)
-            }.bind(this)
-          },
+          }.bind(this),
 
           error: function(data, status, jqxhr) {
+            console.log('error')
+            console.log(jqxhr)
             this.set('size', undefined)
             this.set('isUnavailable', true)
             Backbone.trigger('book:reader:error', this)
@@ -58,6 +62,10 @@ define([
       present: function(options) {
         options || (options = {})
         var model = this.clone()
+
+        if (model.get('description')) {
+          model.set('description', converter.makeHtml(model.get('description')))
+        }
 
         if (options.short) {
           if (model.get('description')) {

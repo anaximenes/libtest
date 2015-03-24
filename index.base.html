@@ -1,3 +1,8 @@
+<!--(if target !devel)><!-->
+<!--Build time: {{buildDate}}-->
+<!--Build commit: {{buildCommit}}-->
+<!--<!(endif)-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# books: http://ogp.me/ns/books#">
@@ -11,7 +16,12 @@
   <link rel=stylesheet href='/vendor/font-awesome/css/font-awesome.css'>
   <link rel=stylesheet href='/vendor/selectize/dist/css/selectize.bootstrap3.css'>
   <link rel=stylesheet href='/css/style.css'>
+  <!--(if target devel)><!-->
   <script data-main='/js/config' src="/vendor/requirejs/require.js"></script>
+  <!--<!(endif)-->
+  <!--(if target prod)>
+  <script data-main='/build/optimized' src="/vendor/requirejs/require.js"></script>
+  <!(endif)-->
 </head>
 <body>
 

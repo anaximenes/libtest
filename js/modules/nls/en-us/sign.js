@@ -9,5 +9,6 @@ define({
   'label_email': 'Email',
   'label_password_match': "Passwords don't match.",
   'label_email_taken': 'This email is already registred.',
-  'label_auth_error': 'The email or password you entered is incorrect.'
+  'label_auth_error': 'The email or password you entered is incorrect.',
+  'label_please_signin': "please, <a href='/signin/'>sign in</a>"
 })

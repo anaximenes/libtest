@@ -1,0 +1,64 @@
+<!-- Book card -->
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <p style='font-size: larger;'> <%= label_suggest_book %>: </p>
+    <div class="btn btn-default btn-file"><span class='input-file-text'><%= label_choose_file %></span><input type="file" class='input-file'></div>
+    <span class='file-size-caption text-danger' style='margin-left: 0.5em; font-style: italic;'></span>
+
+    <div class='book-info' style='margin-top: 2em; display: none;'>
+      <div class='well'>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="input-title" class="col-sm-2 control-label"><%= label_title %></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control input-title" id="input-title">
+            </div>
+          </div>
+          <div class='col-xs-offset-2 col-xs-10 error-title' style='display: none;'>
+            <p class='text-danger'><%= label_error_no_title %></p>
+          </div>
+          <div class='col-xs-offset-2 col-xs-10 duplicate-block' style='display: none;'>
+            <p><%= label_ask_duplicate %> <a class='duplicate-search' href='' target="_blank"></a>?</p>
+          </div>
+          <div class="form-group">
+            <label for="input-authors" class="col-sm-2 control-label"><%= label_author %></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control input-authors" id="input-authors">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-publisher" class="col-sm-2 control-label"><%= label_publisher %></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control input-publisher" id="input-publisher">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-year" class="col-sm-2 control-label"><%= label_year %></label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control input-year" id="input-year">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class='col-xs-2'>
+                <select class="form-control input-isbn-type" id="sel1">
+                  <option>isbn13</option>
+                  <option>isbn10</option>
+                </select>
+            </div>
+             <div class="col-sm-3">
+              <input type="text" class="form-control input-isbn" id="input-isbn">
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-default button-upload"><%= label_upload %></button>
+        <!-- <button type="" class="btn btn-default button-cancel">discard</button> -->
+      </div>
+    </div>
+
+
+  </div>
+</div>

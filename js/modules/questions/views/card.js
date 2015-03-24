@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/questions/questions-card.html'
+    'text!templates/questions/questions-card.html'
   ],
   function($, _, Backbone, Template) {
     var CardItemView = Backbone.View.extend({

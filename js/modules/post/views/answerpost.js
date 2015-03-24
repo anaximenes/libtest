@@ -2,8 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/post/post-form-simple.html',
-    'i18n!modules/nls/post',
+    'text!templates/post/post-form-simple.html',
+    'i18n!nls/post',
     'markdown'
   ],
   function($, _, Backbone, Template, i18n, Markdown) {
@@ -15,7 +15,8 @@ define([
       },
 
       open: function() {
-        this.$('.wmd-input').attr('rows', 6) //slideDown('fast', 'swing')
+        this.$('.wmd-input').animate({ 'rows': 6 }, 200);
+        // this.$('.wmd-input').attr('rows', 6) //slideDown('fast', 'swing')
         this.$('.user-avatar').slideDown('fast', 'swing')
         this.$('.post-preview').slideDown('fast', 'swing')
         this.$('.post-buttons').slideDown('fast', 'swing')
@@ -24,7 +25,8 @@ define([
       close: function() {
         this.erase()
         this.$('.save-error').hide()
-        this.$('.wmd-input').attr('rows', '1')
+        this.$('.wmd-input').animate({ 'rows': 1 }, 200);
+        // this.$('.wmd-input').attr('rows', '1')
         this.$('.post-buttons').slideUp('fast', 'swing')
         this.$('.post-preview').slideUp('fast', 'swing')
         this.$('.user-avatar').slideUp('fast', 'swing')
@@ -103,9 +105,6 @@ define([
           }
         })
 
-        this.listenTo(Backbone, 'post:show', function() {
-          this.$el.toggle()
-        })
         this.listenTo(Backbone, 'post:save:ok', function() {
           that.$('.save-error').show()
           this.close()

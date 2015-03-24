@@ -2,8 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/post/post-book-edit.html',
-    'i18n!modules/nls/post',
+    'text!templates/post/post-book-edit.html',
+    'i18n!nls/post',
     'markdown'
   ],
   function($, _, Backbone, Template, i18n, Markdown) {

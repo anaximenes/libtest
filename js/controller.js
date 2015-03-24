@@ -12,8 +12,9 @@ define([
     'modules/static/views/view',
     'modules/nodata/main',
     'modules/utils/main',
+    'modules/feedback/main',
   ],
-  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, AnswerModule, SearchView, Menu, User, Static, NoData, Utils) {
+  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, AnswerModule, SearchView, Menu, User, Static, NoData, Utils, FeedbackModule) {
     var currentState = {}
 
     var $headerDom = $('#header')
@@ -30,6 +31,7 @@ define([
         new Utils.MenuHandler()
         new Utils.PageTitleHandler()
         new Utils.OpenGraphHandler()
+        new FeedbackModule.ButtonView();
       },
 
       view: function(page, params) {
@@ -72,6 +74,12 @@ define([
         currentState.subMenu = Menu.get('books')
 
         return BookModule.getRecentView(userId)
+      },
+
+      booksAdd: function(userId) {
+        currentState.subMenu = Menu.get('books');
+
+        return BookModule.getAddView(userId);
       },
 
       bookQuestions: function(book) {
@@ -179,6 +187,18 @@ define([
         return view
       },
 
+      feedback: function (id) {
+        Backbone.trigger('menu:extend', {
+          menu: 'header',
+          page: 'feedback',
+          title: 'Feedback',
+          path: '/feedback/'
+        });
+
+        var view = new FeedbackModule.FormView();
+        return view;
+      },
+
       userQuestions: function(id) {
         Backbone.trigger('menu:extend', {
           menu: 'header',
@@ -207,6 +227,7 @@ define([
       },
 
       test: function(status) {
+        return BookModule.getAllGridView()
         //development playground
         var view = new (Static.extend({
           render: function() {
@@ -247,7 +268,7 @@ define([
           }
         }))()
 
-        require(['text!/templates/test.html'], function(template) {
+        require(['text!templates/test.html'], function(template) {
           view.template = _.template(template)
           view.render()
         })

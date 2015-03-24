@@ -18,5 +18,8 @@
   </div>
   <div class='col-xs-1 text-center'>
     <i id='favorite-button' class="fa fa-bookmark<% if (!isFavorite) {%>-o<%}%> fa-2x"></i>
+    <% if (error) { %>
+    <p class='error-favorites' style=''><%= label_please_signin %></p>
+    <% } %>
   </div>
 </div>

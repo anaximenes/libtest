@@ -3,8 +3,8 @@ define([
     'underscore'
   ],
   function($, _) {
-    var root = "//reslib.org/api/"
-    // var root = "//beta.reslib.org/api/"
+    // var root = "//reslib.org/api/"
+    var root = "//beta.reslib.org/api/"
     var URLs = {
       books: function() {
         return root + "books/";
@@ -72,6 +72,11 @@ define([
 
       reportBook: function(id) {
         return root + 'books/' + id + '/reports';
+      },
+
+      // TODO: Fix after api implementation.
+      feedback: function () {
+        return root + 'books/' + 1620450 + '/reports';
       },
 
       questionsSearch: function(query) {
