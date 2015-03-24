@@ -26,6 +26,7 @@ define([
       checkState: function() {
         $.ajax({
           type: 'HEAD',
+          url: '//cdn.reslib.org/check_pdf/' + btoa(this.get('sourceUrl')),
           dataType: '22',
           url: '//178.63.105.73/pdf/' + btoa(this.get('sourceUrl')),
           success: function(data, status, jqxhr) {
@@ -47,7 +48,7 @@ define([
         var locale = localStorage.getItem('locale') || 'ru'
         locale = locale.slice(0, 2)
         if (!this.get('sourceUrl')) return ''
-        else return '/reader/web/viewer.html?file=' + encodeURIComponent('http://178.63.105.73/pdf/' + btoa(this.get('sourceUrl'))) + '#locale=' + locale
+        else return '/reader/web/viewer.html?file=' + encodeURIComponent('//cdn.reslib.org/pdf/' + btoa(this.get('sourceUrl'))) + '#locale=' + locale
       },
 
       complete: function() {
