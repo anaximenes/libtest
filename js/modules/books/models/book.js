@@ -28,7 +28,6 @@ define([
           type: 'HEAD',
           url: '//cdn.reslib.org/check_pdf/' + btoa(this.get('sourceUrl')),
           dataType: '22',
-          url: '//178.63.105.73/pdf/' + btoa(this.get('sourceUrl')),
           success: function(data, status, jqxhr) {
               this.set('size', jqxhr.getResponseHeader('Content-Length'))
               Backbone.trigger('book:reader:ok', this)
