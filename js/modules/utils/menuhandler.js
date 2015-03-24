@@ -13,7 +13,8 @@ define([
         'noRecent':         {'header': 'books', 'books': 'recent'},
         'booksFavorites':   {'header': 'books', 'books': 'favorites'},
         'noFavorites':      {'header': 'books', 'books': 'favorites'},
-        'booksSearch':      {'header': 'books', 'books': 'add'},
+        'booksSearch':      {'header': 'books', 'books': 'add'}, //maybe extra instead add?
+        'booksAdd':         {'header': 'books', 'books': 'addBook'},
 
         'book':             {'header': 'add', 'book': 'description'},
         'bookEdit':         {'header': 'add', 'book': 'edit'},

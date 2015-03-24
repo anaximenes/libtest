@@ -26,15 +26,16 @@ define([
       checkState: function() {
         $.ajax({
           type: 'HEAD',
+          dataType: '22',
           url: '//178.63.105.73/pdf/' + btoa(this.get('sourceUrl')),
-          statusCode: {
-            200: function(data, status, jqxhr) {
+          success: function(data, status, jqxhr) {
               this.set('size', jqxhr.getResponseHeader('Content-Length'))
               Backbone.trigger('book:reader:ok', this)
-            }.bind(this)
-          },
+          }.bind(this),
 
           error: function(data, status, jqxhr) {
+            console.log('error')
+            console.log(jqxhr)
             this.set('size', undefined)
             this.set('isUnavailable', true)
             Backbone.trigger('book:reader:error', this)
