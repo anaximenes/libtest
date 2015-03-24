@@ -7,7 +7,7 @@ define([
   function($, _, Backbone, Template) {
     ListItemView = Backbone.View.extend({
       render: function() {
-        this.$el.html(_.template(Template)(this.model.toJSON()))
+        this.$el.html(_.template(Template)(this.model.present()))
         return this
       },
 

@@ -9,13 +9,11 @@ define([
     'searchboxview',
     'modules/menu/main',
     'modules/user/main',
-    'modules/utils/url',
-    'modules/questionpage',
     'modules/static/views/view',
     'modules/nodata/main',
     'modules/utils/main',
   ],
-  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, AnswerModule, SearchView, Menu, User, Url, QuestionPage, Static, NoData, Utils) {
+  function($, _, Backbone, BookModule, QuestionModule, ReviewModule, AnswerModule, SearchView, Menu, User, Static, NoData, Utils) {
     var currentState = {}
 
     var $headerDom = $('#header')
@@ -76,12 +74,18 @@ define([
         return BookModule.getRecentView(userId)
       },
 
+      booksAdd: function(userId) {
+        currentState.subMenu = Menu.get('books');
+
+        return BookModule.getAddView(userId);
+      },
+
       bookQuestions: function(book) {
         currentState.subMenu = Menu.get('book')
 
         var collection = new QuestionModule.PagedCollection([], {
           url: function() {
-            return Url('bookQuestions', book.id)
+            return Utils.Url('bookQuestions', book.id)
           }
         })
         var questions = new QuestionModule.FramedListView({collection: collection})
@@ -95,7 +99,7 @@ define([
 
         var collection = new ReviewModule.PagedCollection([], {
           url: function() {
-            return Url('bookReviews', book.id)
+            return Utils.Url('bookReviews', book.id)
           }
         })
         var reviews = new ReviewModule.FramedListView({collection: collection})
@@ -118,10 +122,7 @@ define([
 
 
       questions: function(page) {
-        currentState.questions = currentState.questions ? currentState.questions : new QuestionModule.PagedCollection()
-        currentState.questions.currentPage = page
-
-        return new QuestionModule.FramedListView({collection: currentState.questions})
+        return QuestionModule.getAllView()
       },
 
       questionsSearch: function(query) {
@@ -130,14 +131,18 @@ define([
           {page: 'search', path: '/books/search/' + query, title: '"' + query + '"'}
         ])
 
-        var collection = new QuestionModule.PagedCollection([], { url: Url('questionsSearch', query) })
-        var view = new QuestionModule.FramedListView({ collection: collection })
-        return view
+        return QuestionModule.getSearchView(query)
       },
 
       questionAnswers: function(question) {
-        var view = new QuestionPage(question.id)
-        return view
+        var collection = new AnswerModule.PagedCollection([], {
+          url: function() {
+            return Utils.Url('questionAnswers', question.id)
+          }
+        })
+        var answers = new AnswerModule.FramedListView({collection: collection})
+
+        return QuestionModule.getQuestionPageView(question.id, answers)
       },
 
 
@@ -157,7 +162,7 @@ define([
           page: 'profile',
           title: 'Profile',
           path: '/user/',
-          toRight: true
+          // toRight: true
         })
         currentState.subMenu = Menu.get('user')
 
@@ -171,12 +176,27 @@ define([
           page: 'profile',
           title: 'Profile',
           path: '/user/',
-          toRight: true
+          // toRight: true
         })
         currentState.subMenu = Menu.get('user')
 
-        var collection = new AnswerModule.PagedCollection([], { url: Url('userAnswers', id) })
+        var collection = new AnswerModule.PagedCollection([], { url: Utils.Url('userAnswers', id) })
         var view = new AnswerModule.FramedListView({ collection: collection })
+        return view
+      },
+
+      userQuestions: function(id) {
+        Backbone.trigger('menu:extend', {
+          menu: 'header',
+          page: 'profile',
+          title: 'Profile',
+          path: '/user/',
+          // toRight: true
+        })
+        currentState.subMenu = Menu.get('user')
+
+        var collection = new QuestionModule.PagedCollection([], { url: Utils.Url('userQuestions', id) })
+        var view = new QuestionModule.FramedListView({ collection: collection })
         return view
       },
 
@@ -193,7 +213,43 @@ define([
       },
 
       test: function(status) {
+        return BookModule.getAllGridView()
+        //development playground
         var view = new (Static.extend({
+          render: function() {
+            Static.prototype.render.call(this)
+
+            this.$('.select-test').selectize({
+              delimiter: ',',
+              persist: false,
+              valueField: 'id',
+              labelField: 'title',
+              searchField: 'title',
+              create: function(input, callback) {
+                var a = {title: input, id: 100}
+                callback(a)
+              },
+              render: {
+                option: function(item, escape) {
+                  return '<div>' + escape(item.title) + '</div>'
+                }
+              },
+              load: function(query, callback) {
+                if (!query.length) return callback()
+
+                $.ajax({
+                  type: 'GET',
+                  url: Utils.Url('tags'),
+                  success: function(data) {
+                    callback(data.results)
+                  }
+                })
+              }
+            })
+
+            return this
+          },
+
           initialize: function() {
           }
         }))()

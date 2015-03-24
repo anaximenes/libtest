@@ -1,8 +1,11 @@
 define({
   'Books': 'Books',
   'Questions': 'Questions',
+  'questions': 'questions',
   'Reviews': 'Reviews',
-  'Post': 'Post',
+  'Answers': 'Answers',
+  'answers': 'answers',
+  'Profile': 'Profile',
   'description': 'description',
   'edit': 'edit',
   'read': 'read',
@@ -10,5 +13,6 @@ define({
   'all': 'all',
   'favorites': 'favorites',
   'recent': 'recent',
-  'report': 'report'
+  'report': 'report',
+  'add book': 'add book'
 })

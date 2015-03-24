@@ -8,5 +8,7 @@ define({
   'label_password_repeat': 'Повторите пароль',
   'label_email': 'Адрес электронной почты',
   'label_password_match': 'Пароли не совпадают.',
-  'label_email_taken': 'Этот адрес уже зарегистрирован.'
+  'label_email_taken': 'Этот адрес уже зарегистрирован.',
+  'label_auth_error': 'Неправильная пара логин-пароль.',
+  'label_please_signin': "<a href='/signin/'>войти</a>"
 })

@@ -4,7 +4,8 @@ require([
     'modules/utils/scrolling',
     'text',
     'bootstrap',
-    'selectize'
+    'selectize',
+    'markdown'
   ], function(Backbone, App, Scrolling) {
     (function() {
 

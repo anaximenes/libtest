@@ -7,12 +7,14 @@ define([
     'modules/books/views/edit',
     'modules/books/views/report',
     'modules/books/views/framedlist',
+    'modules/books/views/add',
     'modules/books/views/bookpage',
     'modules/books/collections/pagedcollection',
     'modules/books/models/book',
-    'modules/utils/url'
+    'modules/utils/main',
+    'modules/books/views/gridview'
   ],
-  function($, _, Backbone, ListView, CardView, EditView, ReportView, FramedListView, BookPageView, PagedCollection, BookModel, Url) {
+  function($, _, Backbone, ListView, CardView, EditView, ReportView, FramedListView, AddView, BookPageView, PagedCollection, BookModel, Utils, GridView) {
     var saved = {}
     saved.models = {}
     saved.collections = {}
@@ -23,11 +25,15 @@ define([
       return view
     }
 
+    var getAllGridView = function() {
+      return new GridView()
+    }
+
     var getBaseView = function(url, options) {
       var view = new FramedListView({
         collection: new PagedCollection([], {
           url: function() {
-            return Url(url, options)
+            return Utils.Url(url, options)
           }
         })
       })
@@ -58,7 +64,17 @@ define([
     }
 
     var getReportView = function(book) {
+      var model = new BookModel({ id: book.id })
+      model.fetch({
+        success: function(model) {
+          Backbone.trigger('book:fetched', model)
+        }
+      })
       return new ReportView({ id: book.id })
+    }
+
+    var getAddView = function(userId) {
+      return new AddView();
     }
 
     var getBookPageView = function(bookId, bottom) {
@@ -77,11 +93,13 @@ define([
       'PagedCollection':   PagedCollection,
       'Model':             BookModel,
       'getAllView':        getAllView,
+      'getAllGridView':    getAllGridView,
       'getSearchView':     getSearchView,
       'getFavoritesView':  getFavoritesView,
       'getRecentView':     getRecentView,
       'getEditView':       getEditView,
       'getReportView':     getReportView,
+      'getAddView':        getAddView,
       'getBookPageView':   getBookPageView,
       'saved':             saved
     }

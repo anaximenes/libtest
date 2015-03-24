@@ -26,6 +26,7 @@ define([
         'books/search/:query(/)':      'booksSearch',
         'books/favorites(/)':          'booksFavorites',
         'books/recent(/)':             'booksRecent',
+        'books/add(/)':                'booksAdd',
         'books/:id(/)':                'book',
         'books/:id/questions(/)':      'bookQuestions',
         'books/:id/reviews(/)':        'bookReviews',
@@ -38,12 +39,14 @@ define([
         'signin(/)':                   'signin',
         'signup(/)':                   'signup',
         'signout(/)':                  'signout',
-        'user(/)':                     'userPage',
+         // 'user(/)':                     'userPage',
         'user/answers(/)':             'userAnswers',
+        'user/questions(/)':           'userQuestions',
         'test(/)':                     'test',
         '(/)':                         'root',
 
-        'book/:title/:id(/)':          'bookBackCompatability'
+        'book/:title/:id(/)':          'bookBackCompatability',
+        '!/book/:title/:id(/)':          'bookBackCompatability'
       },
 
       root: function() {
@@ -76,15 +79,9 @@ define([
       },
 
       bookBackCompatability: function(title, id) {
-        // this.navigate('/books/' + id + '/', true)
-        Controller.view('bookReviews', {'id': id})
+        this.navigate('/books/' + id + '/', false)
+        Controller.view('bookReviews', { 'id': id })
         this.bookInit(id)
-      },
-
-      bookBackCompatability: function(title, id) {
-        // this.navigate('/books/' + id + '/', true)
-        this.bookInit(id)
-        Controller.view('bookReviews', {'id': id})
       },
 
       bookQuestions: function(id) {
@@ -93,8 +90,8 @@ define([
       },
 
       bookReviews: function(id) {
-        this.bookInit(id)
         Controller.view('bookReviews', {'id': id})
+        this.bookInit(id)
       },
 
       bookReport: function(id) {
@@ -168,6 +165,15 @@ define([
         })
       },
 
+      userQuestions: function() {
+        var that = this
+        this.requireLogin({
+          success: function() {
+            Controller.view('userQuestions', that.user.id)
+          }
+        })
+      },
+
       booksFavorites: function() {
         var that = this
         this.requireLogin({
@@ -190,6 +196,13 @@ define([
             Controller.view('noRecent')
           }
         })
+      },
+
+      booksAdd: function() {
+        // Controller.view('booksAdd', this.user.id);
+        this.requireLogin({ success: function() {
+          Controller.view('booksAdd', this.user.id);
+        }.bind(this) })
       },
 
       questionsFavorites: function() {
@@ -221,11 +234,19 @@ define([
             that.navigate('/books/search/' + query, true)
           }
         }
+        var demandLogin = function() {
+          this.requireLogin();
+        }.bind(this)
+        var openBook = function(book) {
+          this.navigate('books/' + book, true);
+        }.bind(this)
 
         var eventHandler = {
           'user:signout':       signOut,
           'user:signed':        signed,
-          'search':             search
+          'search':             search,
+          'demandLogin':        demandLogin,
+          'openBook':           openBook
         }
 
         for (var event in eventHandler) {

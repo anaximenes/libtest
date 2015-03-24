@@ -127,31 +127,45 @@ define([
       },
 
       toggleFavorite: function(book) {
-        var url = Url('favorites', this.id)
-
-        var Collection = Backbone.Collection.extend({ url: url })
-        var collection = new Collection()
-
-        var model = new Backbone.Model({
-          id: book.id,
-          urlRoot: url
-        })
-
-        var fetch = function() {
-          book.fetch()
+        if (!this.isLogged()) {
+          book.fetch();
+          Backbone.trigger('book:toggleFavorite:unauth', book)
+          return
         }
 
+        var success = function(model, response, options) {
+          book.fetch();
+        }
+        var error = function(model, response, options) {
+          book.fetch();
+          console.log(response.responseText)
+          console.log(response.statusText)
+          console.log(response.status)
+          console.log(options.xhr)
+          console.log(options.xhr.status)
+          console.log(options.xhr.responseText)
+          Backbone.trigger('book:toggleFavorite:unauth', book)
+        }
+
+        var model = new Backbone.Model({ id: book.id })
         if (book.get('isFavorite')) {
           model.destroy({
-            url: url + book.id,
-            success: fetch,
-            error: fetch
+            url: Url('booksFavorites', this.id) + book.id,
+            success: success,
+            error: error
           })
         } else {
-          collection.create({id: book.id}, {
-            success: fetch,
-            error: fetch
+          xhr = model.save({ id: book.id, isFavorite: true }, {
+            url: Url('booksFavorites', this.id) + book.id,
+            success: success,
+            error: error,
+            statusCode: {
+              401: function() {
+                console.log('401')
+              }
+            }
           })
+          console.log(xhr)
         }
       },
 
@@ -159,11 +173,10 @@ define([
         var model = new Backbone.Model({
           usersId: this.id,
           booksId: (options.id ? options.id : null),
-          title: options.title,
+          title: (options.title ? options.title : null),
           body: options.body
         })
-        model.url = Url(where, this.id)
-        console.log(model)
+        model.url = Url(where, options.questionId || this.id)
 
         model.save([], {
           success: function(newModel, response) {
@@ -187,12 +200,18 @@ define([
         this.post('userReviews', options)
       },
 
+      postAnswer: function(options) {
+        options.questionId = options.id
+        this.post('questionAnswers', options)
+      },
+
       initialize: function() {
         this.set('checked', false)
 
         this.listenTo(Backbone, 'book:toggleFavorite', this.toggleFavorite)
         this.listenTo(Backbone, 'post:question', this.postQuestion)
         this.listenTo(Backbone, 'post:review', this.postReview)
+        this.listenTo(Backbone, 'post:answer', this.postAnswer)
         this.listenTo(Backbone, 'user:signin', this.signin)
         this.listenTo(Backbone, 'user:signup', this.signup)
 

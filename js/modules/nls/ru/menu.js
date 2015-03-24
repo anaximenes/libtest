@@ -1,8 +1,11 @@
 define({
   'Books': 'Книги',
   'Questions': 'Вопросы',
+  'questions': 'вопросы',
   'Reviews': 'Отзывы',
-  'Post': 'Написать',
+  'Answers': 'Ответы',
+  'answers': 'ответы',
+  'Profile': 'Профиль',
   'description': 'описание',
   'edit': 'править',
   'read': 'читать',
@@ -10,5 +13,6 @@ define({
   'all': 'все',
   'favorites': 'избранное',
   'recent': 'недавнее',
-  'report': 'пожаловаться'
+  'report': 'пожаловаться',
+  'add book': 'добавить книгу'
 })

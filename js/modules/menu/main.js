@@ -16,6 +16,8 @@ define([
 
       base: '/books/',
 
+      userSignedIn: false,
+
       // create menu given items (pages)
       add: function(menu, pages) {
         var models = []
@@ -37,20 +39,24 @@ define([
           'books':
             [{page: 'all', title: 'all', path: '/books/'},
             {page: 'favorites', title: 'favorites', path: '/books/favorites/'},
-            {page: 'recent', title: 'recent', path: '/books/recent/'}
+            {page: 'recent', title: 'recent', path: '/books/recent/'},
+            (this.userSignedIn ?
+              {page: 'addBook', title: 'add book', path: '/books/add/'} :
+              {page: 'addBook', title: 'add book', path: '/signin/'}
+            )
           ],
           'book': [
             {page: 'description', title: 'description', path: this.base},
-            {page: 'read', title: 'read', path: ''},
+            {page: 'read', title: 'currently unavailable', path: ''},
             {page: 'report', title: 'report', path: this.base + 'report/', toRight: true}
           ],
           'questions':
             [{page: 'all', title: 'all', path: '/questions/'},
           ],
           'user': [
-            {page: 'userQuestions', title: 'questions', path: '/user/questions'},
-            {page: 'userAnswers', title: 'answers', path: '/user/answers'},
-            {page: 'info', title: 'info', path: '/user/'}
+            {page: 'userQuestions', title: 'questions', path: '/user/questions/'},
+            {page: 'userAnswers', title: 'answers', path: '/user/answers/'},
+            // {page: 'info', title: 'info', path: '/user/'}
           ]
         }[menu]
       },
@@ -73,6 +79,12 @@ define([
 
     Menu.initialize = function() {
       this.listenTo(Backbone, 'page:render', this.set)
+      this.listenTo(Backbone, 'user:signed', function() {
+        this.userSignedIn = true;
+      }.bind(this))
+      this.listenTo(Backbone, 'user:signout', function() {
+        this.userSignedIn = false;
+      }.bind(this))
     }
     Menu.initialize()
 

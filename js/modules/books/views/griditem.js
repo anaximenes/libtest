@@ -2,10 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!/templates/books/books-list-entry.html',
-    'i18n!modules/nls/sign'
+    'text!/templates/books/books-grid-entry.html'
   ],
-  function($, _, Backbone, Template, i18n) {
+  function($, _, Backbone, Template) {
     ListItemView = Backbone.View.extend({
       showAddToFavoritesError: false,
 
@@ -28,7 +27,7 @@ define([
 
       render: function() {
         if (this.model.complete()) {
-          var model = _.extend(this.model.present({ short: true }), {error: this.showAddToFavoritesError}, i18n)
+          var model = _.extend(this.model.present({ short: true }), {error: this.showAddToFavoritesError})
           this.$el.html(_.template(Template)(model))
           // this.$el.html(_.template(Template)(this.model.present({ short: true })))
         }
