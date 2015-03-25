@@ -45,6 +45,8 @@ define([
         this.show = options.show
         this.body = options.body || ''
         this.where = ''
+
+        this.listenTo(Backbone, 'post:save', this.save);
       }
     })
 

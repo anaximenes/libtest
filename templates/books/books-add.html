@@ -3,9 +3,12 @@
 <div class='row'>
   <div class='col-xs-12'>
     <!-- <p style='font-size: larger;'> <%= label_suggest_book %>: </p> -->
-    <div class="btn btn-default btn-file"><span class='input-file-text'><%= label_choose_file %></span><input type="file" class='input-file'></div>
+    <div class="btn btn-default btn-file" style='margin-top: 0.5em;'>
+      <span class='input-file-text'><%= label_choose_file %></span><input type="file" class='input-file'>
+    </div>
     <span class='file-size-caption text-danger' style='margin-left: 0.5em; font-style: italic;'></span>
 
+    <!-- <div class='book-info' style='margin-top: 1em;'> -->
     <div class='book-info' style='margin-top: 2em; display: none;'>
       <div class='well'>
         <form class="form-horizontal">
@@ -28,15 +31,15 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="input-publisher" class="col-sm-2 control-label"><%= label_publisher %></label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control input-publisher" id="input-publisher">
-            </div>
-          </div>
-          <div class="form-group">
             <label for="input-year" class="col-sm-2 control-label"><%= label_year %></label>
             <div class="col-sm-2">
               <input type="text" class="form-control input-year" id="input-year">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-publisher" class="col-sm-2 control-label"><%= label_publisher %></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control input-publisher" id="input-publisher">
             </div>
           </div>
           <div class="form-group">
@@ -51,10 +54,16 @@
             </div>
           </div>
         </form>
+
+        <div class='col-xs-offset-2'>
+          <div class='description-block' style='display: none;'></div>
+          <a class='toggle-description-block'><%= label_add_description %></a>
+          <a class='toggle-description-block' style='display: none;'><%= label_remove_description %></a>
+        </div>
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-default button-upload"><%= label_upload %></button>
+        <button type="submit" class="btn btn-success button-upload"><%= label_upload %></button>
         <!-- <button type="" class="btn btn-default button-cancel">discard</button> -->
       </div>
     </div>

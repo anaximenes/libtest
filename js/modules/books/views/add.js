@@ -2,19 +2,21 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'modules/post/main',
     'modules/utils/main',
     'text!templates/books/books-add.html',
     'i18n!nls/addbook',
     'i18n!nls/page-books-card',
     'bootstrap'
   ],
-  function($, _, Backbone, Utils, Template, i18nAddBook, i18nBookCard) {
+  function($, _, Backbone, Post, Utils, Template, i18nAddBook, i18nBookCard) {
     var AddView = Backbone.View.extend({
       events: {
         'change .input-file': 'onFileAdded',
         'change .input-title': 'checkTitle',
         'input .input-title': 'checkTitleDeBounced',
         'click .button-upload': 'submit',
+        'click a.toggle-description-block' : 'toggleDescription',
         'submit': 'submit'
       },
 
@@ -34,6 +36,7 @@ define([
         if (!files || files.length === 0) {
           this.$('.input-file-text').html(i18nAddBook.label_choose_file);
           this.$('.book-info').slideUp('fast');
+          this.$('.file-size-caption').html('')
           return;
         }
         var label = $input.val().replace(/\\/g, '/').replace(/.*\//, '');
@@ -41,7 +44,14 @@ define([
 
         if (this.validateFile(files[0])) {
           this.$('.book-info').slideDown('fast');
+          this.$('.input-title').val(label)
         }
+      },
+
+      toggleDescription: function() {
+        this.$('.toggle-description-block').toggle();
+        this.$('.wmd-input').val('');
+        this.$('.description-block').slideToggle();
       },
 
       checkTitle: function() {
@@ -72,6 +82,7 @@ define([
         var year = this.$('.input-year').val().trim();
         var isbn = this.$('.input-isbn').val().trim();
         var isbnType = this.$('.input-isbn-type').val();
+        var description = this.$('.wmd-input').val();
 
         if (!this.validate(title)) return;
 
@@ -83,6 +94,7 @@ define([
           tags: [],
           isbn13: (isbnType === 'isbn13' ? isbn : null),
           isbn10: (isbnType === 'isbn13' ? null : isbn),
+          description: description
           // id: 1241360
         })
         model.save([], {
@@ -100,11 +112,17 @@ define([
 
       render: function() {
         this.$el.html(_.template(Template)(_.extend(i18nAddBook, i18nBookCard)));
+        this.$('.description-block').html(this.descriptionView.render().el);
         return this;
+      },
+
+      remove: function() {
+        this.descriptionView.remove();
       },
 
       initialize: function(options) {
         this.checkTitleDeBounced = _.debounce(this.checkTitle, 750);
+        this.descriptionView = new Post.PlainView({ show: true });
       }
     })
 

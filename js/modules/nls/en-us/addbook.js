@@ -5,4 +5,6 @@ define({
   'label_error_no_title': 'Please add title',
   'label_ask_duplicate': 'Maybe we already have',
   'label_upload': 'upload'
+  'label_add_description': 'add description',
+  'label_remove_description': 'remove description'
 })

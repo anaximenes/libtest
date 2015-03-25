@@ -48,6 +48,7 @@ define([
         console.log(selectize.items)
 
         this.save(attrs)
+        Backbone.trigger('post:save');
       },
 
       cancel: function(event) {
